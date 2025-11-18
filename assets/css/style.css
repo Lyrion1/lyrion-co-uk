@@ -1,0 +1,224 @@
+/* --- LYRĪON Celestial Styles --- */
+
+:root {
+    --color-cream: #F4EFE8;
+    --color-ink: #151311;
+    --color-gold: #C4A449;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Global Reset and Body */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    color: var(--color-ink);
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+h3 { font-size: 1.6rem; margin-bottom: 0.8rem; }
+
+p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Links & Buttons (The Gold Touch) */
+a {
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+a:hover {
+    color: var(--color-gold);
+}
+
+.button-primary {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border: 1px solid var(--color-ink);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.button-primary:hover {
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+    border-color: var(--color-ink);
+}
+
+.button-gold {
+    background-color: var(--color-gold);
+    color: var(--color-ink);
+    border: 1px solid var(--color-gold);
+}
+
+.button-gold:hover {
+    background-color: #A38435; /* Darker gold for hover */
+    color: var(--color-cream);
+    border-color: #A38435;
+}
+
+/* Header & Navigation */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo a {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: var(--color-ink);
+}
+
+.nav-main a {
+    margin-left: 2rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Hero Section */
+.hero {
+    max-width: 1200px;
+    margin: 4rem auto 6rem auto;
+    padding: 0 4rem;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    font-family: var(--font-serif);
+    color: var(--color-gold);
+    margin-bottom: 2rem;
+}
+
+/* Collections Grid (Shop Page Style) */
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    padding: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.collection-item {
+    text-align: center;
+    border: 1px solid rgba(21, 19, 17, 0.1); /* Subtle ink border */
+    padding: 1rem;
+    background-color: #FCFAFA; /* Very light cream contrast */
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.collection-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.collection-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.collection-item h3 {
+    margin: 0.5rem 0;
+    font-size: 1.4rem;
+}
+
+.collection-item p.price {
+    font-family: var(--font-serif);
+    color: var(--color-gold);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+    padding: 3rem 4rem;
+    text-align: center;
+    margin-top: 6rem;
+}
+
+footer a {
+    color: var(--color-gold);
+    margin: 0 1rem;
+}
+
+footer .copyright {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem 2rem;
+    }
+
+    .nav-main {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .nav-main a {
+        margin: 0 0.5rem;
+        display: inline-block;
+    }
+
+    .hero {
+        padding: 0 2rem;
+        margin-top: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .collections-grid {
+        padding: 2rem;
+        gap: 2rem;
+    }
+}
