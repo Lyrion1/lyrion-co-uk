@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 1. SIGN UP FOR FORMSPREE.IO (free tier)
             // 2. CREATE A NEW FORM to get the endpoint URL.
             // 3. REPLACE THIS ENTIRE STRING WITH YOUR FORMSPREE ENDPOINT URL
-            const FORMSPREE_ENDPOINT = "YOUR_FORMSPREE_ENDPOINT_HERE";
+            const FORMSPREE_ENDPOINT = "https://formspree.io/f/mvglpzjl";
             
             if (FORMSPREE_ENDPOINT === "YOUR_FORMSPREE_ENDPOINT_HERE") {
                 alert("FORM ERROR: You must replace 'YOUR_FORMSPREE_ENDPOINT_HERE' in assets/js/contact.js with your actual Formspree endpoint URL for submissions to work!");
@@ -66,3 +66,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 Added JS for Formspree submission
+Connected Formspree endpoint
