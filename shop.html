@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop LYRĪON | Zodiac Apparel, Homeware & Art</title>
+    <meta name="description" content="Shop the exclusive LYRĪON collections: Zodiac Hoodies, Celestial Youth, Altar Cloths, and Framed Constellations.">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/favicon-sun.png">
+    <style>
+        /* Shop Specific Styles */
+        .shop-header {
+            max-width: 1200px;
+            margin: 4rem auto 2rem auto;
+            text-align: center;
+        }
+        .shop-header h1 {
+            font-size: 3.5rem;
+            color: var(--color-ink);
+        }
+        .filter-nav {
+            max-width: 1200px;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+            padding: 0 4rem;
+        }
+        .filter-nav button {
+            background: none;
+            border: 1px solid transparent;
+            color: var(--color-ink);
+            padding: 0.5rem 1.2rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .filter-nav button:hover, .filter-nav button.active {
+            color: var(--color-gold);
+            border-bottom: 1px solid var(--color-gold);
+        }
+        #product-grid {
+            /* This is where the product JS will insert the items, using the collections-grid style */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">LYRĪON</a>
+        </div>
+        <nav class="nav-main">
+            <a href="shop.html">Shop</a>
+            <a href="oracle.html">Oracle</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="shop-header">
+            <h1>The Celestial Catalogue</h1>
+            <p style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-gold);">Find your sign. Own your intention.</p>
+        </section>
+
+        <nav class="filter-nav" id="filter-nav">
+            <button class="active" data-filter="All">All Collections</button>
+            <button data-filter="Women">Women</button>
+            <button data-filter="Men">Men</button>
+            <button data-filter="Moon Girls">Moon Girls</button>
+            <button data-filter="Star Boys">Star Boys</button>
+            <button data-filter="Home & Art">Home & Art</button>
+            <button data-filter="Bundles">Bundles</button>
+        </nav>
+
+        <section class="collections-grid" id="product-grid">
+            <p style="text-align: center; grid-column: 1 / -1; font-family: var(--font-serif);">Loading the constellations...</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="nav-footer">
+            <a href="shop.html">Shop</a>
+            <a href="oracle.html">Oracle</a>
+            <a href="contact.html">Contact</a>
+            <a href="blog.html">Blog</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LYRĪON Celestial Couture. Live with Ritual and Intention.
+        </div>
+    </footer>
+    
+    <script src="assets/js/shop.js"></script>
+
+</body>
+</html>
+Added Shop page structure
