@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celestial Journal | The LYRĪON Blog</title>
+    <meta name="description" content="The Celestial Journal: Articles on design, astrology, art, and living with intention. Drive organic traffic to LYRĪON.">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/favicon-sun.png">
+    <style>
+        /* Blog Specific Styles */
+        .blog-container {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Main content and sidebar */
+            gap: 4rem;
+        }
+        .blog-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(21, 19, 17, 0.1);
+            padding-bottom: 1rem;
+        }
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .article-card {
+            background-color: #FCFAFA;
+            border: 1px solid rgba(196, 164, 73, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .article-card:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .article-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .article-info {
+            padding: 1.5rem;
+        }
+        .article-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .article-info p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Sidebar & Donation CTA */
+        .sidebar {
+            padding: 2rem;
+            background-color: #FCFAFA;
+            border: 1px solid rgba(21, 19, 17, 0.1);
+            border-radius: 8px;
+            height: fit-content;
+        }
+        .sidebar h3 {
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .donation-cta {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .donation-cta p {
+            font-family: var(--font-serif);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--color-gold);
+        }
+        /* Mobile adjustment */
+        @media (max-width: 900px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+                padding: 0 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">LYRĪON</a>
+        </div>
+        <nav class="nav-main">
+            <a href="shop.html">Shop</a>
+            <a href="oracle.html">Oracle</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="blog-container">
+            <div class="main-content">
+                <div class="blog-header">
+                    <h1>The Celestial Journal</h1>
+                </div>
+                
+                <div class="article-grid">
+                    <a href="#" class="article-card">
+                        <img src="assets/img/blog-icon.jpg" alt="Article Thumbnail">
+                        <div class="article-info">
+                            <h3>Ritual & Intention: Setting Your Monthly Moon Cycle</h3>
+                            <p>An introduction to living in alignment with lunar phases. (January 2025)</p>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="article-card">
+                         <img src="assets/img/oracle-art.jpg" alt="Article Thumbnail">
+                        <div class="article-info">
+                            <h3>The Architecture of the Zodiac: Design and Form</h3>
+                            <p>How celestial geometry informs modern luxury design. (February 2025)</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="article-card">
+                         <img src="assets/img/adult-feature.jpg" alt="Article Thumbnail">
+                        <div class="article-info">
+                            <h3>The Power of Organic Cotton in Conscious Living</h3>
+                            <p>Sourcing and sustainability behind our core Zodiac collections. (March 2025)</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <h3>The Cosmic Archive</h3>
+                <p>Browse categories:</p>
+                <ul>
+                    <li>Astrology & Alignment (4)</li>
+                    <li>Design & Artistry (2)</li>
+                    <li>Sustainability & Sourcing (1)</li>
+                </ul>
+
+                <div class="donation-cta">
+                    <p>Support the Oracle's Wisdom:</p>
+                    <a href="YOUR_STRIPE_DONATION_LINK_HERE" target="_blank" class="button-primary button-gold">Donate via Stripe</a>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.6; color: var(--color-ink); font-family: var(--font-sans);">Your contribution funds research and development.</p>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer>
+        <div class="nav-footer">
+            <a href="shop.html">Shop</a>
+            <a href="oracle.html">Oracle</a>
+            <a href="contact.html">Contact</a>
+            <a href="blog.html">Blog</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LYRĪON Celestial Couture. Live with Ritual and Intention.
+        </div>
+    </footer>
+    
+</body>
+</html>
+Added Blog page structure and donation CTA.
