@@ -1,0 +1,123 @@
+[
+    {
+        "id": "A-HOOD-ARIES",
+        "name": "Aries Cardinal Hoodie",
+        "price": 95.00,
+        "category": "Women",
+        "subCategory": "Zodiac Hoodies",
+        "image": "aries-hoodie.webp",
+        "description": "Bold cardinal energy embodied in organic cotton. Embroidered ram constellation.",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    },
+    {
+        "id": "A-TEE-TAURUS",
+        "name": "Taurus Earth Tee",
+        "price": 55.00,
+        "category": "Men",
+        "subCategory": "Zodiac Tees",
+        "image": "taurus-tee.webp",
+        "description": "Soft, grounded fabric. Subtle golden Bull constellation embroidery.",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    },
+    {
+        "id": "A-JOG-GEMINI",
+        "name": "Gemini Air Joggers",
+        "price": 85.00,
+        "category": "Women",
+        "subCategory": "Zodiac Joggers",
+        "image": "gemini-joggers.webp",
+        "description": "Lightweight, twin-star embroidered joggers for duality and motion.",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    },
+    {
+        "id": "A-HOOD-CANCER",
+        "name": "Cancer Moon Water Hoodie",
+        "price": 110.00,
+        "category": "Women",
+        "subCategory": "Zodiac Hoodies",
+        "image": "cancer-hoodie.webp",
+        "description": "Premium comfort, deep lunar embroidery. The ultimate cocooning piece.",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    },
+    {
+        "id": "A-TEE-LEO",
+        "name": "Leo Fire Sign Tee",
+        "price": 60.00,
+        "category": "Men",
+        "subCategory": "Zodiac Tees",
+        "image": "leo-tee.webp",
+        "description": "Regal black tee with subtle gold lion crest. Statement of solar power.",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    },
+    {
+        "id": "A-JOG-VIRGO",
+        "name": "Virgo Earth Joggers",
+        "price": 88.00,
+        "category": "Women",
+        "subCategory": "Zodiac Joggers",
+        "image": "virgo-joggers.webp",
+        "description": "Pure lines and meticulous detail. Perfected fit for the mutable earth sign.",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    },
+    {
+        "id": "K-TEE-PISCES",
+        "name": "Moon Girl Pisces Tee",
+        "price": 45.00,
+        "category": "Moon Girls",
+        "subCategory": "Kids Apparel",
+        "image": "pisces-kids-tee.webp",
+        "description": "Dreamy, flowing tee for sensitive souls. Fish constellation print.",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    },
+    {
+        "id": "K-HOOD-SCORPIO",
+        "name": "Star Boy Scorpio Hoodie",
+        "price": 75.00,
+        "category": "Star Boys",
+        "subCategory": "Kids Apparel",
+        "image": "scorpio-kids-hoodie.webp",
+        "description": "Intense water-sign hoodie. Small embroidered scorpion detail.",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    },
+    {
+        "id": "H-CLOTH-LIBRA",
+        "name": "Libra Altar Cloth",
+        "price": 50.00,
+        "category": "Home & Art",
+        "subCategory": "Homeware",
+        "image": "libra-cloth.webp",
+        "description": "Balanced geometry printed on silk-cotton blend. Perfect for rituals.",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    },
+    {
+        "id": "H-ART-AQUARIUS",
+        "name": "Aquarius Framed Constellation",
+        "price": 150.00,
+        "category": "Home & Art",
+        "subCategory": "Art",
+        "image": "aquarius-art.webp",
+        "description": "Limited print of the water-bearer constellation, framed in antique gold.",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    },
+    {
+        "id": "B-FULL-SET",
+        "name": "Celestial Full Set Bundle",
+        "price": 220.00,
+        "category": "Bundles",
+        "subCategory": "Apparel Bundles",
+        "image": "full-set-bundle.webp",
+        "description": "Hoodie, Tee, and Joggers for your sign. (Saves £30).",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    },
+    {
+        "id": "H-CANDLE-CAPRICORN",
+        "name": "Capricorn Mountain Candle",
+        "price": 35.00,
+        "category": "Home & Art",
+        "subCategory": "Homeware",
+        "image": "capricorn-candle.webp",
+        "description": "Earthy scent profile with grounding quartz crystal. 60-hour burn time.",
+        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
+    }
+]
+Added product catalogue data
