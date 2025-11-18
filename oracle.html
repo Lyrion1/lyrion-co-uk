@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The LYRĪON Oracle | Seek Cosmic Guidance</title>
+    <meta name="description" content="Submit your deepest questions to the Oracle. Receive personalized written insight based on your celestial alignment.">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/favicon-sun.png">
+    <style>
+        /* Oracle Specific Styles */
+        .oracle-container {
+            max-width: 700px;
+            margin: 6rem auto;
+            padding: 0 4rem;
+            text-align: center;
+        }
+        .oracle-container h2 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-gold);
+        }
+        .oracle-container p {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .oracle-form {
+            background-color: #FCFAFA; 
+            border: 1px solid rgba(196, 164, 73, 0.2); /* Light gold border */
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: left;
+        }
+        .oracle-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            font-family: var(--font-serif);
+        }
+        .oracle-form input[type="text"], 
+        .oracle-form input[type="email"], 
+        .oracle-form textarea,
+        .oracle-form select {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(21, 19, 17, 0.2);
+            background-color: var(--color-cream);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .oracle-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        .oracle-form .submit-btn {
+            width: 100%;
+            text-align: center;
+        }
+        
+        /* The Oracle's Whisper (Submission Feedback) */
+        #form-status {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: var(--color-gold);
+            color: var(--color-ink);
+            border-radius: 4px;
+            text-align: center;
+            display: none; /* Hidden until submission */
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+        }
+        
+        .premium-upsell {
+            margin-top: 4rem;
+            padding: 2rem;
+            border: 2px dashed var(--color-gold);
+            background-color: #FFFDFB;
+            border-radius: 8px;
+        }
+        .premium-upsell h3 {
+            color: var(--color-ink);
+            font-size: 1.6rem;
+        }
+
+        @media (max-width: 768px) {
+            .oracle-container {
+                padding: 0 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">LYRĪON</a>
+        </div>
+        <nav class="nav-main">
+            <a href="shop.html">Shop</a>
+            <a href="oracle.html">Oracle</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="oracle-container">
+            <h2>The Oracle's Chamber</h2>
+            <p>Here, the celestial veil is thin. Submit your query to receive guidance from the cosmic rhythm.</p>
+
+            <form id="oracleForm" class="oracle-form">
+                <input type="hidden" name="_next" value="https://lyrion1.github.io/lyrion-co-uk/oracle.html?success=true">
+                
+                <label for="name">Your Celestial Name (Required)</label>
+                <input type="text" id="name" name="Name" required>
+
+                <label for="email">Your Sacred Email (Required)</label>
+                <input type="email" id="email" name="Email" required>
+
+                <label for="sign">Your Sun Sign</label>
+                <select id="sign" name="Sun Sign">
+                    <option value="">Select your sign...</option>
+                    <option value="Aries">Aries</option>
+                    <option value="Taurus">Taurus</option>
+                    <option value="Gemini">Gemini</option>
+                    <option value="Cancer">Cancer</option>
+                    <option value="Leo">Leo</option>
+                    <option value="Virgo">Virgo</option>
+                    <option value="Libra">Libra</option>
+                    <option value="Scorpio">Scorpio</option>
+                    <option value="Sagittarius">Sagittarius</option>
+                    <option value="Capricorn">Capricorn</option>
+                    <option value="Aquarius">Aquarius</option>
+                    <option value="Pisces">Pisces</option>
+                </select>
+
+                <label for="query">Your Query for the Oracle (Required)</label>
+                <textarea id="query" name="Query" required placeholder="Describe your current intention or challenge..."></textarea>
+
+                <div class="submit-btn">
+                    <button type="submit" class="button-primary button-gold">Invoke the Insight</button>
+                </div>
+                <div id="form-status">The Oracle hears your whisper... A scroll will be delivered to your sacred email soon.</div>
+            </form>
+
+            <div class="premium-upsell">
+                <h3>**Personalized Written Insight**</h3>
+                <p>For a deeper, individualized cosmic analysis, the Oracle offers a premium £15–£25 written response. This bespoke reading, crafted by our celestial analyst, provides targeted guidance based on your query and natal chart details.</p>
+                <p>*(Details will be sent to your email after initial submission.)*</p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="nav-footer">
+            <a href="shop.html">Shop</a>
+            <a href="oracle.html">Oracle</a>
+            <a href="contact.html">Contact</a>
+            <a href="blog.html">Blog</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LYRĪON Celestial Couture. Live with Ritual and Intention.
+        </div>
+    </footer>
+    
+    <script src="assets/js/contact.js"></script>
+
+</body>
+</html>
+Added Oracle form page
