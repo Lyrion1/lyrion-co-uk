@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact LYRĪON | Inquiries</title>
+    <meta name="description" content="Get in touch with the LYRĪON house for press, partnership, or general inquiries.">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/favicon-sun.png">
+    <style>
+        /* Reusing Oracle Form styles for elegance */
+        .contact-container {
+            max-width: 600px;
+            margin: 6rem auto;
+            padding: 0 4rem;
+            text-align: center;
+        }
+        .contact-container h2 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-ink);
+        }
+        .contact-container p {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-form {
+            background-color: #FCFAFA; 
+            border: 1px solid rgba(21, 19, 17, 0.1);
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: left;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            font-family: var(--font-serif);
+        }
+        .contact-form input[type="text"], 
+        .contact-form input[type="email"], 
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(21, 19, 17, 0.2);
+            background-color: var(--color-cream);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .contact-form .submit-btn {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">LYRĪON</a>
+        </div>
+        <nav class="nav-main">
+            <a href="shop.html">Shop</a>
+            <a href="oracle.html">Oracle</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-container">
+            <h2>Connect with the House</h2>
+            <p>For press, partnerships, wholesale, or general inquiries, please use the form below.</p>
+
+            <form id="contactForm" class="contact-form" action="https://formspree.io/f/mvglpzjl" method="POST">
+                
+                <label for="c_name">Name</label>
+                <input type="text" id="c_name" name="Name" required>
+
+                <label for="c_email">Email (Required)</label>
+                <input type="email" id="c_email" name="Email" required>
+                
+                <label for="c_subject">Subject</label>
+                <input type="text" id="c_subject" name="Subject">
+
+                <label for="c_message">Message (Required)</label>
+                <textarea id="c_message" name="Message" required></textarea>
+
+                <div class="submit-btn">
+                    <button type="submit" class="button-primary button-gold">Send Inquiry</button>
+                </div>
+            </form>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="nav-footer">
+            <a href="shop.html">Shop</a>
+            <a href="oracle.html">Oracle</a>
+            <a href="contact.html">Contact</a>
+            <a href="blog.html">Blog</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LYRĪON Celestial Couture. Live with Ritual and Intention.
+        </div>
+    </footer>
+    
+    <script src="assets/js/contact.js"></script>
+
+</body>
+</html>
+Added Contact page.
