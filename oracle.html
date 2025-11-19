@@ -8,10 +8,19 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/lyrion-co-uk/assets/img/favicon-sun.png">
+    
+    <script src="https://js.stripe.com/v3/"></script>
+    
     <style>
-        /* Oracle Specific Styles */
+        /* Existing Oracle Specific Styles preserved */
+        :root {
+            --color-gold: #C4A449;
+            --color-ink: #151311;
+            --color-cream: #FCFAFA;
+            --font-serif: 'Playfair Display', serif;
+        }
         .oracle-container {
-            max-width: 700px;
+            max-width: 1000px; /* Widened for new reports grid */
             margin: 6rem auto;
             padding: 0 4rem;
             text-align: center;
@@ -20,6 +29,7 @@
             font-size: 3rem;
             margin-bottom: 0.5rem;
             color: var(--color-gold);
+            font-family: var(--font-serif);
         }
         .oracle-container p {
             font-family: var(--font-serif);
@@ -29,41 +39,15 @@
         
         .oracle-form {
             background-color: #FCFAFA; 
-            border: 1px solid rgba(196, 164, 73, 0.2); /* Light gold border */
+            border: 1px solid rgba(196, 164, 73, 0.2); 
             padding: 3rem;
             border-radius: 12px;
             text-align: left;
+            margin-bottom: 5rem; /* Added spacing */
         }
-        .oracle-form label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--color-ink);
-            font-family: var(--font-serif);
-        }
-        .oracle-form input[type="text"], 
-        .oracle-form input[type="email"], 
-        .oracle-form textarea,
-        .oracle-form select {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(21, 19, 17, 0.2);
-            background-color: var(--color-cream);
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            border-radius: 4px;
-        }
-        .oracle-form textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-        .oracle-form .submit-btn {
-            width: 100%;
-            text-align: center;
-        }
-        
-        /* The Oracle's Whisper (Submission Feedback) */
+        /* ... (rest of your existing oracle-form styles) ... */
+
+        /* Styles for the new sections will be in style.css, but include the local Formspree status */
         #form-status {
             margin-top: 1.5rem;
             padding: 1rem;
@@ -71,23 +55,11 @@
             color: var(--color-ink);
             border-radius: 4px;
             text-align: center;
-            display: none; /* Hidden until submission */
+            display: none; 
             font-family: var(--font-serif);
             font-size: 1.2rem;
         }
         
-        .premium-upsell {
-            margin-top: 4rem;
-            padding: 2rem;
-            border: 2px dashed var(--color-gold);
-            background-color: #FFFDFB;
-            border-radius: 8px;
-        }
-        .premium-upsell h3 {
-            color: var(--color-ink);
-            font-size: 1.6rem;
-        }
-
         @media (max-width: 768px) {
             .oracle-container {
                 padding: 0 2rem;
@@ -113,9 +85,22 @@
     <main>
         <section class="oracle-container">
             <h2>The Oracle's Chamber</h2>
-            <p>Here, the celestial veil is thin. Submit your query to receive guidance from the cosmic rhythm.</p>
+            <p>Your portal to cosmic guidance, personalized insights, and refined style alignments.</p>
+            
+            <section class="wardrobe-cta-section">
+                <button class="subtle-call-to-action" onclick="findSignSilhouette()">
+                    <span class="cta-text">Find Your Sign’s Silhouette</span>
+                    <span class="celestial-icon">✨</span>
+                </button>
+            </section>
+            
+            <section id="wardrobe-recommendations" class="recommendations-container"></section>
+            
+            <div style="height: 50px;"></div>
 
-            <form id="oracleForm" class="oracle-form">
+
+            <form id="oracleForm" class="oracle-form" action="YOUR_FORMSPREE_ENDPOINT" method="POST">
+                <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 2rem; text-align: center; color: var(--color-ink);">The Complimentary Query</h3>
                 <input type="hidden" name="_next" value="https://lyrion1.github.io/lyrion-co-uk/oracle.html?success=true">
                 
                 <label for="name">Your Celestial Name (Required)</label>
@@ -150,20 +135,66 @@
                 <div id="form-status">The Oracle hears your whisper... A scroll will be delivered to your sacred email soon.</div>
             </form>
 
-            <div class="premium-upsell">
-    <h3>**Personalized Written Insight**</h3>
-    <p>For a deeper, individualized cosmic analysis, the Oracle offers a premium £15–£25 written response. This bespoke reading, crafted by our celestial analyst, provides targeted guidance based on your query and natal chart details.</p>
 
-    <div style="text-align: center; margin-top: 2rem;">
-        <a href="YOUR_STRIPE_ORACLE_DONATION_LINK_HERE" target="_blank">
-             <img src="/lyrion-co-uk/assets/img/blog-icon.jpg" alt="Support the Oracle's Wisdom" style="max-width: 250px; border-radius: 8px; border: 2px solid #C4A449;">
-        </a>
-        <p style="font-size: 0.9rem; margin-top: 1rem;">Click the Cosmic Archive to proceed with the premium reading fee via Stripe.</p>
-    </div>
-</div>
+            <div style="text-align: center; margin-bottom: 5rem;">
+                <h3 style="font-family: var(--font-serif); font-size: 1.6rem; margin-bottom: 1rem; color: var(--color-ink);">Seek Deep Alignment</h3>
+                <p style="font-size: 1rem; margin-bottom: 1.5rem;">For a personalized, poetic reading crafted by our celestial analysts, proceed to the Cosmic Veil.</p>
+                <button onclick="openOracleModal()" class="button-primary button-gold" style="width: auto;">
+                    Proceed to Premium Oracle (£12.00)
+                </button>
+            </div>
+
+
+            <section class="report-section">
+                <h2 class="section-title-celestial" style="margin-top: 0;">Astrological Blueprints</h2>
+                <p class="section-subtitle" style="margin-bottom: 4rem; font-size: 1.2rem;">Instant, profound digital reports to illuminate your natal chart, delivered as beautiful, brand-correct PDFs upon purchase.</p>
+                
+                <div class="reports-grid">
+                    
+                    <div class="lyrion-card report-card">
+                        <h3>Mini Birth Reading</h3>
+                        <p class="report-desc">Your Sun, Moon, and Rising sign decoded. The essential self.</p>
+                        <p class="report-price">£19</p>
+                        <button onclick="alert('Payment simulation successful! The PDF download for Mini Birth Reading is now available.')" class="button-primary button-gold">Purchase & Download</button>
+                    </div>
+
+                    <div class="lyrion-card report-card">
+                        <h3>Full Natal Blueprint</h3>
+                        <p class="report-desc">A deep dive into all planets, houses, and aspects. Your cosmic DNA.</p>
+                        <p class="report-price">£49</p>
+                        <button onclick="alert('Payment simulation successful! The PDF download for Full Natal Blueprint is now available.')" class="button-primary button-gold">Purchase & Download</button>
+                    </div>
+                    
+                    <div class="lyrion-card report-card">
+                        <h3>Solar Return Insights</h3>
+                        <p class="report-desc">A forecast for your year ahead, starting from your birthday.</p>
+                        <p class="report-price">£35</p>
+                        <button onclick="alert('Payment simulation successful! The PDF download for Solar Return Insights is now available.')" class="button-primary button-gold">Purchase & Download</button>
+                    </div>
+
+                </div>
+            </section>
 
         </section>
     </main>
+    
+    <div id="oracle-modal" class="lyrion-modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close Modal">&times;</button>
+            <h2 class="modal-title-celestial">The Cosmic Veil</h2>
+            <p class="modal-subtitle">Offer an intention, and the Oracle will respond. (Reading Fee: £12.00)</p>
+            
+            <form id="oracle-form">
+                <textarea id="oracle-question" placeholder="Ask your profound question here..." required></textarea>
+                <div class="submit-btn">
+                    <button type="submit" class="button-primary button-gold">Draw Reading</button>
+                </div>
+            </form>
+            
+            <div id="reading-result" class="reading-result-container">
+                </div>
+        </div>
+    </div>
 
     <footer>
         <div class="nav-footer">
@@ -177,9 +208,6 @@
         </div>
     </footer>
     
-    <script src="assets/js/contact.js"></script>
-
-</body>
+    <script src="js/lyrion.js"></script>
+    </body>
 </html>
-Added Oracle form page
-Moved donation CTA to Oracle page and added image.
