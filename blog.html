@@ -9,13 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/lyrion-co-uk/assets/img/favicon-sun.png">
     <style>
-        /* Blog Specific Styles */
+        /* Existing Blog Specific Styles preserved */
+        :root {
+            /* Assuming these vars are defined in style.css */
+            --color-ink: #151311;
+            --color-gold: #C4A449;
+            --font-serif: 'Playfair Display', serif;
+        }
+
         .blog-container {
             max-width: 1200px;
             margin: 6rem auto;
             padding: 0 4rem;
             display: grid;
-            grid-template-columns: 2fr 1fr; /* Main content and sidebar */
+            grid-template-columns: 2fr 1fr; 
             gap: 4rem;
         }
         .blog-header h1 {
@@ -69,16 +76,34 @@
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
         }
-        .donation-cta {
-            margin-top: 2rem;
-            text-align: center;
+
+        /* NEW LIVE FEED STYLES */
+        #live-feed-container {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(21, 19, 17, 0.1);
         }
-        .donation-cta p {
-            font-family: var(--font-serif);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+        .feed-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed rgba(21, 19, 17, 0.1);
+            text-align: left;
+        }
+        .feed-item a {
+            font-weight: 600;
+            color: var(--color-ink);
+            text-decoration: none;
+            display: block;
+        }
+        .feed-item a:hover {
             color: var(--color-gold);
         }
+        .feed-item p {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            color: #888;
+        }
+
         /* Mobile adjustment */
         @media (max-width: 900px) {
             .blog-container {
@@ -111,7 +136,7 @@
                 </div>
                 
                 <div class="article-grid">
-                    <a href="#" class="article-card">
+                    <a href="article-template.html" class="article-card">
                         <img src="assets/img/blog-icon.jpg" alt="Article Thumbnail">
                         <div class="article-info">
                             <h3>Ritual & Intention: Setting Your Monthly Moon Cycle</h3>
@@ -120,7 +145,7 @@
                     </a>
                     
                     <a href="#" class="article-card">
-                         <img src="assets/img/oracle-art.jpg" alt="Article Thumbnail">
+                       <img src="assets/img/oracle-art.jpg" alt="Article Thumbnail">
                         <div class="article-info">
                             <h3>The Architecture of the Zodiac: Design and Form</h3>
                             <p>How celestial geometry informs modern luxury design. (February 2025)</p>
@@ -128,13 +153,13 @@
                     </a>
 
                     <a href="#" class="article-card">
-                         <img src="assets/img/adult-feature.jpg" alt="Article Thumbnail">
+                       <img src="assets/img/adult-feature.jpg" alt="Article Thumbnail">
                         <div class="article-info">
                             <h3>The Power of Organic Cotton in Conscious Living</h3>
                             <p>Sourcing and sustainability behind our core Zodiac collections. (March 2025)</p>
                         </div>
                     </a>
-                </div>
+                    </div>
             </div>
 
             <aside class="sidebar">
@@ -145,6 +170,14 @@
                     <li>Design & Artistry (2)</li>
                     <li>Sustainability & Sourcing (1)</li>
                 </ul>
+
+                <div id="live-feed-container">
+                    <h3 style="border-bottom: none; margin-bottom: 10px;">Cosmic Alignments Feed</h3>
+                    <div id="dynamic-feed-content">
+                        <p style="text-align: center; font-style: italic; font-size: 0.9rem;">Loading live feed...</p>
+                    </div>
+                </div>
+                
             </aside>
         </section>
     </main>
@@ -161,6 +194,7 @@
         </div>
     </footer>
     
+    <script src="js/lyrion.js"></script>
+
 </body>
-    Removed donation CTA from blog.</html>
-Added Blog page structure and donation CTA.
+</html>
