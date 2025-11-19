@@ -106,6 +106,19 @@ header {
     letter-spacing: 1px;
 }
 
+/* UNIVERSAL BRANDING CORRECTIONS */
+header .logo {
+    /* Ensures the logo container doesn't restrict the image size */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center; /* Vertically centers the logo */
+}
+header .nav-main {
+    /* Ensures navigation aligns nicely with the new logo size */
+    height: 40px; 
+}
+
 /* Hero Section */
 .hero {
     max-width: 1200px;
