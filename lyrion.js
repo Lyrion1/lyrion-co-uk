@@ -157,8 +157,65 @@ function findSignSilhouette() {
 
 
 // --- FEATURE 6: BLOG MONETIZATION (Tip Simulation) ---
-
 function supportTheHouse(articleId) {
+    // Opens a Ko-Fi/donation page directly
+    window.open('https://ko-fi.com/lyrionhouse', '_blank');
+}
+
+function requestPersonalizedInsight(articleId) {
+    // Triggers the Oracle Modal for a personalized reading.
+    openOracleModal();
+}
+
+// --- NEW FEATURE: LIVE FEED LOGIC (Client-Side Fetch) ---
+
+const BLOG_FEED_URL = 'blog-feed.json'; // The file we will create next
+
+function renderFeedItem(item) {
+    return `
+        <div class="feed-item">
+            <a href="${item.url}">${item.title}</a>
+            <p>${item.date} | ${item.source}</p>
+        </div>
+    `;
+}
+
+function fetchLiveFeed() {
+    const feedContainer = document.getElementById('dynamic-feed-content');
+    if (!feedContainer) return;
+
+    fetch(BLOG_FEED_URL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            let html = '';
+            // Display only the first 4-5 items
+            const articles = data.feed.slice(0, 5); 
+            
+            if (articles.length === 0) {
+                 html = '<p>The stars are quiet. Check back soon.</p>';
+            } else {
+                articles.forEach(item => {
+                    html += renderFeedItem(item);
+                });
+            }
+            
+            feedContainer.innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Error fetching blog feed:', error);
+            feedContainer.innerHTML = '<p style="color: #A00;">Failed to load cosmic feed.</p>';
+        });
+}
+
+// Automatically load the feed when any page that uses lryion.js is loaded
+document.addEventListener('DOMContentLoaded', fetchLiveFeed);
+
+// ... existing lryion.js code below ...function supportTheHouse(articleId) {
     // Opens a Ko-Fi/donation page directly
     window.open('https://ko-fi.com/lyrionhouse', '_blank');
 }
