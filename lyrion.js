@@ -85,17 +85,32 @@ document.addEventListener('DOMContentLoaded', () => {
 function simulatePaymentInitialization() {
     const resultContainer = document.getElementById('reading-result');
     
-    // Front-end placeholder for Stripe Elements.
+    // LIVE STRIPE CHECKOUT LINK for the £12.00 Premium Oracle Reading
+    const stripeCheckoutLink = 'https://buy.stripe.com/9B63cofOc3CP7SUaQO83C00';
+
     resultContainer.innerHTML = `
         <p class="celestial-note" style="text-align: center;">Awaiting your offering of £12.00...</p>
         <div class="stripe-mock-container">
             <div class="stripe-element-placeholder">
-                <p class="stripe-label">Stripe Checkout Interface Placeholder</p>
-                <p class="stripe-detail">Enter your card details securely to draw the reading.</p>
-                <button class="mock-pay-btn button-primary button-gold" onclick="simulateReadingSuccess()">Pay £12.00</button>
+                <p class="stripe-label">Payment Processing Portal</p>
+                <p class="stripe-detail">Click below to proceed to our secure checkout page for the reading.</p>
+                
+                <a href="${stripeCheckoutLink}" target="_blank" 
+                   class="mock-pay-btn button-primary button-gold" style="display: inline-block;">
+                    Securely Pay £12.00
+                </a>
             </div>
         </div>
     `;
+
+    // After they click the link and the new tab opens, we simulate the reading success after a delay.
+    const checkoutLink = resultContainer.querySelector('a');
+    if (checkoutLink) {
+        checkoutLink.addEventListener('click', () => {
+            // Give the user time to pay on the new tab, then display the reading result.
+            setTimeout(simulateReadingSuccess, 5000); 
+        });
+    }
 }
 
 function simulateReadingSuccess() {
@@ -215,7 +230,8 @@ function fetchLiveFeed() {
 // Automatically load the feed when any page that uses lryion.js is loaded
 document.addEventListener('DOMContentLoaded', fetchLiveFeed);
 
-// ... existing lryion.js code below ...function supportTheHouse(articleId) {
+// ... existing lryion.js code below ...
+function supportTheHouse(articleId) {
     // Opens a Ko-Fi/donation page directly
     window.open('https://ko-fi.com/lyrionhouse', '_blank');
 }
