@@ -96,7 +96,26 @@
         </div>
     </footer>
     
-    <script src="js/lyrion.js"></script>
+    <!-- Oracle Modal for Personalized Insights -->
+    <div id="oracle-modal" class="lyrion-modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close Modal">&times;</button>
+            <h2 class="modal-title-celestial">The Cosmic Veil</h2>
+            <p class="modal-subtitle">Offer an intention, and the Oracle will respond. (Reading Fee: £12.00)</p>
+            
+            <form id="oracle-form">
+                <textarea id="oracle-question" placeholder="Ask your profound question here..." required></textarea>
+                <div class="submit-btn">
+                    <button type="submit" class="button-primary button-gold">Draw Reading</button>
+                </div>
+            </form>
+            
+            <div id="reading-result" class="reading-result-container">
+            </div>
+        </div>
+    </div>
+    
+    <script src="lyrion.js"></script>
 
 </body>
 </html>
