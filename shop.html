@@ -9,7 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/lyrion-co-uk/assets/img/favicon-sun.png">
     <style>
-        /* Shop Specific Styles */
+        /* Existing Shop Specific Styles preserved */
+        :root {
+            /* Assuming these vars are defined in style.css */
+            --color-ink: #151311;
+            --color-gold: #C4A449;
+            --font-serif: 'Playfair Display', serif;
+        }
+
         .shop-header {
             max-width: 1200px;
             margin: 4rem auto 2rem auto;
@@ -73,11 +80,51 @@
             <button data-filter="Moon Girls">Moon Girls</button>
             <button data-filter="Star Boys">Star Boys</button>
             <button data-filter="Home & Art">Home & Art</button>
-            <button data-filter="Bundles">Bundles</button>
-        </nav>
+            <button data-filter="Bundles">Bundles</button> </nav>
 
         <section class="collections-grid" id="product-grid">
-            <p style="text-align: center; grid-column: 1 / -1; font-family: var(--font-serif);">Loading the constellations...</p>
+            
+            <section id="bundles" class="product-category-section" data-category="Bundles" style="grid-column: 1 / -1; margin-bottom: 4rem;">
+                <h2 class="category-title-celestial section-title-celestial" style="margin-bottom: 1.5rem; text-align: left;">Ritual Kits & Altars</h2>
+                <p class="category-subtitle section-subtitle" style="text-align: left; margin-bottom: 3rem;">Curated bundles combining signature apparel, exclusive homeware, and a powerful digital ritual guide.</p>
+                
+                <div class="reports-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                    
+                    <div class="lyrion-card product-card bundle-card">
+                        <figure class="product-image-container">
+                            <img src="/lyrion-co-uk/assets/products/kit-moon.jpg" alt="New Moon Ritual Kit" class="product-img">
+                        </figure>
+                        <div class="product-details">
+                            <h4 class="product-name">The New Moon Kit</h4>
+                            <ul class="bundle-items-list">
+                                <li>Zenith Bodysuit (Apparel)</li>
+                                <li>Selene Incense Dish (Homeware)</li>
+                                <li>PDF: New Beginnings Guide (Digital)</li>
+                            </ul>
+                            <p class="product-price">£490.00</p>
+                            <a href="#" class="button-primary button-gold">Shop Bundle</a>
+                        </div>
+                    </div>
+                    
+                    <div class="lyrion-card product-card bundle-card">
+                        <figure class="product-image-container">
+                            <img src="/lyrion-co-uk/assets/products/kit-sun.jpg" alt="Solar Return Altar Kit" class="product-img">
+                        </figure>
+                        <div class="product-details">
+                            <h4 class="product-name">The Solar Return Kit</h4>
+                            <ul class="bundle-items-list">
+                                <li>Celestial Shift Trousers (Apparel)</li>
+                                <li>Altar Cloth (Homeware)</li>
+                                <li>PDF: Year Ahead Meditation (Digital)</li>
+                            </ul>
+                            <p class="product-price">£395.00</p>
+                            <a href="#" class="button-primary button-gold">Shop Bundle</a>
+                        </div>
+                    </div>
+
+                    </div>
+            </section>
+            <p style="text-align: center; grid-column: 1 / -1; font-family: var(--font-serif);">Loading the remaining constellations...</p>
         </section>
     </main>
 
@@ -93,9 +140,8 @@
         </div>
     </footer>
     
+    <script src="js/lyrion.js"></script>
     <script src="assets/js/shop.js"></script>
 
 </body>
 </html>
-Added Shop page structure
-
