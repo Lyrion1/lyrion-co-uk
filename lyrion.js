@@ -229,14 +229,3 @@ function fetchLiveFeed() {
 
 // Automatically load the feed when any page that uses lryion.js is loaded
 document.addEventListener('DOMContentLoaded', fetchLiveFeed);
-
-// ... existing lryion.js code below ...
-function supportTheHouse(articleId) {
-    // Opens a Ko-Fi/donation page directly
-    window.open('https://ko-fi.com/lyrionhouse', '_blank');
-}
-
-function requestPersonalizedInsight(articleId) {
-    // Triggers the Oracle Modal for a personalized reading.
-    openOracleModal();
-}
