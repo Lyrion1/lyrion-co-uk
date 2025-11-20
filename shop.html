@@ -19,36 +19,117 @@
 
         .shop-header {
             max-width: 1200px;
-            margin: 4rem auto 2rem auto;
+            margin: 4rem auto 3rem auto;
             text-align: center;
+            padding: 0 2rem;
         }
         .shop-header h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             color: var(--color-ink);
-        }
-        .filter-nav {
-            max-width: 1200px;
-            margin: 0 auto 3rem auto;
-            text-align: center;
-            padding: 0 4rem;
-        }
-        .filter-nav button {
-            background: none;
-            border: 1px solid transparent;
-            color: var(--color-ink);
-            padding: 0.5rem 1.2rem;
-            margin: 0 0.5rem;
-            cursor: pointer;
-            text-transform: uppercase;
+            margin-bottom: 1.5rem;
             letter-spacing: 1px;
-            transition: color 0.3s, border-color 0.3s;
         }
-        .filter-nav button:hover, .filter-nav button.active {
+        .shop-header p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
             color: var(--color-gold);
-            border-bottom: 1px solid var(--color-gold);
+            font-style: italic;
+            margin-bottom: 0;
         }
-        #product-grid {
-            /* This is where the product JS will insert the items, using the collections-grid style */
+        
+        /* Celestial Quarters Styles */
+        .celestial-quarters {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 4rem 6rem 4rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        
+        .quarter-division {
+            background: linear-gradient(135deg, rgba(244, 239, 232, 0.4) 0%, rgba(252, 250, 250, 0.8) 100%);
+            border: 2px solid var(--color-gold);
+            padding: 4rem 3rem;
+            text-align: center;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        
+        .quarter-division:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(196, 164, 73, 0.25);
+            border-color: #A38435;
+        }
+        
+        .quarter-division::before {
+            content: '✦';
+            position: absolute;
+            top: 2rem;
+            left: 2.5rem;
+            font-size: 2.5rem;
+            color: var(--color-gold);
+            opacity: 0.3;
+        }
+        
+        .quarter-division::after {
+            content: '✦';
+            position: absolute;
+            bottom: 2rem;
+            right: 2.5rem;
+            font-size: 2.5rem;
+            color: var(--color-gold);
+            opacity: 0.3;
+        }
+        
+        .quarter-division h2 {
+            font-size: 2.8rem;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        
+        .quarter-division .quarter-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 2rem;
+        }
+        
+        .quarter-division p.quarter-description {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: #5a5856;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+            padding: 0 1rem;
+        }
+        
+        .quarter-division .button-primary {
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .celestial-quarters {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 2rem;
+            }
+            .shop-header h1 {
+                font-size: 2.8rem;
+            }
+            .quarter-division {
+                padding: 3rem 2rem;
+            }
+            .quarter-division h2 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
@@ -71,60 +152,50 @@
 
     <main>
         <section class="shop-header">
-            <h1>The Celestial Catalogue</h1>
-            <p style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-gold);">Find your sign. Own your intention.</p>
+            <h1>The Celestial Quarters: Apparel and Ritual for the Current Cycle</h1>
+            <p>Journey through the seasons with intention and elegance.</p>
         </section>
 
-        <nav class="filter-nav" id="filter-nav">
-            <button class="active" data-filter="All">All Collections</button>
-            <button data-filter="Apparel">Apparel</button>
-            <button data-filter="Homeware">Homeware</button>
-            <button data-filter="Digital">Digital</button>
-        </nav>
+        <section class="celestial-quarters">
+            <article class="quarter-division">
+                <h2>The Ascendant</h2>
+                <p class="quarter-subtitle">Spring / New Moon</p>
+                <p class="quarter-description">
+                    Awakening from the cosmic slumber, the Ascendant marks rebirth and renewal. 
+                    Adorn yourself in fresh intention as the earth blooms anew beneath celestial light.
+                </p>
+                <a href="#" class="button-primary button-gold">View Quarter</a>
+            </article>
 
-        <section class="collections-grid" id="product-grid">
-            
-            <section id="bundles" class="product-category-section" data-category="Bundles" style="grid-column: 1 / -1; margin-bottom: 4rem;">
-                <h2 class="category-title-celestial section-title-celestial" style="margin-bottom: 1.5rem; text-align: left;">Ritual Kits & Altars</h2>
-                <p class="category-subtitle section-subtitle" style="text-align: left; margin-bottom: 3rem;">Curated bundles combining signature apparel, exclusive homeware, and a powerful digital ritual guide.</p>
-                
-                <div class="reports-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                    
-                    <div class="lyrion-card product-card bundle-card">
-                        <figure class="product-image-container">
-                            <img src="assets/products/kit-moon.jpg" alt="New Moon Ritual Kit" class="product-img">
-                        </figure>
-                        <div class="product-details">
-                            <h4 class="product-name">The New Moon Kit</h4>
-                            <ul class="bundle-items-list">
-                                <li>Zenith Bodysuit (Apparel)</li>
-                                <li>Selene Incense Dish (Homeware)</li>
-                                <li>PDF: New Beginnings Guide (Digital)</li>
-                            </ul>
-                            <p class="product-price">£490.00</p>
-                            <a href="#" class="button-primary button-gold">Shop Bundle</a>
-                        </div>
-                    </div>
-                    
-                    <div class="lyrion-card product-card bundle-card">
-                        <figure class="product-image-container">
-                            <img src="assets/products/kit-sun.jpg" alt="Solar Return Altar Kit" class="product-img">
-                        </figure>
-                        <div class="product-details">
-                            <h4 class="product-name">The Solar Return Kit</h4>
-                            <ul class="bundle-items-list">
-                                <li>Celestial Shift Trousers (Apparel)</li>
-                                <li>Altar Cloth (Homeware)</li>
-                                <li>PDF: Year Ahead Meditation (Digital)</li>
-                            </ul>
-                            <p class="product-price">£395.00</p>
-                            <a href="#" class="button-primary button-gold">Shop Bundle</a>
-                        </div>
-                    </div>
+            <article class="quarter-division">
+                <h2>The Apex</h2>
+                <p class="quarter-subtitle">Summer / Full Moon</p>
+                <p class="quarter-description">
+                    In radiant zenith, the Apex illuminates peak vitality and abundance. 
+                    Embrace the fullness of manifestation, draped in solar brilliance and celestial power.
+                </p>
+                <a href="#" class="button-primary button-gold">View Quarter</a>
+            </article>
 
-                    </div>
-            </section>
-            <p style="text-align: center; grid-column: 1 / -1; font-family: var(--font-serif);">Loading the remaining constellations...</p>
+            <article class="quarter-division">
+                <h2>The Descent</h2>
+                <p class="quarter-subtitle">Autumn / Waning Moon</p>
+                <p class="quarter-description">
+                    As light surrenders to shadow, the Descent beckons inward reflection. 
+                    Walk the threshold adorned in twilight hues, harvesting wisdom from the year's passage.
+                </p>
+                <a href="#" class="button-primary button-gold">View Quarter</a>
+            </article>
+
+            <article class="quarter-division">
+                <h2>The Nadir</h2>
+                <p class="quarter-subtitle">Winter / Dark Moon</p>
+                <p class="quarter-description">
+                    In profound stillness, the Nadir holds the mysteries of the void. 
+                    Cloak yourself in sacred darkness, finding sanctuary in ritual and the promise of return.
+                </p>
+                <a href="#" class="button-primary button-gold">View Quarter</a>
+            </article>
         </section>
     </main>
 
@@ -141,7 +212,7 @@
     </footer>
     
     <script src="lyrion.js"></script>
-    <script src="assets/js/shop.js"></script>
+    <!-- <script src="assets/js/shop.js"></script> Disabled for manual curation -->
 
 </body>
 </html>
