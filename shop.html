@@ -25,30 +25,128 @@
         .shop-header h1 {
             font-size: 3.5rem;
             color: var(--color-ink);
+            margin-bottom: 1rem;
         }
-        .filter-nav {
-            max-width: 1200px;
-            margin: 0 auto 3rem auto;
-            text-align: center;
-            padding: 0 4rem;
-        }
-        .filter-nav button {
-            background: none;
-            border: 1px solid transparent;
-            color: var(--color-ink);
-            padding: 0.5rem 1.2rem;
-            margin: 0 0.5rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s, border-color 0.3s;
-        }
-        .filter-nav button:hover, .filter-nav button.active {
+        .shop-header p {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
             color: var(--color-gold);
-            border-bottom: 1px solid var(--color-gold);
+            margin-bottom: 0;
         }
-        #product-grid {
-            /* This is where the product JS will insert the items, using the collections-grid style */
+        
+        /* Monthly Showcase Styles */
+        .monthly-showcase {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 4rem 4rem 4rem;
+        }
+        
+        .season-banner {
+            background: linear-gradient(135deg, rgba(196, 164, 73, 0.15) 0%, rgba(244, 239, 232, 0.3) 100%);
+            border: 2px solid var(--color-gold);
+            padding: 3rem 4rem;
+            margin-bottom: 4rem;
+            text-align: center;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .season-banner::before {
+            content: '✦';
+            position: absolute;
+            top: 2rem;
+            left: 3rem;
+            font-size: 2rem;
+            color: var(--color-gold);
+            opacity: 0.4;
+        }
+        
+        .season-banner::after {
+            content: '✦';
+            position: absolute;
+            bottom: 2rem;
+            right: 3rem;
+            font-size: 2rem;
+            color: var(--color-gold);
+            opacity: 0.4;
+        }
+        
+        .season-banner h2 {
+            font-size: 3rem;
+            color: var(--color-ink);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        
+        .season-banner p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--color-ink);
+            font-style: italic;
+            margin: 0;
+        }
+        
+        .showcase-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .showcase-item {
+            text-align: center;
+            border: 1px solid rgba(21, 19, 17, 0.1);
+            padding: 2rem 1.5rem;
+            background-color: #FCFAFA;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .showcase-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(196, 164, 73, 0.2);
+        }
+        
+        .showcase-item img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(196, 164, 73, 0.2);
+        }
+        
+        .showcase-item h3 {
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.6rem;
+            color: var(--color-ink);
+        }
+        
+        .showcase-item p.price {
+            font-family: var(--font-serif);
+            color: var(--color-gold);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0.5rem 0 1rem 0;
+        }
+        
+        .showcase-item p.description {
+            font-size: 1rem;
+            color: #5a5856;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 1024px) {
+            .showcase-items {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .season-banner h2 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
@@ -71,60 +169,41 @@
 
     <main>
         <section class="shop-header">
-            <h1>The Celestial Catalogue</h1>
-            <p style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-gold);">Find your sign. Own your intention.</p>
+            <h1>The Zodiac Current: This Month's Alignment</h1>
+            <p>Curated celestial treasures for the season's energy.</p>
         </section>
 
-        <nav class="filter-nav" id="filter-nav">
-            <button class="active" data-filter="All">All Collections</button>
-            <button data-filter="Apparel">Apparel</button>
-            <button data-filter="Homeware">Homeware</button>
-            <button data-filter="Digital">Digital</button>
-        </nav>
+        <section class="monthly-showcase">
+            <div class="season-banner">
+                <h2>Gemini Season</h2>
+                <p>May 21 – June 20 | Air Sign of Communication & Duality</p>
+            </div>
 
-        <section class="collections-grid" id="product-grid">
-            
-            <section id="bundles" class="product-category-section" data-category="Bundles" style="grid-column: 1 / -1; margin-bottom: 4rem;">
-                <h2 class="category-title-celestial section-title-celestial" style="margin-bottom: 1.5rem; text-align: left;">Ritual Kits & Altars</h2>
-                <p class="category-subtitle section-subtitle" style="text-align: left; margin-bottom: 3rem;">Curated bundles combining signature apparel, exclusive homeware, and a powerful digital ritual guide.</p>
-                
-                <div class="reports-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                    
-                    <div class="lyrion-card product-card bundle-card">
-                        <figure class="product-image-container">
-                            <img src="assets/products/kit-moon.jpg" alt="New Moon Ritual Kit" class="product-img">
-                        </figure>
-                        <div class="product-details">
-                            <h4 class="product-name">The New Moon Kit</h4>
-                            <ul class="bundle-items-list">
-                                <li>Zenith Bodysuit (Apparel)</li>
-                                <li>Selene Incense Dish (Homeware)</li>
-                                <li>PDF: New Beginnings Guide (Digital)</li>
-                            </ul>
-                            <p class="product-price">£490.00</p>
-                            <a href="#" class="button-primary button-gold">Shop Bundle</a>
-                        </div>
-                    </div>
-                    
-                    <div class="lyrion-card product-card bundle-card">
-                        <figure class="product-image-container">
-                            <img src="assets/products/kit-sun.jpg" alt="Solar Return Altar Kit" class="product-img">
-                        </figure>
-                        <div class="product-details">
-                            <h4 class="product-name">The Solar Return Kit</h4>
-                            <ul class="bundle-items-list">
-                                <li>Celestial Shift Trousers (Apparel)</li>
-                                <li>Altar Cloth (Homeware)</li>
-                                <li>PDF: Year Ahead Meditation (Digital)</li>
-                            </ul>
-                            <p class="product-price">£395.00</p>
-                            <a href="#" class="button-primary button-gold">Shop Bundle</a>
-                        </div>
-                    </div>
+            <div class="showcase-items">
+                <article class="showcase-item">
+                    <img src="assets/products/A-HOOD-GEMINI-image.webp" alt="Gemini Zodiac Hoodie" onerror="this.src='assets/img/placeholder-product.jpg'">
+                    <h3>Gemini Zodiac Hoodie</h3>
+                    <p class="price">£110.00</p>
+                    <p class="description">A celestial-themed hoodie showcasing the Gemini twins in a balanced gold illustration. Perfect for those who embody duality and communication.</p>
+                    <a href="#" class="button-primary button-gold">Shop Now</a>
+                </article>
 
-                    </div>
-            </section>
-            <p style="text-align: center; grid-column: 1 / -1; font-family: var(--font-serif);">Loading the remaining constellations...</p>
+                <article class="showcase-item">
+                    <img src="assets/products/constellation-gemini.webp" alt="Gemini Constellation Print" onerror="this.src='assets/img/placeholder-product.jpg'">
+                    <h3>Gemini Constellation Print</h3>
+                    <p class="price">£45.00</p>
+                    <p class="description">An elegant framed print featuring the Gemini constellation mapped in exquisite gold detail on deep celestial navy.</p>
+                    <a href="#" class="button-primary button-gold">Shop Now</a>
+                </article>
+
+                <article class="showcase-item">
+                    <img src="assets/products/gemini-altar-cloth.webp" alt="Gemini Altar Cloth" onerror="this.src='assets/img/placeholder-product.jpg'">
+                    <h3>Gemini Ritual Altar Cloth</h3>
+                    <p class="price">£65.00</p>
+                    <p class="description">A luxurious altar cloth adorned with Gemini symbology and sacred geometry, designed to enhance your twin flame meditations.</p>
+                    <a href="#" class="button-primary button-gold">Shop Now</a>
+                </article>
+            </div>
         </section>
     </main>
 
@@ -141,7 +220,7 @@
     </footer>
     
     <script src="lyrion.js"></script>
-    <script src="assets/js/shop.js"></script>
+    <!-- <script src="assets/js/shop.js"></script> Disabled for manual curation -->
 
 </body>
 </html>
