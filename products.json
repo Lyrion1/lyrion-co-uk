@@ -147,7 +147,7 @@
     "subCategory": "Tee",
     "price": 65.00,
     "podService": "gelato",
-    "description": "A celestial Gemini tees showcasing twin-symbol line art in metallic gold.",
+    "description": "A celestial Gemini tee showcasing twin-symbol line art in metallic gold.",
     "image": "A-TEE-GEMINI-image.webp"
   },
   {
@@ -328,7 +328,8 @@
     "subCategory": "Service",
     "price": 19.00,
     "podService": "service",
-    "description": "Digital: A concise, AI-guided reading focusing on your natal Sun, Moon, and Ascendant positions."
+    "description": "Digital: A concise, AI-guided reading focusing on your natal Sun, Moon, and Ascendant positions.",
+    "image": "D-MINI-BIRTH-READING-image.webp"
   },
   {
     "id": "D-FULL-NATAL-BLUEPRINT",
@@ -337,7 +338,8 @@
     "subCategory": "Service",
     "price": 49.00,
     "podService": "service",
-    "description": "Digital: A comprehensive, personalized analysis of all major planetary placements and aspects."
+    "description": "Digital: A comprehensive, personalized analysis of all major planetary placements and aspects.",
+    "image": "D-FULL-NATAL-BLUEPRINT-image.webp"
   },
   {
     "id": "D-SOLAR-RETURN-INSIGHTS",
@@ -346,7 +348,8 @@
     "subCategory": "Service",
     "price": 35.00,
     "podService": "service",
-    "description": "Digital: A predictive reading focusing on themes and opportunities for your current solar year."
+    "description": "Digital: A predictive reading focusing on themes and opportunities for your current solar year.",
+    "image": "D-SOLAR-RETURN-INSIGHTS-image.webp"
   },
   {
     "id": "D-YEAR-AHEAD-MEDITATION",
@@ -355,6 +358,7 @@
     "subCategory": "Ritual",
     "price": 29.00,
     "podService": "service",
-    "description": "Digital: A guided meditation and ritual guide tailored to your astrological forecast."
+    "description": "Digital: A guided meditation and ritual guide tailored to your astrological forecast.",
+    "image": "D-YEAR-AHEAD-MEDITATION-image.webp"
   }
 ]
