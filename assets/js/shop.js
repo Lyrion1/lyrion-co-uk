@@ -68,4 +68,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadProducts();
 });
-Added shop page JS logic
