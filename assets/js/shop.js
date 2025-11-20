@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to fetch and render products
     async function loadProducts() {
         try {
-            const response = await fetch('products.json');
+            const response = await fetch('./products.json');
             const products = await response.json();
             
             // Initial render of all products
