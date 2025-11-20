@@ -1,123 +1,360 @@
 [
-    {
-        "id": "A-HOOD-ARIES",
-        "name": "Aries Cardinal Hoodie",
-        "price": 95.00,
-        "category": "Women",
-        "subCategory": "Zodiac Hoodies",
-        "image": "aries-hoodie.webp",
-        "description": "Bold cardinal energy embodied in organic cotton. Embroidered ram constellation.",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    },
-    {
-        "id": "A-TEE-TAURUS",
-        "name": "Taurus Earth Tee",
-        "price": 55.00,
-        "category": "Men",
-        "subCategory": "Zodiac Tees",
-        "image": "taurus-tee.webp",
-        "description": "Soft, grounded fabric. Subtle golden Bull constellation embroidery.",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    },
-    {
-        "id": "A-JOG-GEMINI",
-        "name": "Gemini Air Joggers",
-        "price": 85.00,
-        "category": "Women",
-        "subCategory": "Zodiac Joggers",
-        "image": "gemini-joggers.webp",
-        "description": "Lightweight, twin-star embroidered joggers for duality and motion.",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    },
-    {
-        "id": "A-HOOD-CANCER",
-        "name": "Cancer Moon Water Hoodie",
-        "price": 110.00,
-        "category": "Women",
-        "subCategory": "Zodiac Hoodies",
-        "image": "cancer-hoodie.webp",
-        "description": "Premium comfort, deep lunar embroidery. The ultimate cocooning piece.",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    },
-    {
-        "id": "A-TEE-LEO",
-        "name": "Leo Fire Sign Tee",
-        "price": 60.00,
-        "category": "Men",
-        "subCategory": "Zodiac Tees",
-        "image": "leo-tee.webp",
-        "description": "Regal black tee with subtle gold lion crest. Statement of solar power.",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    },
-    {
-        "id": "A-JOG-VIRGO",
-        "name": "Virgo Earth Joggers",
-        "price": 88.00,
-        "category": "Women",
-        "subCategory": "Zodiac Joggers",
-        "image": "virgo-joggers.webp",
-        "description": "Pure lines and meticulous detail. Perfected fit for the mutable earth sign.",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    },
-    {
-        "id": "K-TEE-PISCES",
-        "name": "Moon Girl Pisces Tee",
-        "price": 45.00,
-        "category": "Moon Girls",
-        "subCategory": "Kids Apparel",
-        "image": "pisces-kids-tee.webp",
-        "description": "Dreamy, flowing tee for sensitive souls. Fish constellation print.",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    },
-    {
-        "id": "K-HOOD-SCORPIO",
-        "name": "Star Boy Scorpio Hoodie",
-        "price": 75.00,
-        "category": "Star Boys",
-        "subCategory": "Kids Apparel",
-        "image": "scorpio-kids-hoodie.webp",
-        "description": "Intense water-sign hoodie. Small embroidered scorpion detail.",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    },
-    {
-        "id": "H-CLOTH-LIBRA",
-        "name": "Libra Altar Cloth",
-        "price": 50.00,
-        "category": "Home & Art",
-        "subCategory": "Homeware",
-        "image": "libra-cloth.webp",
-        "description": "Balanced geometry printed on silk-cotton blend. Perfect for rituals.",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    },
-    {
-        "id": "H-ART-AQUARIUS",
-        "name": "Aquarius Framed Constellation",
-        "price": 150.00,
-        "category": "Home & Art",
-        "subCategory": "Art",
-        "image": "aquarius-art.webp",
-        "description": "Limited print of the water-bearer constellation, framed in antique gold.",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    },
-    {
-        "id": "B-FULL-SET",
-        "name": "Celestial Full Set Bundle",
-        "price": 220.00,
-        "category": "Bundles",
-        "subCategory": "Apparel Bundles",
-        "image": "full-set-bundle.webp",
-        "description": "Hoodie, Tee, and Joggers for your sign. (Saves £30).",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    },
-    {
-        "id": "H-CANDLE-CAPRICORN",
-        "name": "Capricorn Mountain Candle",
-        "price": 35.00,
-        "category": "Home & Art",
-        "subCategory": "Homeware",
-        "image": "capricorn-candle.webp",
-        "description": "Earthy scent profile with grounding quartz crystal. 60-hour burn time.",
-        "buyLink": "YOUR_STRIPE_PAYMENT_LINK_HERE"
-    }
+  {
+    "id": "A-HOOD-ARIES",
+    "name": "Aries Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A premium black hoodie featuring an elegant Aries zodiac emblem with subtle gold accents.",
+    "image": "A-HOOD-ARIES-image.webp"
+  },
+  {
+    "id": "A-HOOD-TAURUS",
+    "name": "Taurus Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A luxury hoodie with the Taurus symbol rendered in refined gold over deep earth-tone fabric.",
+    "image": "A-HOOD-TAURUS-image.webp"
+  },
+  {
+    "id": "A-HOOD-GEMINI",
+    "name": "Gemini Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A celestial-themed hoodie showcasing the Gemini twins in a balanced gold illustration.",
+    "image": "A-HOOD-GEMINI-image.webp"
+  },
+  {
+    "id": "A-HOOD-CANCER",
+    "name": "Cancer Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A soft, premium hoodie with the Cancer glyph framed by gentle lunar-themed gold details.",
+    "image": "A-HOOD-CANCER-image.webp"
+  },
+  {
+    "id": "A-HOOD-LEO",
+    "name": "Leo Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A bold designer hoodie featuring the Leo lion symbol in radiant metallic gold.",
+    "image": "A-HOOD-LEO-image.webp"
+  },
+  {
+    "id": "A-HOOD-VIRGO",
+    "name": "Virgo Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A minimalist hoodie displaying the Virgo maiden emblem in delicate gold line art.",
+    "image": "A-HOOD-VIRGO-image.webp"
+  },
+  {
+    "id": "A-HOOD-LIBRA",
+    "name": "Libra Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A refined hoodie featuring balanced scales in gold, inspired by the LYRIÓN Tree-of-Balance.",
+    "image": "A-HOOD-LIBRA-image.webp"
+  },
+  {
+    "id": "A-HOOD-SCORPIO",
+    "name": "Scorpio Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A striking black hoodie adorned with a gold Scorpio emblem and subtle cosmic texture.",
+    "image": "A-HOOD-SCORPIO-image.webp"
+  },
+  {
+    "id": "A-HOOD-SAGITTARIUS",
+    "name": "Sagittarius Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A designer hoodie highlighting the Sagittarius archer symbol with elegant golden detailing.",
+    "image": "A-HOOD-SAGITTARIUS-image.webp"
+  },
+  {
+    "id": "A-HOOD-CAPRICORN",
+    "name": "Capricorn Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A premium hoodie showing the Capricorn sea-goat symbol in classic luxury gold.",
+    "image": "A-HOOD-CAPRICORN-image.webp"
+  },
+  {
+    "id": "A-HOOD-AQUARIUS",
+    "name": "Aquarius Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A celestial hoodie with the Aquarius water-bearer glyph surrounded by flowing gold accents.",
+    "image": "A-HOOD-AQUARIUS-image.webp"
+  },
+  {
+    "id": "A-HOOD-PISCES",
+    "name": "Pisces Zodiac Hoodie",
+    "category": "Apparel",
+    "subCategory": "Hoodie",
+    "price": 110.00,
+    "podService": "printify",
+    "description": "A serene hoodie displaying intertwined Pisces fish in a soft gold cosmic motif.",
+    "image": "A-HOOD-PISCES-image.webp"
+  },
+
+  {
+    "id": "A-TEE-ARIES",
+    "name": "Aries Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A minimalist Aries zodiac T-shirt featuring gold fire-symbol artwork on premium cotton.",
+    "image": "A-TEE-ARIES-image.webp"
+  },
+  {
+    "id": "A-TEE-TAURUS",
+    "name": "Taurus Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A clean, earthy Taurus T-shirt with a subtle luxury gold zodiac emblem.",
+    "image": "A-TEE-TAURUS-image.webp"
+  },
+  {
+    "id": "A-TEE-GEMINI",
+    "name": "Gemini Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A celestial Gemini tees showcasing twin-symbol line art in metallic gold.",
+    "image": "A-TEE-GEMINI-image.webp"
+  },
+  {
+    "id": "A-TEE-CANCER",
+    "name": "Cancer Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A soft white tee featuring the Cancer glyph with moon-inspired gold detailing.",
+    "image": "A-TEE-CANCER-image.webp"
+  },
+  {
+    "id": "A-TEE-LEO",
+    "name": "Leo Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A bold Leo tee with a radiant gold lion-symbol centerpiece.",
+    "image": "A-TEE-LEO-image.webp"
+  },
+  {
+    "id": "A-TEE-VIRGO",
+    "name": "Virgo Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A minimalist Virgo tee with a refined gold silhouette of the maiden.",
+    "image": "A-TEE-VIRGO-image.webp"
+  },
+  {
+    "id": "A-TEE-LIBRA",
+    "name": "Libra Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A balanced Libra tee featuring golden scales inspired by cosmic symmetry.",
+    "image": "A-TEE-LIBRA-image.webp"
+  },
+  {
+    "id": "A-TEE-SCORPIO",
+    "name": "Scorpio Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A statement Scorpio T-shirt with a sleek, sharp gold scorpion emblem.",
+    "image": "A-TEE-SCORPIO-image.webp"
+  },
+  {
+    "id": "A-TEE-SAGITTARIUS",
+    "name": "Sagittarius Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A Sagittarius tee featuring an elegant golden archer motif on soft cotton.",
+    "image": "A-TEE-SAGITTARIUS-image.webp"
+  },
+  {
+    "id": "A-TEE-CAPRICORN",
+    "name": "Capricorn Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A modern Capricorn tee with a gold sea-goat glyph and subtle celestial texture.",
+    "image": "A-TEE-CAPRICORN-image.webp"
+  },
+  {
+    "id": "A-TEE-AQUARIUS",
+    "name": "Aquarius Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A clean Aquarius T-shirt featuring flowing gold water-bearer symbolism.",
+    "image": "A-TEE-AQUARIUS-image.webp"
+  },
+  {
+    "id": "A-TEE-PISCES",
+    "name": "Pisces Zodiac Tee",
+    "category": "Apparel",
+    "subCategory": "Tee",
+    "price": 65.00,
+    "podService": "gelato",
+    "description": "A dreamy Pisces tee with intertwined gold fish and soft constellation accents.",
+    "image": "A-TEE-PISCES-image.webp"
+  },
+
+  {
+    "id": "H-ALTAR-CLOTH-LIBRA",
+    "name": "Libra Altar Cloth",
+    "category": "Homeware",
+    "subCategory": "Altar Cloth",
+    "price": 50.00,
+    "podService": "inkthreadable",
+    "description": "A ceremonial altar cloth featuring balanced scales and cosmic gold detailing on soft fabric.",
+    "image": "H-ALTAR-CLOTH-LIBRA-image.webp"
+  },
+  {
+    "id": "H-ALTAR-CLOTH-ARIES",
+    "name": "Aries Altar Cloth",
+    "category": "Homeware",
+    "subCategory": "Altar Cloth",
+    "price": 50.00,
+    "podService": "inkthreadable",
+    "description": "A ritual altar cloth with a bold gold Aries glyph centered within a celestial border.",
+    "image": "H-ALTAR-CLOTH-ARIES-image.webp"
+  },
+  {
+    "id": "H-ALTAR-CLOTH-TAURUS",
+    "name": "Taurus Altar Cloth",
+    "category": "Homeware",
+    "subCategory": "Altar Cloth",
+    "price": 50.00,
+    "podService": "inkthreadable",
+    "description": "A grounded, earthy-tone altar cloth featuring a gold Taurus zodiac symbol.",
+    "image": "H-ALTAR-CLOTH-TAURUS-image.webp"
+  },
+  {
+    "id": "H-SELENE-INCENSE-DISH",
+    "name": "Selene Incense Dish",
+    "category": "Homeware",
+    "subCategory": "Incense Dish",
+    "price": 45.00,
+    "podService": "inkthreadable",
+    "description": "A luxury incense dish inspired by lunar mythology, featuring soft gold celestial patterns.",
+    "image": "H-SELENE-INCENSE-DISH-image.webp"
+  },
+  {
+    "id": "H-CELESTIAL-CUSHION",
+    "name": "Celestial Cushion",
+    "category": "Homeware",
+    "subCategory": "Cushion",
+    "price": 60.00,
+    "podService": "gelato",
+    "description": "A plush cushion decorated with subtle zodiac constellations in metallic gold.",
+    "image": "H-CELESTIAL-CUSHION-image.webp"
+  },
+  {
+    "id": "H-STAR-MAP-PRINT-A3",
+    "name": "A3 Star Map Print",
+    "category": "Homeware",
+    "subCategory": "Wall Art",
+    "price": 40.00,
+    "podService": "gelato",
+    "description": "A high-detail star map print showing constellations in fine gold-ink linework.",
+    "image": "H-STAR-MAP-PRINT-A3-image.webp"
+  },
+  {
+    "id": "H-COSMIC-ALTAR-SET",
+    "name": "Cosmic Altar Set",
+    "category": "Homeware",
+    "subCategory": "Altar Set",
+    "price": 75.00,
+    "podService": "inkthreadable",
+    "description": "A complete celestial altar kit including a cloth, symbols, and ritual items in gold-tone design.",
+    "image": "H-COSMIC-ALTAR-SET-image.webp"
+  },
+  {
+    "id": "H-ZODIAC-WALL-ART-GOLD",
+    "name": "Zodiac Gold Wall Art",
+    "category": "Homeware",
+    "subCategory": "Wall Art",
+    "price": 80.00,
+    "podService": "gelato",
+    "description": "A luxury framed artwork featuring an ornate gold zodiac wheel on deep cosmic background.",
+    "image": "H-ZODIAC-WALL-ART-GOLD-image.webp"
+  },
+  {
+    "id": "D-MINI-BIRTH-READING",
+    "name": "Mini Birth Reading",
+    "category": "Digital",
+    "subCategory": "Service",
+    "price": 19.00,
+    "podService": "service",
+    "description": "Digital: A concise, AI-guided reading focusing on your natal Sun, Moon, and Ascendant positions."
+  },
+  {
+    "id": "D-FULL-NATAL-BLUEPRINT",
+    "name": "Full Natal Blueprint",
+    "category": "Digital",
+    "subCategory": "Service",
+    "price": 49.00,
+    "podService": "service",
+    "description": "Digital: A comprehensive, personalized analysis of all major planetary placements and aspects."
+  },
+  {
+    "id": "D-SOLAR-RETURN-INSIGHTS",
+    "name": "Solar Return Insights",
+    "category": "Digital",
+    "subCategory": "Service",
+    "price": 35.00,
+    "podService": "service",
+    "description": "Digital: A predictive reading focusing on themes and opportunities for your current solar year."
+  },
+  {
+    "id": "D-YEAR-AHEAD-MEDITATION",
+    "name": "Year Ahead Meditation",
+    "category": "Digital",
+    "subCategory": "Ritual",
+    "price": 29.00,
+    "podService": "service",
+    "description": "Digital: A guided meditation and ritual guide tailored to your astrological forecast."
+  }
 ]
-Added product catalogue data
