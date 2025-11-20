@@ -1,0 +1,13 @@
+{
+  "name": "lyrion-celestial-couture",
+  "version": "1.0.0",
+  "description": "Legacy-ready static site with Netlify Functions for Stripe and Gelato POD fulfillment.",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build step required for static content, but Node dependencies are needed for functions.'"
+  },
+  "dependencies": {
+    "stripe": "^14.15.0",
+    "node-fetch": "^2.6.1"
+  }
+}
