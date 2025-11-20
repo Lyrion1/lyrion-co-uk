@@ -451,3 +451,9 @@ footer .copyright {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
 }
+
+/* Oracle Page Specific Layout Adjustments */
+.oracle-intro {
+    margin-top: 0; /* Remove top margin if it conflicts with the new hero image */
+    padding-top: 0;
+}
