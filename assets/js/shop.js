@@ -2,14 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const productGrid = document.getElementById('product-grid');
     const filterNav = document.getElementById('filter-nav');
 
+    // Welcome message shown on initial load and when 'All' filter is selected
+    const WELCOME_MESSAGE = '<p style="text-align: center; grid-column: 1 / -1; font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-gold); margin-top: 2rem; font-style: italic;">Select a Celestial Quarter to begin your journey.</p>';
+
     // Function to fetch and render products
     async function loadProducts() {
         try {
             const response = await fetch('./products.json');
             const products = await response.json();
             
-            // Initial render of all products
-            renderProducts(products);
+            // Display initial welcome message instead of rendering all products
+            productGrid.innerHTML = WELCOME_MESSAGE;
 
             // Setup filtering logic
             filterNav.addEventListener('click', (event) => {
@@ -22,11 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     event.target.classList.add('active');
 
-                    // Filter products
-                    const filteredProducts = products.filter(product => {
-                        return filter === 'All' || product.category === filter;
-                    });
-                    renderProducts(filteredProducts);
+                    // Filter and render products only for specific categories
+                    if (filter === 'All') {
+                        // Show message when 'All' is selected instead of showing all products
+                        productGrid.innerHTML = WELCOME_MESSAGE;
+                    } else {
+                        // Filter and render products for specific category
+                        const filteredProducts = products.filter(product => {
+                            return product.category === filter;
+                        });
+                        renderProducts(filteredProducts);
+                    }
                 }
             });
 
