@@ -1,8 +1,8 @@
-// Function to receive Stripe Webhook and submit the order to Gelato
+// Function to receive Stripe Webhook and submit the order to multiple POD providers
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const fetch = require('node-fetch');
 
-// The GelatoConnect API base URL (RESTful)
+// POD Provider API URLs
 const GELATO_API_URL = 'https://api.gelato.com/v1/order';
 
 exports.handler = async ({ body, headers }) => {
@@ -28,65 +28,174 @@ exports.handler = async ({ body, headers }) => {
         const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
 
         // Extract metadata and shipping details
-        const gelatoSku = session.metadata.gelato_sku; 
         const shipping = session.shipping_details.address;
         const customerName = session.customer_details.name;
         const customerEmail = session.customer_details.email;
 
-        // --- 3. Format Order for GELATO API ---
-        const orderData = {
-            // NOTE: In a production app, you need logic here to grab the correct Gelato Product UID
-            orderReferenceId: session.id,
-            shipment: {
-                shippingMethod: 'STANDARD', 
-                customerNotification: true,
-                address: {
-                    firstName: customerName.split(' ')[0],
-                    lastName: customerName.split(' ').slice(1).join(' '),
-                    addressLine1: shipping.line1,
-                    addressLine2: shipping.line2,
-                    city: shipping.city,
-                    postCode: shipping.postal_code,
-                    country: shipping.country,
-                }
-            },
-            items: lineItems.data.map(item => ({
-                productUid: 'YOUR_GELATO_PRODUCT_UID', // PLACEHOLDER: Must be replaced with the actual Gelato UID for the purchased item
-                quantity: item.quantity,
-                // The fulfillment process needs a secure image link to the print file
-                fileUrl: 'YOUR_SECURE_PRINT_FILE_URL', 
-                // You would pass the design ID from your Gelato catalogue here
-                designId: 'YOUR_GELATO_DESIGN_ID'
-            }))
-        };
-        
-        // --- 4. Submit Order to Gelato ---
-        try {
-            const gelatoResponse = await fetch(GELATO_API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-API-KEY': process.env.GELATO_API_KEY, 
-                },
-                body: JSON.stringify(orderData)
-            });
+        // Identify POD service from metadata (default to Gelato)
+        const podService = session.metadata.pod_service || 'gelato';
 
-            if (!gelatoResponse.ok) {
-                const errorBody = await gelatoResponse.text();
-                throw new Error(`Gelato submission failed: ${gelatoResponse.status} - ${errorBody}`);
-            }
-
-            console.log(`Gelato Order Submitted: ${orderData.orderReferenceId}`);
-            // Return 200 OK to Stripe to confirm receipt
-            return { statusCode: 200, body: JSON.stringify({ received: true }) };
-
-        } catch (gelatoError) {
-            console.error('GELATO INTEGRATION FAILED:', gelatoError.message);
-            // In a real app, this should trigger an alert for manual fulfillment review
-            return { statusCode: 500, body: 'Gelato fulfillment error.' };
+        // 3. Route order to the correct POD provider based on metadata
+        switch (podService.toLowerCase()) {
+            case 'gelato':
+                return await submitToGelato(session, lineItems, shipping, customerName, customerEmail);
+            
+            case 'printify':
+                return await submitToPrintify(session, lineItems, shipping, customerName, customerEmail);
+            
+            case 'inkthreadable':
+                return await submitToInkthreadable(session, lineItems, shipping, customerName, customerEmail);
+            
+            default:
+                console.warn(`Unknown POD service: ${podService}, defaulting to Gelato`);
+                return await submitToGelato(session, lineItems, shipping, customerName, customerEmail);
         }
     }
 
     // Return 200 OK for unhandled events
     return { statusCode: 200, body: 'Event received but not handled.' };
 };
+
+// Gelato Order Submission
+async function submitToGelato(session, lineItems, shipping, customerName, customerEmail) {
+    const orderData = {
+        orderReferenceId: session.id,
+        shipment: {
+            shippingMethod: 'STANDARD', 
+            customerNotification: true,
+            address: {
+                firstName: customerName.split(' ')[0],
+                lastName: customerName.split(' ').slice(1).join(' '),
+                addressLine1: shipping.line1,
+                addressLine2: shipping.line2,
+                city: shipping.city,
+                postCode: shipping.postal_code,
+                country: shipping.country,
+            }
+        },
+        items: lineItems.data.map(item => ({
+            productUid: 'YOUR_GELATO_PRODUCT_UID',
+            quantity: item.quantity,
+            fileUrl: 'YOUR_SECURE_PRINT_FILE_URL',
+            designId: 'YOUR_GELATO_DESIGN_ID'
+        }))
+    };
+    
+    try {
+        const response = await fetch(GELATO_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-API-KEY': process.env.GELATO_API_KEY,
+            },
+            body: JSON.stringify(orderData)
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.text();
+            throw new Error(`Gelato submission failed: ${response.status} - ${errorBody}`);
+        }
+
+        console.log(`Gelato Order Submitted: ${orderData.orderReferenceId}`);
+        return { statusCode: 200, body: JSON.stringify({ received: true, provider: 'gelato' }) };
+
+    } catch (error) {
+        console.error('GELATO INTEGRATION FAILED:', error.message);
+        return { statusCode: 500, body: 'Gelato fulfillment error.' };
+    }
+}
+
+// Printify Order Submission
+async function submitToPrintify(session, lineItems, shipping, customerName, customerEmail) {
+    const orderData = {
+        external_id: session.id,
+        label: `Order ${session.id}`,
+        line_items: lineItems.data.map(item => ({
+            product_id: 'YOUR_PRINTIFY_PRODUCT_ID',
+            variant_id: 'YOUR_PRINTIFY_VARIANT_ID',
+            quantity: item.quantity
+        })),
+        shipping_method: 1, // Standard shipping
+        send_shipping_notification: true,
+        address_to: {
+            first_name: customerName.split(' ')[0],
+            last_name: customerName.split(' ').slice(1).join(' '),
+            email: customerEmail,
+            address1: shipping.line1,
+            address2: shipping.line2 || '',
+            city: shipping.city,
+            zip: shipping.postal_code,
+            country: shipping.country
+        }
+    };
+    
+    try {
+        const response = await fetch('https://api.printify.com/v1/shops/YOUR_SHOP_ID/orders.json', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.PRINTIFY_API_KEY}`,
+            },
+            body: JSON.stringify(orderData)
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.text();
+            throw new Error(`Printify submission failed: ${response.status} - ${errorBody}`);
+        }
+
+        console.log(`Printify Order Submitted: ${orderData.external_id}`);
+        return { statusCode: 200, body: JSON.stringify({ received: true, provider: 'printify' }) };
+
+    } catch (error) {
+        console.error('PRINTIFY INTEGRATION FAILED:', error.message);
+        return { statusCode: 500, body: 'Printify fulfillment error.' };
+    }
+}
+
+// Inkthreadable Order Submission
+async function submitToInkthreadable(session, lineItems, shipping, customerName, customerEmail) {
+    const orderData = {
+        order_reference: session.id,
+        customer: {
+            name: customerName,
+            email: customerEmail,
+            address: {
+                line1: shipping.line1,
+                line2: shipping.line2 || '',
+                city: shipping.city,
+                postcode: shipping.postal_code,
+                country: shipping.country
+            }
+        },
+        items: lineItems.data.map(item => ({
+            sku: 'YOUR_INKTHREADABLE_SKU',
+            quantity: item.quantity,
+            print_file_url: 'YOUR_SECURE_PRINT_FILE_URL'
+        })),
+        shipping_method: 'standard'
+    };
+    
+    try {
+        const response = await fetch('https://api.inkthreadable.co.uk/v1/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.INKTHREADABLE_SECRET_KEY}`,
+            },
+            body: JSON.stringify(orderData)
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.text();
+            throw new Error(`Inkthreadable submission failed: ${response.status} - ${errorBody}`);
+        }
+
+        console.log(`Inkthreadable Order Submitted: ${orderData.order_reference}`);
+        return { statusCode: 200, body: JSON.stringify({ received: true, provider: 'inkthreadable' }) };
+
+    } catch (error) {
+        console.error('INKTHREADABLE INTEGRATION FAILED:', error.message);
+        return { statusCode: 500, body: 'Inkthreadable fulfillment error.' };
+    }
+}
