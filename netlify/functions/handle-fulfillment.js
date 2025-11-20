@@ -5,6 +5,18 @@ const fetch = require('node-fetch');
 // POD Provider API URLs
 const GELATO_API_URL = 'https://api.gelato.com/v1/order';
 
+// Utility function to safely split customer name
+function splitCustomerName(fullName) {
+    if (!fullName || typeof fullName !== 'string') {
+        return { firstName: 'Customer', lastName: '' };
+    }
+    const nameParts = fullName.trim().split(' ');
+    return {
+        firstName: nameParts[0] || 'Customer',
+        lastName: nameParts.slice(1).join(' ') || ''
+    };
+}
+
 exports.handler = async ({ body, headers }) => {
     // 1. Verify the Webhook Signature
     const signature = headers['stripe-signature'];
@@ -27,13 +39,23 @@ exports.handler = async ({ body, headers }) => {
         const session = event.data.object;
         const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
 
+        // Validate required data
+        if (!session.shipping_details || !session.shipping_details.address) {
+            console.error('Missing shipping details in session');
+            return { statusCode: 400, body: 'Missing shipping details' };
+        }
+        if (!session.customer_details) {
+            console.error('Missing customer details in session');
+            return { statusCode: 400, body: 'Missing customer details' };
+        }
+
         // Extract metadata and shipping details
         const shipping = session.shipping_details.address;
-        const customerName = session.customer_details.name;
-        const customerEmail = session.customer_details.email;
+        const customerName = session.customer_details.name || 'Customer';
+        const customerEmail = session.customer_details.email || '';
 
         // Identify POD service from metadata (default to Gelato)
-        const podService = session.metadata.pod_service || 'gelato';
+        const podService = session.metadata?.pod_service || 'gelato';
 
         // 3. Route order to the correct POD provider based on metadata
         switch (podService.toLowerCase()) {
@@ -58,19 +80,21 @@ exports.handler = async ({ body, headers }) => {
 
 // Gelato Order Submission
 async function submitToGelato(session, lineItems, shipping, customerName, customerEmail) {
+    const { firstName, lastName } = splitCustomerName(customerName);
+    
     const orderData = {
         orderReferenceId: session.id,
         shipment: {
             shippingMethod: 'STANDARD', 
             customerNotification: true,
             address: {
-                firstName: customerName.split(' ')[0],
-                lastName: customerName.split(' ').slice(1).join(' '),
-                addressLine1: shipping.line1,
-                addressLine2: shipping.line2,
-                city: shipping.city,
-                postCode: shipping.postal_code,
-                country: shipping.country,
+                firstName: firstName,
+                lastName: lastName,
+                addressLine1: shipping.line1 || '',
+                addressLine2: shipping.line2 || '',
+                city: shipping.city || '',
+                postCode: shipping.postal_code || '',
+                country: shipping.country || '',
             }
         },
         items: lineItems.data.map(item => ({
@@ -107,6 +131,8 @@ async function submitToGelato(session, lineItems, shipping, customerName, custom
 
 // Printify Order Submission
 async function submitToPrintify(session, lineItems, shipping, customerName, customerEmail) {
+    const { firstName, lastName } = splitCustomerName(customerName);
+    
     const orderData = {
         external_id: session.id,
         label: `Order ${session.id}`,
@@ -118,14 +144,14 @@ async function submitToPrintify(session, lineItems, shipping, customerName, cust
         shipping_method: 1, // Standard shipping
         send_shipping_notification: true,
         address_to: {
-            first_name: customerName.split(' ')[0],
-            last_name: customerName.split(' ').slice(1).join(' '),
+            first_name: firstName,
+            last_name: lastName,
             email: customerEmail,
-            address1: shipping.line1,
+            address1: shipping.line1 || '',
             address2: shipping.line2 || '',
-            city: shipping.city,
-            zip: shipping.postal_code,
-            country: shipping.country
+            city: shipping.city || '',
+            zip: shipping.postal_code || '',
+            country: shipping.country || ''
         }
     };
     
