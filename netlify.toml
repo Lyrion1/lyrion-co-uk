@@ -1,0 +1,8 @@
+[build]
+  command = "npm install"  # Install dependencies needed for serverless functions
+  functions = "netlify/functions" # Tell Netlify where our secure functions are
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
