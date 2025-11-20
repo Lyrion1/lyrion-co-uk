@@ -51,12 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // IMPORTANT: The image path assumes images are in assets/products/
             // Remember to upload your product images (e.g., aries-hoodie.webp) to a folder named 'assets/products/'
+            const buyLinkHtml = product.buyLink 
+                ? `<a href="${product.buyLink}" class="button-primary" target="_blank" rel="noopener noreferrer">View Details & Order</a>`
+                : `<button class="button-primary" disabled style="opacity: 0.5; cursor: not-allowed;">Coming Soon</button>`;
+            
             productElement.innerHTML = `
-                <img src="assets/products/${product.image}" alt="${product.name}">
+                <img src="assets/products/${product.image || 'placeholder.webp'}" alt="${product.name}">
                 <h3>${product.name}</h3>
                 <p class="price">£${product.price.toFixed(2)}</p>
                 <p>${product.description}</p>
-                <a href="${product.buyLink}" class="button-primary" target="_blank" rel="noopener noreferrer">View Details & Order</a>
+                ${buyLinkHtml}
             `;
             productGrid.appendChild(productElement);
         });
@@ -64,4 +68,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadProducts();
 });
-Added shop page JS logic
