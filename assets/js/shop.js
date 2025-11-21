@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Welcome message shown on initial load and when 'All' filter is selected
     const WELCOME_MESSAGE = '<p style="text-align: center; grid-column: 1 / -1; font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-gold); margin-top: 2rem; font-style: italic;">Select a Celestial Quarter to begin your journey.</p>';
 
+    // Helper function to filter products by category
+    function filterProductsByCategory(products, category) {
+        return products.filter(product => product.category === category);
+    }
+
     // Function to fetch and render products
     async function loadProducts() {
         try {
@@ -17,9 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // If category parameter exists, filter and display products
             if (categoryParam) {
-                const filteredProducts = products.filter(product => {
-                    return product.category === categoryParam;
-                });
+                const filteredProducts = filterProductsByCategory(products, categoryParam);
                 renderProducts(filteredProducts);
             } else {
                 // Display initial welcome message when no category is specified
@@ -43,9 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         productGrid.innerHTML = WELCOME_MESSAGE;
                     } else {
                         // Filter and render products for specific category
-                        const filteredProducts = products.filter(product => {
-                            return product.category === filter;
-                        });
+                        const filteredProducts = filterProductsByCategory(products, filter);
                         renderProducts(filteredProducts);
                     }
                 }
