@@ -11,8 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('./products.json');
             const products = await response.json();
             
-            // Display initial welcome message instead of rendering all products
-            productGrid.innerHTML = WELCOME_MESSAGE;
+            // Check for category parameter in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoryParam = urlParams.get('category');
+            
+            // If category parameter exists, filter and display products
+            if (categoryParam) {
+                const filteredProducts = products.filter(product => {
+                    return product.category === categoryParam;
+                });
+                renderProducts(filteredProducts);
+            } else {
+                // Display initial welcome message when no category is specified
+                productGrid.innerHTML = WELCOME_MESSAGE;
+            }
 
             // Setup filtering logic
             filterNav.addEventListener('click', (event) => {
