@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterNav = document.getElementById('filter-nav');
 
     // Welcome message shown on initial load and when 'All' filter is selected
-    const WELCOME_MESSAGE = '<p style="text-align: center; grid-column: 1 / -1; font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-gold); margin-top: 2rem; font-style: italic;">Select a Celestial Quarter to begin your journey.</p>';
+    const WELCOME_MESSAGE = '<p style="text-align: center; grid-column: 1 / -1; font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-gold); margin-top: 2rem; font-style: italic;">Select a Celestial Quarter</p>';
 
     // Helper function to filter products by category
     function filterProductsByCategory(products, category) {
