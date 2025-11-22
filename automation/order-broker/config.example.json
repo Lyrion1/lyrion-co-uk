@@ -21,6 +21,11 @@
       "required": true,
       "example": "your-printify-api-key"
     },
+    "PRINTIFY_SHOP_ID": {
+      "description": "Your Printify shop ID (find in dashboard URL or API docs)",
+      "required": true,
+      "example": "12345"
+    },
     "GELATO_API_KEY": {
       "description": "Gelato API key for fulfilling art prints and home goods",
       "required": true,

@@ -255,5 +255,5 @@ function initializeCollections(products) {
   }
 }
 
-// Make buy function globally available
-window.buy = buy;
+// Note: buy() function is defined in checkout.js which is loaded on the same pages
+// It's available globally when both scripts are included

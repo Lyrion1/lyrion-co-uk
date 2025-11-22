@@ -50,6 +50,9 @@ wrangler secret put PRINTFUL_API_KEY
 wrangler secret put PRINTIFY_API_KEY
 # Enter your Printify API token
 
+wrangler secret put PRINTIFY_SHOP_ID
+# Enter your Printify shop ID (find in dashboard URL)
+
 wrangler secret put GELATO_API_KEY
 # Enter your Gelato API key
 

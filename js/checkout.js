@@ -4,6 +4,9 @@
  */
 
 // Configuration - Update this URL after deploying the order broker worker
+// This should be set to your actual Cloudflare Worker URL or custom domain
+// Example: 'https://lyrion-order-broker.yoursubdomain.workers.dev'
+// or: 'https://api.lyrion.co.uk'
 const WORKER_URL = 'https://lyrion-order-broker.YOURWORKER.workers.dev';
 
 /**

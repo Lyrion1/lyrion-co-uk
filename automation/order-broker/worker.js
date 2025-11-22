@@ -4,12 +4,13 @@
  * Multi-POD routing system for handling Stripe checkout and fulfillment
  * Supports: Printful, Printify, Gelato, Digital, Manual, Mixed (Bundles)
  * 
- * Environment Variables Required:
+ * Environment Variables Required (accessed via env parameter):
  * - STRIPE_SECRET_KEY
  * - STRIPE_WEBHOOK_SECRET
  * - PRINTFUL_API_KEY
  * - PRINTIFY_API_KEY
  * - GELATO_API_KEY
+ * - PRINTIFY_SHOP_ID
  * - ORDER_NOTIFICATION_EMAIL
  * - BASE_URL
  * - ROUTING_JSON_URL
@@ -42,7 +43,7 @@ async function handleRequest(request, event) {
 
   try {
     if (path === '/checkout' && request.method === 'POST') {
-      return await handleCheckout(request, corsHeaders);
+      return await handleCheckout(request, corsHeaders, event);
     }
 
     if (path === '/webhook' && request.method === 'POST') {
@@ -66,7 +67,7 @@ async function handleRequest(request, event) {
 /**
  * Handle checkout session creation
  */
-async function handleCheckout(request, corsHeaders) {
+async function handleCheckout(request, corsHeaders, event) {
   const { sku } = await request.json();
 
   if (!sku) {
@@ -77,7 +78,7 @@ async function handleCheckout(request, corsHeaders) {
   }
 
   // Fetch routing data
-  const routing = await fetchRoutingData();
+  const routing = await fetchRoutingData(event);
   const product = routing[sku];
 
   if (!product) {
@@ -88,7 +89,7 @@ async function handleCheckout(request, corsHeaders) {
   }
 
   // Create Stripe Checkout Session
-  const session = await createStripeCheckoutSession(sku, product);
+  const session = await createStripeCheckoutSession(sku, product, event);
 
   return new Response(JSON.stringify({ url: session.url, sessionId: session.id }), {
     status: 200,
@@ -99,8 +100,9 @@ async function handleCheckout(request, corsHeaders) {
 /**
  * Create Stripe checkout session
  */
-async function createStripeCheckoutSession(sku, product) {
-  const stripeKey = STRIPE_SECRET_KEY || '';
+async function createStripeCheckoutSession(sku, product, event) {
+  const stripeKey = event.env?.STRIPE_SECRET_KEY || '';
+  const baseUrl = event.env?.BASE_URL || '';
   
   const lineItems = [{
     price_data: {
@@ -118,8 +120,8 @@ async function createStripeCheckoutSession(sku, product) {
     payment_method_types: ['card'],
     line_items: lineItems,
     mode: 'payment',
-    success_url: `${BASE_URL}/shop.html?success=true&session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${BASE_URL}/shop.html?cancelled=true`,
+    success_url: `${baseUrl}/shop.html?success=true&session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${baseUrl}/shop.html?cancelled=true`,
     metadata: {
       sku: sku,
       provider: product.provider,
@@ -157,13 +159,13 @@ async function handleWebhook(request, event) {
   const body = await request.text();
 
   // Verify webhook signature
-  const webhookEvent = await verifyStripeWebhook(body, signature);
+  const webhookEvent = await verifyStripeWebhook(body, signature, event);
 
   if (webhookEvent.type === 'checkout.session.completed') {
     const session = webhookEvent.data.object;
 
     // Process fulfillment asynchronously
-    event.waitUntil(processFulfillment(session));
+    event.waitUntil(processFulfillment(session, event));
 
     return new Response(JSON.stringify({ received: true }), {
       status: 200,
@@ -180,8 +182,8 @@ async function handleWebhook(request, event) {
 /**
  * Verify Stripe webhook signature
  */
-async function verifyStripeWebhook(payload, signature) {
-  const secret = STRIPE_WEBHOOK_SECRET || '';
+async function verifyStripeWebhook(payload, signature, event) {
+  const secret = event.env?.STRIPE_WEBHOOK_SECRET || '';
   
   // For Cloudflare Workers, we use the raw payload
   // In production, implement proper webhook signature verification
@@ -197,11 +199,11 @@ async function verifyStripeWebhook(payload, signature) {
 /**
  * Process order fulfillment based on provider
  */
-async function processFulfillment(session) {
+async function processFulfillment(session, event) {
   const { sku, provider, provider_sku, type } = session.metadata;
 
   // Fetch routing data
-  const routing = await fetchRoutingData();
+  const routing = await fetchRoutingData(event);
   const product = routing[sku];
 
   if (!product) {
@@ -210,28 +212,28 @@ async function processFulfillment(session) {
   }
 
   // Get shipping and customer info
-  const customer = await fetchStripeCustomer(session.customer);
+  const customer = await fetchStripeCustomer(session.customer, event);
   const shipping = session.shipping_details || session.shipping;
 
   // Route to appropriate provider
   switch (provider) {
     case 'printful':
-      await fulfillPrintful(product, session, shipping, customer);
+      await fulfillPrintful(product, session, shipping, customer, event);
       break;
     case 'printify':
-      await fulfillPrintify(product, session, shipping, customer);
+      await fulfillPrintify(product, session, shipping, customer, event);
       break;
     case 'gelato':
-      await fulfillGelato(product, session, shipping, customer);
+      await fulfillGelato(product, session, shipping, customer, event);
       break;
     case 'digital':
-      await fulfillDigital(product, session, customer);
+      await fulfillDigital(product, session, customer, event);
       break;
     case 'manual':
-      await fulfillManual(product, session, shipping, customer);
+      await fulfillManual(product, session, shipping, customer, event);
       break;
     case 'mixed':
-      await fulfillBundle(product, session, shipping, customer);
+      await fulfillBundle(product, session, shipping, customer, event);
       break;
     default:
       console.error(`Unknown provider: ${provider}`);
@@ -241,12 +243,14 @@ async function processFulfillment(session) {
 /**
  * Fetch Stripe customer details
  */
-async function fetchStripeCustomer(customerId) {
+async function fetchStripeCustomer(customerId, event) {
   if (!customerId) return null;
+
+  const stripeKey = event.env?.STRIPE_SECRET_KEY || '';
 
   const response = await fetch(`https://api.stripe.com/v1/customers/${customerId}`, {
     headers: {
-      'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
+      'Authorization': `Bearer ${stripeKey}`,
       'Stripe-Version': STRIPE_API_VERSION,
     },
   });
@@ -258,7 +262,9 @@ async function fetchStripeCustomer(customerId) {
 /**
  * Fulfill order via Printful
  */
-async function fulfillPrintful(product, session, shipping, customer) {
+async function fulfillPrintful(product, session, shipping, customer, event) {
+  const apiKey = event.env?.PRINTFUL_API_KEY || '';
+
   const orderData = {
     recipient: {
       name: shipping.name,
@@ -285,7 +291,7 @@ async function fulfillPrintful(product, session, shipping, customer) {
   const response = await fetch('https://api.printful.com/orders', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${PRINTFUL_API_KEY}`,
+      'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(orderData),
@@ -294,7 +300,7 @@ async function fulfillPrintful(product, session, shipping, customer) {
   if (!response.ok) {
     const error = await response.text();
     console.error('Printful fulfillment error:', error);
-    await sendErrorNotification('Printful', product.title, session.id, error);
+    await sendErrorNotification('Printful', product.title, session.id, error, event);
   } else {
     console.log(`Printful order created for ${product.title}`);
   }
@@ -303,7 +309,10 @@ async function fulfillPrintful(product, session, shipping, customer) {
 /**
  * Fulfill order via Printify
  */
-async function fulfillPrintify(product, session, shipping, customer) {
+async function fulfillPrintify(product, session, shipping, customer, event) {
+  const apiKey = event.env?.PRINTIFY_API_KEY || '';
+  const shopId = event.env?.PRINTIFY_SHOP_ID || '';
+
   const orderData = {
     external_id: session.id,
     label: product.title,
@@ -329,11 +338,10 @@ async function fulfillPrintify(product, session, shipping, customer) {
     },
   };
 
-  // Note: Replace SHOP_ID with actual Printify shop ID
-  const response = await fetch('https://api.printify.com/v1/shops/SHOP_ID/orders.json', {
+  const response = await fetch(`https://api.printify.com/v1/shops/${shopId}/orders.json`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${PRINTIFY_API_KEY}`,
+      'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(orderData),
@@ -342,7 +350,7 @@ async function fulfillPrintify(product, session, shipping, customer) {
   if (!response.ok) {
     const error = await response.text();
     console.error('Printify fulfillment error:', error);
-    await sendErrorNotification('Printify', product.title, session.id, error);
+    await sendErrorNotification('Printify', product.title, session.id, error, event);
   } else {
     console.log(`Printify order created for ${product.title}`);
   }
@@ -351,7 +359,9 @@ async function fulfillPrintify(product, session, shipping, customer) {
 /**
  * Fulfill order via Gelato
  */
-async function fulfillGelato(product, session, shipping, customer) {
+async function fulfillGelato(product, session, shipping, customer, event) {
+  const apiKey = event.env?.GELATO_API_KEY || '';
+
   const orderData = {
     orderReferenceId: session.id,
     orderType: 'order',
@@ -378,7 +388,7 @@ async function fulfillGelato(product, session, shipping, customer) {
   const response = await fetch('https://order.gelatoapis.com/v4/orders', {
     method: 'POST',
     headers: {
-      'X-API-KEY': GELATO_API_KEY || '',
+      'X-API-KEY': apiKey,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(orderData),
@@ -387,7 +397,7 @@ async function fulfillGelato(product, session, shipping, customer) {
   if (!response.ok) {
     const error = await response.text();
     console.error('Gelato fulfillment error:', error);
-    await sendErrorNotification('Gelato', product.title, session.id, error);
+    await sendErrorNotification('Gelato', product.title, session.id, error, event);
   } else {
     console.log(`Gelato order created for ${product.title}`);
   }
@@ -396,8 +406,9 @@ async function fulfillGelato(product, session, shipping, customer) {
 /**
  * Fulfill digital product
  */
-async function fulfillDigital(product, session, customer) {
+async function fulfillDigital(product, session, customer, event) {
   const email = customer?.email || '';
+  const notificationEmail = event.env?.ORDER_NOTIFICATION_EMAIL || '';
   
   const emailBody = `
     <h2>Your Digital Product from LYRĪON</h2>
@@ -410,21 +421,25 @@ async function fulfillDigital(product, session, customer) {
   await sendEmail(
     email,
     `Your Digital Product: ${product.title}`,
-    emailBody
+    emailBody,
+    event
   );
 
   // Also notify the brand
   await sendEmail(
-    ORDER_NOTIFICATION_EMAIL || '',
+    notificationEmail,
     `Digital Order Received: ${product.title}`,
-    `Order ${session.id} - Please fulfill digital product: ${product.title} to ${email}`
+    `Order ${session.id} - Please fulfill digital product: ${product.title} to ${email}`,
+    event
   );
 }
 
 /**
  * Fulfill manual order (brand ships personally)
  */
-async function fulfillManual(product, session, shipping, customer) {
+async function fulfillManual(product, session, shipping, customer, event) {
+  const notificationEmail = event.env?.ORDER_NOTIFICATION_EMAIL || '';
+
   const emailBody = `
     <h2>New Manual Order</h2>
     <p><strong>Product:</strong> ${product.title}</p>
@@ -445,17 +460,18 @@ async function fulfillManual(product, session, shipping, customer) {
   `;
 
   await sendEmail(
-    ORDER_NOTIFICATION_EMAIL || '',
+    notificationEmail,
     `Manual Order: ${product.title}`,
-    emailBody
+    emailBody,
+    event
   );
 }
 
 /**
  * Fulfill bundle (mixed providers)
  */
-async function fulfillBundle(product, session, shipping, customer) {
-  const routing = await fetchRoutingData();
+async function fulfillBundle(product, session, shipping, customer, event) {
+  const routing = await fetchRoutingData(event);
 
   // Process each item in the bundle
   for (const itemSku of product.bundleItems) {
@@ -467,24 +483,25 @@ async function fulfillBundle(product, session, shipping, customer) {
 
     // Recursively fulfill each item based on its provider
     const itemSession = { ...session, metadata: { ...session.metadata, sku: itemSku } };
-    await processFulfillment(itemSession);
+    await processFulfillment(itemSession, event);
   }
 }
 
 /**
  * Send email notification
  */
-async function sendEmail(to, subject, htmlBody) {
+async function sendEmail(to, subject, htmlBody, event) {
   // In production, integrate with an email service like SendGrid, Mailgun, or Resend
   console.log(`Email to ${to}: ${subject}`);
   console.log(htmlBody);
   
   // Placeholder - implement actual email sending
   // Example with Resend:
+  // const resendKey = event.env?.RESEND_API_KEY || '';
   // await fetch('https://api.resend.com/emails', {
   //   method: 'POST',
   //   headers: {
-  //     'Authorization': `Bearer ${RESEND_API_KEY}`,
+  //     'Authorization': `Bearer ${resendKey}`,
   //     'Content-Type': 'application/json',
   //   },
   //   body: JSON.stringify({ from: 'orders@lyrion.co.uk', to, subject, html: htmlBody })
@@ -494,23 +511,26 @@ async function sendEmail(to, subject, htmlBody) {
 /**
  * Send error notification
  */
-async function sendErrorNotification(provider, productTitle, sessionId, error) {
+async function sendErrorNotification(provider, productTitle, sessionId, error, event) {
+  const notificationEmail = event.env?.ORDER_NOTIFICATION_EMAIL || '';
+
   await sendEmail(
-    ORDER_NOTIFICATION_EMAIL || '',
+    notificationEmail,
     `Order Fulfillment Error - ${provider}`,
     `<h2>Fulfillment Error</h2>
      <p><strong>Provider:</strong> ${provider}</p>
      <p><strong>Product:</strong> ${productTitle}</p>
      <p><strong>Session:</strong> ${sessionId}</p>
-     <p><strong>Error:</strong> ${error}</p>`
+     <p><strong>Error:</strong> ${error}</p>`,
+    event
   );
 }
 
 /**
  * Fetch routing data from GitHub
  */
-async function fetchRoutingData() {
-  const url = ROUTING_JSON_URL || '';
+async function fetchRoutingData(event) {
+  const url = event.env?.ROUTING_JSON_URL || '';
   
   const response = await fetch(url, {
     headers: {
