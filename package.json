@@ -4,7 +4,8 @@
   "description": "Legacy-ready static site with Netlify Functions for Stripe and Gelato POD fulfillment.",
   "main": "index.html",
   "scripts": {
-    "build": "echo 'No build step required for static content, but Node dependencies are needed for functions.'"
+    "build": "echo 'No build step required for static content, but Node dependencies are needed for functions.'",
+    "generate-catalog": "node scripts/generate-catalog.js"
   },
   "dependencies": {
     "stripe": "^14.15.0",
