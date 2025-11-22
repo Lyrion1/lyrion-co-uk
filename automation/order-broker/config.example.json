@@ -1,0 +1,66 @@
+{
+  "description": "Configuration for LYRION Order Broker (Cloudflare Worker)",
+  "environment_variables": {
+    "STRIPE_SECRET_KEY": {
+      "description": "Your Stripe secret key (sk_live_... or sk_test_...)",
+      "required": true,
+      "example": "sk_test_51..."
+    },
+    "STRIPE_WEBHOOK_SECRET": {
+      "description": "Stripe webhook signing secret for verifying webhook events",
+      "required": true,
+      "example": "whsec_..."
+    },
+    "PRINTFUL_API_KEY": {
+      "description": "Printful API key for fulfilling apparel orders",
+      "required": true,
+      "example": "your-printful-api-key"
+    },
+    "PRINTIFY_API_KEY": {
+      "description": "Printify API token for fulfilling kids and specialty items",
+      "required": true,
+      "example": "your-printify-api-key"
+    },
+    "GELATO_API_KEY": {
+      "description": "Gelato API key for fulfilling art prints and home goods",
+      "required": true,
+      "example": "your-gelato-api-key"
+    },
+    "ORDER_NOTIFICATION_EMAIL": {
+      "description": "Email address to receive manual order notifications",
+      "required": true,
+      "example": "orders@lyrion.co.uk"
+    },
+    "BASE_URL": {
+      "description": "Your website's base URL (for Stripe redirect URLs)",
+      "required": true,
+      "example": "https://lyrion.co.uk"
+    },
+    "ROUTING_JSON_URL": {
+      "description": "Public URL to fetch routing.json (GitHub raw URL recommended)",
+      "required": true,
+      "example": "https://raw.githubusercontent.com/Lyrion1/lyrion-co-uk/main/data/routing.json"
+    }
+  },
+  "deployment_notes": {
+    "platform": "Cloudflare Workers (recommended) or similar serverless platform",
+    "runtime": "JavaScript (Workers Runtime)",
+    "setup_steps": [
+      "1. Create a Cloudflare Workers account at workers.cloudflare.com",
+      "2. Install Wrangler CLI: npm install -g wrangler",
+      "3. Login: wrangler login",
+      "4. Create wrangler.toml configuration file",
+      "5. Set environment variables: wrangler secret put STRIPE_SECRET_KEY",
+      "6. Deploy: wrangler publish",
+      "7. Configure Stripe webhook to point to your worker URL/webhook"
+    ]
+  },
+  "provider_mappings": {
+    "printful": "Adult hoodies and premium apparel",
+    "printify": "Kids items (Moon Girls, Star Boys), altar cloths, specialty home items",
+    "gelato": "T-shirts, art prints, framed art, cushions",
+    "digital": "PDF guides, readings, meditation audio files",
+    "manual": "Items fulfilled personally by the brand (candle holders, etc.)",
+    "mixed": "Bundles containing multiple items from different providers"
+  }
+}
