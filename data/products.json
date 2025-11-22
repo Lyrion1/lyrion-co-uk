@@ -1,0 +1,1133 @@
+[
+  {
+    "sku": "A-HOOD-ARIES",
+    "title": "Aries Zodiac Hoodie",
+    "subtitle": "Premium celestial hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Aries",
+    "type": "apparel",
+    "image": "A-HOOD-ARIES-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "fire"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-HOOD-TAURUS",
+    "title": "Taurus Zodiac Hoodie",
+    "subtitle": "Luxury earth-tone hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Taurus",
+    "type": "apparel",
+    "image": "A-HOOD-TAURUS-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "earth"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-HOOD-GEMINI",
+    "title": "Gemini Zodiac Hoodie",
+    "subtitle": "Celestial twin-themed hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Gemini",
+    "type": "apparel",
+    "image": "A-HOOD-GEMINI-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "air"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-HOOD-CANCER",
+    "title": "Cancer Zodiac Hoodie",
+    "subtitle": "Lunar-inspired premium hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Cancer",
+    "type": "apparel",
+    "image": "A-HOOD-CANCER-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "water"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-HOOD-LEO",
+    "title": "Leo Zodiac Hoodie",
+    "subtitle": "Bold lion symbol hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Leo",
+    "type": "apparel",
+    "image": "A-HOOD-LEO-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "fire"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-HOOD-VIRGO",
+    "title": "Virgo Zodiac Hoodie",
+    "subtitle": "Minimalist maiden hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Virgo",
+    "type": "apparel",
+    "image": "A-HOOD-VIRGO-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "earth"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-HOOD-LIBRA",
+    "title": "Libra Zodiac Hoodie",
+    "subtitle": "Balanced scales hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Libra",
+    "type": "apparel",
+    "image": "A-HOOD-LIBRA-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "air"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-HOOD-SCORPIO",
+    "title": "Scorpio Zodiac Hoodie",
+    "subtitle": "Striking cosmic hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Scorpio",
+    "type": "apparel",
+    "image": "A-HOOD-SCORPIO-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "water"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-HOOD-SAGITTARIUS",
+    "title": "Sagittarius Zodiac Hoodie",
+    "subtitle": "Archer-symbol hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Sagittarius",
+    "type": "apparel",
+    "image": "A-HOOD-SAGITTARIUS-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "fire"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-HOOD-CAPRICORN",
+    "title": "Capricorn Zodiac Hoodie",
+    "subtitle": "Sea-goat luxury hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Capricorn",
+    "type": "apparel",
+    "image": "A-HOOD-CAPRICORN-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "earth"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-HOOD-AQUARIUS",
+    "title": "Aquarius Zodiac Hoodie",
+    "subtitle": "Water-bearer celestial hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Aquarius",
+    "type": "apparel",
+    "image": "A-HOOD-AQUARIUS-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "air"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-HOOD-PISCES",
+    "title": "Pisces Zodiac Hoodie",
+    "subtitle": "Serene fish-motif hoodie",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Pisces",
+    "type": "apparel",
+    "image": "A-HOOD-PISCES-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "water"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-ARIES",
+    "title": "Aries Zodiac Tee",
+    "subtitle": "Minimalist fire-symbol tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Aries",
+    "type": "apparel",
+    "image": "A-TEE-ARIES-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "fire"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-TAURUS",
+    "title": "Taurus Zodiac Tee",
+    "subtitle": "Earthy luxury tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Taurus",
+    "type": "apparel",
+    "image": "A-TEE-TAURUS-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "earth"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-GEMINI",
+    "title": "Gemini Zodiac Tee",
+    "subtitle": "Twin-symbol celestial tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Gemini",
+    "type": "apparel",
+    "image": "A-TEE-GEMINI-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "air"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-CANCER",
+    "title": "Cancer Zodiac Tee",
+    "subtitle": "Moon-inspired soft tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Cancer",
+    "type": "apparel",
+    "image": "A-TEE-CANCER-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "water"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-LEO",
+    "title": "Leo Zodiac Tee",
+    "subtitle": "Bold lion centerpiece tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Leo",
+    "type": "apparel",
+    "image": "A-TEE-LEO-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "fire"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-VIRGO",
+    "title": "Virgo Zodiac Tee",
+    "subtitle": "Refined maiden tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Virgo",
+    "type": "apparel",
+    "image": "A-TEE-VIRGO-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "earth"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-LIBRA",
+    "title": "Libra Zodiac Tee",
+    "subtitle": "Golden scales tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Libra",
+    "type": "apparel",
+    "image": "A-TEE-LIBRA-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "air"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-SCORPIO",
+    "title": "Scorpio Zodiac Tee",
+    "subtitle": "Sharp scorpion tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Scorpio",
+    "type": "apparel",
+    "image": "A-TEE-SCORPIO-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "water"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-SAGITTARIUS",
+    "title": "Sagittarius Zodiac Tee",
+    "subtitle": "Elegant archer tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Sagittarius",
+    "type": "apparel",
+    "image": "A-TEE-SAGITTARIUS-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "fire"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-CAPRICORN",
+    "title": "Capricorn Zodiac Tee",
+    "subtitle": "Modern sea-goat tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Capricorn",
+    "type": "apparel",
+    "image": "A-TEE-CAPRICORN-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "earth"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-AQUARIUS",
+    "title": "Aquarius Zodiac Tee",
+    "subtitle": "Flowing water-bearer tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Aquarius",
+    "type": "apparel",
+    "image": "A-TEE-AQUARIUS-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "air"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "A-TEE-PISCES",
+    "title": "Pisces Zodiac Tee",
+    "subtitle": "Dreamy fish constellation tee",
+    "price": 65,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Women",
+    "sign": "Pisces",
+    "type": "apparel",
+    "image": "A-TEE-PISCES-image.webp",
+    "tags": [
+      "zodiac",
+      "apparel",
+      "tee",
+      "water"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "K-HOOD-MOON-ARIES",
+    "title": "Moon Girls Aries Hoodie",
+    "subtitle": "Lunar fire spirit hoodie",
+    "price": 75,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Moon Girls",
+    "sign": "Aries",
+    "type": "kids",
+    "image": "K-HOOD-MOON-ARIES-image.webp",
+    "tags": [
+      "zodiac",
+      "kids",
+      "hoodie",
+      "moon girls"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "K-HOOD-MOON-TAURUS",
+    "title": "Moon Girls Taurus Hoodie",
+    "subtitle": "Earthy moon maiden hoodie",
+    "price": 75,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Moon Girls",
+    "sign": "Taurus",
+    "type": "kids",
+    "image": "K-HOOD-MOON-TAURUS-image.webp",
+    "tags": [
+      "zodiac",
+      "kids",
+      "hoodie",
+      "moon girls"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "K-HOOD-MOON-GEMINI",
+    "title": "Moon Girls Gemini Hoodie",
+    "subtitle": "Twin stars youth hoodie",
+    "price": 75,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Moon Girls",
+    "sign": "Gemini",
+    "type": "kids",
+    "image": "K-HOOD-MOON-GEMINI-image.webp",
+    "tags": [
+      "zodiac",
+      "kids",
+      "hoodie",
+      "moon girls"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "K-HOOD-MOON-CANCER",
+    "title": "Moon Girls Cancer Hoodie",
+    "subtitle": "Gentle lunar hoodie",
+    "price": 75,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Moon Girls",
+    "sign": "Cancer",
+    "type": "kids",
+    "image": "K-HOOD-MOON-CANCER-image.webp",
+    "tags": [
+      "zodiac",
+      "kids",
+      "hoodie",
+      "moon girls"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "K-TEE-MOON-LEO",
+    "title": "Moon Girls Leo Tee",
+    "subtitle": "Bold moon lion tee",
+    "price": 45,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Moon Girls",
+    "sign": "Leo",
+    "type": "kids",
+    "image": "K-TEE-MOON-LEO-image.webp",
+    "tags": [
+      "zodiac",
+      "kids",
+      "tee",
+      "moon girls"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "K-TEE-MOON-VIRGO",
+    "title": "Moon Girls Virgo Tee",
+    "subtitle": "Gentle maiden moon tee",
+    "price": 45,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Moon Girls",
+    "sign": "Virgo",
+    "type": "kids",
+    "image": "K-TEE-MOON-VIRGO-image.webp",
+    "tags": [
+      "zodiac",
+      "kids",
+      "tee",
+      "moon girls"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "K-HOOD-STAR-ARIES",
+    "title": "Star Boys Aries Hoodie",
+    "subtitle": "Warrior star hoodie",
+    "price": 75,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Star Boys",
+    "sign": "Aries",
+    "type": "kids",
+    "image": "K-HOOD-STAR-ARIES-image.webp",
+    "tags": [
+      "zodiac",
+      "kids",
+      "hoodie",
+      "star boys"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "K-HOOD-STAR-LEO",
+    "title": "Star Boys Leo Hoodie",
+    "subtitle": "Lion constellation hoodie",
+    "price": 75,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Star Boys",
+    "sign": "Leo",
+    "type": "kids",
+    "image": "K-HOOD-STAR-LEO-image.webp",
+    "tags": [
+      "zodiac",
+      "kids",
+      "hoodie",
+      "star boys"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "K-HOOD-STAR-SAGITTARIUS",
+    "title": "Star Boys Sagittarius Hoodie",
+    "subtitle": "Archer cosmic hoodie",
+    "price": 75,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Star Boys",
+    "sign": "Sagittarius",
+    "type": "kids",
+    "image": "K-HOOD-STAR-SAGITTARIUS-image.webp",
+    "tags": [
+      "zodiac",
+      "kids",
+      "hoodie",
+      "star boys"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "K-TEE-STAR-GEMINI",
+    "title": "Star Boys Gemini Tee",
+    "subtitle": "Twin explorer tee",
+    "price": 45,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Star Boys",
+    "sign": "Gemini",
+    "type": "kids",
+    "image": "K-TEE-STAR-GEMINI-image.webp",
+    "tags": [
+      "zodiac",
+      "kids",
+      "tee",
+      "star boys"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "K-TEE-STAR-AQUARIUS",
+    "title": "Star Boys Aquarius Tee",
+    "subtitle": "Water bearer star tee",
+    "price": 45,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Star Boys",
+    "sign": "Aquarius",
+    "type": "kids",
+    "image": "K-TEE-STAR-AQUARIUS-image.webp",
+    "tags": [
+      "zodiac",
+      "kids",
+      "tee",
+      "star boys"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "H-ALTAR-CLOTH-ARIES",
+    "title": "Aries Altar Cloth",
+    "subtitle": "Bold fire ritual cloth",
+    "price": 50,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "",
+    "type": "home",
+    "image": "H-ALTAR-CLOTH-ARIES-image.webp",
+    "tags": [
+      "home",
+      "altar",
+      "ritual",
+      "aries"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "H-ALTAR-CLOTH-TAURUS",
+    "title": "Taurus Altar Cloth",
+    "subtitle": "Grounded earth ritual cloth",
+    "price": 50,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "",
+    "type": "home",
+    "image": "H-ALTAR-CLOTH-TAURUS-image.webp",
+    "tags": [
+      "home",
+      "altar",
+      "ritual",
+      "taurus"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "H-ALTAR-CLOTH-LIBRA",
+    "title": "Libra Altar Cloth",
+    "subtitle": "Balanced scales ritual cloth",
+    "price": 50,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "",
+    "type": "home",
+    "image": "H-ALTAR-CLOTH-LIBRA-image.webp",
+    "tags": [
+      "home",
+      "altar",
+      "ritual",
+      "libra"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "H-SELENE-INCENSE-DISH",
+    "title": "Selene Incense Dish",
+    "subtitle": "Lunar mythology incense holder",
+    "price": 45,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "",
+    "type": "home",
+    "image": "H-SELENE-INCENSE-DISH-image.webp",
+    "tags": [
+      "home",
+      "incense",
+      "lunar",
+      "ritual"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "H-CELESTIAL-CUSHION",
+    "title": "Celestial Cushion",
+    "subtitle": "Constellation plush cushion",
+    "price": 60,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "",
+    "type": "home",
+    "image": "H-CELESTIAL-CUSHION-image.webp",
+    "tags": [
+      "home",
+      "cushion",
+      "zodiac"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "H-STAR-MAP-PRINT-A3",
+    "title": "A3 Star Map Print",
+    "subtitle": "Constellation fine art print",
+    "price": 40,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "",
+    "type": "home",
+    "image": "H-STAR-MAP-PRINT-A3-image.webp",
+    "tags": [
+      "home",
+      "art",
+      "print",
+      "stars"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "H-COSMIC-ALTAR-SET",
+    "title": "Cosmic Altar Set",
+    "subtitle": "Complete celestial altar kit",
+    "price": 75,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "",
+    "type": "home",
+    "image": "H-COSMIC-ALTAR-SET-image.webp",
+    "tags": [
+      "home",
+      "altar",
+      "ritual",
+      "set"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "H-ZODIAC-WALL-ART-GOLD",
+    "title": "Zodiac Gold Wall Art",
+    "subtitle": "Luxury framed zodiac wheel",
+    "price": 80,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "",
+    "type": "home",
+    "image": "H-ZODIAC-WALL-ART-GOLD-image.webp",
+    "tags": [
+      "home",
+      "art",
+      "print",
+      "zodiac",
+      "framed"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "H-TAPESTRY-MOON-PHASES",
+    "title": "Moon Phases Tapestry",
+    "subtitle": "Lunar cycle wall tapestry",
+    "price": 95,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "",
+    "type": "home",
+    "image": "H-TAPESTRY-MOON-PHASES-image.webp",
+    "tags": [
+      "home",
+      "tapestry",
+      "moon",
+      "ritual"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "H-CANDLE-HOLDERS-ZODIAC",
+    "title": "Zodiac Candle Holders",
+    "subtitle": "Celestial symbol holders set",
+    "price": 55,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "",
+    "type": "home",
+    "image": "H-CANDLE-HOLDERS-ZODIAC-image.webp",
+    "tags": [
+      "home",
+      "candle",
+      "zodiac",
+      "ritual"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "D-MINI-BIRTH-READING",
+    "title": "Mini Birth Chart Reading",
+    "subtitle": "Concise natal analysis",
+    "price": 19,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Digital",
+    "sign": "",
+    "type": "digital",
+    "image": "D-MINI-BIRTH-READING-image.webp",
+    "tags": [
+      "digital",
+      "reading",
+      "astrology"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "D-FULL-NATAL-BLUEPRINT",
+    "title": "Full Natal Blueprint",
+    "subtitle": "Comprehensive chart analysis",
+    "price": 49,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Digital",
+    "sign": "",
+    "type": "digital",
+    "image": "D-FULL-NATAL-BLUEPRINT-image.webp",
+    "tags": [
+      "digital",
+      "reading",
+      "astrology"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "D-SOLAR-RETURN-INSIGHTS",
+    "title": "Solar Return Insights",
+    "subtitle": "Yearly predictive reading",
+    "price": 35,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Digital",
+    "sign": "",
+    "type": "digital",
+    "image": "D-SOLAR-RETURN-INSIGHTS-image.webp",
+    "tags": [
+      "digital",
+      "reading",
+      "astrology"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "D-YEAR-AHEAD-MEDITATION",
+    "title": "Year Ahead Meditation",
+    "subtitle": "Guided ritual audio",
+    "price": 29,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Digital",
+    "sign": "",
+    "type": "digital",
+    "image": "D-YEAR-AHEAD-MEDITATION-image.webp",
+    "tags": [
+      "digital",
+      "meditation",
+      "audio"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "D-LUNAR-PHASE-GUIDE",
+    "title": "Lunar Phase Guide PDF",
+    "subtitle": "Complete moon ritual guide",
+    "price": 15,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Digital",
+    "sign": "",
+    "type": "digital",
+    "image": "D-LUNAR-PHASE-GUIDE-image.webp",
+    "tags": [
+      "digital",
+      "pdf",
+      "moon",
+      "ritual"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "D-ZODIAC-COMPATIBILITY",
+    "title": "Zodiac Compatibility Report",
+    "subtitle": "Relationship synastry analysis",
+    "price": 39,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Digital",
+    "sign": "",
+    "type": "digital",
+    "image": "D-ZODIAC-COMPATIBILITY-image.webp",
+    "tags": [
+      "digital",
+      "reading",
+      "compatibility"
+    ],
+    "bundleItems": [],
+    "isSale": false
+  },
+  {
+    "sku": "B-ARIES-COMPLETE",
+    "title": "Aries Complete Collection",
+    "subtitle": "Hoodie + Altar Cloth + Reading",
+    "price": 169,
+    "compareAtPrice": 199,
+    "currency": "GBP",
+    "category": "Bundles",
+    "sign": "Aries",
+    "type": "bundle",
+    "image": "B-ARIES-COMPLETE-image.webp",
+    "tags": [
+      "bundle",
+      "zodiac",
+      "aries"
+    ],
+    "bundleItems": [
+      "A-HOOD-ARIES",
+      "H-ALTAR-CLOTH-ARIES",
+      "D-MINI-BIRTH-READING"
+    ],
+    "isSale": true
+  },
+  {
+    "sku": "B-CELESTIAL-HOME-SET",
+    "title": "Celestial Home Ritual Set",
+    "subtitle": "Altar Set + Cushion + Candles",
+    "price": 180,
+    "compareAtPrice": 210,
+    "currency": "GBP",
+    "category": "Bundles",
+    "sign": "",
+    "type": "bundle",
+    "image": "B-CELESTIAL-HOME-SET-image.webp",
+    "tags": [
+      "bundle",
+      "home",
+      "ritual"
+    ],
+    "bundleItems": [
+      "H-COSMIC-ALTAR-SET",
+      "H-CELESTIAL-CUSHION",
+      "H-CANDLE-HOLDERS-ZODIAC"
+    ],
+    "isSale": true
+  },
+  {
+    "sku": "B-MOON-GIRL-STARTER",
+    "title": "Moon Girls Starter Pack",
+    "subtitle": "Hoodie + Tee + Moon Guide",
+    "price": 129,
+    "compareAtPrice": 145,
+    "currency": "GBP",
+    "category": "Bundles",
+    "sign": "",
+    "type": "bundle",
+    "image": "B-MOON-GIRL-STARTER-image.webp",
+    "tags": [
+      "bundle",
+      "kids",
+      "moon girls"
+    ],
+    "bundleItems": [
+      "K-HOOD-MOON-ARIES",
+      "K-TEE-MOON-LEO",
+      "D-LUNAR-PHASE-GUIDE"
+    ],
+    "isSale": true
+  },
+  {
+    "sku": "B-DIGITAL-WISDOM-PACK",
+    "title": "Digital Wisdom Pack",
+    "subtitle": "All readings + meditation",
+    "price": 120,
+    "compareAtPrice": 150,
+    "currency": "GBP",
+    "category": "Bundles",
+    "sign": "",
+    "type": "bundle",
+    "image": "B-DIGITAL-WISDOM-PACK-image.webp",
+    "tags": [
+      "bundle",
+      "digital",
+      "readings"
+    ],
+    "bundleItems": [
+      "D-MINI-BIRTH-READING",
+      "D-FULL-NATAL-BLUEPRINT",
+      "D-SOLAR-RETURN-INSIGHTS",
+      "D-YEAR-AHEAD-MEDITATION"
+    ],
+    "isSale": true
+  },
+  {
+    "sku": "B-COSMIC-COUPLE-SET",
+    "title": "Cosmic Couple Set",
+    "subtitle": "2 Hoodies + Compatibility Report",
+    "price": 269,
+    "compareAtPrice": 309,
+    "currency": "GBP",
+    "category": "Bundles",
+    "sign": "",
+    "type": "bundle",
+    "image": "B-COSMIC-COUPLE-SET-image.webp",
+    "tags": [
+      "bundle",
+      "apparel",
+      "couple"
+    ],
+    "bundleItems": [
+      "A-HOOD-ARIES",
+      "A-HOOD-LEO",
+      "D-ZODIAC-COMPATIBILITY"
+    ],
+    "isSale": true
+  }
+]

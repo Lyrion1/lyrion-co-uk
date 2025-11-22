@@ -1,0 +1,19 @@
+name = "lyrion-order-broker"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Workers configuration
+[env.production]
+name = "lyrion-order-broker"
+route = "https://api.lyrion.co.uk/*"
+
+# Environment variables (set via wrangler secret put)
+# STRIPE_SECRET_KEY
+# STRIPE_WEBHOOK_SECRET
+# PRINTFUL_API_KEY
+# PRINTIFY_API_KEY
+# PRINTIFY_SHOP_ID
+# GELATO_API_KEY
+# ORDER_NOTIFICATION_EMAIL
+# BASE_URL
+# ROUTING_JSON_URL
