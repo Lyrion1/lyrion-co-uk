@@ -703,12 +703,22 @@ export const MOCK_PRODUCTS = [
 
 // Export helper to get mock products by category
 export function getMockProductsByCategory(category) {
-  return MOCK_PRODUCTS.filter(product => product.category === category);
+  if (!category) return MOCK_PRODUCTS;
+  
+  const normalizedCategory = category.toLowerCase();
+  return MOCK_PRODUCTS.filter(product => 
+    product.category && product.category.toLowerCase() === normalizedCategory
+  );
 }
 
 // Export helper to get mock products by sign
 export function getMockProductsBySign(sign) {
-  return MOCK_PRODUCTS.filter(product => product.sign === sign);
+  if (!sign) return MOCK_PRODUCTS;
+  
+  const normalizedSign = sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase();
+  return MOCK_PRODUCTS.filter(product => 
+    product.sign && product.sign === normalizedSign
+  );
 }
 
 // Export helper to get all zodiac products (products with sign field)

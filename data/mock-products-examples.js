@@ -196,9 +196,14 @@ function renderMockProducts(category = null, sign = null) {
     products = filterBySign(products, sign);
   }
   
-  const productCards = products.map(product => `
+  const productCards = products.map(product => {
+    const imageUrl = product.images && product.images.length > 0 
+      ? `/assets/products/${product.images[0]}` 
+      : '/assets/img/placeholder.png';
+    
+    return `
     <div class="product-card" data-id="${product.id}">
-      <img src="/assets/products/${product.images[0]}" alt="${product.title}">
+      <img src="${imageUrl}" alt="${product.title}">
       <h3>${product.title}</h3>
       ${product.sign ? `<span class="badge">${product.sign}</span>` : ''}
       <p>${product.description}</p>
@@ -206,7 +211,8 @@ function renderMockProducts(category = null, sign = null) {
       ${product.attributes.embroidery ? '<span class="embroidery">✨ Embroidered</span>' : ''}
       <button class="add-to-cart">Add to Cart</button>
     </div>
-  `).join('\n');
+  `;
+  }).join('\n');
   
   return productCards;
 }
@@ -225,22 +231,5 @@ export {
   renderMockProducts
 };
 
-// Run examples if this file is executed directly (browser environment)
-if (typeof globalThis !== 'undefined' && typeof globalThis.window !== 'undefined') {
-  console.log('=== LYRION Mock Data Examples ===');
-  console.log('');
-  console.log('Example 1: All products');
-  loadAllMockProducts();
-  console.log('');
-  
-  console.log('Example 2: Aries products');
-  getProductsForSign('Aries');
-  console.log('');
-  
-  console.log('Example 3: Cosmic Home category');
-  getProductsByCategory('cosmic-home');
-  console.log('');
-  
-  console.log('Example 6: Advanced filtering');
-  advancedFiltering();
-}
+// Note: Auto-execution removed to prevent side effects during module import
+// To run examples, import and call the functions explicitly in your code
