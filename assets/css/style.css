@@ -99,11 +99,83 @@ header {
     color: var(--color-ink);
 }
 
+.nav-main {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
 .nav-main a {
-    margin-left: 2rem;
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    position: relative;
+}
+
+/* Dropdown Styles */
+.nav-item {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-item > a {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-cream);
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(21, 19, 17, 0.15);
+    padding: 1rem 0;
+    margin-top: 0.5rem;
+    z-index: 1000;
+    border: 1px solid rgba(196, 164, 73, 0.3);
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(196, 164, 73, 0.1);
+    color: var(--color-gold);
+}
+
+/* Offerings Button */
+.button-offerings {
+    display: inline-block;
+    padding: 0.7rem 1.8rem;
+    background-color: var(--color-gold);
+    color: var(--color-ink);
+    border: 2px solid var(--color-gold);
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(196, 164, 73, 0.3);
+}
+
+.button-offerings:hover {
+    background-color: #A38435;
+    border-color: #A38435;
+    color: var(--color-cream);
+    box-shadow: 0 6px 15px rgba(196, 164, 73, 0.5);
+    transform: translateY(-2px);
 }
 
 /* UNIVERSAL BRANDING CORRECTIONS */
@@ -116,7 +188,9 @@ header .logo {
 }
 header .nav-main {
     /* Ensures navigation aligns nicely with the new logo size */
-    height: 40px; 
+    height: 40px;
+    display: flex;
+    align-items: center;
 }
 
 /* Hero Section */
@@ -214,11 +288,29 @@ footer .copyright {
     .nav-main {
         margin-top: 1rem;
         text-align: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .nav-item {
+        display: inline-block;
     }
 
     .nav-main a {
-        margin: 0 0.5rem;
         display: inline-block;
+    }
+
+    .dropdown-menu {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 200px;
+    }
+
+    .button-offerings {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.85rem;
     }
 
     .hero {
