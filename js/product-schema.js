@@ -98,7 +98,11 @@ export function createProduct(data) {
  * @returns {Product[]} Filtered products
  */
 export function filterBySign(products, sign) {
-  if (!sign || !ZODIAC_SIGNS.includes(sign)) {
+  if (!sign) return products;
+  
+  // Case-insensitive validation
+  const normalizedSign = sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase();
+  if (!ZODIAC_SIGNS.includes(normalizedSign)) {
     console.warn(`Invalid zodiac sign: ${sign}`);
     return products;
   }
@@ -195,6 +199,17 @@ export function filterByProvider(products, provider) {
  * @returns {Product[]} Filtered products
  */
 export function filterByPriceRange(products, minPrice, maxPrice) {
+  // Validate parameters
+  if (typeof minPrice !== 'number' || typeof maxPrice !== 'number') {
+    console.error('minPrice and maxPrice must be numbers');
+    return products;
+  }
+  
+  if (minPrice > maxPrice) {
+    console.warn('minPrice is greater than maxPrice, swapping values');
+    [minPrice, maxPrice] = [maxPrice, minPrice];
+  }
+  
   return products.filter(product => 
     product.price >= minPrice && product.price <= maxPrice
   );
