@@ -5,6 +5,24 @@
  */
 
 // Import the product utilities
+import {
+  createProduct,
+  filterBySign,
+  filterByCategory,
+  filterBySignAndCategory,
+  filterByProvider,
+  filterByPriceRange,
+  getUniqueSigns,
+  getUniqueCategories,
+  sortByPrice,
+  sortByTitle,
+  searchProducts,
+  validateProduct,
+  ZODIAC_SIGNS,
+  CATEGORIES,
+  PROVIDERS
+} from './product-schema.js';
+
 // Note: In browser context without a build step, you'll need to use:
 // <script type="module" src="js/product-schema.js"></script>
 // And then import in your module scripts
