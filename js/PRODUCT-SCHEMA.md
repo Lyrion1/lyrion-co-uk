@@ -177,9 +177,10 @@ The schema is designed to work with the existing `data/products.json` structure.
 The schema includes smart category mapping to handle legacy categories:
 
 - `'apparel'`, `'men'`, `'women'` → `'zodiac-wardrobe'`
-- `'home'`, `'altar'` → `'cosmic-home'`
-- `'kids'`, `'moon girls'`, `'star boys'` → `'youth'`
-- `'custom'`, `'bespoke'` → `'natal-atelier'`
+- `'home'`, `'altar'`, `'homeware'` → `'cosmic-home'`
+- `'kids'`, `'moon girls'`, `'star boys'`, `'children'` → `'youth'`
+- `'custom'`, `'bespoke'`, `'natal'` → `'natal-atelier'`
+- `'digital'`, `'readings'`, `'guides'` → `'digital'`
 
 ## TypeScript Support
 

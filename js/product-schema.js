@@ -197,11 +197,13 @@ export function filterByProvider(products, provider) {
  * @param {number} minPrice - Minimum price
  * @param {number} maxPrice - Maximum price
  * @returns {Product[]} Filtered products
+ * @note Returns all products if parameters are invalid (null, undefined, or non-numeric)
  */
 export function filterByPriceRange(products, minPrice, maxPrice) {
   // Validate parameters
-  if (typeof minPrice !== 'number' || typeof maxPrice !== 'number') {
-    console.error('minPrice and maxPrice must be numbers');
+  if (minPrice == null || maxPrice == null || 
+      typeof minPrice !== 'number' || typeof maxPrice !== 'number') {
+    console.error('minPrice and maxPrice must be valid numbers');
     return products;
   }
   

@@ -23,9 +23,17 @@ import {
   PROVIDERS
 } from './product-schema.js';
 
-// Note: In browser context without a build step, you'll need to use:
-// <script type="module" src="js/product-schema.js"></script>
-// And then import in your module scripts
+/**
+ * Browser usage without a build step:
+ * 
+ * In your HTML file:
+ * <script type="module">
+ *   import { filterBySign, ZODIAC_SIGNS } from './js/product-schema.js';
+ *   
+ *   // Use the imports
+ *   const ariesProducts = filterBySign(products, 'Aries');
+ * </script>
+ */
 
 /*
 Example 1: Creating a product
