@@ -225,8 +225,8 @@ export {
   renderMockProducts
 };
 
-// Run examples if this file is executed directly
-if (typeof window !== 'undefined') {
+// Run examples if this file is executed directly (browser environment)
+if (typeof globalThis !== 'undefined' && typeof globalThis.window !== 'undefined') {
   console.log('=== LYRION Mock Data Examples ===');
   console.log('');
   console.log('Example 1: All products');

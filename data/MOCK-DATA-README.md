@@ -82,19 +82,24 @@ console.log(genericProducts); // Returns 4 generic products
 
 ```javascript
 import { MOCK_PRODUCTS } from './data/mock-products.js';
-import { filterBySign, filterByCategory } from './js/product-schema.js';
+import { filterBySign, filterByCategory } from '../js/product-schema.js';
 
 // Filter mock products using schema utilities
 const leoProducts = filterBySign(MOCK_PRODUCTS, 'Leo');
 const homeProducts = filterByCategory(MOCK_PRODUCTS, 'cosmic-home');
 ```
 
-### Node.js (CommonJS)
+### Node.js (ES6 Modules)
 
 ```javascript
-// For Node.js, you may need to convert or use dynamic import
-const mockProducts = require('./mock-products.js');
+// In Node.js with ES6 module support (package.json has "type": "module")
+import { MOCK_PRODUCTS } from './data/mock-products.js';
+
+// Or use dynamic import
+const { MOCK_PRODUCTS } = await import('./data/mock-products.js');
 ```
+
+Note: This file uses ES6 module syntax and requires a JavaScript environment that supports ES6 modules (modern browsers, Node.js with ES6 support, or a build tool like webpack/rollup).
 
 ## Product Schema
 
