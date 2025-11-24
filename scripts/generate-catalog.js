@@ -134,6 +134,7 @@ function generateProductsJSON(products) {
       sku: p.sku,
       title: p.title,
       subtitle: p.subtitle || '',
+      description: p.description || p.subtitle || '',
       price: parseFloat(p.price),
       compareAtPrice: parseFloat(p.compare_at_price) || 0,
       currency: p.currency || 'GBP',
