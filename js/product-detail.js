@@ -61,8 +61,8 @@ function renderProductDetail(product) {
     badges.push({ text: 'Made in England', className: 'badge-england' });
   }
   
-  // Add sale badge if applicable
-  if (product.isSale) {
+  // Add sale badge if applicable (using same logic as price display)
+  if (product.compareAtPrice && product.compareAtPrice > product.price) {
     badges.push({ text: 'Sale', className: '' });
   }
   
