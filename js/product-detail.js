@@ -3,6 +3,16 @@
  * Dynamically loads and displays product details by ID from URL parameter
  */
 
+/**
+ * Escape HTML to prevent XSS attacks
+ */
+function escapeHtml(text) {
+  if (!text) return '';
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   // Get product ID from URL query parameter
   const urlParams = new URLSearchParams(window.location.search);
@@ -73,7 +83,7 @@ function renderProductDetail(product) {
         <div class="product-main-image">
           <img 
             src="${imageUrl}" 
-            alt="${product.title}"
+            alt="${escapeHtml(product.title)}"
             onerror="this.src='assets/img/placeholder.png'; this.style.opacity='0.3';"
           >
         </div>
@@ -81,8 +91,8 @@ function renderProductDetail(product) {
 
       <div class="product-info">
         <div>
-          <h1 class="product-title">${product.title}</h1>
-          ${product.subtitle ? `<p class="product-subtitle">${product.subtitle}</p>` : ''}
+          <h1 class="product-title">${escapeHtml(product.title)}</h1>
+          ${product.subtitle ? `<p class="product-subtitle">${escapeHtml(product.subtitle)}</p>` : ''}
         </div>
 
         <div class="product-price-section">
@@ -102,7 +112,7 @@ function renderProductDetail(product) {
 
         ${getProductDescription(product) ? `
           <div class="product-description">
-            ${getProductDescription(product)}
+            ${escapeHtml(getProductDescription(product))}
           </div>
         ` : ''}
 
@@ -136,7 +146,7 @@ function renderProductDetail(product) {
         <div class="product-actions">
           <button 
             class="button-add-to-cart" 
-            onclick="buy('${product.sku}')"
+            id="add-to-cart-btn"
           >
             Add to Cart
           </button>
@@ -144,6 +154,19 @@ function renderProductDetail(product) {
       </div>
     </div>
   `;
+  
+  // Add event listener to the Add to Cart button
+  const addToCartBtn = container.querySelector('#add-to-cart-btn');
+  if (addToCartBtn) {
+    addToCartBtn.addEventListener('click', () => {
+      if (typeof buy === 'function') {
+        buy(product.sku);
+      } else {
+        console.error('Checkout function not available');
+        alert('Checkout is not available. Please try again later.');
+      }
+    });
+  }
 }
 
 /**
