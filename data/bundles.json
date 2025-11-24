@@ -1,0 +1,40 @@
+[
+  {
+    "id": "BUNDLE-CELESTIAL-SIGNATURE",
+    "title": "Celestial Signature Bundle",
+    "products": [
+      "A-HOOD-ARIES",
+      "H-CAND-ARIES",
+      "N-PRINT-MINI-ARIES"
+    ],
+    "price": 145.00,
+    "description": "A refined set of essentials aligned with your constellation.",
+    "image": "bundle-celestial-signature.webp",
+    "category": "signature"
+  },
+  {
+    "id": "BUNDLE-LUNAR-HOME",
+    "title": "Lunar Home Bundle",
+    "products": [
+      "H-BLANK-MOON",
+      "H-PILL-ARIES",
+      "N-PRINT-WALL-ARIES"
+    ],
+    "price": 185.00,
+    "description": "Soft décor that brings quiet cosmic presence into your space.",
+    "image": "bundle-lunar-home.webp",
+    "category": "lunar-home"
+  },
+  {
+    "id": "BUNDLE-COSMIC-SELF",
+    "title": "Cosmic Self Bundle",
+    "products": [
+      "N-CHART-CUSTOM",
+      "N-JOURNAL-CUSTOM"
+    ],
+    "price": 125.00,
+    "description": "Your celestial blueprint transformed into personal art.",
+    "image": "bundle-cosmic-self.webp",
+    "category": "cosmic-self"
+  }
+]

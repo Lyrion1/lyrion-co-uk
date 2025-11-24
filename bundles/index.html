@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curated Bundles | LYRĪON Celestial Collections</title>
+    <meta name="description" content="Discover curated celestial bundles — signature collections of zodiac apparel, home décor, and cosmic art.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <style>
+        .bundles-header {
+            max-width: 1200px;
+            margin: 4rem auto 3rem auto;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        
+        .bundles-header h1 {
+            font-size: 3.8rem;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            font-family: var(--font-serif);
+        }
+        
+        .bundles-header p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--color-gold);
+            font-style: italic;
+        }
+        
+        .bundles-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 4rem 6rem 4rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .bundles-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem 3rem 5rem 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .bundles-grid {
+                grid-template-columns: 1fr;
+                padding: 2rem 1.5rem 4rem 1.5rem;
+                gap: 2rem;
+            }
+            
+            .bundles-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        .bundle-card {
+            background: linear-gradient(135deg, rgba(244, 239, 232, 0.4) 0%, rgba(252, 250, 250, 0.8) 100%);
+            border: 2px solid var(--color-gold);
+            border-top: 4px solid var(--color-gold);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .bundle-card::before {
+            content: 'Bundle';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(196, 164, 73, 0.15);
+            color: var(--color-gold);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            z-index: 1;
+        }
+        
+        .bundle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(196, 164, 73, 0.3);
+            border-color: var(--color-gold-dark);
+        }
+        
+        .bundle-image {
+            margin-bottom: 1.5rem;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f8f8 0%, #fafafa 100%);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .bundle-image::after {
+            content: '✦';
+            position: absolute;
+            font-size: 4rem;
+            color: var(--color-gold);
+            opacity: 0.15;
+        }
+        
+        .bundle-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .bundle-card h3 {
+            font-size: 1.8rem;
+            color: var(--color-ink);
+            margin-bottom: 1rem;
+            font-family: var(--font-serif);
+        }
+        
+        .bundle-description {
+            font-size: 1rem;
+            color: #5a5856;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .bundle-price {
+            font-size: 2rem;
+            color: var(--color-ink);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .bundle-category-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: rgba(196, 164, 73, 0.1);
+            color: var(--color-gold);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .bundle-view-btn {
+            background: var(--color-gold);
+            color: var(--color-ink);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            width: 100%;
+            letter-spacing: 1px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        
+        .bundle-view-btn:hover {
+            background: var(--color-gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(196, 164, 73, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="../index.html"><img src="../assets/img/logo-circle.png" alt="LYRĪON Celestial Couture" style="height: 35px; vertical-align: middle;"> LYRĪON</a>
+        </div>
+        <nav class="nav-main">
+            <div class="nav-item">
+                <a>Collections</a>
+                <div class="dropdown-menu">
+                    <a href="../shop.html?collection=zodiac-wardrobe">Zodiac Wardrobe</a>
+                    <a href="../shop.html?collection=cosmic-home">Cosmic Home</a>
+                    <a href="../shop.html?collection=natal-atelier">Natal Atelier (Custom)</a>
+                    <a href="../shop.html?collection=celestial-youth">Celestial Youth</a>
+                    <a href="../shop.html?collection=digital-rituals">Digital Rituals</a>
+                    <a href="../collections/hats.html">Hats</a>
+                    <a href="../collections/socks.html">Socks</a>
+                    <a href="index.html" style="font-weight: 600; color: var(--color-gold);">Bundles</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>The Oracle</a>
+                <div class="dropdown-menu">
+                    <a href="../oracle.html#complimentary">Complimentary Oracle</a>
+                    <a href="../oracle.html#premium">Premium Oracle</a>
+                    <a href="../oracle.html#chamber-of-echoes">Chamber of Echoes</a>
+                </div>
+            </div>
+            <a href="../about.html">About</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../offerings.html" class="button-offerings">Offerings ✧</a>
+        </nav>
+    </header>
+
+    <section class="bundles-header">
+        <h1>Curated Celestial Bundles</h1>
+        <p>Signature collections designed to harmonize your cosmic journey</p>
+    </section>
+
+    <section class="bundles-grid" id="bundles-container">
+        <!-- Bundles will be loaded here dynamically -->
+    </section>
+
+    <script type="module">
+        import { MOCK_BUNDLES } from '../data/mock-bundles.js';
+
+        function renderBundles() {
+            const container = document.getElementById('bundles-container');
+            
+            if (MOCK_BUNDLES.length === 0) {
+                container.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; font-family: var(--font-serif); margin-top: 2rem; color: #5a5856; font-size: 1.2rem;">No bundles available at this time.</p>';
+                return;
+            }
+
+            MOCK_BUNDLES.forEach(bundle => {
+                const card = createBundleCard(bundle);
+                container.appendChild(card);
+            });
+        }
+
+        function createBundleCard(bundle) {
+            const card = document.createElement('article');
+            card.className = 'bundle-card';
+
+            const imageUrl = bundle.image ? `../assets/products/${bundle.image}` : '../assets/img/placeholder.png';
+            
+            const categoryLabel = bundle.category ? bundle.category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
+
+            card.innerHTML = `
+                <div class="bundle-image">
+                    <img 
+                        src="${imageUrl}" 
+                        alt="${bundle.title}"
+                        onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #f8f8f8 0%, #fafafa 100%)';"
+                    >
+                </div>
+                ${categoryLabel ? `<span class="bundle-category-badge">${categoryLabel}</span>` : ''}
+                <h3>${bundle.title}</h3>
+                <p class="bundle-description">${bundle.description}</p>
+                <div class="bundle-price">£${bundle.price.toFixed(2)}</div>
+                <button class="bundle-view-btn" data-bundle-id="${bundle.id}">
+                    View Bundle Details
+                </button>
+            `;
+
+            const button = card.querySelector('.bundle-view-btn');
+            button.addEventListener('click', () => {
+                window.location.href = `detail.html?id=${bundle.id}`;
+            });
+
+            return card;
+        }
+
+        // Initialize page
+        renderBundles();
+    </script>
+
+</body>
+</html>

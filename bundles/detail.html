@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bundle Details | LYRĪON</title>
+    <meta name="description" content="View curated celestial bundle details">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <style>
+        .bundle-detail {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .bundle-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        
+        @media (max-width: 768px) {
+            .bundle-hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        .bundle-image-main {
+            background: linear-gradient(135deg, #f8f8f8 0%, #fafafa 100%);
+            border: 2px solid var(--color-gold);
+            border-radius: 12px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .bundle-image-main::after {
+            content: '✦';
+            position: absolute;
+            font-size: 8rem;
+            color: var(--color-gold);
+            opacity: 0.1;
+        }
+        
+        .bundle-image-main img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            z-index: 1;
+        }
+        
+        .bundle-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .bundle-category-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(196, 164, 73, 0.15);
+            color: var(--color-gold);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            width: fit-content;
+        }
+        
+        .bundle-title {
+            font-size: 3rem;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-serif);
+        }
+        
+        .bundle-description {
+            font-size: 1.2rem;
+            color: #5a5856;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .bundle-price-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .bundle-price {
+            font-size: 3rem;
+            color: var(--color-ink);
+            font-weight: 600;
+        }
+        
+        .bundle-savings {
+            background: rgba(196, 164, 73, 0.2);
+            color: var(--color-gold-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .bundle-add-btn {
+            background: var(--color-gold);
+            color: var(--color-ink);
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-transform: uppercase;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .bundle-add-btn:hover {
+            background: var(--color-gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(196, 164, 73, 0.4);
+        }
+        
+        .included-products {
+            margin-top: 4rem;
+            border-top: 2px solid var(--color-gold);
+            padding-top: 3rem;
+        }
+        
+        .included-products h2 {
+            font-size: 2rem;
+            color: var(--color-ink);
+            margin-bottom: 2rem;
+            font-family: var(--font-serif);
+            text-align: center;
+        }
+        
+        .products-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .products-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .product-item {
+            background: linear-gradient(135deg, rgba(244, 239, 232, 0.3) 0%, rgba(252, 250, 250, 0.6) 100%);
+            border: 1px solid rgba(196, 164, 73, 0.3);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(196, 164, 73, 0.2);
+        }
+        
+        .product-item-image {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f8f8;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .product-item-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-item h3 {
+            font-size: 1.1rem;
+            color: var(--color-ink);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-serif);
+        }
+        
+        .product-item-price {
+            font-size: 1.2rem;
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="../index.html"><img src="../assets/img/logo-circle.png" alt="LYRĪON Celestial Couture" style="height: 35px; vertical-align: middle;"> LYRĪON</a>
+        </div>
+        <nav class="nav-main">
+            <div class="nav-item">
+                <a>Collections</a>
+                <div class="dropdown-menu">
+                    <a href="../shop.html?collection=zodiac-wardrobe">Zodiac Wardrobe</a>
+                    <a href="../shop.html?collection=cosmic-home">Cosmic Home</a>
+                    <a href="../shop.html?collection=natal-atelier">Natal Atelier (Custom)</a>
+                    <a href="../shop.html?collection=celestial-youth">Celestial Youth</a>
+                    <a href="../shop.html?collection=digital-rituals">Digital Rituals</a>
+                    <a href="../collections/hats.html">Hats</a>
+                    <a href="../collections/socks.html">Socks</a>
+                    <a href="index.html">Bundles</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>The Oracle</a>
+                <div class="dropdown-menu">
+                    <a href="../oracle.html#complimentary">Complimentary Oracle</a>
+                    <a href="../oracle.html#premium">Premium Oracle</a>
+                    <a href="../oracle.html#chamber-of-echoes">Chamber of Echoes</a>
+                </div>
+            </div>
+            <a href="../about.html">About</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../offerings.html" class="button-offerings">Offerings ✧</a>
+        </nav>
+    </header>
+
+    <main class="bundle-detail" id="bundle-container">
+        <!-- Bundle details will be loaded here dynamically -->
+    </main>
+
+    <script type="module">
+        import { MOCK_BUNDLES } from '../data/mock-bundles.js';
+
+        // Get bundle ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const bundleId = urlParams.get('id');
+
+        // Fetch products data
+        let productsData = [];
+        
+        async function loadProducts() {
+            try {
+                const response = await fetch('../data/products.json');
+                productsData = await response.json();
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+
+        function renderBundle(bundle) {
+            const container = document.getElementById('bundle-container');
+            
+            if (!bundle) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 4rem 0;">
+                        <h1 style="font-family: var(--font-serif); color: var(--color-ink); margin-bottom: 1rem;">Bundle Not Found</h1>
+                        <p style="color: #5a5856; margin-bottom: 2rem;">The bundle you're looking for doesn't exist.</p>
+                        <a href="index.html" style="display: inline-block; padding: 1rem 2rem; background: var(--color-gold); color: var(--color-ink); border-radius: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">View All Bundles</a>
+                    </div>
+                `;
+                return;
+            }
+
+            const imageUrl = bundle.image ? `../assets/products/${bundle.image}` : '../assets/img/placeholder.png';
+            const categoryLabel = bundle.category ? bundle.category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
+
+            // Get included products
+            const includedProducts = bundle.products
+                .map(productId => productsData.find(p => p.sku === productId))
+                .filter(p => p !== undefined);
+
+            // Calculate savings
+            const totalIndividualPrice = includedProducts.reduce((sum, p) => sum + p.price, 0);
+            const savings = totalIndividualPrice - bundle.price;
+
+            container.innerHTML = `
+                <div class="bundle-hero">
+                    <div class="bundle-image-main">
+                        <img 
+                            src="${imageUrl}" 
+                            alt="${bundle.title}"
+                            onerror="this.style.display='none';"
+                        >
+                    </div>
+                    <div class="bundle-info">
+                        ${categoryLabel ? `<span class="bundle-category-badge">${categoryLabel}</span>` : ''}
+                        <h1 class="bundle-title">${bundle.title}</h1>
+                        <p class="bundle-description">${bundle.description}</p>
+                        <div class="bundle-price-section">
+                            <div class="bundle-price">£${bundle.price.toFixed(2)}</div>
+                            ${savings > 0 ? `<span class="bundle-savings">Save £${savings.toFixed(2)}</span>` : ''}
+                        </div>
+                        <button class="bundle-add-btn">
+                            Add Bundle to Cart ✧
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="included-products">
+                    <h2>Included in This Bundle</h2>
+                    <div class="products-list">
+                        ${includedProducts.map(product => `
+                            <div class="product-item">
+                                <div class="product-item-image">
+                                    <img 
+                                        src="../assets/products/${product.image || 'placeholder.png'}" 
+                                        alt="${product.title}"
+                                        onerror="this.src='../assets/img/placeholder.png'; this.style.opacity='0.3';"
+                                    >
+                                </div>
+                                <h3>${product.title}</h3>
+                                <div class="product-item-price">£${product.price.toFixed(2)}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Add click handler for add to cart button
+            const addBtn = container.querySelector('.bundle-add-btn');
+            addBtn.addEventListener('click', () => {
+                alert('Bundle will be added to cart. (Cart functionality to be implemented)');
+            });
+        }
+
+        // Initialize page
+        async function init() {
+            await loadProducts();
+            const bundle = MOCK_BUNDLES.find(b => b.id === bundleId);
+            renderBundle(bundle);
+        }
+
+        init();
+    </script>
+
+</body>
+</html>
