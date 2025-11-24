@@ -24,6 +24,8 @@
                     <a href="shop.html?collection=natal-atelier">Natal Atelier (Custom)</a>
                     <a href="shop.html?collection=celestial-youth">Celestial Youth</a>
                     <a href="shop.html?collection=digital-rituals">Digital Rituals</a>
+                    <a href="collections/hats.html">Hats</a>
+                    <a href="collections/socks.html">Socks</a>
                 </div>
             </div>
             <div class="nav-item">
@@ -114,6 +116,22 @@
             <p style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--color-gold); font-style: italic; margin-bottom: 2rem; line-height: 1.6;">Minimal gold embroidery. Made in England. A timeless emblem of your sign.</p>
             
             <a href="shop.html?collection=zodiac-wardrobe" class="button-primary button-gold" style="display: inline-block;">Shop Your Sign</a>
+        </div>
+    </section>
+
+    <section class="new-celestial-apparel-section" style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center; background: linear-gradient(135deg, rgba(244, 239, 232, 0.3) 0%, rgba(252, 250, 250, 0.7) 100%); border-radius: 16px;">
+        <h2 class="section-title-celestial" style="margin-top: 0; font-size: 2.5rem; color: var(--color-ink);">New Celestial Apparel</h2>
+        <p class="section-subtitle" style="margin-bottom: 3rem; font-size: 1.2rem; color: var(--color-gold); font-style: italic;">Minimal embroidery. Cosmic intention. Everyday elegance.</p>
+        
+        <div class="horizontal-scroll-container" style="overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 1rem;">
+            <div class="horizontal-scroll" id="new-apparel-scroll" style="display: flex; gap: 2rem; min-width: max-content; padding: 0 1rem;">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+        
+        <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap;">
+            <a href="collections/hats.html" class="button-primary button-gold">View All Hats</a>
+            <a href="collections/socks.html" class="button-primary button-gold">View All Socks</a>
         </div>
     </section>
 
@@ -261,6 +279,56 @@
     </footer>
     
     <script src="lyrion.js"></script>
+    
+    <script>
+        // Load new celestial apparel (hats and socks) for homepage display
+        async function loadNewCelestialApparel() {
+            try {
+                const response = await fetch('./data/products.json');
+                const products = await response.json();
+                
+                // Get hats and socks
+                const hats = products.filter(p => p.category === 'Hats').slice(0, 3);
+                const socks = products.filter(p => p.category === 'Socks').slice(0, 3);
+                const newApparel = [...hats, ...socks];
+                
+                const container = document.getElementById('new-apparel-scroll');
+                
+                if (!container || newApparel.length === 0) return;
+                
+                newApparel.forEach(product => {
+                    const card = document.createElement('div');
+                    card.style.cssText = 'min-width: 280px; background: white; border: 1px solid #e0ddd9; border-radius: 8px; padding: 1.5rem; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;';
+                    card.innerHTML = `
+                        <img src="assets/products/${product.image}" alt="${product.title}" 
+                             style="width: 100%; height: 250px; object-fit: cover; border-radius: 4px; margin-bottom: 1rem; background: #e8e6e3;"
+                             onerror="this.src='assets/products/placeholder.webp'">
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #151311;">${product.title}</h3>
+                        <p style="font-size: 1.1rem; color: #C4A449; font-weight: 600; margin: 0.5rem 0;">£${product.price.toFixed(2)}</p>
+                        <p style="font-size: 0.9rem; color: #5a5856; margin-bottom: 1rem;">${product.subtitle || ''}</p>
+                        <a href="product.html?sku=${product.sku}" style="display: inline-block; padding: 0.6rem 1.2rem; background: #C4A449; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; transition: background 0.3s ease;">View Details</a>
+                    `;
+                    
+                    // Add hover effect
+                    card.addEventListener('mouseenter', () => {
+                        card.style.transform = 'translateY(-5px)';
+                        card.style.boxShadow = '0 8px 20px rgba(196, 164, 73, 0.2)';
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = '';
+                        card.style.boxShadow = '';
+                    });
+                    
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error loading new celestial apparel:', error);
+            }
+        }
+        
+        // Load apparel when page loads
+        document.addEventListener('DOMContentLoaded', loadNewCelestialApparel);
+    </script>
     
 </body>
 </html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celestial Hats | LYRĪON Celestial Couture</title>
+    <meta name="description" content="Explore Celestial Hats at LYRĪON - minimal celestial embroidery for grounded elegance.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <style>
+        :root {
+            --color-ink: #151311;
+            --color-gold: #C4A449;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        .page-container {
+            max-width: 900px;
+            margin: 6rem auto 3rem auto;
+            padding: 0 4rem;
+            text-align: center;
+        }
+        .page-container h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-ink);
+        }
+        .page-container .subtitle {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            color: var(--color-gold);
+            font-style: italic;
+            font-family: var(--font-serif);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem 2rem;
+        }
+
+        .product-card {
+            background: #fafafa;
+            border: 1px solid #e0ddd9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(196, 164, 73, 0.15);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            background: #e8e6e3;
+        }
+
+        .product-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-ink);
+        }
+
+        .product-card .price {
+            font-size: 1.2rem;
+            color: var(--color-gold);
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .product-card p {
+            font-size: 0.95rem;
+            color: #5a5856;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .button-primary {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--color-gold);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .button-primary:hover {
+            background: #A38435;
+        }
+
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 0 2rem;
+            }
+            .page-container h1 {
+                font-size: 2.5rem;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../assets/img/lyrion-logo.png" alt="LYRĪON Celestial Couture Logo" style="height: 40px; width: auto; display: block; margin: 0 auto;">
+            </a>
+        </div>
+        <nav class="nav-main">
+            <div class="nav-item">
+                <a>Collections</a>
+                <div class="dropdown-menu">
+                    <a href="../shop.html?collection=zodiac-wardrobe">Zodiac Wardrobe</a>
+                    <a href="../shop.html?collection=cosmic-home">Cosmic Home</a>
+                    <a href="../shop.html?collection=natal-atelier">Natal Atelier (Custom)</a>
+                    <a href="../shop.html?collection=celestial-youth">Celestial Youth</a>
+                    <a href="../shop.html?collection=digital-rituals">Digital Rituals</a>
+                    <a href="hats.html">Hats</a>
+                    <a href="socks.html">Socks</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>The Oracle</a>
+                <div class="dropdown-menu">
+                    <a href="../oracle.html#complimentary">Complimentary Oracle</a>
+                    <a href="../oracle.html#premium">Premium Oracle</a>
+                    <a href="../oracle.html#chamber-of-echoes">Chamber of Echoes</a>
+                </div>
+            </div>
+            <a href="../about.html">About</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../shop.html" class="button-offerings">Offerings ✧</a>
+        </nav>
+    </header>
+
+    <section class="page-container">
+        <h1>Celestial Hats</h1>
+        <p class="subtitle">Minimal celestial embroidery for grounded elegance.</p>
+    </section>
+
+    <div id="product-grid" class="product-grid">
+        <!-- Products will be loaded here by JavaScript -->
+    </div>
+
+    <footer>
+        <div class="nav-footer">
+            <a href="../shop.html">Collections</a>
+            <a href="../oracle.html">Oracle</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../blog.html">Blog</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LYRĪON Celestial Couture. Live with Ritual and Intention.
+        </div>
+    </footer>
+    
+    <script>
+        // Load and display hat products
+        async function loadHats() {
+            try {
+                const response = await fetch('../data/products.json');
+                const products = await response.json();
+                
+                // Filter for hats category
+                const hats = products.filter(product => product.category === 'Hats');
+                
+                const gridElement = document.getElementById('product-grid');
+                
+                if (hats.length === 0) {
+                    gridElement.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; font-family: var(--font-serif); margin-top: 2rem;">No hats available at this cosmic moment.</p>';
+                    return;
+                }
+                
+                hats.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    card.innerHTML = `
+                        <img src="../assets/products/${product.image}" alt="${product.title}" onerror="this.src='../assets/products/placeholder.webp'">
+                        <h3>${product.title}</h3>
+                        <p class="price">£${product.price.toFixed(2)}</p>
+                        <p>${product.subtitle || product.description}</p>
+                        <a href="../product.html?sku=${product.sku}" class="button-primary">View Details</a>
+                    `;
+                    gridElement.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error loading hats:', error);
+                document.getElementById('product-grid').innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #CC0000;">Error loading products.</p>';
+            }
+        }
+        
+        // Load products when page loads
+        document.addEventListener('DOMContentLoaded', loadHats);
+    </script>
+    
+</body>
+</html>
