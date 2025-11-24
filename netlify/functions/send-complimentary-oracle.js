@@ -5,7 +5,7 @@
  * Sends the user an email with their poetic response and links to zodiac products
  */
 
-const { sendEmail, createEmailTemplate } = require('../../lib/email');
+const { sendEmail, createEmailTemplate, escapeHtml } = require('../../lib/email');
 
 exports.handler = async (event, context) => {
   // Only allow POST requests
@@ -29,7 +29,7 @@ exports.handler = async (event, context) => {
     
     // Build the email content
     const zodiacUrl = zodiacSign 
-      ? `https://lyrion.co.uk/zodiac/${zodiacSign.toLowerCase()}.html`
+      ? `https://lyrion.co.uk/zodiac/${escapeHtml(zodiacSign.toLowerCase())}.html`
       : 'https://lyrion.co.uk/shop.html?collection=zodiac-wardrobe';
     
     const content = `
@@ -48,7 +48,7 @@ exports.handler = async (event, context) => {
                   border-left: 4px solid #C4A449; 
                   margin: 30px 0;">
         <p style="color: #151311; line-height: 1.9; font-size: 16px; font-style: italic;">
-          ${reading}
+          ${escapeHtml(reading)}
         </p>
       </div>
       
@@ -68,7 +68,7 @@ exports.handler = async (event, context) => {
                   border-radius: 6px; 
                   font-weight: 600;
                   margin: 10px;">
-          View ${zodiacSign ? zodiacSign : 'Zodiac'} Collection ✧
+          View ${zodiacSign ? escapeHtml(zodiacSign) : 'Zodiac'} Collection ✧
         </a>
         
         <a href="https://lyrion.co.uk/oracle/premium.html" 

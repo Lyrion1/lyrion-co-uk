@@ -5,7 +5,7 @@
  * Sends a comprehensive long-form reading with themes, mantra, and alignment path
  */
 
-const { sendEmail, createEmailTemplate } = require('../../lib/email');
+const { sendEmail, createEmailTemplate, escapeHtml } = require('../../lib/email');
 
 exports.handler = async (event, context) => {
   // Only allow POST requests
@@ -29,9 +29,9 @@ exports.handler = async (event, context) => {
     
     // Default reading sections if not provided
     const defaultReading = {
-      themes: reading.themes || 'The cosmos reveals patterns of transformation and growth in your current journey.',
-      mantra: reading.mantra || 'I align with the celestial flow and trust the wisdom of the universe.',
-      alignmentPath: reading.alignmentPath || 'Your path forward is illuminated by the stars. Move with intention and grace.'
+      themes: escapeHtml(reading.themes || 'The cosmos reveals patterns of transformation and growth in your current journey.'),
+      mantra: escapeHtml(reading.mantra || 'I align with the celestial flow and trust the wisdom of the universe.'),
+      alignmentPath: escapeHtml(reading.alignmentPath || 'Your path forward is illuminated by the stars. Move with intention and grace.')
     };
     
     const recommendedBundle = bundleUrl || 'https://lyrion.co.uk/bundles/index.html';

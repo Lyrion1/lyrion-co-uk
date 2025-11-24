@@ -90,17 +90,27 @@ async function trackOracleInteraction(email, name = '') {
   console.log('Tracking oracle interaction for:', email);
   
   // For now, store in localStorage as placeholder
-  const interaction = {
-    email,
-    name,
-    timestamp: new Date().toISOString(),
-    complimentarySubmitted: true,
-    premiumPurchased: false
-  };
+  // Check if localStorage is available
+  if (typeof localStorage === 'undefined') {
+    console.warn('localStorage not available, skipping oracle tracking');
+    return null;
+  }
   
-  localStorage.setItem('lyrion_oracle_interaction', JSON.stringify(interaction));
-  
-  return interaction;
+  try {
+    const interaction = {
+      email,
+      name,
+      timestamp: new Date().toISOString(),
+      complimentarySubmitted: true,
+      premiumPurchased: false
+    };
+    
+    localStorage.setItem('lyrion_oracle_interaction', JSON.stringify(interaction));
+    return interaction;
+  } catch (error) {
+    console.error('Failed to store oracle interaction in localStorage:', error);
+    return null;
+  }
 }
 
 /**
@@ -111,15 +121,25 @@ async function markPremiumPurchased(email) {
   // TODO: Update database record
   console.log('Marking premium oracle as purchased for:', email);
   
-  // Update localStorage placeholder
-  const stored = localStorage.getItem('lyrion_oracle_interaction');
-  if (stored) {
-    const interaction = JSON.parse(stored);
-    if (interaction.email === email) {
-      interaction.premiumPurchased = true;
-      interaction.purchaseTimestamp = new Date().toISOString();
-      localStorage.setItem('lyrion_oracle_interaction', JSON.stringify(interaction));
+  // Check if localStorage is available
+  if (typeof localStorage === 'undefined') {
+    console.warn('localStorage not available, skipping purchase tracking');
+    return;
+  }
+  
+  try {
+    // Update localStorage placeholder
+    const stored = localStorage.getItem('lyrion_oracle_interaction');
+    if (stored) {
+      const interaction = JSON.parse(stored);
+      if (interaction.email === email) {
+        interaction.premiumPurchased = true;
+        interaction.purchaseTimestamp = new Date().toISOString();
+        localStorage.setItem('lyrion_oracle_interaction', JSON.stringify(interaction));
+      }
     }
+  } catch (error) {
+    console.error('Failed to update oracle purchase in localStorage:', error);
   }
 }
 

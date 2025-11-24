@@ -5,6 +5,9 @@
  * Shows current season badge and populates "The Season's Celestial Flow" section
  */
 
+// Configuration
+const PRODUCTS_JSON_PATH = '/products.json';
+
 // Import season functions (inline for browser compatibility)
 function getCurrentSeason() {
   const now = new Date();
@@ -45,7 +48,7 @@ function updateSeasonalBadge() {
 async function loadSeasonalProducts() {
   try {
     const season = getCurrentSeason();
-    const response = await fetch('/products.json');
+    const response = await fetch(PRODUCTS_JSON_PATH);
     if (!response.ok) {
       throw new Error('Failed to fetch products');
     }

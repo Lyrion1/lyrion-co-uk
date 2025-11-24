@@ -7,7 +7,7 @@
  * To activate: Add this to netlify.toml:
  * [[functions]]
  *   path = "/functions/abandoned-oracle-reminder"
- *   schedule = "0 * /6 * * *"
+ *   schedule = "0 */6 * * *"
  *   (Runs every 6 hours)
  */
 
