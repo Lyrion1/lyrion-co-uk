@@ -233,16 +233,16 @@ function getCategoryUrl(category) {
  * Update page title
  */
 function updatePageTitle(product) {
-  // Use escapeHtml for consistency
-  document.title = `${escapeHtml(product.title)} | LYRĪON`;
+  // document.title handles text safely, no need for escapeHtml
+  document.title = `${product.title} | LYRĪON`;
   
   // Update meta description if it exists
   const metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) {
     const description = getProductDescription(product);
     if (description) {
-      // Use escapeHtml for consistency
-      metaDescription.setAttribute('content', escapeHtml(description));
+      // setAttribute handles text safely, no need for escapeHtml
+      metaDescription.setAttribute('content', description);
     }
   }
 }
