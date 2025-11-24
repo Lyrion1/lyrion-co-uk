@@ -307,17 +307,8 @@ class ProductGrid {
    * @param {Object} product - Product data
    */
   handleViewClick(product) {
-    // If a global buy() function exists (from checkout.js), use it
-    if (typeof buy === 'function') {
-      buy(product.sku);
-    } else {
-      // Fallback: emit a custom event that can be handled by the parent page
-      const event = new CustomEvent('product-view', {
-        detail: { product },
-        bubbles: true
-      });
-      document.dispatchEvent(event);
-    }
+    // Navigate to product detail page
+    window.location.href = `/product.html?id=${product.sku}`;
   }
 
   /**
