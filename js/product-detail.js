@@ -83,9 +83,9 @@ function renderProductDetail(product) {
       <div class="product-images">
         <div class="product-main-image">
           <img 
+            id="product-image"
             src="${escapeHtml(imageUrl)}" 
             alt="${escapeHtml(product.title)}"
-            onerror="this.src='assets/img/placeholder.png'; this.style.opacity='0.3';"
           >
         </div>
       </div>
@@ -156,6 +156,15 @@ function renderProductDetail(product) {
     </div>
   `;
   
+  // Add event listener to the product image for error handling
+  const productImage = container.querySelector('#product-image');
+  if (productImage) {
+    productImage.addEventListener('error', function() {
+      this.src = 'assets/img/placeholder.png';
+      this.style.opacity = '0.3';
+    });
+  }
+  
   // Add event listener to the Add to Cart button
   const addToCartBtn = container.querySelector('#add-to-cart-btn');
   if (addToCartBtn) {
@@ -164,7 +173,8 @@ function renderProductDetail(product) {
         buy(product.sku);
       } else {
         console.error('Checkout function not available');
-        alert('Checkout is not available. Please try again later.');
+        // Show user-friendly error message
+        showError('Checkout is not available at this time. Please try again later or contact support.');
       }
     });
   }
@@ -223,20 +233,16 @@ function getCategoryUrl(category) {
  * Update page title
  */
 function updatePageTitle(product) {
-  // Use escapeHtml to safely set title
-  const tempDiv = document.createElement('div');
-  tempDiv.textContent = product.title;
-  document.title = `${tempDiv.textContent} | LYRĪON`;
+  // Use escapeHtml for consistency
+  document.title = `${escapeHtml(product.title)} | LYRĪON`;
   
   // Update meta description if it exists
   const metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) {
     const description = getProductDescription(product);
     if (description) {
-      // Use textContent to safely set meta content
-      const descDiv = document.createElement('div');
-      descDiv.textContent = description;
-      metaDescription.setAttribute('content', descDiv.textContent);
+      // Use escapeHtml for consistency
+      metaDescription.setAttribute('content', escapeHtml(description));
     }
   }
 }
