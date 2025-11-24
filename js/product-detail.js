@@ -120,25 +120,25 @@ function renderProductDetail(product) {
           ${product.category ? `
             <div class="product-meta-item">
               <span class="product-meta-label">Category</span>
-              <span class="product-meta-value">${product.category}</span>
+              <span class="product-meta-value">${escapeHtml(product.category)}</span>
             </div>
           ` : ''}
           ${product.sign ? `
             <div class="product-meta-item">
               <span class="product-meta-label">Zodiac Sign</span>
-              <span class="product-meta-value">${product.sign}</span>
+              <span class="product-meta-value">${escapeHtml(product.sign)}</span>
             </div>
           ` : ''}
           ${product.type ? `
             <div class="product-meta-item">
               <span class="product-meta-label">Type</span>
-              <span class="product-meta-value">${capitalizeFirst(product.type)}</span>
+              <span class="product-meta-value">${escapeHtml(capitalizeFirst(product.type))}</span>
             </div>
           ` : ''}
           ${product.tags && product.tags.length > 0 ? `
             <div class="product-meta-item">
               <span class="product-meta-label">Tags</span>
-              <span class="product-meta-value">${product.tags.join(', ')}</span>
+              <span class="product-meta-value">${product.tags.map(tag => escapeHtml(tag)).join(', ')}</span>
             </div>
           ` : ''}
         </div>
@@ -195,9 +195,9 @@ function renderBreadcrumb(product) {
   breadcrumb.innerHTML = `
     <a href="index.html">Home</a>
     <span>→</span>
-    <a href="${categoryUrl}">${categoryName}</a>
+    <a href="${categoryUrl}">${escapeHtml(categoryName)}</a>
     <span>→</span>
-    <span>${product.title}</span>
+    <span>${escapeHtml(product.title)}</span>
   `;
 }
 
@@ -242,7 +242,7 @@ function showError(message) {
   container.innerHTML = `
     <div class="error-message">
       <div style="font-size: 2rem; margin-bottom: 1rem;">✦</div>
-      <p>${message}</p>
+      <p>${escapeHtml(message)}</p>
       <a href="shop.html" class="button-primary button-gold" style="display: inline-block; margin-top: 1.5rem; text-decoration: none;">
         Return to Shop
       </a>
