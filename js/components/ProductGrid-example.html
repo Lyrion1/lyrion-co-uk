@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductGrid Component Example</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+        :root {
+            --color-cream: #F4EFE8;
+            --color-ink: #151311;
+            --color-gold: #C4A449;
+            --color-gold-dark: #A38435;
+            --font-serif: 'Playfair Display', Georgia, serif;
+        }
+        body {
+            background-color: var(--color-cream);
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; font-family: var(--font-serif); color: var(--color-ink);">
+        ProductGrid Component Example
+    </h1>
+    
+    <div id="grid-container"></div>
+
+    <script src="./ProductGrid.js"></script>
+    <script>
+        // Example product data
+        const sampleProducts = [
+            {
+                sku: "EXAMPLE-1",
+                title: "Celestial Hoodie",
+                subtitle: "Premium zodiac design",
+                price: 110.00,
+                compareAtPrice: 0,
+                image: "placeholder.png",
+                type: "apparel",
+                isSale: false
+            },
+            {
+                sku: "EXAMPLE-2",
+                title: "Starlight Tee",
+                subtitle: "Soft cotton blend",
+                price: 65.00,
+                compareAtPrice: 85.00,
+                image: "placeholder.png",
+                type: "apparel",
+                isSale: true
+            },
+            {
+                sku: "EXAMPLE-3",
+                title: "Lunar Art Print",
+                subtitle: "A3 constellation map",
+                price: 40.00,
+                compareAtPrice: 0,
+                image: "placeholder.png",
+                type: "homeware",
+                isSale: false
+            },
+            {
+                sku: "EXAMPLE-4",
+                title: "Digital Reading",
+                subtitle: "Birth chart analysis",
+                price: 49.00,
+                compareAtPrice: 0,
+                image: "placeholder.png",
+                type: "digital",
+                isSale: false
+            }
+        ];
+
+        // Create and render the ProductGrid
+        ProductGrid.create(sampleProducts, {
+            containerSelector: '#grid-container',
+            showHeader: true,
+            headerTitle: 'Example Products',
+            headerSubtitle: 'Demonstrating the reusable ProductGrid component'
+        });
+
+        // Listen for product view events
+        document.addEventListener('product-view', (event) => {
+            console.log('Product viewed:', event.detail.product);
+            alert(`Viewing: ${event.detail.product.title}`);
+        });
+    </script>
+</body>
+</html>
