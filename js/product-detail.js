@@ -71,10 +71,11 @@ function renderProductDetail(product) {
     badges.push({ text: product.category, className: '' });
   }
 
-  // Build image URL
-  const imageUrl = product.image 
-    ? `assets/products/${product.image}` 
-    : 'assets/img/placeholder.png';
+  // Build and sanitize image URL - only allow alphanumeric, dash, underscore and dot
+  let imageUrl = 'assets/img/placeholder.png';
+  if (product.image && /^[a-zA-Z0-9._-]+\.(webp|jpg|jpeg|png|gif)$/i.test(product.image)) {
+    imageUrl = `assets/products/${product.image}`;
+  }
 
   // Create product detail HTML
   container.innerHTML = `
@@ -82,7 +83,7 @@ function renderProductDetail(product) {
       <div class="product-images">
         <div class="product-main-image">
           <img 
-            src="${imageUrl}" 
+            src="${escapeHtml(imageUrl)}" 
             alt="${escapeHtml(product.title)}"
             onerror="this.src='assets/img/placeholder.png'; this.style.opacity='0.3';"
           >
@@ -105,7 +106,7 @@ function renderProductDetail(product) {
         ${badges.length > 0 ? `
           <div class="product-badges">
             ${badges.map(badge => `
-              <span class="badge ${badge.className}">${badge.text}</span>
+              <span class="badge ${badge.className}">${escapeHtml(badge.text)}</span>
             `).join('')}
           </div>
         ` : ''}
@@ -195,7 +196,7 @@ function renderBreadcrumb(product) {
   breadcrumb.innerHTML = `
     <a href="index.html">Home</a>
     <span>→</span>
-    <a href="${categoryUrl}">${escapeHtml(categoryName)}</a>
+    <a href="${escapeHtml(categoryUrl)}">${escapeHtml(categoryName)}</a>
     <span>→</span>
     <span>${escapeHtml(product.title)}</span>
   `;
@@ -222,14 +223,20 @@ function getCategoryUrl(category) {
  * Update page title
  */
 function updatePageTitle(product) {
-  document.title = `${product.title} | LYRĪON`;
+  // Use escapeHtml to safely set title
+  const tempDiv = document.createElement('div');
+  tempDiv.textContent = product.title;
+  document.title = `${tempDiv.textContent} | LYRĪON`;
   
   // Update meta description if it exists
   const metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) {
     const description = getProductDescription(product);
     if (description) {
-      metaDescription.setAttribute('content', description);
+      // Use textContent to safely set meta content
+      const descDiv = document.createElement('div');
+      descDiv.textContent = description;
+      metaDescription.setAttribute('content', descDiv.textContent);
     }
   }
 }
