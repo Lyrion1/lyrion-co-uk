@@ -284,10 +284,17 @@
                 return;
             }
             
+            // Helper function to escape HTML and prevent XSS
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+            
             container.innerHTML = recentTestimonies.map(t => `
                 <div class="testimony-card">
-                    <div class="testimony-message">"${t.message}"</div>
-                    <div class="testimony-author">— ${t.name}</div>
+                    <div class="testimony-message">"${escapeHtml(t.message)}"</div>
+                    <div class="testimony-author">— ${escapeHtml(t.name)}</div>
                 </div>
             `).join('');
         }
