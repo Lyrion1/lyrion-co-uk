@@ -258,6 +258,9 @@
     </div>
     
     <script>
+        // Stripe publishable key (safe for client-side use)
+        const STRIPE_PUBLISHABLE_KEY = 'pk_test_51Qh7sV00T0vZKJKn9Ye9YqLXMHzDGzCjr5pW4G05Rjt6g3nB3YP0TYsVcPZaFQNvDnU8PJ9u0pR5lqG3vB4F00vZYqLXMH';
+        
         document.getElementById('donation-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -290,7 +293,7 @@
                 
                 if (data.sessionId) {
                     // Redirect to Stripe Checkout
-                    const stripe = Stripe('pk_test_51Qh7sV00T0vZKJKn9Ye9YqLXMHzDGzCjr5pW4G05Rjt6g3nB3YP0TYsVcPZaFQNvDnU8PJ9u0pR5lqG3vB4F00vZYqLXMH');
+                    const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
                     stripe.redirectToCheckout({ sessionId: data.sessionId });
                 } else {
                     throw new Error('No session ID received');
