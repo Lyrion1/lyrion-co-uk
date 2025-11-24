@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         :root {
             --color-ink: #151311;
@@ -32,6 +33,142 @@
             margin-bottom: 1.5rem;
             color: #5a5856;
         }
+        
+        .poetic-text {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            font-style: italic;
+            color: var(--color-ink);
+            margin: 3rem auto;
+            max-width: 700px;
+        }
+        
+        .donation-form {
+            background: linear-gradient(135deg, rgba(244, 239, 232, 0.3) 0%, rgba(252, 250, 250, 0.3) 100%);
+            border: 2px solid var(--color-gold);
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 3rem auto;
+        }
+        
+        .amount-input-group {
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .amount-input-group label {
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--color-ink);
+            font-size: 1.2rem;
+            font-family: var(--font-serif);
+        }
+        
+        .amount-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .currency-symbol {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-gold);
+            font-size: 1.5rem;
+            font-family: var(--font-serif);
+        }
+        
+        .amount-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 2.5rem;
+            border: 2px solid var(--color-gold);
+            border-radius: 8px;
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .amount-input:focus {
+            outline: none;
+            border-color: #A38435;
+            box-shadow: 0 0 10px rgba(196, 164, 73, 0.3);
+        }
+        
+        .donation-btn {
+            background: var(--color-gold);
+            color: var(--color-ink);
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-family: var(--font-serif);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+        
+        .donation-btn:hover {
+            background: #A38435;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(196, 164, 73, 0.4);
+        }
+        
+        .donation-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(21, 19, 17, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+        
+        .success-overlay.show {
+            display: flex;
+        }
+        
+        .success-content {
+            text-align: center;
+            color: var(--color-gold);
+            max-width: 600px;
+            padding: 3rem;
+        }
+        
+        .success-content .star {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        
+        .success-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-gold);
+        }
+        
+        .success-content p {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: rgba(244, 239, 232, 0.9);
+        }
 
         @media (max-width: 768px) {
             .page-container {
@@ -39,6 +176,9 @@
             }
             .page-container h1 {
                 font-size: 2.5rem;
+            }
+            .donation-form {
+                padding: 2rem;
             }
         }
     </style>
@@ -77,9 +217,110 @@
     </header>
 
     <section class="page-container">
-        <h1>Offerings</h1>
-        <p>Discover our complete collection of celestial apparel, homeware, and cosmic wisdom. Each offering is crafted with intention for those who walk in rhythm with the stars.</p>
+        <h1>Offerings to the Celestial Hearth ✧</h1>
+        
+        <div class="poetic-text">
+            <p>In the infinite dance of stars and silence, your generosity becomes stardust—illuminating paths for those who seek cosmic wisdom. Each offering kindles the celestial flame, weaving light into the tapestry of collective awakening.</p>
+        </div>
+        
+        <div class="donation-form">
+            <form id="donation-form">
+                <div class="amount-input-group">
+                    <label for="amount">Choose Your Offering</label>
+                    <div class="amount-input-wrapper">
+                        <span class="currency-symbol">£</span>
+                        <input 
+                            type="number" 
+                            id="amount" 
+                            name="amount" 
+                            class="amount-input" 
+                            min="1" 
+                            step="1" 
+                            placeholder="0" 
+                            required
+                        >
+                    </div>
+                </div>
+                
+                <button type="submit" class="donation-btn">
+                    Light a Star ✧
+                </button>
+            </form>
+        </div>
     </section>
+    
+    <div class="success-overlay" id="success-overlay">
+        <div class="success-content">
+            <div class="star">✦</div>
+            <h2>Your offering has lit a new star.</h2>
+            <p>The celestial hearth glows brighter with your generosity. May the cosmos return this light to you a thousandfold.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Stripe publishable key (safe for client-side use)
+        const STRIPE_PUBLISHABLE_KEY = 'pk_test_51Qh7sV00T0vZKJKn9Ye9YqLXMHzDGzCjr5pW4G05Rjt6g3nB3YP0TYsVcPZaFQNvDnU8PJ9u0pR5lqG3vB4F00vZYqLXMH';
+        
+        document.getElementById('donation-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const amount = parseFloat(document.getElementById('amount').value);
+            if (!amount || amount < 1) {
+                alert('Please enter a valid amount (minimum £1)');
+                return;
+            }
+            
+            const button = this.querySelector('button[type="submit"]');
+            button.disabled = true;
+            button.textContent = 'Preparing your offering...';
+            
+            try {
+                const response = await fetch('/.netlify/functions/create-checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        productData: {
+                            name: 'Celestial Hearth Offering',
+                            price: amount,
+                            id: 'DONATION'
+                        }
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.sessionId) {
+                    // Redirect to Stripe Checkout
+                    const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+                    stripe.redirectToCheckout({ sessionId: data.sessionId });
+                } else {
+                    throw new Error('No session ID received');
+                }
+            } catch (error) {
+                console.error('Donation error:', error);
+                alert('Unable to process donation. Please try again later.');
+                button.disabled = false;
+                button.textContent = 'Light a Star ✧';
+            }
+        });
+        
+        // Check for successful donation on page load
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('donation') === 'success') {
+            document.getElementById('success-overlay').classList.add('show');
+            
+            // Hide overlay after 5 seconds and allow clicking anywhere to close
+            setTimeout(() => {
+                document.getElementById('success-overlay').classList.remove('show');
+            }, 5000);
+            
+            document.getElementById('success-overlay').addEventListener('click', function() {
+                this.classList.remove('show');
+            });
+        }
+    </script>
 
     <footer>
         <div class="nav-footer">

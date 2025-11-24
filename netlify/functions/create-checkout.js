@@ -30,8 +30,16 @@ exports.handler = async (event, context) => {
             line_items: lineItems,
             mode: 'payment',
             // Redirect URLs after success or failure
-            success_url: `${process.env.URL}/shop.html?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${process.env.URL}/shop.html?status=cancelled`,
+            success_url: productData.id === 'PREMIUM-ORACLE-READING' 
+                ? `${process.env.URL}/oracle/premium.html?session_id={CHECKOUT_SESSION_ID}`
+                : productData.id === 'DONATION'
+                ? `${process.env.URL}/offerings.html?donation=success`
+                : `${process.env.URL}/shop.html?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: productData.id === 'PREMIUM-ORACLE-READING'
+                ? `${process.env.URL}/oracle/premium.html?status=cancelled`
+                : productData.id === 'DONATION'
+                ? `${process.env.URL}/offerings.html?status=cancelled`
+                : `${process.env.URL}/shop.html?status=cancelled`,
             metadata: {
                 gelato_sku: productData.id, // Pass SKU to fulfillment function later
             },

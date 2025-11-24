@@ -440,6 +440,33 @@
     "currency": "GBP",
     "title": "Year Ahead Meditation"
   },
+  "D-LUNAR-RITUAL-GUIDE": {
+    "provider": "digital",
+    "provider_sku": "DIG-PDF-002",
+    "type": "digital",
+    "bundleItems": [],
+    "price": 8,
+    "currency": "GBP",
+    "title": "Lunar Ritual Guide"
+  },
+  "D-NEW-MOON-INTENTION-SCRIPT": {
+    "provider": "digital",
+    "provider_sku": "DIG-PDF-003",
+    "type": "digital",
+    "bundleItems": [],
+    "price": 6,
+    "currency": "GBP",
+    "title": "New Moon Intention Script"
+  },
+  "D-SEASONAL-ALIGNMENT-ALMANAC": {
+    "provider": "digital",
+    "provider_sku": "DIG-PDF-004",
+    "type": "digital",
+    "bundleItems": [],
+    "price": 12,
+    "currency": "GBP",
+    "title": "Seasonal Alignment Almanac"
+  },
   "D-LUNAR-PHASE-GUIDE": {
     "provider": "digital",
     "provider_sku": "DIG-PDF-001",
