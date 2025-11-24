@@ -102,35 +102,38 @@ class ProductGrid {
       gap: 2rem;
     `;
 
-    // Add media query styles
-    const style = document.createElement('style');
-    style.textContent = `
-      @media (max-width: 1200px) {
-        .product-grid {
-          grid-template-columns: repeat(3, 1fr) !important;
-          padding: 2rem 3rem 5rem 3rem !important;
+    // Add media query styles only once
+    if (!document.getElementById('product-grid-styles')) {
+      const style = document.createElement('style');
+      style.id = 'product-grid-styles';
+      style.textContent = `
+        @media (max-width: 1200px) {
+          .product-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            padding: 2rem 3rem 5rem 3rem !important;
+          }
         }
-      }
-      @media (max-width: 768px) {
-        .product-grid {
-          grid-template-columns: repeat(2, 1fr) !important;
-          padding: 2rem 1.5rem 4rem 1.5rem !important;
-          gap: 1.5rem !important;
+        @media (max-width: 768px) {
+          .product-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            padding: 2rem 1.5rem 4rem 1.5rem !important;
+            gap: 1.5rem !important;
+          }
         }
-      }
-      @media (max-width: 480px) {
-        .product-grid {
-          gap: 1rem !important;
+        @media (max-width: 480px) {
+          .product-grid {
+            gap: 1rem !important;
+          }
+          .product-grid-header h1 {
+            font-size: 2.5rem !important;
+          }
+          .product-grid-header p {
+            font-size: 1.1rem !important;
+          }
         }
-        .product-grid-header h1 {
-          font-size: 2.5rem !important;
-        }
-        .product-grid-header p {
-          font-size: 1.1rem !important;
-        }
-      }
-    `;
-    document.head.appendChild(style);
+      `;
+      document.head.appendChild(style);
+    }
 
     if (this.products.length === 0) {
       grid.innerHTML = `
@@ -278,7 +281,7 @@ class ProductGrid {
     // Button hover effect
     const button = card.querySelector('.product-view-btn');
     button.addEventListener('mouseenter', () => {
-      button.style.background = '#A38435';
+      button.style.background = 'var(--color-gold-dark, #A38435)';
       button.style.transform = 'translateY(-2px)';
     });
 
