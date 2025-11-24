@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     // Load products from JSON
-    const response = await fetch('/data/products.json');
+    const response = await fetch('data/products.json');
     if (!response.ok) throw new Error('Failed to load products');
     
     const products = await response.json();
@@ -63,8 +63,8 @@ function renderProductDetail(product) {
 
   // Build image URL
   const imageUrl = product.image 
-    ? `/assets/products/${product.image}` 
-    : '/assets/img/placeholder.png';
+    ? `assets/products/${product.image}` 
+    : 'assets/img/placeholder.png';
 
   // Create product detail HTML
   container.innerHTML = `
@@ -74,7 +74,7 @@ function renderProductDetail(product) {
           <img 
             src="${imageUrl}" 
             alt="${product.title}"
-            onerror="this.src='/assets/img/placeholder.png'; this.style.opacity='0.3';"
+            onerror="this.src='assets/img/placeholder.png'; this.style.opacity='0.3';"
           >
         </div>
       </div>
