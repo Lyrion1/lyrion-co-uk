@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         :root {
             --color-ink: #151311;
@@ -77,9 +78,107 @@
     </header>
 
     <section class="page-container">
-        <h1>Premium Oracle</h1>
+        <h1>Premium Oracle Reading (£12)</h1>
         <p>For a personalized, poetic reading crafted by our celestial analysts, seek deep alignment through the Premium Oracle. Experience profound cosmic wisdom tailored to your unique journey.</p>
+        <p>This comprehensive reading delves into your cosmic blueprint, offering guidance illuminated by the stars themselves.</p>
+        <button id="proceed-to-reading-btn" class="button-primary" style="margin-top: 2rem; padding: 1rem 3rem; font-size: 1.2rem; background: var(--color-gold); color: var(--color-ink); border: none; cursor: pointer; font-family: var(--font-serif); border-radius: 8px; transition: all 0.3s ease;">
+            Proceed to Reading
+        </button>
+        
+        <div id="reading-content" style="display: none; margin-top: 4rem; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <div style="border: 2px solid var(--color-gold); padding: 3rem; border-radius: 12px; background: linear-gradient(135deg, rgba(244, 239, 232, 0.3) 0%, rgba(252, 250, 250, 0.3) 100%);">
+                <h2 style="color: var(--color-gold); text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">✦ Your Celestial Reading ✦</h2>
+                
+                <div style="font-size: 1.15rem; line-height: 1.9; color: var(--color-ink); margin-bottom: 2rem;">
+                    <p style="margin-bottom: 1.5rem; font-style: italic;">
+                        The cosmos has aligned to reveal this message for you...
+                    </p>
+                    
+                    <h3 style="color: var(--color-gold); margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.8rem;">The Path Illuminated</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        In the celestial tapestry above, your stars whisper of transformation. The Moon, in her silver wisdom, 
+                        casts light upon hidden corridors of your soul. You stand at a threshold where the old patterns dissolve 
+                        like morning mist, making way for a new dawn of understanding.
+                    </p>
+                    
+                    <h3 style="color: var(--color-gold); margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.8rem;">Wisdom from the Spheres</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        Jupiter's benevolent gaze suggests expansion through patient reflection. What you seek is not beyond reach, 
+                        but requires you to shed the armor of doubt. Venus whispers that beauty and abundance flow naturally when 
+                        you align with your authentic essence. Trust in the cosmic current that guides you.
+                    </p>
+                    
+                    <h3 style="color: var(--color-gold); margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.8rem;">Your Sacred Action</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        Mars illuminates your path forward with clarity. Speak your truth with poetic conviction, but temper force 
+                        with grace. The stars counsel that your greatest power lies not in pushing against resistance, but in flowing 
+                        like water around obstacles. Release what no longer serves, embrace what calls to your spirit.
+                    </p>
+                    
+                    <h3 style="color: var(--color-gold); margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.8rem;">The Celestial Promise</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        As the wheel of the zodiac turns, know that you are supported by forces both seen and unseen. Your journey 
+                        is unique, written in starlight and sealed with cosmic intention. Walk forward with courage, knowing that 
+                        the universe conspires in favor of those who align with their highest truth.
+                    </p>
+                    
+                    <p style="margin-top: 3rem; text-align: center; font-style: italic; color: var(--color-gold); font-size: 1.3rem;">
+                        ✧ With celestial blessings, LYRĪON ✧
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
+    
+    <script>
+        document.getElementById('proceed-to-reading-btn').addEventListener('click', async function() {
+            const button = this;
+            button.disabled = true;
+            button.textContent = 'Preparing celestial checkout...';
+            
+            try {
+                const response = await fetch('/.netlify/functions/create-checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        productData: {
+                            name: 'Premium Oracle Reading',
+                            price: 12.00,
+                            id: 'PREMIUM-ORACLE-READING'
+                        }
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.sessionId) {
+                    // Redirect to Stripe Checkout
+                    const stripe = Stripe('pk_test_51Qh7sV00T0vZKJKn9Ye9YqLXMHzDGzCjr5pW4G05Rjt6g3nB3YP0TYsVcPZaFQNvDnU8PJ9u0pR5lqG3vB4F00vZYqLXMH');
+                    stripe.redirectToCheckout({ sessionId: data.sessionId });
+                } else {
+                    throw new Error('No session ID received');
+                }
+            } catch (error) {
+                console.error('Checkout error:', error);
+                alert('Unable to process payment. Please try again later.');
+                button.disabled = false;
+                button.textContent = 'Proceed to Reading';
+            }
+        });
+        
+        // Check for successful payment on page load
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('session_id')) {
+            // Show the reading content
+            document.getElementById('proceed-to-reading-btn').style.display = 'none';
+            document.getElementById('reading-content').style.display = 'block';
+            
+            // Scroll to reading
+            document.getElementById('reading-content').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 
     <footer>
         <div class="nav-footer">
