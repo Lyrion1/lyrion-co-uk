@@ -96,9 +96,9 @@ function generateProductCards(sign) {
          class="oracle-product-card">
       <div style="width: 100%; height: 180px; background: #e8e6e3; border-radius: 6px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; overflow: hidden;">
         <img src="assets/products/${product.image}" 
-             alt="${product.name}"
+             alt="${product.name.replace(/"/g, '&quot;')}"
              style="width: 100%; height: 100%; object-fit: cover;"
-             onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=color:#C4A449;font-size:2rem;>${getSignSymbol(sign)}</span>';">
+             onerror="this.style.display='none'; this.parentElement.textContent='${getSignSymbol(sign)}';">
       </div>
       <h4 style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--color-ink); margin-bottom: 0.5rem; font-weight: 600;">
         ${product.name}

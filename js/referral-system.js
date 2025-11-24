@@ -173,19 +173,42 @@ function displayReferralSection(container, userId) {
   const linkInput = document.getElementById('referral-link-input');
   
   if (copyBtn && linkInput) {
-    copyBtn.addEventListener('click', () => {
-      linkInput.select();
-      document.execCommand('copy');
-      
-      // Show feedback
-      const originalText = copyBtn.textContent;
-      copyBtn.textContent = 'Copied!';
-      copyBtn.style.background = '#27AE60';
-      
-      setTimeout(() => {
-        copyBtn.textContent = originalText;
-        copyBtn.style.background = '';
-      }, 2000);
+    copyBtn.addEventListener('click', async () => {
+      // Use modern Clipboard API
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(linkInput.value);
+          
+          // Show feedback
+          const originalText = copyBtn.textContent;
+          copyBtn.textContent = 'Copied!';
+          copyBtn.style.background = '#27AE60';
+          
+          setTimeout(() => {
+            copyBtn.textContent = originalText;
+            copyBtn.style.background = '';
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy:', err);
+          // Fallback: select text for manual copy
+          linkInput.select();
+        }
+      } else {
+        // Fallback for older browsers
+        linkInput.select();
+        try {
+          document.execCommand('copy');
+          const originalText = copyBtn.textContent;
+          copyBtn.textContent = 'Copied!';
+          copyBtn.style.background = '#27AE60';
+          setTimeout(() => {
+            copyBtn.textContent = originalText;
+            copyBtn.style.background = '';
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy:', err);
+        }
+      }
     });
   }
 }

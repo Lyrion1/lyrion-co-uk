@@ -185,13 +185,24 @@ function displayCompleteTheRitualUpsell(container, cartItems) {
  * @returns {string} HTML string
  */
 function generateUpsellCard(product) {
+  // Escape HTML to prevent XSS
+  const escapeHtml = (str) => {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  };
+  
+  const safeTitle = escapeHtml(product.title);
+  const safeSubtitle = escapeHtml(product.subtitle);
+  const safeImageAlt = escapeHtml(product.title);
+  
   return `
     <div class="upsell-card" style="background: white; border: 1px solid #e0ddd9; border-radius: 6px; padding: 1.5rem; text-align: center; transition: all 0.3s ease;">
       <div style="width: 100%; height: 120px; background: #e8e6e3; border-radius: 4px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
-        ${product.image ? `<img src="assets/products/${product.image}" alt="${product.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;" onerror="this.style.display='none'">` : '<span style="color: #C4A449; font-size: 2rem;">✧</span>'}
+        ${product.image ? `<img src="assets/products/${product.image}" alt="${safeImageAlt}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;" onerror="this.style.display='none'">` : '<span style="color: #C4A449; font-size: 2rem;">✧</span>'}
       </div>
-      <h4 style="font-size: 1.1rem; color: #151311; margin-bottom: 0.3rem; font-weight: 600;">${product.title}</h4>
-      <p style="font-size: 0.85rem; color: #5a5856; margin-bottom: 0.5rem;">${product.subtitle}</p>
+      <h4 style="font-size: 1.1rem; color: #151311; margin-bottom: 0.3rem; font-weight: 600;">${safeTitle}</h4>
+      <p style="font-size: 0.85rem; color: #5a5856; margin-bottom: 0.5rem;">${safeSubtitle}</p>
       <p style="font-size: 1rem; color: #C4A449; font-weight: 600; margin-bottom: 1rem;">£${product.price.toFixed(2)}</p>
       <a href="${product.url}" style="display: inline-block; padding: 0.6rem 1.2rem; background: #151311; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; transition: background 0.3s ease;">
         Add to Cart

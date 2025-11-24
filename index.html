@@ -516,7 +516,8 @@
         
         // Track scroll depth
         window.addEventListener('scroll', () => {
-            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            const scrollableHeight = Math.max(1, document.body.scrollHeight - window.innerHeight);
+            const scrollPercent = (window.scrollY / scrollableHeight) * 100;
             
             if (scrollPercent >= 40 && !signSelectorShown && !localStorage.getItem('lyrion-sign-selector-seen')) {
                 signSelectorModal.style.display = 'flex';

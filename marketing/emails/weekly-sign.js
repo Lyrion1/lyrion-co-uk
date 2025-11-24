@@ -155,19 +155,26 @@ export function getWeeklyEmailSchedule() {
  * @returns {object} Complete email object
  */
 export function generateCurrentWeeklyEmail() {
-  // This would import from lib/marketing.js in production
-  // For now, using a simple week-based calculation
-  const signs = [
-    'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
-    'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'
-  ];
+  // Import getWeeklySign from lib/marketing.js
+  // In browser environment, this function should be available globally
+  let currentSign;
   
-  const now = new Date();
-  const startOfYear = new Date(now.getFullYear(), 0, 1);
-  const daysSinceStart = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24));
-  const weekNumber = Math.floor(daysSinceStart / 7);
-  const signIndex = weekNumber % 12;
-  const currentSign = signs[signIndex];
+  if (typeof getWeeklySign === 'function') {
+    currentSign = getWeeklySign();
+  } else {
+    // Fallback calculation if marketing.js not loaded
+    const signs = [
+      'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
+      'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'
+    ];
+    
+    const now = new Date();
+    const startOfYear = new Date(now.getFullYear(), 0, 1);
+    const daysSinceStart = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24));
+    const weekNumber = Math.floor(daysSinceStart / 7);
+    const signIndex = weekNumber % 12;
+    currentSign = signs[signIndex];
+  }
   
   const signDetails = {
     traits: getSignTraits(currentSign),
