@@ -28,8 +28,10 @@ exports.handler = async (event, context) => {
     }
     
     // Build the email content
-    const zodiacUrl = zodiacSign 
-      ? `https://lyrion.co.uk/zodiac/${escapeHtml(zodiacSign.toLowerCase())}.html`
+    // Use URL encoding for zodiacSign to ensure valid URLs
+    const zodiacSignEncoded = zodiacSign ? encodeURIComponent(zodiacSign.toLowerCase()) : '';
+    const zodiacUrl = zodiacSignEncoded
+      ? `https://lyrion.co.uk/zodiac/${zodiacSignEncoded}.html`
       : 'https://lyrion.co.uk/shop.html?collection=zodiac-wardrobe';
     
     const content = `

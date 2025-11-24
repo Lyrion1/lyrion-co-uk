@@ -7,8 +7,8 @@
  * To activate: Add this to netlify.toml:
  * [[functions]]
  *   path = "/functions/abandoned-oracle-reminder"
- *   schedule = "0 */6 * * *"
- *   (Runs every 6 hours)
+ *   schedule = "0 *slash/6 * * *" (replace slash with /)
+ *   Runs every 6 hours
  */
 
 const { sendEmail, createEmailTemplate } = require('../../lib/email');
@@ -154,7 +154,7 @@ async function sendAbandonedOracleEmail(email, name = '') {
     </div>
     
     <div style="text-align: center; margin: 40px 0;">
-      <a href="https://lyrion.co.uk/oracle/premium.html?code=${discountCode}" 
+      <a href="https://lyrion.co.uk/oracle/premium.html?code=${encodeURIComponent(discountCode)}" 
          class="button-gold" 
          style="display: inline-block; 
                 padding: 14px 32px; 
