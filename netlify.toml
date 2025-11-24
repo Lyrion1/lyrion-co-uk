@@ -6,3 +6,17 @@
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+
+# Scheduled Functions for Oracle Email Automation
+# Note: Scheduled functions require Netlify's scheduled functions feature
+# Uncomment and configure when ready to activate
+
+# Daily testimony reminders at 10 AM UTC
+# [[functions]]
+#   path = "/.netlify/functions/testimony-reminder-cron"
+#   schedule = "0 10 * * *"
+
+# Abandoned oracle check every 6 hours
+# [[functions]]
+#   path = "/.netlify/functions/abandoned-oracle-reminder"
+#   schedule = "0 */6 * * *"
