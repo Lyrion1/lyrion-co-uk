@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | LYRĪON</title>
+    <meta name="description" content="Manage your LYRĪON account, view orders, and share your referral link.">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="assets/img/logo-circle.png" alt="LYRĪON Celestial Couture" style="height: 35px; vertical-align: middle;"> LYRĪON</a>
+        </div>
+        <nav class="nav-main">
+            <div class="nav-item">
+                <a>Collections</a>
+                <div class="dropdown-menu">
+                    <a href="shop.html?collection=zodiac-wardrobe">Zodiac Wardrobe</a>
+                    <a href="shop.html?collection=cosmic-home">Cosmic Home</a>
+                    <a href="shop.html?collection=natal-atelier">Natal Atelier (Custom)</a>
+                    <a href="shop.html?collection=celestial-youth">Celestial Youth</a>
+                    <a href="shop.html?collection=digital-rituals">Digital Rituals</a>
+                    <a href="collections/hats.html">Hats</a>
+                    <a href="collections/socks.html">Socks</a>
+                    <a href="bundles/index.html">Bundles</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>The Oracle</a>
+                <div class="dropdown-menu">
+                    <a href="oracle.html#complimentary">Complimentary Oracle</a>
+                    <a href="oracle.html#premium">Premium Oracle</a>
+                    <a href="oracle.html#chamber-of-echoes">Chamber of Echoes</a>
+                </div>
+            </div>
+            <a href="gatherings/index.html">Gatherings</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="offerings.html" class="button-offerings">Offerings ✧</a>
+        </nav>
+    </header>
+
+    <section style="padding: 4rem 2rem; max-width: 1000px; margin: 0 auto;">
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 3rem; color: #151311; text-align: center; margin-bottom: 0.5rem;">My Celestial Account</h1>
+        <p style="text-align: center; color: #5a5856; font-size: 1.1rem; margin-bottom: 3rem; font-style: italic;">
+            Your cosmic journey with LYRĪON
+        </p>
+
+        <!-- Account Overview -->
+        <div style="background: linear-gradient(135deg, rgba(244, 239, 232, 0.3) 0%, rgba(252, 250, 250, 0.6) 100%); border: 1px solid #e0ddd9; border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #151311; margin-bottom: 1rem;">Welcome, Celestial Soul</h2>
+            <p style="color: #5a5856; margin-bottom: 1.5rem;">
+                This is a demonstration account page. In production, this would show your order history, saved items, and personalized recommendations.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <div style="background: white; border: 1px solid #e0ddd9; border-radius: 8px; padding: 1.5rem; text-align: center;">
+                    <div style="font-size: 2rem; color: var(--color-gold); margin-bottom: 0.5rem;">3</div>
+                    <div style="font-size: 0.9rem; color: #5a5856;">Orders</div>
+                </div>
+                
+                <div style="background: white; border: 1px solid #e0ddd9; border-radius: 8px; padding: 1.5rem; text-align: center;">
+                    <div style="font-size: 2rem; color: var(--color-gold); margin-bottom: 0.5rem;">£15.00</div>
+                    <div style="font-size: 0.9rem; color: #5a5856;">Available Credits</div>
+                </div>
+                
+                <div style="background: white; border: 1px solid #e0ddd9; border-radius: 8px; padding: 1.5rem; text-align: center;">
+                    <div style="font-size: 2rem; color: var(--color-gold); margin-bottom: 0.5rem;">♌</div>
+                    <div style="font-size: 0.9rem; color: #5a5856;">Your Sign: Leo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Referral Section Container -->
+        <div id="referral-container"></div>
+
+        <!-- Quick Links -->
+        <div style="margin-top: 3rem;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #151311; margin-bottom: 1.5rem; text-align: center;">Quick Actions</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <a href="shop.html?collection=zodiac-wardrobe" style="text-decoration: none; background: white; border: 2px solid #e0ddd9; border-radius: 8px; padding: 2rem; text-align: center; transition: all 0.3s ease;" class="quick-action-card">
+                    <div style="font-size: 2.5rem; color: var(--color-gold); margin-bottom: 0.5rem;">✧</div>
+                    <h4 style="font-size: 1.2rem; color: #151311; margin-bottom: 0.5rem;">Shop Your Sign</h4>
+                    <p style="font-size: 0.9rem; color: #5a5856; margin: 0;">Explore zodiac collection</p>
+                </a>
+                
+                <a href="oracle.html" style="text-decoration: none; background: white; border: 2px solid #e0ddd9; border-radius: 8px; padding: 2rem; text-align: center; transition: all 0.3s ease;" class="quick-action-card">
+                    <div style="font-size: 2.5rem; color: var(--color-gold); margin-bottom: 0.5rem;">⚭</div>
+                    <h4 style="font-size: 1.2rem; color: #151311; margin-bottom: 0.5rem;">Consult Oracle</h4>
+                    <p style="font-size: 0.9rem; color: #5a5856; margin: 0;">Seek cosmic guidance</p>
+                </a>
+                
+                <a href="gatherings/index.html" style="text-decoration: none; background: white; border: 2px solid #e0ddd9; border-radius: 8px; padding: 2rem; text-align: center; transition: all 0.3s ease;" class="quick-action-card">
+                    <div style="font-size: 2.5rem; color: var(--color-gold); margin-bottom: 0.5rem;">☽</div>
+                    <h4 style="font-size: 1.2rem; color: #151311; margin-bottom: 0.5rem;">Join Gatherings</h4>
+                    <p style="font-size: 0.9rem; color: #5a5856; margin: 0;">Connect with community</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="nav-footer">
+            <a href="shop.html">Collections</a>
+            <a href="oracle.html">Oracle</a>
+            <a href="contact.html">Contact</a>
+            <a href="blog.html">Blog</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LYRĪON Celestial Couture. Live with Ritual and Intention.
+        </div>
+    </footer>
+
+    <script src="lyrion.js"></script>
+    <script src="js/referral-system.js"></script>
+    
+    <script>
+        // Initialize referral section with demo user ID
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('referral-container');
+            const demoUserId = 'demo@lyrion.co.uk'; // In production, this would be actual user ID
+            
+            if (container && typeof displayReferralSection === 'function') {
+                displayReferralSection(container, demoUserId);
+            }
+            
+            // Add hover effects to quick action cards
+            document.querySelectorAll('.quick-action-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.borderColor = '#C4A449';
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 8px 20px rgba(196, 164, 73, 0.2)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.borderColor = '#e0ddd9';
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
