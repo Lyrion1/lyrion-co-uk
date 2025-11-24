@@ -11,7 +11,7 @@
  * @property {string} id - Unique product identifier (SKU)
  * @property {string} title - Product title
  * @property {string} [sign] - Zodiac sign (Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces)
- * @property {string} category - Product category (zodiac-wardrobe, cosmic-home, natal-atelier, youth, digital)
+ * @property {string} category - Product category (zodiac-wardrobe, cosmic-home, natal-atelier, youth, digital, scarves, gloves)
  * @property {number} price - Product price
  * @property {string[]} images - Array of image URLs/paths
  * @property {string} description - Product description
@@ -50,7 +50,9 @@ export const CATEGORIES = {
   COSMIC_HOME: 'cosmic-home',
   NATAL_ATELIER: 'natal-atelier',
   YOUTH: 'youth',
-  DIGITAL: 'digital'
+  DIGITAL: 'digital',
+  SCARVES: 'scarves',
+  GLOVES: 'gloves'
 };
 
 /**
