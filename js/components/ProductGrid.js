@@ -99,6 +99,7 @@ class ProductGrid {
       const style = document.createElement('style');
       style.id = 'product-grid-styles';
       style.textContent = `
+        /* Using doubled class selector for specificity without !important */
         .product-grid.product-grid {
           max-width: 1400px;
           margin: 0 auto;
@@ -234,7 +235,7 @@ class ProductGrid {
         ${product.title}
       </h3>
       <div style="margin: 1rem 0;">
-        ${product.compareAtPrice > product.price ? `
+        ${product.compareAtPrice && product.compareAtPrice > product.price ? `
           <span style="
             text-decoration: line-through;
             color: #999;
