@@ -7,7 +7,8 @@
  * To activate: Add this to netlify.toml:
  * [[functions]]
  *   path = "/functions/testimony-reminder-cron"
- *   schedule = "0 10 * * *"  # Runs daily at 10 AM UTC
+ *   schedule = "0 10 * * *"
+ *   (Runs daily at 10 AM UTC)
  */
 
 const { sendEmail, createEmailTemplate } = require('../../lib/email');
