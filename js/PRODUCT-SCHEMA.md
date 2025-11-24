@@ -38,6 +38,8 @@ Each product in the system follows this schema:
 - `natal-atelier` - Custom bespoke designs
 - `youth` - Youth collections (Moon Girls, Star Boys)
 - `digital` - Digital readings and guides
+- `scarves` - Scarves and scarf accessories
+- `gloves` - Gloves and hand accessories
 
 ### Providers
 - `inkthreadable` (default)

@@ -141,6 +141,16 @@ const CATEGORY_INFO = {
     name: 'Digital Rituals',
     description: 'Personalized readings, guides, and meditations',
     route: '/collections/digital-rituals.html'
+  },
+  'scarves': {
+    name: 'Scarves',
+    description: 'Elegant scarves and celestial wraps',
+    route: '/collections/scarves.html'
+  },
+  'gloves': {
+    name: 'Gloves',
+    description: 'Refined gloves and hand accessories',
+    route: '/collections/gloves.html'
   }
 };
 
