@@ -90,8 +90,8 @@ async function trackOracleInteraction(email, name = '') {
   console.log('Tracking oracle interaction for:', email);
   
   // For now, store in localStorage as placeholder
-  // Check if localStorage is available
-  if (typeof localStorage === 'undefined') {
+  // Check if localStorage is available (client-side only)
+  if (typeof window === 'undefined' || typeof window.localStorage === 'undefined') {
     console.warn('localStorage not available, skipping oracle tracking');
     return null;
   }
@@ -121,8 +121,8 @@ async function markPremiumPurchased(email) {
   // TODO: Update database record
   console.log('Marking premium oracle as purchased for:', email);
   
-  // Check if localStorage is available
-  if (typeof localStorage === 'undefined') {
+  // Check if localStorage is available (client-side only)
+  if (typeof window === 'undefined' || typeof window.localStorage === 'undefined') {
     console.warn('localStorage not available, skipping purchase tracking');
     return;
   }
