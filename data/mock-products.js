@@ -698,6 +698,243 @@ export const MOCK_PRODUCTS = [
     },
     madeIn: "England",
     provider: "gelato"
+  },
+
+  // Hats Collection - Celestial Embroidery
+  {
+    id: "MOCK-HAT-ALIGNED-BEANIE",
+    title: "Aligned Beanie",
+    sign: null,
+    category: "hats",
+    price: 32.00,
+    images: ["placeholder-hat-aligned-beanie.jpg"],
+    description: "Black beanie with elegant gold embroidery featuring celestial symbols for grounded intention",
+    attributes: {
+      color: "Black",
+      size: "One Size",
+      material: "Organic Cotton Blend",
+      embroidery: true
+    },
+    madeIn: "England",
+    provider: "inkthreadable",
+    season: "all",
+    aestheticTags: ["minimal", "cosmic", "elegant"],
+    embroideryStyle: "celestial",
+    genderFocus: "unisex"
+  },
+  {
+    id: "MOCK-HAT-STARDUST-DAD",
+    title: "Stardust Dad Hat",
+    sign: null,
+    category: "hats",
+    price: 28.00,
+    images: ["placeholder-hat-stardust-dad.jpg"],
+    description: "Sand-colored dad hat with minimal celestial text embroidery for everyday cosmic style",
+    attributes: {
+      color: "Sand",
+      size: "One Size",
+      material: "Cotton Twill",
+      embroidery: true
+    },
+    madeIn: "England",
+    provider: "inkthreadable",
+    season: "all",
+    aestheticTags: ["minimal", "cosmic", "elegant"],
+    embroideryStyle: "celestial",
+    genderFocus: "unisex"
+  },
+  {
+    id: "MOCK-HAT-ASCENDANT-BEANIE",
+    title: "Ascendant Beanie",
+    sign: null,
+    category: "hats",
+    price: 32.00,
+    images: ["placeholder-hat-ascendant-beanie.jpg"],
+    description: "Cream beanie featuring delicate moon sigil embroidery for elevated consciousness",
+    attributes: {
+      color: "Cream",
+      size: "One Size",
+      material: "Organic Cotton Blend",
+      embroidery: true
+    },
+    madeIn: "England",
+    provider: "inkthreadable",
+    season: "all",
+    aestheticTags: ["minimal", "cosmic", "elegant"],
+    embroideryStyle: "celestial",
+    genderFocus: "unisex"
+  },
+  {
+    id: "MOCK-HAT-COSMIC-FLOW",
+    title: "Cosmic Flow Hat",
+    sign: null,
+    category: "hats",
+    price: 30.00,
+    images: ["placeholder-hat-cosmic-flow.jpg"],
+    description: "Navy cap with line-art planet embroidery symbolizing universal flow and harmony",
+    attributes: {
+      color: "Navy",
+      size: "One Size",
+      material: "Cotton Canvas",
+      embroidery: true
+    },
+    madeIn: "England",
+    provider: "inkthreadable",
+    season: "all",
+    aestheticTags: ["minimal", "cosmic", "elegant"],
+    embroideryStyle: "celestial",
+    genderFocus: "unisex"
+  },
+  {
+    id: "MOCK-HAT-SERENITY-ORBIT",
+    title: "Serenity Orbit Hat",
+    sign: null,
+    category: "hats",
+    price: 30.00,
+    images: ["placeholder-hat-serenity-orbit.jpg"],
+    description: "Rose-toned hat with minimal star embroidery for peaceful cosmic connection",
+    attributes: {
+      color: "Rose",
+      size: "One Size",
+      material: "Cotton Twill",
+      embroidery: true
+    },
+    madeIn: "England",
+    provider: "inkthreadable",
+    season: "all",
+    aestheticTags: ["minimal", "cosmic", "elegant"],
+    embroideryStyle: "celestial",
+    genderFocus: "women"
+  },
+  {
+    id: "MOCK-HAT-MIDNIGHT-EMBER",
+    title: "Midnight Ember Hat",
+    sign: null,
+    category: "hats",
+    price: 34.00,
+    images: ["placeholder-hat-midnight-ember.jpg"],
+    description: "Black gothic-style hat with dramatic celestial embroidery for bold cosmic expression",
+    attributes: {
+      color: "Black",
+      size: "One Size",
+      material: "Cotton Canvas",
+      embroidery: true
+    },
+    madeIn: "England",
+    provider: "inkthreadable",
+    season: "all",
+    aestheticTags: ["minimal", "cosmic", "elegant"],
+    embroideryStyle: "celestial",
+    genderFocus: "emo"
+  },
+
+  // Socks Collection - Warm Weather
+  {
+    id: "MOCK-SOCK-STARLIT-PATH",
+    title: "Starlit Path Socks",
+    sign: null,
+    category: "socks",
+    price: 18.00,
+    images: ["placeholder-sock-starlit-path.jpg"],
+    description: "Lightweight socks with white stars on black for warm-weather cosmic comfort",
+    attributes: {
+      color: "Black with White Stars",
+      size: "S, M, L",
+      material: "Cotton Blend",
+      embroidery: false
+    },
+    madeIn: "England",
+    provider: "inkthreadable",
+    season: "warm",
+    aestheticTags: ["minimal", "cosmic", "emo"],
+    embroideryStyle: "manifestation",
+    genderFocus: "women"
+  },
+  {
+    id: "MOCK-SOCK-SERENE-ORBIT",
+    title: "Serene Orbit Socks",
+    sign: null,
+    category: "socks",
+    price: 18.00,
+    images: ["placeholder-sock-serene-orbit.jpg"],
+    description: "Pastel-shaded lightweight socks for gentle cosmic energy in warm weather",
+    attributes: {
+      color: "Pastel Multi",
+      size: "S, M, L",
+      material: "Cotton Blend",
+      embroidery: false
+    },
+    madeIn: "England",
+    provider: "inkthreadable",
+    season: "warm",
+    aestheticTags: ["minimal", "cosmic", "elegant"],
+    embroideryStyle: "celestial",
+    genderFocus: "youth"
+  },
+
+  // Socks Collection - Cold Weather
+  {
+    id: "MOCK-SOCK-MOON-CYCLE-KNIT",
+    title: "Moon Cycle Knit Socks",
+    sign: null,
+    category: "socks",
+    price: 24.00,
+    images: ["placeholder-sock-moon-cycle.jpg"],
+    description: "Ribbed knit socks featuring all four moon phases for cold-weather lunar connection",
+    attributes: {
+      color: "Charcoal with Silver",
+      size: "S, M, L",
+      material: "Wool Blend",
+      embroidery: false
+    },
+    madeIn: "England",
+    provider: "inkthreadable",
+    season: "cold",
+    aestheticTags: ["minimal", "cosmic", "elegant"],
+    embroideryStyle: "celestial",
+    genderFocus: "women"
+  },
+  {
+    id: "MOCK-SOCK-MIDNIGHT-EMBER-KNIT",
+    title: "Midnight Ember Knit Socks",
+    sign: null,
+    category: "socks",
+    price: 24.00,
+    images: ["placeholder-sock-midnight-ember.jpg"],
+    description: "Dark-palette knit socks with gothic celestial motifs for cold-weather cosmic style",
+    attributes: {
+      color: "Black with Deep Red",
+      size: "S, M, L",
+      material: "Wool Blend",
+      embroidery: false
+    },
+    madeIn: "England",
+    provider: "inkthreadable",
+    season: "cold",
+    aestheticTags: ["minimal", "cosmic", "emo"],
+    embroideryStyle: "celestial",
+    genderFocus: "emo"
+  },
+  {
+    id: "MOCK-SOCK-ASCENDING-KNIT",
+    title: "Ascending Knit Socks",
+    sign: null,
+    category: "socks",
+    price: 26.00,
+    images: ["placeholder-sock-ascending.jpg"],
+    description: "Cream and gold knit socks with manifestation text for elevated cold-weather intention",
+    attributes: {
+      color: "Cream with Gold",
+      size: "S, M, L",
+      material: "Merino Wool Blend",
+      embroidery: false
+    },
+    madeIn: "England",
+    provider: "inkthreadable",
+    season: "cold",
+    aestheticTags: ["minimal", "cosmic", "elegant"],
+    embroideryStyle: "manifestation",
+    genderFocus: "unisex"
   }
 ];
 
@@ -740,7 +977,9 @@ export const MOCK_PRODUCT_SUMMARY = {
   birthChartPrint: 1,
   moonPhaseBlanket: 1,
   customBirthChartHoodie: 1,
-  customBirthChartPrint: 1
+  customBirthChartPrint: 1,
+  hats: 6,
+  socks: 5
 };
 
 export default MOCK_PRODUCTS;

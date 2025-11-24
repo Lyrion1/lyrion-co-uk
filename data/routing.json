@@ -550,5 +550,104 @@
     "price": 269,
     "currency": "GBP",
     "title": "Cosmic Couple Set"
+  },
+  "HAT-ALIGNED-BEANIE": {
+    "provider": "inkthreadable",
+    "provider_sku": "INK-HAT-001",
+    "type": "hats",
+    "bundleItems": [],
+    "price": 32,
+    "currency": "GBP",
+    "title": "Aligned Beanie"
+  },
+  "HAT-STARDUST-DAD": {
+    "provider": "inkthreadable",
+    "provider_sku": "INK-HAT-002",
+    "type": "hats",
+    "bundleItems": [],
+    "price": 28,
+    "currency": "GBP",
+    "title": "Stardust Dad Hat"
+  },
+  "HAT-ASCENDANT-BEANIE": {
+    "provider": "inkthreadable",
+    "provider_sku": "INK-HAT-003",
+    "type": "hats",
+    "bundleItems": [],
+    "price": 32,
+    "currency": "GBP",
+    "title": "Ascendant Beanie"
+  },
+  "HAT-COSMIC-FLOW": {
+    "provider": "inkthreadable",
+    "provider_sku": "INK-HAT-004",
+    "type": "hats",
+    "bundleItems": [],
+    "price": 30,
+    "currency": "GBP",
+    "title": "Cosmic Flow Hat"
+  },
+  "HAT-SERENITY-ORBIT": {
+    "provider": "inkthreadable",
+    "provider_sku": "INK-HAT-005",
+    "type": "hats",
+    "bundleItems": [],
+    "price": 30,
+    "currency": "GBP",
+    "title": "Serenity Orbit Hat"
+  },
+  "HAT-MIDNIGHT-EMBER": {
+    "provider": "inkthreadable",
+    "provider_sku": "INK-HAT-006",
+    "type": "hats",
+    "bundleItems": [],
+    "price": 34,
+    "currency": "GBP",
+    "title": "Midnight Ember Hat"
+  },
+  "SOCK-STARLIT-PATH": {
+    "provider": "inkthreadable",
+    "provider_sku": "INK-SOCK-001",
+    "type": "socks",
+    "bundleItems": [],
+    "price": 18,
+    "currency": "GBP",
+    "title": "Starlit Path Socks"
+  },
+  "SOCK-SERENE-ORBIT": {
+    "provider": "inkthreadable",
+    "provider_sku": "INK-SOCK-002",
+    "type": "socks",
+    "bundleItems": [],
+    "price": 18,
+    "currency": "GBP",
+    "title": "Serene Orbit Socks"
+  },
+  "SOCK-MOON-CYCLE-KNIT": {
+    "provider": "inkthreadable",
+    "provider_sku": "INK-SOCK-003",
+    "type": "socks",
+    "bundleItems": [],
+    "price": 24,
+    "currency": "GBP",
+    "title": "Moon Cycle Knit Socks"
+  },
+  "SOCK-MIDNIGHT-EMBER-KNIT": {
+    "provider": "inkthreadable",
+    "provider_sku": "INK-SOCK-004",
+    "type": "socks",
+    "bundleItems": [],
+    "price": 24,
+    "currency": "GBP",
+    "title": "Midnight Ember Knit Socks"
+  },
+  "SOCK-ASCENDING-KNIT": {
+    "provider": "inkthreadable",
+    "provider_sku": "INK-SOCK-005",
+    "type": "socks",
+    "bundleItems": [],
+    "price": 26,
+    "currency": "GBP",
+    "title": "Ascending Knit Socks"
   }
 }
