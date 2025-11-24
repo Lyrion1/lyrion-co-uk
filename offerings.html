@@ -11,45 +11,72 @@
     <script src="https://js.stripe.com/v3/"></script>
     <style>
         :root {
+            --color-night-blue: #0a0e1a;
+            --color-cream: #f5f3ef;
             --color-ink: #151311;
-            --color-gold: #C4A449;
+            --color-gold: #d8c47a;
+            --color-gold-dark: #c4a449;
             --font-serif: 'Playfair Display', serif;
         }
 
+        /* Sacred Altar Layout */
         .page-container {
-            max-width: 900px;
-            margin: 6rem auto;
+            max-width: 700px;
+            margin: 8rem auto;
             padding: 0 4rem;
             text-align: center;
         }
+        
+        .sacred-icon {
+            font-size: 3rem;
+            color: var(--color-gold);
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
         .page-container h1 {
             font-size: 3.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             color: var(--color-ink);
+            font-weight: 300;
         }
+        
+        /* Thin candle-like vertical line */
+        .divider-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, var(--color-gold), transparent);
+            margin: 2rem auto;
+            opacity: 0.6;
+        }
+        
         .page-container p {
             font-size: 1.2rem;
-            line-height: 1.7;
+            line-height: 1.8;
             margin-bottom: 1.5rem;
             color: #5a5856;
         }
         
         .poetic-text {
-            font-size: 1.3rem;
-            line-height: 1.9;
+            font-size: 1.2rem;
+            line-height: 2;
             font-style: italic;
             color: var(--color-ink);
             margin: 3rem auto;
-            max-width: 700px;
+            max-width: 600px;
+            opacity: 0.9;
         }
         
+        /* Translucent panel for form */
         .donation-form {
-            background: linear-gradient(135deg, rgba(244, 239, 232, 0.3) 0%, rgba(252, 250, 250, 0.3) 100%);
-            border: 2px solid var(--color-gold);
-            padding: 3rem;
-            border-radius: 12px;
-            max-width: 500px;
+            background: linear-gradient(135deg, rgba(245, 243, 239, 0.5) 0%, rgba(252, 250, 250, 0.6) 100%);
+            border: 1px solid var(--color-gold);
+            padding: 3rem 2.5rem;
+            border-radius: 8px;
+            max-width: 450px;
             margin: 3rem auto;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(216, 196, 122, 0.15);
         }
         
         .amount-input-group {
@@ -61,8 +88,9 @@
             display: block;
             margin-bottom: 1rem;
             color: var(--color-ink);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-family: var(--font-serif);
+            font-weight: 300;
         }
         
         .amount-input-wrapper {
@@ -84,43 +112,50 @@
         .amount-input {
             width: 100%;
             padding: 1rem 1rem 1rem 2.5rem;
-            border: 2px solid var(--color-gold);
-            border-radius: 8px;
+            border: 1px solid var(--color-gold);
+            border-radius: 6px;
             font-family: var(--font-serif);
             font-size: 1.5rem;
             text-align: center;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
         }
         
         .amount-input:focus {
             outline: none;
-            border-color: #A38435;
-            box-shadow: 0 0 10px rgba(196, 164, 73, 0.3);
+            border-color: var(--color-gold-dark);
+            box-shadow: 0 0 15px rgba(216, 196, 122, 0.25);
+            background: rgba(255, 255, 255, 0.9);
         }
         
+        /* Light a Star button */
         .donation-btn {
             background: var(--color-gold);
             color: var(--color-ink);
             border: none;
             padding: 1.2rem 3rem;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-family: var(--font-serif);
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.35s ease;
             width: 100%;
             margin-top: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(216, 196, 122, 0.2);
         }
         
         .donation-btn:hover {
-            background: #A38435;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(196, 164, 73, 0.4);
+            background: var(--color-gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(216, 196, 122, 0.35);
         }
         
         .donation-btn:disabled {
-            opacity: 0.6;
+            opacity: 0.5;
             cursor: not-allowed;
+            transform: none;
         }
         
         .success-overlay {
@@ -219,7 +254,9 @@
     </header>
 
     <section class="page-container">
-        <h1>Offerings to the Celestial Hearth ✧</h1>
+        <div class="sacred-icon">✦</div>
+        <h1>Offerings to the Celestial Hearth</h1>
+        <div class="divider-line"></div>
         
         <div class="poetic-text">
             <p>In the infinite dance of stars and silence, your generosity becomes stardust—illuminating paths for those who seek cosmic wisdom. Each offering kindles the celestial flame, weaving light into the tapestry of collective awakening.</p>
