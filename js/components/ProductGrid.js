@@ -308,7 +308,7 @@ class ProductGrid {
    */
   handleViewClick(product) {
     // Navigate to product detail page
-    window.location.href = `/product.html?id=${product.sku}`;
+    window.location.href = `product.html?id=${product.sku}`;
   }
 
   /**
