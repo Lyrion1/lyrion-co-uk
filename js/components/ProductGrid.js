@@ -93,42 +93,45 @@ class ProductGrid {
   createGrid() {
     const grid = document.createElement('section');
     grid.className = `product-grid ${this.options.gridClass}`.trim();
-    grid.style.cssText = `
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 3rem 4rem 6rem 4rem;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-    `;
 
     // Add media query styles only once
     if (!document.getElementById('product-grid-styles')) {
       const style = document.createElement('style');
       style.id = 'product-grid-styles';
       style.textContent = `
+        .product-grid.product-grid {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 3rem 4rem 6rem 4rem;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 2rem;
+        }
+        
         @media (max-width: 1200px) {
-          .product-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-            padding: 2rem 3rem 5rem 3rem !important;
+          .product-grid.product-grid {
+            grid-template-columns: repeat(3, 1fr);
+            padding: 2rem 3rem 5rem 3rem;
           }
         }
+        
         @media (max-width: 768px) {
-          .product-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            padding: 2rem 1.5rem 4rem 1.5rem !important;
-            gap: 1.5rem !important;
+          .product-grid.product-grid {
+            grid-template-columns: repeat(2, 1fr);
+            padding: 2rem 1.5rem 4rem 1.5rem;
+            gap: 1.5rem;
           }
         }
+        
         @media (max-width: 480px) {
-          .product-grid {
-            gap: 1rem !important;
+          .product-grid.product-grid {
+            gap: 1rem;
           }
           .product-grid-header h1 {
-            font-size: 2.5rem !important;
+            font-size: 2.5rem;
           }
           .product-grid-header p {
-            font-size: 1.1rem !important;
+            font-size: 1.1rem;
           }
         }
       `;
@@ -281,7 +284,7 @@ class ProductGrid {
     // Button hover effect
     const button = card.querySelector('.product-view-btn');
     button.addEventListener('mouseenter', () => {
-      button.style.background = 'var(--color-gold-dark, #A38435)';
+      button.style.background = 'var(--color-gold-dark)';
       button.style.transform = 'translateY(-2px)';
     });
 
