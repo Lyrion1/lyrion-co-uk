@@ -44,6 +44,11 @@
         </nav>
     </header>
 
+    <!-- First Buyer Incentive Banner -->
+    <div style="text-align: center; padding: 0.85rem 1rem; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(196, 164, 73, 0.2) 100%); border-bottom: 1px solid rgba(196, 164, 73, 0.3);">
+        <span style="color: #151311; font-size: 0.9rem; font-weight: 500;">First 3 buyers receive a complimentary digital Lunar Guide ✧</span>
+    </div>
+
     <!-- Seasonal Badge -->
     <div id="seasonal-badge" style="text-align: center; padding: 1rem 0; background: linear-gradient(135deg, rgba(244, 239, 232, 0.5) 0%, rgba(252, 250, 250, 0.7) 100%);">
         <span style="color: #C4A449; font-size: 0.9rem; font-style: italic;">Loading current cycle...</span>
@@ -108,6 +113,18 @@
                 <span class="zodiac-symbol">♓</span>
                 <span class="zodiac-name">Pisces</span>
             </a>
+        </div>
+    </section>
+
+    <!-- This Week's Sign Feature -->
+    <section id="weekly-sign-section" style="padding: 4rem 2rem; max-width: 900px; margin: 0 auto; text-align: center;">
+        <div style="background: linear-gradient(135deg, rgba(244, 239, 232, 0.4) 0%, rgba(252, 250, 250, 0.8) 100%); border: 2px solid var(--color-gold); border-radius: 12px; padding: 3rem 2rem;">
+            <div style="display: inline-block; background-color: var(--color-gold); color: var(--color-ink); padding: 0.5rem 1.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.5rem; font-weight: 600;">This Week's Sign</div>
+            
+            <div id="weekly-sign-content">
+                <!-- Content will be loaded by JavaScript -->
+                <p style="color: var(--color-gold); font-style: italic;">Loading this week's celestial focus...</p>
+            </div>
         </div>
     </section>
 
@@ -287,6 +304,84 @@
     
     <script src="lyrion.js"></script>
     <script src="js/seasonal-homepage.js"></script>
+    <script src="lib/marketing.js"></script>
+    
+    <!-- Email Capture Popup Modal -->
+    <div id="email-popup-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 10000; justify-content: center; align-items: center;">
+        <div style="background: linear-gradient(135deg, #f5f3ef 0%, #fcfafa 100%); border: 3px solid #C4A449; border-radius: 12px; padding: 3rem 2.5rem; max-width: 500px; width: 90%; text-align: center; position: relative; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+            <button id="popup-close" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.8rem; color: #C4A449; cursor: pointer; line-height: 1;">&times;</button>
+            
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #151311; margin-bottom: 1rem; font-weight: 600;">Align With Your Sign</h3>
+            <p style="font-size: 1.1rem; color: #5a5856; margin-bottom: 2rem; line-height: 1.6;">Join the cosmic list for early access + a private £5 ritual credit.</p>
+            
+            <input type="email" id="popup-email" placeholder="Your email address" style="width: 100%; padding: 1rem; border: 2px solid #C4A449; border-radius: 6px; font-size: 1rem; margin-bottom: 1.5rem; font-family: 'Playfair Display', serif;">
+            
+            <button id="popup-submit" style="width: 100%; padding: 1rem 2rem; background: #C4A449; color: white; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: background 0.3s ease; font-family: 'Playfair Display', serif;">Enter the Constellation</button>
+            
+            <p style="font-size: 0.85rem; color: #8a8886; margin-top: 1rem;">No spam. Only celestial intention.</p>
+        </div>
+    </div>
+
+    <!-- Sign Selector Modal (40% scroll trigger) -->
+    <div id="sign-selector-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: 10000; justify-content: center; align-items: center;">
+        <div style="background: linear-gradient(135deg, #f5f3ef 0%, #fcfafa 100%); border: 3px solid #C4A449; border-radius: 12px; padding: 3rem 2.5rem; max-width: 600px; width: 90%; max-height: 85vh; overflow-y: auto; text-align: center; position: relative; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+            <button id="sign-selector-close" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.8rem; color: #C4A449; cursor: pointer; line-height: 1;">&times;</button>
+            
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #151311; margin-bottom: 1rem; font-weight: 600;">What's Your Sign?</h3>
+            <p style="font-size: 1rem; color: #5a5856; margin-bottom: 2.5rem;">Discover your cosmic signature</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                <a href="zodiac/aries.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♈</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Aries</div>
+                </a>
+                <a href="zodiac/taurus.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♉</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Taurus</div>
+                </a>
+                <a href="zodiac/gemini.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♊</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Gemini</div>
+                </a>
+                <a href="zodiac/cancer.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♋</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Cancer</div>
+                </a>
+                <a href="zodiac/leo.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♌</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Leo</div>
+                </a>
+                <a href="zodiac/virgo.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♍</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Virgo</div>
+                </a>
+                <a href="zodiac/libra.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♎</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Libra</div>
+                </a>
+                <a href="zodiac/scorpio.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♏</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Scorpio</div>
+                </a>
+                <a href="zodiac/sagittarius.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♐</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Sagittarius</div>
+                </a>
+                <a href="zodiac/capricorn.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♑</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Capricorn</div>
+                </a>
+                <a href="zodiac/aquarius.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♒</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Aquarius</div>
+                </a>
+                <a href="zodiac/pisces.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♓</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Pisces</div>
+                </a>
+            </div>
+        </div>
+    </div>
     
     <script>
         // Load new celestial apparel (hats and socks) for homepage display
@@ -336,6 +431,132 @@
         
         // Load apparel when page loads
         document.addEventListener('DOMContentLoaded', loadNewCelestialApparel);
+        
+        // ========== This Week's Sign Feature ==========
+        function loadWeeklySign() {
+            try {
+                const weeklySignDetails = getWeeklySignDetails();
+                const content = document.getElementById('weekly-sign-content');
+                
+                if (content && weeklySignDetails) {
+                    content.innerHTML = `
+                        <div style="font-size: 3rem; margin: 1rem 0; color: var(--color-gold);">${weeklySignDetails.icon}</div>
+                        <h3 style="font-family: var(--font-serif); font-size: 2.2rem; color: var(--color-ink); margin-bottom: 0.5rem; font-weight: 600;">${weeklySignDetails.sign}</h3>
+                        <p style="font-size: 1rem; color: var(--color-gold); margin-bottom: 1.5rem; font-style: italic;">${weeklySignDetails.dates} • ${weeklySignDetails.element} Sign</p>
+                        <p style="font-size: 1.1rem; color: #5a5856; margin-bottom: 2rem; line-height: 1.7;">${weeklySignDetails.traits}</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; text-align: left;">
+                            <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0ddd9;">
+                                <h4 style="font-size: 1rem; color: var(--color-gold); margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Hoodie</h4>
+                                <p style="font-size: 0.95rem; color: #5a5856; margin: 0;">${weeklySignDetails.sign} Zodiac Hoodie</p>
+                            </div>
+                            <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0ddd9;">
+                                <h4 style="font-size: 1rem; color: var(--color-gold); margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Candle</h4>
+                                <p style="font-size: 0.95rem; color: #5a5856; margin: 0;">${weeklySignDetails.sign} Celestial Candle</p>
+                            </div>
+                            <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0ddd9;">
+                                <h4 style="font-size: 1rem; color: var(--color-gold); margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Home</h4>
+                                <p style="font-size: 0.95rem; color: #5a5856; margin: 0;">${weeklySignDetails.sign} Home Collection</p>
+                            </div>
+                        </div>
+                        
+                        <a href="zodiac/${weeklySignDetails.sign.toLowerCase()}.html" style="display: inline-block; padding: 0.9rem 2rem; background: var(--color-gold); color: white; text-decoration: none; border-radius: 6px; font-size: 1rem; transition: background 0.3s ease; font-weight: 600;">Explore Your Cycle</a>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading weekly sign:', error);
+            }
+        }
+        
+        // ========== Email Popup Modal ==========
+        let emailPopupShown = false;
+        const emailPopupModal = document.getElementById('email-popup-modal');
+        const emailPopupClose = document.getElementById('popup-close');
+        const emailPopupSubmit = document.getElementById('popup-submit');
+        
+        // Show email popup after 15 seconds (first visit only)
+        function showEmailPopup() {
+            if (!emailPopupShown && !localStorage.getItem('lyrion-email-popup-seen')) {
+                setTimeout(() => {
+                    emailPopupModal.style.display = 'flex';
+                    emailPopupShown = true;
+                }, 15000); // 15 seconds
+            }
+        }
+        
+        emailPopupClose.addEventListener('click', () => {
+            emailPopupModal.style.display = 'none';
+            localStorage.setItem('lyrion-email-popup-seen', 'true');
+        });
+        
+        emailPopupModal.addEventListener('click', (e) => {
+            if (e.target === emailPopupModal) {
+                emailPopupModal.style.display = 'none';
+                localStorage.setItem('lyrion-email-popup-seen', 'true');
+            }
+        });
+        
+        emailPopupSubmit.addEventListener('click', () => {
+            const email = document.getElementById('popup-email').value;
+            if (email && email.includes('@')) {
+                // In production, send to email service
+                console.log('Email captured:', email);
+                alert('Welcome to the constellation! Check your email for your £5 ritual credit.');
+                emailPopupModal.style.display = 'none';
+                localStorage.setItem('lyrion-email-popup-seen', 'true');
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+        
+        // ========== Sign Selector Modal (40% Scroll) ==========
+        let signSelectorShown = false;
+        const signSelectorModal = document.getElementById('sign-selector-modal');
+        const signSelectorClose = document.getElementById('sign-selector-close');
+        
+        // Track scroll depth
+        window.addEventListener('scroll', () => {
+            const scrollableHeight = Math.max(1, document.body.scrollHeight - window.innerHeight);
+            const scrollPercent = (window.scrollY / scrollableHeight) * 100;
+            
+            if (scrollPercent >= 40 && !signSelectorShown && !localStorage.getItem('lyrion-sign-selector-seen')) {
+                signSelectorModal.style.display = 'flex';
+                signSelectorShown = true;
+                localStorage.setItem('lyrion-sign-selector-seen', 'true');
+            }
+        });
+        
+        signSelectorClose.addEventListener('click', () => {
+            signSelectorModal.style.display = 'none';
+        });
+        
+        signSelectorModal.addEventListener('click', (e) => {
+            if (e.target === signSelectorModal) {
+                signSelectorModal.style.display = 'none';
+            }
+        });
+        
+        // Add hover effects to sign selector options
+        document.querySelectorAll('.sign-selector-option').forEach(option => {
+            option.addEventListener('mouseenter', function() {
+                this.style.borderColor = '#C4A449';
+                this.style.background = 'linear-gradient(135deg, rgba(244, 239, 232, 0.3) 0%, rgba(252, 250, 250, 0.7) 100%)';
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 4px 12px rgba(196, 164, 73, 0.2)';
+            });
+            option.addEventListener('mouseleave', function() {
+                this.style.borderColor = '#e0ddd9';
+                this.style.background = 'white';
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
+        });
+        
+        // Initialize everything on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadWeeklySign();
+            showEmailPopup();
+        });
     </script>
     
 </body>
