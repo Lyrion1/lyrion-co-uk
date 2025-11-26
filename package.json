@@ -1,14 +1,16 @@
 {
-  "name": "lyrion-celestial-couture",
+  "name": "lyriton-astrology-store",
   "version": "1.0.0",
-  "description": "Legacy-ready static site with Netlify Functions for Stripe and Gelato POD fulfillment.",
-  "main": "index.html",
+  "description": "Automated astrology e-commerce with POD fulfillment",
+  "main": "index.js",
   "scripts": {
-    "build": "echo 'No build step required for static content, but Node dependencies are needed for functions.'",
-    "generate-catalog": "node scripts/generate-catalog.js"
+    "dev": "netlify dev"
   },
   "dependencies": {
-    "stripe": "^14.15.0",
-    "node-fetch": "^2.6.1"
+    "stripe": "^14.10.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.10.0"
   }
 }
