@@ -7,12 +7,18 @@
 const LyrionStore = (function() {
     'use strict';
 
+    // Prevent double initialization
+    if (window._lyrionStoreInitialized) {
+        return window.LyrionStore;
+    }
+
     // Store state
     const state = {
         products: [],
         cart: [],
         loading: false,
-        error: null
+        error: null,
+        initialized: false
     };
 
     // API endpoints - uses /api/ prefix which redirects to /.netlify/functions/ via netlify.toml
@@ -28,21 +34,34 @@ const LyrionStore = (function() {
      * Initialize the store
      */
     async function init() {
-        console.log('Initializing LYRĪON Store...');
-        
-        // Load cart from localStorage
-        loadCart();
-        
-        // Bind event listeners
-        bindEvents();
-        
-        // Load products if on a shop page
-        if (isShopPage()) {
-            await loadProducts();
+        // Prevent re-initialization
+        if (state.initialized) {
+            console.log('LYRĪON Store already initialized');
+            return;
         }
         
-        // Update cart UI
-        updateCartUI();
+        console.log('Initializing LYRĪON Store...');
+        state.initialized = true;
+        window._lyrionStoreInitialized = true;
+        
+        try {
+            // Load cart from localStorage
+            loadCart();
+            
+            // Bind event listeners
+            bindEvents();
+            
+            // Load products if on a shop page
+            if (isShopPage()) {
+                await loadProducts();
+            }
+            
+            // Update cart UI
+            updateCartUI();
+        } catch (error) {
+            console.error('Error initializing store:', error);
+            // Still mark as initialized to prevent retry loops
+        }
     }
 
     /**
@@ -55,11 +74,18 @@ const LyrionStore = (function() {
     }
 
     /**
-     * Load products from the API
+     * Load products from the API with fallback to static data
      */
     async function loadProducts(category = null) {
         state.loading = true;
         state.error = null;
+        
+        // Show loading state first
+        const container = document.getElementById('products-grid') || 
+                         document.querySelector('.products-container');
+        if (container) {
+            container.innerHTML = '<p class="loading">Loading celestial offerings...</p>';
+        }
 
         try {
             let url = API.getProducts;
@@ -80,10 +106,89 @@ const LyrionStore = (function() {
             renderProducts();
 
         } catch (error) {
-            console.error('Error loading products:', error);
+            console.error('Error loading products from API:', error);
             state.error = error.message;
+            
+            // Try to load static fallback data
+            try {
+                await loadStaticProducts(category);
+            } catch (fallbackError) {
+                console.error('Fallback also failed:', fallbackError);
+                // Show user-friendly message
+                renderFallbackMessage();
+            }
         } finally {
             state.loading = false;
+        }
+    }
+    
+    /**
+     * Load static products as fallback when API is unavailable
+     */
+    async function loadStaticProducts(category = null) {
+        try {
+            // Try to dynamically import static product data
+            // Use absolute path from site root to work regardless of page context
+            const module = await import('/data/products.js');
+            let products = module.PRODUCTS_DATA || [];
+            
+            // Filter by category if specified
+            if (category) {
+                const categoryMap = {
+                    'woman': 'Women',
+                    'man': 'Men',
+                    'moongirls': 'Moon Girls',
+                    'starboys': 'Star Boys',
+                    'homeart': 'Home & Altar',
+                    'digital': 'Digital',
+                    'bundles': 'Bundles',
+                    'hats': 'Hats',
+                    'socks': 'Socks'
+                };
+                const targetCategory = categoryMap[category.toLowerCase()] || category;
+                products = products.filter(p => 
+                    p.category && p.category.toLowerCase() === targetCategory.toLowerCase()
+                );
+            }
+            
+            // Transform to expected format
+            state.products = products.map(p => ({
+                id: p.sku,
+                name: p.title,
+                description: p.subtitle || p.description,
+                price: parseFloat(p.price) || 0,
+                image: p.image ? `/assets/products/${p.image}` : '/assets/img/placeholder.png',
+                category: p.category
+            }));
+            
+            state.error = null;
+            state.loading = false; // Set loading to false before rendering
+            renderProducts();
+            console.log('Loaded static fallback products:', state.products.length);
+        } catch (importError) {
+            console.error('Could not load static products:', importError);
+            throw importError;
+        }
+    }
+    
+    /**
+     * Show a user-friendly fallback message when products can't load
+     */
+    function renderFallbackMessage() {
+        const container = document.getElementById('products-grid') || 
+                         document.querySelector('.products-container');
+        if (container) {
+            container.innerHTML = `
+                <div class="products-fallback" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                    <p style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-gold); font-style: italic; margin-bottom: 1rem;">
+                        ✧ Celestial offerings are aligning... ✧
+                    </p>
+                    <p style="color: #666; margin-bottom: 2rem;">
+                        Our products are preparing for your journey. Please refresh the page or explore our collections.
+                    </p>
+                    <a href="/products/collections.html" class="button-primary button-gold">View Collections</a>
+                </div>
+            `;
         }
     }
 
@@ -313,7 +418,7 @@ const LyrionStore = (function() {
 
         if (!STRIPE_KEY) {
             console.error('Stripe publishable key not configured');
-            showNotification('Checkout is not configured. Please contact support.');
+            showNotification('Checkout is not yet configured. Please contact support.');
             return;
         }
 
@@ -329,31 +434,42 @@ const LyrionStore = (function() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    productData: {
-                        id: firstItemId,
-                        name: cartItems,
-                        price: cartTotal
-                    }
+                    items: state.cart.map(item => ({
+                        name: item.name,
+                        price: item.price,
+                        quantity: item.quantity,
+                        image: item.image,
+                        productId: item.id
+                    }))
                 })
             });
 
             if (!response.ok) {
-                throw new Error('Checkout failed');
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || 'Checkout failed');
             }
 
-            const { sessionId } = await response.json();
+            const data = await response.json();
 
-            // Redirect to Stripe Checkout
-            if (window.Stripe) {
+            // Redirect to Stripe Checkout URL if provided
+            if (data.url) {
+                window.location.href = data.url;
+                return;
+            }
+
+            // Fallback to Stripe.js redirect
+            if (data.sessionId && window.Stripe) {
                 const stripe = window.Stripe(STRIPE_KEY);
-                await stripe.redirectToCheckout({ sessionId });
-            } else {
+                await stripe.redirectToCheckout({ sessionId: data.sessionId });
+            } else if (!window.Stripe) {
                 throw new Error('Stripe library not loaded');
+            } else {
+                throw new Error('No checkout URL received');
             }
 
         } catch (error) {
             console.error('Checkout error:', error);
-            showNotification('Checkout failed. Please try again.');
+            showNotification('Checkout failed. Please try again or contact support.');
         }
     }
 
@@ -380,18 +496,32 @@ const LyrionStore = (function() {
      * Bind global event listeners
      */
     function bindEvents() {
-        // Checkout button
-        document.querySelectorAll('.checkout-button').forEach(btn => {
-            btn.addEventListener('click', checkout);
-        });
+        try {
+            // Checkout button - wrap in try-catch for safety
+            const checkoutButtons = document.querySelectorAll('.checkout-button');
+            if (checkoutButtons && checkoutButtons.length > 0) {
+                checkoutButtons.forEach(btn => {
+                    if (btn) {
+                        btn.addEventListener('click', checkout);
+                    }
+                });
+            }
 
-        // Category filters
-        document.querySelectorAll('[data-category]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const category = e.target.dataset.category;
-                loadProducts(category);
-            });
-        });
+            // Category filters
+            const categoryButtons = document.querySelectorAll('[data-category]');
+            if (categoryButtons && categoryButtons.length > 0) {
+                categoryButtons.forEach(btn => {
+                    if (btn) {
+                        btn.addEventListener('click', (e) => {
+                            const category = e.target.dataset.category;
+                            loadProducts(category || null);
+                        });
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Error binding store events:', error);
+        }
     }
 
     /**
@@ -417,6 +547,9 @@ const LyrionStore = (function() {
         clearCart
     };
 })();
+
+// Expose to global scope
+window.LyrionStore = LyrionStore;
 
 // Auto-initialize when DOM is ready
 if (document.readyState === 'loading') {

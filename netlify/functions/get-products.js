@@ -21,11 +21,13 @@ exports.handler = async (event, context) => {
   if (!PRINTFUL_API_KEY) {
     console.error('PRINTFUL_API_KEY environment variable is not set');
     return {
-      statusCode: 500,
+      statusCode: 503,
       headers,
       body: JSON.stringify({
         success: false,
-        error: 'Server configuration error: API key not configured'
+        products: [],
+        error: 'Products API not configured. Please try again later.',
+        code: 'API_NOT_CONFIGURED'
       })
     };
   }
@@ -46,28 +48,34 @@ exports.handler = async (event, context) => {
 
     const data = await response.json();
 
-    // Transform Printful data into simple format
-    const products = data.result.map(product => {
-      const syncVariants = product.sync_variants || [];
-      const firstVariant = syncVariants[0];
+    // Safely transform Printful data into simple format
+    const rawProducts = data.result || [];
+    const products = rawProducts.map(product => {
+      try {
+        const syncVariants = product.sync_variants || [];
+        const firstVariant = syncVariants[0];
 
-      return {
-        id: product.id,
-        name: product.name,
-        thumbnail: product.thumbnail_url,
-        price: firstVariant?.retail_price || '0.00',
-        currency: firstVariant?.currency || 'GBP',
-        variants: syncVariants.map(variant => ({
-          id: variant.id,
-          name: variant.name,
-          price: variant.retail_price,
-          image: variant.preview_url || product.thumbnail_url,
-          size: variant.size,
-          color: variant.color
-        })),
-        category: determineCategory(product.name)
-      };
-    });
+        return {
+          id: String(product.id || ''),
+          name: product.name || 'Unnamed Product',
+          thumbnail: product.thumbnail_url || '',
+          price: firstVariant?.retail_price || '0.00',
+          currency: firstVariant?.currency || 'GBP',
+          variants: syncVariants.map(variant => ({
+            id: String(variant.id || ''),
+            name: variant.name || '',
+            price: variant.retail_price || '0.00',
+            image: variant.preview_url || product.thumbnail_url || '',
+            size: variant.size || '',
+            color: variant.color || ''
+          })),
+          category: determineCategory(product.name || '')
+        };
+      } catch (productError) {
+        console.error('Error processing product:', productError);
+        return null;
+      }
+    }).filter(Boolean); // Remove any null entries
 
     return {
       statusCode: 200,
@@ -87,7 +95,8 @@ exports.handler = async (event, context) => {
       headers,
       body: JSON.stringify({
         success: false,
-        error: error.message
+        products: [],
+        error: error.message || 'Failed to fetch products'
       })
     };
   }
