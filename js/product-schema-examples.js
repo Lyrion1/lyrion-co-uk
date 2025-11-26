@@ -70,27 +70,27 @@ async function loadAndFilterProducts() {
     
     // Filter by zodiac sign
     const ariesProducts = filterBySign(products, 'Aries');
-    console.log('Aries products:', ariesProducts);
+    // console.log('Aries products:', ariesProducts);
     
     // Filter by category
     const wardrobeProducts = filterByCategory(products, 'zodiac-wardrobe');
-    console.log('Zodiac wardrobe products:', wardrobeProducts);
+    // console.log('Zodiac wardrobe products:', wardrobeProducts);
     
     // Filter by both sign and category
     const ariesWardrobe = filterBySignAndCategory(products, 'Aries', 'zodiac-wardrobe');
-    console.log('Aries wardrobe products:', ariesWardrobe);
+    // console.log('Aries wardrobe products:', ariesWardrobe);
     
     // Filter by price range
     const affordableProducts = filterByPriceRange(products, 0, 75);
-    console.log('Products under £75:', affordableProducts);
+    // console.log('Products under £75:', affordableProducts);
     
     // Search products
     const searchResults = searchProducts(products, 'hoodie');
-    console.log('Hoodie products:', searchResults);
+    // console.log('Hoodie products:', searchResults);
     
     // Sort by price
     const sortedByPrice = sortByPrice(products, 'asc');
-    console.log('Products sorted by price:', sortedByPrice);
+    // console.log('Products sorted by price:', sortedByPrice);
     
   } catch (error) {
     console.error('Error loading products:', error);
@@ -106,11 +106,11 @@ async function getProductMetadata() {
   
   // Get all available zodiac signs
   const signs = getUniqueSigns(products);
-  console.log('Available signs:', signs);
+  // Available signs are now ready for use
   
   // Get all categories
   const categories = getUniqueCategories(products);
-  console.log('Available categories:', categories);
+  // Available categories are now ready for use
 }
 
 /*
@@ -203,7 +203,7 @@ async function advancedProductFiltering() {
   products = filterByPriceRange(products, 50, 100);         // £50-£100
   products = sortByPrice(products, 'asc');                  // Lowest price first
   
-  console.log('Filtered and sorted products:', products);
+  // console.log('Filtered and sorted products:', products);
   
   return products;
 }

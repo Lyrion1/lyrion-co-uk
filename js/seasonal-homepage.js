@@ -118,7 +118,6 @@ function updateSeasonalFlowSection(season, products) {
   }
   
   if (!container || products.length === 0) {
-    console.log('No container or products found for seasonal flow');
     return;
   }
   
