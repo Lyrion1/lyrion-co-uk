@@ -1,102 +1,109 @@
-// Serverless function to retrieve products from the store
-// This function fetches product data for the shop
+const fetch = require('node-fetch');
+
+const PRINTFUL_API_URL = 'https://api.printful.com/store/products';
 
 exports.handler = async (event, context) => {
-    // Only allow GET requests
-    if (event.httpMethod !== 'GET') {
-        return {
-            statusCode: 405,
-            body: JSON.stringify({ error: 'Method Not Allowed' })
-        };
+  const PRINTFUL_API_KEY = process.env.PRINTFUL_API_KEY;
+
+  // Allow CORS
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json'
+  };
+
+  // Handle preflight requests
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
+  }
+
+  // Validate API key is configured
+  if (!PRINTFUL_API_KEY) {
+    console.error('PRINTFUL_API_KEY environment variable is not set');
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({
+        success: false,
+        error: 'Server configuration error: API key not configured'
+      })
+    };
+  }
+
+  try {
+    // Fetch products from Printful
+    const response = await fetch(PRINTFUL_API_URL, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${PRINTFUL_API_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Printful API error: ${response.status}`);
     }
 
-    try {
-        // Parse query parameters for filtering
-        const { category, id } = event.queryStringParameters || {};
+    const data = await response.json();
 
-        // Sample product data - in production, this would come from a database or CMS
-        const products = [
-            {
-                id: 'celestial-woman-hoodie',
-                name: 'Celestial Woman Hoodie',
-                price: 65.00,
-                category: 'Woman',
-                description: 'Elegant silhouette woven with cosmic intention',
-                image: '/assets/img/products/celestial-woman-hoodie.jpg'
-            },
-            {
-                id: 'celestial-man-hoodie',
-                name: 'Celestial Man Hoodie',
-                price: 65.00,
-                category: 'Man',
-                description: 'Refined design embodying strength and cosmic alignment',
-                image: '/assets/img/products/celestial-man-hoodie.jpg'
-            },
-            {
-                id: 'moon-girls-tee',
-                name: 'Moon Girls Tee',
-                price: 35.00,
-                category: 'MoonGirls',
-                description: 'Enchanting apparel for young spirits guided by lunar light',
-                image: '/assets/img/products/moon-girls-tee.jpg'
-            },
-            {
-                id: 'star-boys-tee',
-                name: 'Star Boys Tee',
-                price: 35.00,
-                category: 'StarBoys',
-                description: 'Bold celestial pieces for the young adventurer',
-                image: '/assets/img/products/star-boys-tee.jpg'
-            },
-            {
-                id: 'altar-cloth',
-                name: 'Celestial Altar Cloth',
-                price: 45.00,
-                category: 'HomeArt',
-                description: 'Transform your sacred space with celestial homeware',
-                image: '/assets/img/products/altar-cloth.jpg'
-            },
-            {
-                id: 'digital-oracle-reading',
-                name: 'Digital Oracle Reading',
-                price: 25.00,
-                category: 'Digital',
-                description: 'Personalized birth chart reading delivered digitally',
-                image: '/assets/img/products/oracle-reading.jpg'
-            }
-        ];
+    // Transform Printful data into simple format
+    const products = data.result.map(product => {
+      const syncVariants = product.sync_variants || [];
+      const firstVariant = syncVariants[0];
 
-        let filteredProducts = products;
+      return {
+        id: product.id,
+        name: product.name,
+        thumbnail: product.thumbnail_url,
+        price: firstVariant?.retail_price || '0.00',
+        currency: firstVariant?.currency || 'GBP',
+        variants: syncVariants.map(variant => ({
+          id: variant.id,
+          name: variant.name,
+          price: variant.retail_price,
+          image: variant.preview_url || product.thumbnail_url,
+          size: variant.size,
+          color: variant.color
+        })),
+        category: determineCategory(product.name)
+      };
+    });
 
-        // Filter by category if provided
-        if (category) {
-            filteredProducts = products.filter(
-                p => p.category.toLowerCase() === category.toLowerCase()
-            );
-        }
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        success: true,
+        products: products,
+        count: products.length
+      })
+    };
 
-        // Filter by specific ID if provided
-        if (id) {
-            filteredProducts = products.filter(p => p.id === id);
-        }
+  } catch (error) {
+    console.error('Error fetching products:', error);
 
-        return {
-            statusCode: 200,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify({
-                products: filteredProducts,
-                total: filteredProducts.length
-            })
-        };
-
-    } catch (error) {
-        console.error('Get Products Error:', error.message);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: 'Failed to retrieve products' })
-        };
-    }
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({
+        success: false,
+        error: error.message
+      })
+    };
+  }
 };
+
+// Helper function to categorize products
+function determineCategory(productName) {
+  const name = productName.toLowerCase();
+
+  if (name.includes('candle')) return 'candles';
+  if (name.includes('pillow') || name.includes('cushion')) return 'homeware';
+  if (name.includes('hoodie') || name.includes('sweatshirt')) return 'warm-clothing';
+  if (name.includes('t-shirt') || name.includes('tee')) return 'tees';
+  if (name.includes('hat') || name.includes('cap') || name.includes('beanie')) return 'hats';
+  if (name.includes('sock')) return 'socks';
+  if (name.includes('pet') || name.includes('dog') || name.includes('cat')) return 'pet';
+
+  return 'accessories';
+}
