@@ -26,16 +26,30 @@ exports.handler = async (event, context) => {
             throw new Error('No items in cart');
         }
 
+        // Validate item properties
+        for (const item of items) {
+            if (!item.name || !item.price || !item.quantity) {
+                throw new Error('Invalid item: missing required fields (name, price, quantity)');
+            }
+            const price = parseFloat(item.price);
+            if (isNaN(price) || price <= 0) {
+                throw new Error('Invalid item: price must be a positive number');
+            }
+            if (!Number.isInteger(item.quantity) || item.quantity <= 0) {
+                throw new Error('Invalid item: quantity must be a positive integer');
+            }
+        }
+
         // Create line items for Stripe
         const lineItems = items.map(item => ({
             price_data: {
                 currency: 'gbp',
                 product_data: {
                     name: item.name,
-                    images: [item.image],
+                    images: item.image ? [item.image] : [],
                     metadata: {
-                        printful_variant_id: item.variantId,
-                        printful_product_id: item.productId
+                        printful_variant_id: item.variantId || '',
+                        printful_product_id: item.productId || ''
                     }
                 },
                 unit_amount: Math.round(parseFloat(item.price) * 100), // Convert to pence
@@ -55,7 +69,7 @@ exports.handler = async (event, context) => {
             },
             metadata: {
                 items: JSON.stringify(items.map(item => ({
-                    printful_variant_id: item.variantId,
+                    printful_variant_id: item.variantId || '',
                     quantity: item.quantity
                 })))
             }
