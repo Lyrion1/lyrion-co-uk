@@ -5,8 +5,8 @@
  * Shows current season badge and populates "The Season's Celestial Flow" section
  */
 
-// Configuration
-const PRODUCTS_JSON_PATH = './data/products.json';
+// Configuration - use absolute path from site root for consistency
+const PRODUCTS_JSON_PATH = '/data/products.json';
 
 // Global products cache to prevent duplicate fetches
 let cachedProducts = null;
