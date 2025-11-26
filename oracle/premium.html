@@ -79,7 +79,7 @@
         <h1>Premium Oracle Reading (£12)</h1>
         <p>For a personalized, poetic reading crafted by our celestial analysts, seek deep alignment through the Premium Oracle. Experience profound cosmic wisdom tailored to your unique journey.</p>
         <p>This comprehensive reading delves into your cosmic blueprint, offering guidance illuminated by the stars themselves.</p>
-        <button onclick="buyNow('Premium Oracle Reading', 12.00, 'digital')" class="button-primary" style="margin-top: 2rem; padding: 1rem 3rem; font-size: 1.2rem; background: var(--color-gold); color: var(--color-ink); border: none; cursor: pointer; font-family: var(--font-serif); border-radius: 8px; transition: all 0.3s ease;">
+        <button id="proceed-to-reading-btn" onclick="buyNow('Premium Oracle Reading', 12.00, 'digital')" class="button-primary" style="margin-top: 2rem; padding: 1rem 3rem; font-size: 1.2rem; background: var(--color-gold); color: var(--color-ink); border: none; cursor: pointer; font-family: var(--font-serif); border-radius: 8px; transition: all 0.3s ease;">
             Proceed to Reading
         </button>
         
@@ -133,7 +133,10 @@
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('session_id')) {
             // Show the reading content
-            document.querySelector('button').style.display = 'none';
+            const proceedBtn = document.getElementById('proceed-to-reading-btn');
+            if (proceedBtn) {
+                proceedBtn.style.display = 'none';
+            }
             document.getElementById('reading-content').style.display = 'block';
             
             // Scroll to reading

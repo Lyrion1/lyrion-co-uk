@@ -209,7 +209,14 @@ function buyNow(productName, price, productType) {
         window.location.href = '/checkout.html';
     } catch (error) {
         console.error('Error saving cart:', error);
-        alert('Unable to process purchase. Please try again.');
+        // Provide specific error message based on the error type
+        if (error.name === 'QuotaExceededError') {
+            alert('Your browser storage is full. Please clear some browser data and try again.');
+        } else if (error.name === 'SecurityError') {
+            alert('Browser storage is disabled. Please enable cookies/localStorage and try again.');
+        } else {
+            alert('Unable to process purchase. Please try again or contact support.');
+        }
     }
 }
 

@@ -1,3 +1,17 @@
+/**
+ * Stripe Embedded Checkout Session Creator
+ * 
+ * Creates checkout sessions for embedded checkout (ui_mode: 'embedded').
+ * Returns clientSecret instead of URL for use with stripe.initEmbeddedCheckout().
+ * 
+ * Request body:
+ * - items: Array of { name, price, quantity, product_type, image?, variantId?, productId? }
+ *   - product_type: 'digital' (no shipping) or 'pod' (requires shipping)
+ * 
+ * Response:
+ * - clientSecret: The session's client secret for initializing embedded checkout
+ */
+
 // Safely initialize Stripe - only if secret key is available
 let stripe = null;
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
