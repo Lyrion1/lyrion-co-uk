@@ -310,6 +310,10 @@
             button.textContent = 'Preparing your offering...';
             
             try {
+                // Create AbortController with 10 second timeout
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000);
+                
                 const response = await fetch('/.netlify/functions/create-checkout', {
                     method: 'POST',
                     headers: {
@@ -321,8 +325,11 @@
                             price: amount,
                             id: 'DONATION'
                         }
-                    })
+                    }),
+                    signal: controller.signal
                 });
+                
+                clearTimeout(timeoutId);
                 
                 const data = await response.json();
                 
@@ -334,8 +341,11 @@
                     throw new Error('No session ID received');
                 }
             } catch (error) {
-                console.error('Donation error:', error);
-                alert('Unable to process donation. Please try again later.');
+                if (error.name === 'AbortError') {
+                    alert('Request timed out. Please check your connection and try again.');
+                } else {
+                    alert('Unable to process donation. Please try again later.');
+                }
                 button.disabled = false;
                 button.textContent = 'Light a Star ✧';
             }

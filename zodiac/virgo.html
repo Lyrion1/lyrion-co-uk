@@ -395,19 +395,16 @@
     <script>
         // Configuration
         const SIGN = 'Virgo';
-        const PRODUCTS_JSON_PATH = '../data/products.json';
-        
         // Global state
         let allProducts = [];
         let currentTab = 'all';
         
-        // Load products and initialize
+        // Load products and initialize (using static data)
         async function init() {
             try {
-                const response = await fetch(PRODUCTS_JSON_PATH);
-                if (!response.ok) throw new Error('Failed to load products');
-                
-                allProducts = await response.json();
+                // Import products data dynamically as a module
+                const { PRODUCTS_DATA } = await import('../data/products.js');
+                allProducts = Array.isArray(PRODUCTS_DATA) ? PRODUCTS_DATA : [];
                 
                 // Filter products for this sign
                 const signProducts = allProducts.filter(p => 

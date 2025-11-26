@@ -273,15 +273,16 @@
         const urlParams = new URLSearchParams(window.location.search);
         const eventId = urlParams.get('id');
 
-        // Fetch products data for recommendations
+        // Products data for recommendations (using static data)
         let productsData = [];
         
         async function loadProducts() {
             try {
-                const response = await fetch('../data/products.json');
-                productsData = await response.json();
+                // Import products data dynamically as a module
+                const { PRODUCTS_DATA } = await import('../data/products.js');
+                productsData = Array.isArray(PRODUCTS_DATA) ? PRODUCTS_DATA : [];
             } catch (error) {
-                console.error('Error loading products:', error);
+                productsData = [];
             }
         }
 

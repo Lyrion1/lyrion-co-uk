@@ -1,20 +1,18 @@
 /**
  * LYRION Shop - Dynamic Product Display
- * Loads products from data/products.json and enables filtering by category
+ * Uses static product data (no network calls)
  */
 
-document.addEventListener('DOMContentLoaded', async () => {
-  // Load products from the generated JSON file
-  let allProducts = [];
+// Import static product data
+import { PRODUCTS_DATA } from '../data/products.js';
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Use static product data directly
+  const allProducts = PRODUCTS_DATA;
+  
   try {
-    const response = await fetch('/data/products.json');
-    if (!response.ok) throw new Error('Failed to load products');
-    allProducts = await response.json();
-    
     initializeShop(allProducts);
   } catch (error) {
-    console.error('Error loading products:', error);
     showError('Unable to load products. Please refresh the page.');
   }
 });

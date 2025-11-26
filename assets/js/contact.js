@@ -38,13 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = new FormData(e.target);
             
             try {
+                // Create AbortController with 10 second timeout
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000);
+                
                 const response = await fetch(FORMSPREE_ENDPOINT, {
                     method: 'POST',
                     body: data,
                     headers: {
                         'Accept': 'application/json'
-                    }
+                    },
+                    signal: controller.signal
                 });
+                
+                clearTimeout(timeoutId);
 
                 if (response.ok) {
                     // Success is now handled by the redirect parameter in oracle.html
@@ -60,7 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             } catch (error) {
-                statusElement.textContent = "An unknown error occurred. Please check your network connection.";
+                if (error.name === 'AbortError') {
+                    statusElement.textContent = "Request timed out. Please check your connection and try again.";
+                } else {
+                    statusElement.textContent = "An unknown error occurred. Please check your network connection.";
+                }
             }
         });
     }

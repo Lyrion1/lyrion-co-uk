@@ -239,7 +239,7 @@
     </footer>
     
     <script src="lyrion.js"></script>
-    <script src="js/seasonal-homepage.js"></script>
+    <script type="module" src="js/seasonal-homepage.js"></script>
     <script src="lib/marketing.js"></script>
     <script src="js/components/ZodiacLibraryGrid.js"></script>
     <script>
@@ -399,27 +399,9 @@
             }
             
             try {
-                // Use cached products from seasonal-homepage.js to avoid duplicate fetch
-                // Wait for the cache function to be available
-                const MAX_RETRIES = 20; // Maximum number of retry attempts
-                const RETRY_DELAY_MS = 50; // Delay between retries in milliseconds
-                
-                let products = null;
-                let retries = 0;
-                while (typeof window.fetchProductsWithCache !== 'function' && retries < MAX_RETRIES) {
-                    await new Promise(resolve => setTimeout(resolve, RETRY_DELAY_MS));
-                    retries++;
-                }
-                
-                if (typeof window.fetchProductsWithCache === 'function') {
-                    products = await window.fetchProductsWithCache();
-                } else {
-                    console.warn('fetchProductsWithCache not available after waiting');
-                    products = [];
-                }
-                
-                // Ensure products is always an array (never undefined)
-                products = Array.isArray(products) ? products : [];
+                // Import products data dynamically as a module
+                const { PRODUCTS_DATA } = await import('./data/products.js');
+                const products = Array.isArray(PRODUCTS_DATA) ? PRODUCTS_DATA : [];
                 
                 // Get hats and socks for new apparel display
                 const hats = products.filter(p => p.category === 'Hats').slice(0, 3);
@@ -470,7 +452,6 @@
                     container.appendChild(card);
                 });
             } catch (error) {
-                console.error('Error loading new celestial apparel:', error);
                 newApparelProducts = []; // Mark as loaded but empty
                 container.innerHTML = '<p style="color: #A00; min-height: 350px; display: flex; align-items: center; justify-content: center;">Failed to load products. Please refresh the page.</p>';
             }
@@ -516,7 +497,6 @@
             const email = document.getElementById('popup-email').value;
             if (email && email.includes('@')) {
                 // In production, send to email service
-                console.log('Email captured:', email);
                 alert('Welcome to the constellation! Check your email for your £5 ritual credit.');
                 emailPopupModal.style.display = 'none';
                 localStorage.setItem('lyrion-email-popup-seen', 'true');

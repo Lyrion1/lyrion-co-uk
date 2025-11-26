@@ -182,54 +182,6 @@ function requestPersonalizedInsight(articleId) {
     openOracleModal();
 }
 
-// --- NEW FEATURE: LIVE FEED LOGIC (Client-Side Fetch) ---
-
-const BLOG_FEED_URL = 'blog-feed.json'; // The file we will create next
-
-function renderFeedItem(item) {
-    return `
-        <div class="feed-item">
-            <a href="${item.url}">${item.title}</a>
-            <p>${item.date} | ${item.source}</p>
-        </div>
-    `;
-}
-
-function fetchLiveFeed() {
-    const feedContainer = document.getElementById('dynamic-feed-content');
-    if (!feedContainer) return; // Early return if element doesn't exist
-
-    fetch(BLOG_FEED_URL)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            let html = '';
-            // Display only the first 4-5 items
-            const articles = data.feed.slice(0, 5); 
-            
-            if (articles.length === 0) {
-                 html = '<p>The stars are quiet. Check back soon.</p>';
-            } else {
-                articles.forEach(item => {
-                    html += renderFeedItem(item);
-                });
-            }
-            
-            feedContainer.innerHTML = html;
-        })
-        .catch(error => {
-            console.error('Error fetching blog feed:', error);
-            feedContainer.innerHTML = '<p style="color: #A00;">Failed to load cosmic feed.</p>';
-        });
-}
-
-// Only load the feed if the container exists
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('dynamic-feed-content')) {
-        fetchLiveFeed();
-    }
-});
+// --- BLOG FEED - Static Data (No Network Calls) ---
+// Blog feed is now handled by static data in data/blog-feed.js
+// If dynamic-feed-content container exists on a page, it should import the module directly
