@@ -13,6 +13,39 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+/**
+ * Buy a product directly and redirect to embedded checkout
+ * @param {string} name - Product name
+ * @param {number} price - Product price
+ * @param {string} image - Product image URL
+ * @param {string} variantId - Optional variant ID
+ * @param {string} productId - Optional product ID/SKU
+ */
+function buyProduct(name, price, image, variantId, productId) {
+  const item = {
+    name: name,
+    price: parseFloat(price),
+    quantity: 1,
+    productType: 'pod',
+    image: image || '',
+    variantId: variantId || '',
+    productId: productId || ''
+  };
+  
+  const checkoutCart = {
+    items: [item],
+    timestamp: Date.now()
+  };
+  
+  try {
+    localStorage.setItem('lyrion_checkout_cart', JSON.stringify(checkoutCart));
+    window.location.href = '/checkout.html';
+  } catch (error) {
+    console.error('Error saving cart:', error);
+    alert('Unable to process purchase. Please try again.');
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   // Get product ID from URL query parameter
   const urlParams = new URLSearchParams(window.location.search);
@@ -169,13 +202,14 @@ function renderProductDetail(product) {
   const addToCartBtn = container.querySelector('#add-to-cart-btn');
   if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
-      if (typeof buy === 'function') {
-        buy(product.sku);
-      } else {
-        console.error('Checkout function not available');
-        // Show user-friendly error message
-        showError('Checkout is not available at this time. Please try again later or contact support.');
+      // Build image URL
+      let productImageUrl = 'assets/img/placeholder.png';
+      if (product.image && /^[a-zA-Z0-9._-]+\.(webp|jpg|jpeg|png|gif)$/i.test(product.image)) {
+        productImageUrl = `assets/products/${product.image}`;
       }
+      
+      // Use buyProduct for embedded checkout
+      buyProduct(product.title, product.price, productImageUrl, '', product.sku);
     });
   }
 }

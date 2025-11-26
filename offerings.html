@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    <script src="https://js.stripe.com/v3/"></script>
     <style>
         :root {
             --color-night-blue: #0a0e1a;
@@ -293,62 +292,44 @@
     </div>
     
     <script>
-        // Stripe publishable key (safe for client-side use)
-        const STRIPE_PUBLISHABLE_KEY = 'pk_test_51Qh7sV00T0vZKJKn9Ye9YqLXMHzDGzCjr5pW4G05Rjt6g3nB3YP0TYsVcPZaFQNvDnU8PJ9u0pR5lqG3vB4F00vZYqLXMH';
-        
-        document.getElementById('donation-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const amount = parseFloat(document.getElementById('amount').value);
-            if (!amount || amount < 1) {
+        /**
+         * Make a donation and redirect to embedded checkout
+         * @param {number} amount - Donation amount in GBP
+         */
+        function makeDonation(amount) {
+            const parsedAmount = parseFloat(amount);
+            if (!parsedAmount || parsedAmount < 1) {
                 alert('Please enter a valid amount (minimum £1)');
                 return;
             }
             
-            const button = this.querySelector('button[type="submit"]');
-            button.disabled = true;
-            button.textContent = 'Preparing your offering...';
+            const item = {
+                name: 'Cosmic Offering',
+                price: parsedAmount,
+                quantity: 1,
+                productType: 'digital',
+                image: ''
+            };
+            
+            const checkoutCart = {
+                items: [item],
+                timestamp: Date.now()
+            };
             
             try {
-                // Create AbortController with 10 second timeout
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000);
-                
-                const response = await fetch('/.netlify/functions/create-checkout', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        productData: {
-                            name: 'Celestial Hearth Offering',
-                            price: amount,
-                            id: 'DONATION'
-                        }
-                    }),
-                    signal: controller.signal
-                });
-                
-                clearTimeout(timeoutId);
-                
-                const data = await response.json();
-                
-                if (data.sessionId) {
-                    // Redirect to Stripe Checkout
-                    const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
-                    stripe.redirectToCheckout({ sessionId: data.sessionId });
-                } else {
-                    throw new Error('No session ID received');
-                }
+                localStorage.setItem('lyrion_checkout_cart', JSON.stringify(checkoutCart));
+                window.location.href = '/checkout.html';
             } catch (error) {
-                if (error.name === 'AbortError') {
-                    alert('Request timed out. Please check your connection and try again.');
-                } else {
-                    alert('Unable to process donation. Please try again later.');
-                }
-                button.disabled = false;
-                button.textContent = 'Light a Star ✧';
+                console.error('Error saving cart:', error);
+                alert('Unable to process donation. Please try again.');
             }
+        }
+        
+        document.getElementById('donation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const amount = document.getElementById('amount').value;
+            makeDonation(amount);
         });
         
         // Check for successful donation on page load
