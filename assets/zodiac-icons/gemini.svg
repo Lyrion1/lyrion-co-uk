@@ -1,0 +1,12 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="geminiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD43B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F59F00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <line x1="30" y1="20" x2="30" y2="80" stroke="url(#geminiGradient)" stroke-width="4" stroke-linecap="round"/>
+  <line x1="70" y1="20" x2="70" y2="80" stroke="url(#geminiGradient)" stroke-width="4" stroke-linecap="round"/>
+  <line x1="20" y1="20" x2="80" y2="20" stroke="url(#geminiGradient)" stroke-width="4" stroke-linecap="round"/>
+  <line x1="20" y1="80" x2="80" y2="80" stroke="url(#geminiGradient)" stroke-width="4" stroke-linecap="round"/>
+</svg>
