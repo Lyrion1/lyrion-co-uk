@@ -6,7 +6,7 @@
  */
 
 // Configuration
-const PRODUCTS_JSON_PATH = '/products.json';
+const PRODUCTS_JSON_PATH = './data/products.json';
 
 // Global products cache to prevent duplicate fetches
 let cachedProducts = null;

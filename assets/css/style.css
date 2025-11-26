@@ -171,6 +171,24 @@ header {
     pointer-events: none;
 }
 
+/* Create a hover-friendly bridge between link and dropdown */
+.nav-item::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 0.5rem;
+    background: transparent;
+    display: none;
+    z-index: 999;
+}
+
+.nav-item:hover::before,
+.nav-item:focus-within::before {
+    display: block;
+}
+
 .nav-item:hover .dropdown-menu,
 .nav-item:focus-within .dropdown-menu {
     display: block;
