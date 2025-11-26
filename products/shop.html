@@ -456,7 +456,8 @@
             // Update active filter button
             document.querySelectorAll('.category-filters button').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.dataset.category.toLowerCase() === categoryParam.toLowerCase()) {
+                const btnCategory = btn.dataset.category;
+                if (btnCategory && btnCategory.toLowerCase() === categoryParam.toLowerCase()) {
                     btn.classList.add('active');
                 }
             });

@@ -68,17 +68,22 @@ async function handleSuccessfulPayment(session) {
 
     const customerEmail = session.customer_details?.email;
     const metadata = session.metadata || {};
-    const gelatoSku = metadata.gelato_sku;
+    const gelatoSku = metadata.gelato_sku || metadata.product_id || null;
 
     // Log order details
     console.log('Customer email:', customerEmail);
-    console.log('Product SKU:', gelatoSku);
+    console.log('Product SKU:', gelatoSku || 'Not specified');
     console.log('Amount paid:', session.amount_total / 100, 'GBP');
 
     // Here you would typically:
     // 1. Save order to database
     // 2. Trigger Gelato POD fulfillment
     // 3. Send confirmation email to customer
+
+    if (!gelatoSku) {
+        console.log('No product SKU in metadata - standard cart checkout');
+        return;
+    }
 
     // For digital products like Oracle readings
     if (gelatoSku === 'PREMIUM-ORACLE-READING') {
@@ -87,7 +92,7 @@ async function handleSuccessfulPayment(session) {
     }
 
     // For physical products - trigger Gelato fulfillment
-    if (gelatoSku && gelatoSku !== 'DONATION' && gelatoSku !== 'PREMIUM-ORACLE-READING') {
+    if (gelatoSku !== 'DONATION' && gelatoSku !== 'PREMIUM-ORACLE-READING') {
         console.log('Physical product - trigger Gelato fulfillment for:', gelatoSku);
         // Call Gelato API or fulfillment function
     }

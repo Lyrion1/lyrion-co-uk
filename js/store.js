@@ -15,11 +15,14 @@ const LyrionStore = (function() {
         error: null
     };
 
-    // API endpoints
+    // API endpoints - uses /api/ prefix which redirects to /.netlify/functions/ via netlify.toml
     const API = {
-        getProducts: '/api/get-products',
-        createCheckout: '/api/create-checkout'
+        getProducts: '/.netlify/functions/get-products',
+        createCheckout: '/.netlify/functions/create-checkout'
     };
+
+    // Stripe publishable key - should be set in the HTML before loading this script
+    const STRIPE_KEY = window.STRIPE_PUBLISHABLE_KEY || '';
 
     /**
      * Initialize the store
@@ -308,35 +311,44 @@ const LyrionStore = (function() {
             return;
         }
 
+        if (!STRIPE_KEY) {
+            console.error('Stripe publishable key not configured');
+            showNotification('Checkout is not configured. Please contact support.');
+            return;
+        }
+
         try {
-            // For now, process each item separately
-            // In production, you'd batch these into a single session
-            for (const item of state.cart) {
-                const response = await fetch(API.createCheckout, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        productData: {
-                            id: item.id,
-                            name: item.name,
-                            price: item.price * item.quantity
-                        }
-                    })
-                });
+            // Calculate total for all cart items
+            const cartTotal = getCartTotal();
+            const cartItems = state.cart.map(item => `${item.name} x${item.quantity}`).join(', ');
+            const firstItemId = state.cart[0].id;
 
-                if (!response.ok) {
-                    throw new Error('Checkout failed');
-                }
+            const response = await fetch(API.createCheckout, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    productData: {
+                        id: firstItemId,
+                        name: cartItems,
+                        price: cartTotal
+                    }
+                })
+            });
 
-                const { sessionId } = await response.json();
+            if (!response.ok) {
+                throw new Error('Checkout failed');
+            }
 
-                // Redirect to Stripe Checkout
-                if (window.Stripe) {
-                    const stripe = window.Stripe(window.STRIPE_PUBLISHABLE_KEY);
-                    await stripe.redirectToCheckout({ sessionId });
-                }
+            const { sessionId } = await response.json();
+
+            // Redirect to Stripe Checkout
+            if (window.Stripe) {
+                const stripe = window.Stripe(STRIPE_KEY);
+                await stripe.redirectToCheckout({ sessionId });
+            } else {
+                throw new Error('Stripe library not loaded');
             }
 
         } catch (error) {
