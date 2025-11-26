@@ -136,9 +136,9 @@ class ZodiacLibraryGrid {
         border-color: #A38435;
       }
       
-      .zodiac-card .symbol {
-        font-size: 4rem;
-        color: var(--color-gold);
+      .zodiac-card .zodiac-icon-image {
+        width: 80px;
+        height: 80px;
         margin-bottom: 1rem;
         display: block;
       }
@@ -174,8 +174,9 @@ class ZodiacLibraryGrid {
           padding: 2rem 1.5rem 1.5rem 1.5rem;
         }
         
-        .zodiac-card .symbol {
-          font-size: 3rem;
+        .zodiac-card .zodiac-icon-image {
+          width: 60px;
+          height: 60px;
         }
         
         .zodiac-card h3 {
@@ -234,9 +235,12 @@ class ZodiacLibraryGrid {
     const card = document.createElement('div');
     card.className = 'zodiac-card';
 
-    const symbol = document.createElement('span');
-    symbol.className = 'symbol';
-    symbol.textContent = sign.symbol;
+    // Create image element for colorful icon
+    const iconImg = document.createElement('img');
+    iconImg.className = 'zodiac-icon-image';
+    iconImg.src = `${this.getIconBasePath()}assets/zodiac-icons/${sign.slug}.svg`;
+    iconImg.alt = `${sign.name} zodiac icon`;
+    iconImg.loading = 'lazy';
 
     const name = document.createElement('h3');
     name.textContent = sign.name;
@@ -251,12 +255,25 @@ class ZodiacLibraryGrid {
     button.style.cssText = 'margin-top: 1.5rem;';
     button.textContent = 'Enter Constellation';
 
-    card.appendChild(symbol);
+    card.appendChild(iconImg);
     card.appendChild(name);
     card.appendChild(dates);
     card.appendChild(button);
 
     return card;
+  }
+
+  /**
+   * Get the base path for icons based on current page location
+   * @returns {string}
+   */
+  getIconBasePath() {
+    // If we're on the zodiac page (/zodiac/index.html), go up one level
+    // If we're on the homepage, use the root path
+    if (this.options.basePath === '') {
+      return '../';
+    }
+    return '';
   }
 
   /**

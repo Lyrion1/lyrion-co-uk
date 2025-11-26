@@ -1,0 +1,12 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cancerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#74C0FC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1C7ED6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="30" cy="40" r="12" stroke="url(#cancerGradient)" stroke-width="4" fill="none"/>
+  <circle cx="70" cy="60" r="12" stroke="url(#cancerGradient)" stroke-width="4" fill="none"/>
+  <path d="M42,40 Q50,45 50,55 Q50,65 58,60" 
+        stroke="url(#cancerGradient)" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>
