@@ -1,11 +1,20 @@
 [build]
-  command = "npm install"  # Install dependencies needed for serverless functions
-  functions = "netlify/functions" # Tell Netlify where our secure functions are
+command = "npm install"
+functions = "netlify/functions"
+publish = "."
+
+[functions]
+node_bundler = "esbuild"
 
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
+from = "/api/*"
+to = "/.netlify/functions/:splat"
+status = 200
+
+[[headers]]
+for = "/*"
+[headers.values]
+Access-Control-Allow-Origin = "*"
 
 # Scheduled Functions for Oracle Email Automation
 # Note: Scheduled functions require Netlify's scheduled functions feature
