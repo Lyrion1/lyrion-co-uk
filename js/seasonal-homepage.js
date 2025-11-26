@@ -8,6 +8,9 @@
 // Configuration
 const PRODUCTS_JSON_PATH = '/products.json';
 
+// Global products cache to prevent duplicate fetches
+let cachedProducts = null;
+
 // Import season functions (inline for browser compatibility)
 function getCurrentSeason() {
   const now = new Date();
@@ -43,17 +46,36 @@ function updateSeasonalBadge() {
 }
 
 /**
- * Load and display seasonal products
+ * Fetch products with caching to prevent duplicate fetches
  */
-async function loadSeasonalProducts() {
+async function fetchProductsWithCache() {
+  if (cachedProducts !== null) {
+    return cachedProducts;
+  }
+  
   try {
-    const season = getCurrentSeason();
     const response = await fetch(PRODUCTS_JSON_PATH);
     if (!response.ok) {
       throw new Error('Failed to fetch products');
     }
     
-    const allProducts = await response.json();
+    const products = await response.json();
+    cachedProducts = Array.isArray(products) ? products : [];
+    return cachedProducts;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    cachedProducts = []; // Set to empty array to prevent retries
+    return cachedProducts;
+  }
+}
+
+/**
+ * Load and display seasonal products
+ */
+async function loadSeasonalProducts() {
+  try {
+    const season = getCurrentSeason();
+    const allProducts = await fetchProductsWithCache();
     
     // Filter products for current season
     const seasonalProducts = allProducts.filter(product => {
@@ -154,3 +176,9 @@ document.addEventListener('DOMContentLoaded', function() {
   updateSeasonalBadge();
   loadSeasonalProducts();
 });
+
+// Export for use in other scripts (browser global)
+if (typeof window !== 'undefined') {
+  window.fetchProductsWithCache = fetchProductsWithCache;
+  window.getCachedProducts = () => cachedProducts;
+}

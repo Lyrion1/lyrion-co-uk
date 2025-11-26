@@ -197,7 +197,7 @@ function renderFeedItem(item) {
 
 function fetchLiveFeed() {
     const feedContainer = document.getElementById('dynamic-feed-content');
-    if (!feedContainer) return;
+    if (!feedContainer) return; // Early return if element doesn't exist
 
     fetch(BLOG_FEED_URL)
         .then(response => {
@@ -227,5 +227,9 @@ function fetchLiveFeed() {
         });
 }
 
-// Automatically load the feed when any page that uses lryion.js is loaded
-document.addEventListener('DOMContentLoaded', fetchLiveFeed);
+// Only load the feed if the container exists
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('dynamic-feed-content')) {
+        fetchLiveFeed();
+    }
+});

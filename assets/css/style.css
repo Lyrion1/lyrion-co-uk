@@ -148,6 +148,8 @@ header {
 
 .nav-item > a {
     cursor: pointer;
+    padding: 0.5rem 0;
+    display: inline-block;
 }
 
 .dropdown-menu {
@@ -162,10 +164,19 @@ header {
     margin-top: 0.5rem;
     z-index: 1000;
     border: 1px solid rgba(196, 164, 73, 0.3);
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
 }
 
-.nav-item:hover .dropdown-menu {
+.nav-item:hover .dropdown-menu,
+.nav-item:focus-within .dropdown-menu {
     display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 .dropdown-menu a {
@@ -177,9 +188,11 @@ header {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.dropdown-menu a:hover {
+.dropdown-menu a:hover,
+.dropdown-menu a:focus {
     background-color: rgba(196, 164, 73, 0.1);
     color: var(--color-gold);
+    outline: none;
 }
 
 /* Offerings Button */
