@@ -44,11 +44,6 @@
         </nav>
     </header>
 
-    <!-- First Buyer Incentive Banner -->
-    <div style="text-align: center; padding: 0.85rem 1rem; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(196, 164, 73, 0.2) 100%); border-bottom: 1px solid rgba(196, 164, 73, 0.3);">
-        <span style="color: #151311; font-size: 0.9rem; font-weight: 500;">First 3 buyers receive a complimentary digital Lunar Guide ✧</span>
-    </div>
-
     <!-- Seasonal Badge -->
     <div id="seasonal-badge" style="text-align: center; padding: 1rem 0; background: linear-gradient(135deg, rgba(244, 239, 232, 0.5) 0%, rgba(252, 250, 250, 0.7) 100%);">
         <span style="color: #C4A449; font-size: 0.9rem; font-style: italic;">Loading current cycle...</span>
@@ -122,8 +117,7 @@
             <div style="display: inline-block; background-color: var(--color-gold); color: var(--color-ink); padding: 0.5rem 1.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.5rem; font-weight: 600;">This Week's Sign</div>
             
             <div id="weekly-sign-content">
-                <!-- Content will be loaded by JavaScript -->
-                <p style="color: var(--color-gold); font-style: italic;">Loading this week's celestial focus...</p>
+                <!-- Content will be populated immediately by JavaScript -->
             </div>
         </div>
     </section>
@@ -465,6 +459,17 @@
                 }
             } catch (error) {
                 console.error('Error loading weekly sign:', error);
+                // Show fallback content with Sagittarius
+                const content = document.getElementById('weekly-sign-content');
+                if (content) {
+                    content.innerHTML = `
+                        <div style="font-size: 3rem; margin: 1rem 0; color: var(--color-gold);">♐</div>
+                        <h3 style="font-family: var(--font-serif); font-size: 2.2rem; color: var(--color-ink); margin-bottom: 0.5rem; font-weight: 600;">Sagittarius</h3>
+                        <p style="font-size: 1rem; color: var(--color-gold); margin-bottom: 1.5rem; font-style: italic;">November 22 - December 21 • Fire Sign</p>
+                        <p style="font-size: 1.1rem; color: #5a5856; margin-bottom: 2rem; line-height: 1.7;">The eternal seeker. Adventurous, philosophical, and optimistically free. Sagittarius finds meaning in movement and wisdom in wandering the cosmic landscape.</p>
+                        <a href="zodiac/sagittarius.html" style="display: inline-block; padding: 0.9rem 2rem; background: var(--color-gold); color: white; text-decoration: none; border-radius: 6px; font-size: 1rem; transition: background 0.3s ease; font-weight: 600;">Explore Your Cycle</a>
+                    `;
+                }
             }
         }
         
@@ -554,9 +559,14 @@
         
         // Initialize everything on page load
         document.addEventListener('DOMContentLoaded', () => {
-            loadWeeklySign();
             showEmailPopup();
         });
+        
+        // Load weekly sign immediately (synchronously)
+        // This ensures it displays as soon as the script runs, no async delay
+        if (document.getElementById('weekly-sign-content')) {
+            loadWeeklySign();
+        }
     </script>
     
 </body>
