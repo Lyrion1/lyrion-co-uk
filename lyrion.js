@@ -84,33 +84,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function simulatePaymentInitialization() {
     const resultContainer = document.getElementById('reading-result');
-    
-    // LIVE STRIPE CHECKOUT LINK for the £12.00 Premium Oracle Reading
-    const stripeCheckoutLink = 'https://buy.stripe.com/9B63cofOc3CP7SUaQO83C00';
 
     resultContainer.innerHTML = `
-        <p class="celestial-note" style="text-align: center;">Awaiting your offering of £12.00...</p>
+        <p class="celestial-note" style="text-align: center;">Your offering of £12.00 awaits...</p>
         <div class="stripe-mock-container">
             <div class="stripe-element-placeholder">
                 <p class="stripe-label">Payment Processing Portal</p>
                 <p class="stripe-detail">Click below to proceed to our secure checkout page for the reading.</p>
                 
-                <a href="${stripeCheckoutLink}" target="_blank" 
-                   class="mock-pay-btn button-primary button-gold" style="display: inline-block;">
+                <button onclick="buyNow('Premium Oracle Reading', 12.00, 'digital'); closeOracleModal();"
+                   class="mock-pay-btn button-primary button-gold" style="display: inline-block; border: none; cursor: pointer;">
                     Securely Pay £12.00
-                </a>
+                </button>
             </div>
         </div>
     `;
-
-    // After they click the link and the new tab opens, we simulate the reading success after a delay.
-    const checkoutLink = resultContainer.querySelector('a');
-    if (checkoutLink) {
-        checkoutLink.addEventListener('click', () => {
-            // Give the user time to pay on the new tab, then display the reading result.
-            setTimeout(simulateReadingSuccess, 5000); 
-        });
-    }
 }
 
 function simulateReadingSuccess() {
@@ -180,6 +168,49 @@ function supportTheHouse(articleId) {
 function requestPersonalizedInsight(articleId) {
     // Triggers the Oracle Modal for a personalized reading.
     openOracleModal();
+}
+
+// --- FEATURE 7: BUY NOW - Direct Product Purchase ---
+
+/**
+ * Buy a product directly and redirect to embedded checkout
+ * @param {string} productName - Name of the product
+ * @param {number} price - Price of the product in GBP
+ * @param {string} productType - Type of product: 'digital' or 'pod' (print-on-demand)
+ */
+function buyNow(productName, price, productType) {
+    if (!productName || !price) {
+        console.error('Product name and price are required');
+        alert('Unable to process purchase. Please try again.');
+        return;
+    }
+
+    // Validate product type
+    const validTypes = ['digital', 'pod'];
+    const type = validTypes.includes(productType) ? productType : 'digital';
+
+    // Create cart item
+    const cartItem = {
+        name: productName,
+        price: parseFloat(price),
+        quantity: 1,
+        product_type: type
+    };
+
+    // Save to localStorage for checkout page
+    const checkoutCart = {
+        items: [cartItem],
+        timestamp: Date.now()
+    };
+
+    try {
+        localStorage.setItem('lyrion_checkout_cart', JSON.stringify(checkoutCart));
+        // Redirect to checkout page
+        window.location.href = '/checkout.html';
+    } catch (error) {
+        console.error('Error saving cart:', error);
+        alert('Unable to process purchase. Please try again.');
+    }
 }
 
 // --- BLOG FEED - Static Data (No Network Calls) ---
