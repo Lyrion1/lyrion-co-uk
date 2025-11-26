@@ -8,75 +8,6 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <style>
-        .zodiac-library-container {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-            text-align: center;
-        }
-        
-        .zodiac-library-container h1 {
-            font-size: 3.5rem;
-            color: var(--color-ink);
-            margin-bottom: 1rem;
-            font-family: var(--font-serif);
-        }
-        
-        .zodiac-library-container .subtitle {
-            font-size: 1.3rem;
-            color: var(--color-gold);
-            font-style: italic;
-            margin-bottom: 4rem;
-            font-family: var(--font-serif);
-        }
-        
-        .zodiac-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-        
-        .zodiac-card {
-            background: linear-gradient(135deg, rgba(244, 239, 232, 0.5) 0%, rgba(252, 250, 250, 0.9) 100%);
-            border: 2px solid var(--color-gold);
-            border-radius: 12px;
-            padding: 3rem 2rem 2rem 2rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .zodiac-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(196, 164, 73, 0.3);
-            border-color: #A38435;
-        }
-        
-        .zodiac-card .symbol {
-            font-size: 4rem;
-            color: var(--color-gold);
-            margin-bottom: 1rem;
-            display: block;
-        }
-        
-        .zodiac-card h3 {
-            font-size: 1.8rem;
-            color: var(--color-ink);
-            margin-bottom: 0.5rem;
-            font-family: var(--font-serif);
-        }
-        
-        .zodiac-card .dates {
-            font-size: 0.95rem;
-            color: var(--color-gold);
-            font-style: italic;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -107,97 +38,27 @@
     </header>
 
     <main>
-        <section class="zodiac-library-container">
+        <section class="zodiac-library-container" id="zodiac-library-section">
             <h1>The Zodiac Library</h1>
             <p class="subtitle">Twelve cosmic archetypes. Discover your celestial essence.</p>
-            
-            <div class="zodiac-grid">
-                <div class="zodiac-card">
-                    <span class="symbol">♈</span>
-                    <h3>Aries</h3>
-                    <p class="dates">March 21 - April 19</p>
-                    <a href="aries.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-                
-                <div class="zodiac-card">
-                    <span class="symbol">♉</span>
-                    <h3>Taurus</h3>
-                    <p class="dates">April 20 - May 20</p>
-                    <a href="taurus.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-                
-                <div class="zodiac-card">
-                    <span class="symbol">♊</span>
-                    <h3>Gemini</h3>
-                    <p class="dates">May 21 - June 20</p>
-                    <a href="gemini.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-                
-                <div class="zodiac-card">
-                    <span class="symbol">♋</span>
-                    <h3>Cancer</h3>
-                    <p class="dates">June 21 - July 22</p>
-                    <a href="cancer.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-                
-                <div class="zodiac-card">
-                    <span class="symbol">♌</span>
-                    <h3>Leo</h3>
-                    <p class="dates">July 23 - August 22</p>
-                    <a href="leo.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-                
-                <div class="zodiac-card">
-                    <span class="symbol">♍</span>
-                    <h3>Virgo</h3>
-                    <p class="dates">August 23 - September 22</p>
-                    <a href="virgo.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-                
-                <div class="zodiac-card">
-                    <span class="symbol">♎</span>
-                    <h3>Libra</h3>
-                    <p class="dates">September 23 - October 22</p>
-                    <a href="libra.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-                
-                <div class="zodiac-card">
-                    <span class="symbol">♏</span>
-                    <h3>Scorpio</h3>
-                    <p class="dates">October 23 - November 21</p>
-                    <a href="scorpio.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-                
-                <div class="zodiac-card">
-                    <span class="symbol">♐</span>
-                    <h3>Sagittarius</h3>
-                    <p class="dates">November 22 - December 21</p>
-                    <a href="sagittarius.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-                
-                <div class="zodiac-card">
-                    <span class="symbol">♑</span>
-                    <h3>Capricorn</h3>
-                    <p class="dates">December 22 - January 19</p>
-                    <a href="capricorn.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-                
-                <div class="zodiac-card">
-                    <span class="symbol">♒</span>
-                    <h3>Aquarius</h3>
-                    <p class="dates">January 20 - February 18</p>
-                    <a href="aquarius.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-                
-                <div class="zodiac-card">
-                    <span class="symbol">♓</span>
-                    <h3>Pisces</h3>
-                    <p class="dates">February 19 - March 20</p>
-                    <a href="pisces.html" class="button-primary button-gold" style="margin-top: 1.5rem;">Enter Constellation</a>
-                </div>
-            </div>
+            <!-- Zodiac grid will be rendered by ZodiacLibraryGrid.js -->
         </section>
     </main>
+
+    <script src="../js/components/ZodiacLibraryGrid.js"></script>
+    <script>
+        // Render the zodiac library grid
+        document.addEventListener('DOMContentLoaded', function() {
+            const zodiacGrid = new ZodiacLibraryGrid({
+                showHeader: false, // Header already exists in HTML
+                basePath: '' // Relative path for zodiac pages
+            });
+            
+            // Find the subtitle and render grid after it
+            const section = document.getElementById('zodiac-library-section');
+            zodiacGrid.render(section);
+        });
+    </script>
 
     <footer>
         <div class="nav-footer">

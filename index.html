@@ -58,56 +58,8 @@
         <h2 class="section-title-celestial" style="margin-top: 0; font-size: 2.5rem;">Find Your Cosmic Silhouette</h2>
         <p class="section-subtitle" style="margin-bottom: 2rem;">Discover apparel and ritual pieces aligned with your celestial essence.</p>
         
-        <div class="zodiac-buttons-grid">
-            <a href="zodiac/aries.html" class="zodiac-button">
-                <span class="zodiac-symbol">♈</span>
-                <span class="zodiac-name">Aries</span>
-            </a>
-            <a href="zodiac/taurus.html" class="zodiac-button">
-                <span class="zodiac-symbol">♉</span>
-                <span class="zodiac-name">Taurus</span>
-            </a>
-            <a href="zodiac/gemini.html" class="zodiac-button">
-                <span class="zodiac-symbol">♊</span>
-                <span class="zodiac-name">Gemini</span>
-            </a>
-            <a href="zodiac/cancer.html" class="zodiac-button">
-                <span class="zodiac-symbol">♋</span>
-                <span class="zodiac-name">Cancer</span>
-            </a>
-            <a href="zodiac/leo.html" class="zodiac-button">
-                <span class="zodiac-symbol">♌</span>
-                <span class="zodiac-name">Leo</span>
-            </a>
-            <a href="zodiac/virgo.html" class="zodiac-button">
-                <span class="zodiac-symbol">♍</span>
-                <span class="zodiac-name">Virgo</span>
-            </a>
-            <a href="zodiac/libra.html" class="zodiac-button">
-                <span class="zodiac-symbol">♎</span>
-                <span class="zodiac-name">Libra</span>
-            </a>
-            <a href="zodiac/scorpio.html" class="zodiac-button">
-                <span class="zodiac-symbol">♏</span>
-                <span class="zodiac-name">Scorpio</span>
-            </a>
-            <a href="zodiac/sagittarius.html" class="zodiac-button">
-                <span class="zodiac-symbol">♐</span>
-                <span class="zodiac-name">Sagittarius</span>
-            </a>
-            <a href="zodiac/capricorn.html" class="zodiac-button">
-                <span class="zodiac-symbol">♑</span>
-                <span class="zodiac-name">Capricorn</span>
-            </a>
-            <a href="zodiac/aquarius.html" class="zodiac-button">
-                <span class="zodiac-symbol">♒</span>
-                <span class="zodiac-name">Aquarius</span>
-            </a>
-            <a href="zodiac/pisces.html" class="zodiac-button">
-                <span class="zodiac-symbol">♓</span>
-                <span class="zodiac-name">Pisces</span>
-            </a>
-        </div>
+        <!-- Zodiac Library Grid will be rendered here -->
+        <div id="homepage-zodiac-grid"></div>
     </section>
 
     <!-- This Week's Sign feature removed - using Featured Sign banner at top instead -->
@@ -289,6 +241,21 @@
     <script src="lyrion.js"></script>
     <script src="js/seasonal-homepage.js"></script>
     <script src="lib/marketing.js"></script>
+    <script src="js/components/ZodiacLibraryGrid.js"></script>
+    <script>
+        // Render the Zodiac Library Grid on the homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            const zodiacGrid = new ZodiacLibraryGrid({
+                showHeader: false, // Header already exists in HTML
+                basePath: 'zodiac/' // Relative path for zodiac pages from homepage
+            });
+            
+            const container = document.getElementById('homepage-zodiac-grid');
+            if (container) {
+                zodiacGrid.render(container);
+            }
+        });
+    </script>
     
     <!-- Email Capture Popup Modal -->
     <div id="email-popup-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 10000; justify-content: center; align-items: center;">
