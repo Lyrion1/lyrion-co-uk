@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop LYRĪON | Zodiac Apparel, Homeware & Art</title>
+    <meta name="description" content="Shop the exclusive LYRĪON collections: Zodiac Hoodies, Celestial Youth, Altar Cloths, and Framed Constellations.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <style>
+        /* Shop Specific Styles */
+        :root {
+            --color-ink: #151311;
+            --color-gold: #C4A449;
+            --color-cream: #F4EFE8;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        .shop-header {
+            max-width: 1200px;
+            margin: 4rem auto 3rem auto;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        .shop-header h1 {
+            font-size: 3.8rem;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+        .shop-header p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--color-gold);
+            font-style: italic;
+            margin-bottom: 0;
+        }
+        
+        /* Category Filters */
+        .category-filters {
+            max-width: 1200px;
+            margin: 0 auto 2rem auto;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .category-filters button {
+            background: transparent;
+            border: 1px solid var(--color-gold);
+            color: var(--color-ink);
+            padding: 0.5rem 1.5rem;
+            margin: 0.25rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-serif);
+        }
+
+        .category-filters button:hover,
+        .category-filters button.active {
+            background: var(--color-gold);
+            color: white;
+        }
+
+        /* Products Grid */
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid var(--color-gold);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(196, 164, 73, 0.2);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            color: var(--color-ink);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            color: var(--color-gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            background: var(--color-gold);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-serif);
+        }
+
+        .add-to-cart:hover {
+            background: #A38435;
+            transform: scale(1.05);
+        }
+
+        /* Loading and Empty States */
+        .loading, .no-products, .error {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Cart Summary */
+        .cart-summary {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--color-ink);
+            color: var(--color-cream);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .cart-summary:hover {
+            transform: scale(1.05);
+        }
+
+        .cart-count {
+            background: var(--color-gold);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        /* Celestial Quarters Styles */
+        .celestial-quarters {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 4rem 6rem 4rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        
+        .quarter-division {
+            background: linear-gradient(135deg, rgba(244, 239, 232, 0.4) 0%, rgba(252, 250, 250, 0.8) 100%);
+            border: 2px solid var(--color-gold);
+            padding: 4rem 3rem;
+            text-align: center;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        
+        .quarter-division:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(196, 164, 73, 0.25);
+            border-color: #A38435;
+        }
+        
+        .quarter-division::before {
+            content: '✦';
+            position: absolute;
+            top: 2rem;
+            left: 2.5rem;
+            font-size: 2.5rem;
+            color: var(--color-gold);
+            opacity: 0.3;
+        }
+        
+        .quarter-division::after {
+            content: '✦';
+            position: absolute;
+            bottom: 2rem;
+            right: 2.5rem;
+            font-size: 2.5rem;
+            color: var(--color-gold);
+            opacity: 0.3;
+        }
+        
+        .quarter-division h2 {
+            font-size: 2.8rem;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        
+        .quarter-division .quarter-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 2rem;
+        }
+        
+        .quarter-division p.quarter-description {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: #5a5856;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+            padding: 0 1rem;
+        }
+        
+        .quarter-division .button-primary {
+            margin-top: 1rem;
+        }
+
+        /* Store notification */
+        .store-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--color-ink);
+            color: var(--color-cream);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .store-notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 1024px) {
+            .celestial-quarters {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 2rem;
+            }
+            .shop-header h1 {
+                font-size: 2.8rem;
+            }
+            .quarter-division {
+                padding: 3rem 2rem;
+            }
+            .quarter-division h2 {
+                font-size: 2.2rem;
+            }
+            .products-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../assets/img/lyrion-logo.png" alt="LYRĪON Celestial Couture Logo" style="height: 40px; width: auto; display: block; margin: 0 auto;">
+            </a>
+        </div>
+        <nav class="nav-main">
+            <div class="nav-item">
+                <a>The Houses</a>
+                <div class="dropdown-menu">
+                    <a href="shop.html?category=woman">House of the Divine Feminine (Woman)</a>
+                    <a href="shop.html?category=man">House of the Solar Masculine (Man)</a>
+                    <a href="shop.html?category=moon-girls">House of Lunar Maidens (Moon Girls)</a>
+                    <a href="shop.html?category=star-boys">House of Starborn Sons (Star Boys)</a>
+                </div>
+            </div>
+            <a href="../zodiac/index.html">The Zodiac Library</a>
+            <div class="nav-item">
+                <a>Ritual Market</a>
+                <div class="dropdown-menu">
+                    <a href="shop.html?category=home-altar">Home & Altar</a>
+                    <a href="shop.html?category=sacred-textiles">Sacred Textiles</a>
+                    <a href="shop.html?category=digital-rituals">Digital Rituals</a>
+                </div>
+            </div>
+            <a href="../oracle.html">The Oracle</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="shop-header">
+            <h1>The Celestial Quarters: Apparel and Ritual for the Current Cycle</h1>
+            <p>Journey through the seasons with intention and elegance.</p>
+        </section>
+
+        <!-- Category Filters -->
+        <section class="category-filters">
+            <button data-category="" class="active">All Products</button>
+            <button data-category="Woman">Celestial Woman</button>
+            <button data-category="Man">Celestial Man</button>
+            <button data-category="MoonGirls">Moon Girls</button>
+            <button data-category="StarBoys">Star Boys</button>
+            <button data-category="HomeArt">Home & Art</button>
+            <button data-category="Digital">Digital</button>
+        </section>
+
+        <!-- Celestial Quarters Overview -->
+        <section class="celestial-quarters">
+            <article class="quarter-division">
+                <h2>The Ascendant</h2>
+                <p class="quarter-subtitle">Spring / New Moon</p>
+                <p class="quarter-description">
+                    Awakening from the cosmic slumber, the Ascendant marks rebirth and renewal. 
+                    Adorn yourself in fresh intention as the earth blooms anew beneath celestial light.
+                </p>
+                <a href="collections.html" class="button-primary button-gold">View Quarter</a>
+            </article>
+
+            <article class="quarter-division">
+                <h2>The Apex</h2>
+                <p class="quarter-subtitle">Summer / Full Moon</p>
+                <p class="quarter-description">
+                    In radiant zenith, the Apex illuminates peak vitality and abundance. 
+                    Embrace the fullness of manifestation, draped in solar brilliance and celestial power.
+                </p>
+                <a href="collections.html" class="button-primary button-gold">View Quarter</a>
+            </article>
+
+            <article class="quarter-division">
+                <h2>The Descent</h2>
+                <p class="quarter-subtitle">Autumn / Waning Moon</p>
+                <p class="quarter-description">
+                    As light surrenders to shadow, the Descent beckons inward reflection. 
+                    Walk the threshold adorned in twilight hues, harvesting wisdom from the year's passage.
+                </p>
+                <a href="collections.html" class="button-primary button-gold">View Quarter</a>
+            </article>
+
+            <article class="quarter-division">
+                <h2>The Nadir</h2>
+                <p class="quarter-subtitle">Winter / Dark Moon</p>
+                <p class="quarter-description">
+                    In profound stillness, the Nadir holds the mysteries of the void. 
+                    Cloak yourself in sacred darkness, finding sanctuary in ritual and the promise of return.
+                </p>
+                <a href="collections.html" class="button-primary button-gold">View Quarter</a>
+            </article>
+        </section>
+
+        <!-- Dynamic Products Grid -->
+        <section class="shop-header">
+            <h2>Shop Products</h2>
+            <p>Browse our complete collection of celestial offerings.</p>
+        </section>
+        <div id="products-grid" class="products-container">
+            <!-- Products will be loaded dynamically by store.js -->
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="cart-summary checkout-button" style="display: none;">
+            <span class="cart-count">0</span>
+            <span>View Cart</span>
+            <span class="cart-total">£0.00</span>
+        </div>
+    </main>
+
+    <footer>
+        <div class="nav-footer">
+            <a href="collections.html">Collections</a>
+            <a href="../oracle.html">Oracle</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../blog.html">Blog</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LYRĪON Celestial Couture. Live with Ritual and Intention.
+        </div>
+    </footer>
+    
+    <script src="../lyrion.js"></script>
+    <script src="../js/store.js"></script>
+    <script src="../js/checkout.js"></script>
+    <script src="../js/components/ProductGrid.js"></script>
+    <script type="module" src="../js/shop-dynamic.js"></script>
+
+    <script>
+        // Initialize category filter buttons
+        document.querySelectorAll('.category-filters button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active state
+                document.querySelectorAll('.category-filters button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Load products for category
+                const category = this.dataset.category;
+                if (window.LyrionStore) {
+                    LyrionStore.loadProducts(category || null);
+                }
+            });
+        });
+
+        // Show cart summary when items are added
+        function updateCartSummaryVisibility() {
+            const cartSummary = document.querySelector('.cart-summary');
+            if (window.LyrionStore && LyrionStore.getCartCount() > 0) {
+                cartSummary.style.display = 'flex';
+            } else {
+                cartSummary.style.display = 'none';
+            }
+        }
+
+        // Check URL for category parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        if (categoryParam && window.LyrionStore) {
+            LyrionStore.loadProducts(categoryParam);
+            // Update active filter button
+            document.querySelectorAll('.category-filters button').forEach(btn => {
+                btn.classList.remove('active');
+                const btnCategory = btn.dataset.category;
+                if (btnCategory && btnCategory.toLowerCase() === categoryParam.toLowerCase()) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
