@@ -564,7 +564,8 @@
         
         // Load weekly sign immediately (synchronously)
         // This ensures it displays as soon as the script runs, no async delay
-        if (document.getElementById('weekly-sign-content')) {
+        // The marketing.js script is loaded above, so functions are available
+        if (document.getElementById('weekly-sign-content') && typeof loadWeeklySign === 'function') {
             loadWeeklySign();
         }
     </script>
