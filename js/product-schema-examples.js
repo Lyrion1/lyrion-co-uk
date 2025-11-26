@@ -106,11 +106,11 @@ async function getProductMetadata() {
   
   // Get all available zodiac signs
   const signs = getUniqueSigns(products);
-  console.log('Available signs:', signs);
+  // Available signs are now ready for use
   
   // Get all categories
   const categories = getUniqueCategories(products);
-  console.log('Available categories:', categories);
+  // Available categories are now ready for use
 }
 
 /*
