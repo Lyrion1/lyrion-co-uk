@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Zodiac Library | LYRĪON</title>
+    <meta name="description" content="Explore the twelve cosmic archetypes. Discover your celestial essence and find apparel aligned with your sign.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <style>
+        .zodiac-library-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        
+        .zodiac-library-container h1 {
+            font-size: 3.5rem;
+            color: var(--color-ink);
+            margin-bottom: 1rem;
+            font-family: var(--font-serif);
+        }
+        
+        .zodiac-library-container .subtitle {
+            font-size: 1.3rem;
+            color: var(--color-gold);
+            font-style: italic;
+            margin-bottom: 4rem;
+            font-family: var(--font-serif);
+        }
+        
+        .zodiac-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .zodiac-card {
+            background: linear-gradient(135deg, rgba(244, 239, 232, 0.5) 0%, rgba(252, 250, 250, 0.9) 100%);
+            border: 2px solid var(--color-gold);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .zodiac-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(196, 164, 73, 0.3);
+            border-color: #A38435;
+        }
+        
+        .zodiac-card .symbol {
+            font-size: 4rem;
+            color: var(--color-gold);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .zodiac-card h3 {
+            font-size: 1.8rem;
+            color: var(--color-ink);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-serif);
+        }
+        
+        .zodiac-card .dates {
+            font-size: 0.95rem;
+            color: var(--color-gold);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="../index.html"><img src="../assets/img/logo-circle.png" alt="LYRĪON Celestial Couture" style="height: 35px; vertical-align: middle;"> LYRĪON</a>
+        </div>
+        <nav class="nav-main">
+            <div class="nav-item">
+                <a>The Houses</a>
+                <div class="dropdown-menu">
+                    <a href="../shop.html?category=woman">House of the Divine Feminine (Woman)</a>
+                    <a href="../shop.html?category=man">House of the Solar Masculine (Man)</a>
+                    <a href="../shop.html?category=moon-girls">House of Lunar Maidens (Moon Girls)</a>
+                    <a href="../shop.html?category=star-boys">House of Starborn Sons (Star Boys)</a>
+                </div>
+            </div>
+            <a href="index.html">The Zodiac Library</a>
+            <div class="nav-item">
+                <a>Ritual Market</a>
+                <div class="dropdown-menu">
+                    <a href="../shop.html?category=home-altar">Home & Altar</a>
+                    <a href="../shop.html?category=sacred-textiles">Sacred Textiles</a>
+                    <a href="../shop.html?category=digital-rituals">Digital Rituals</a>
+                </div>
+            </div>
+            <a href="../oracle.html">The Oracle</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="zodiac-library-container">
+            <h1>The Zodiac Library</h1>
+            <p class="subtitle">Twelve cosmic archetypes. Discover your celestial essence.</p>
+            
+            <div class="zodiac-grid">
+                <a href="aries.html" class="zodiac-card">
+                    <span class="symbol">♈</span>
+                    <h3>Aries</h3>
+                    <p class="dates">March 21 - April 19</p>
+                </a>
+                
+                <a href="taurus.html" class="zodiac-card">
+                    <span class="symbol">♉</span>
+                    <h3>Taurus</h3>
+                    <p class="dates">April 20 - May 20</p>
+                </a>
+                
+                <a href="gemini.html" class="zodiac-card">
+                    <span class="symbol">♊</span>
+                    <h3>Gemini</h3>
+                    <p class="dates">May 21 - June 20</p>
+                </a>
+                
+                <a href="cancer.html" class="zodiac-card">
+                    <span class="symbol">♋</span>
+                    <h3>Cancer</h3>
+                    <p class="dates">June 21 - July 22</p>
+                </a>
+                
+                <a href="leo.html" class="zodiac-card">
+                    <span class="symbol">♌</span>
+                    <h3>Leo</h3>
+                    <p class="dates">July 23 - August 22</p>
+                </a>
+                
+                <a href="virgo.html" class="zodiac-card">
+                    <span class="symbol">♍</span>
+                    <h3>Virgo</h3>
+                    <p class="dates">August 23 - September 22</p>
+                </a>
+                
+                <a href="libra.html" class="zodiac-card">
+                    <span class="symbol">♎</span>
+                    <h3>Libra</h3>
+                    <p class="dates">September 23 - October 22</p>
+                </a>
+                
+                <a href="scorpio.html" class="zodiac-card">
+                    <span class="symbol">♏</span>
+                    <h3>Scorpio</h3>
+                    <p class="dates">October 23 - November 21</p>
+                </a>
+                
+                <a href="sagittarius.html" class="zodiac-card">
+                    <span class="symbol">♐</span>
+                    <h3>Sagittarius</h3>
+                    <p class="dates">November 22 - December 21</p>
+                </a>
+                
+                <a href="capricorn.html" class="zodiac-card">
+                    <span class="symbol">♑</span>
+                    <h3>Capricorn</h3>
+                    <p class="dates">December 22 - January 19</p>
+                </a>
+                
+                <a href="aquarius.html" class="zodiac-card">
+                    <span class="symbol">♒</span>
+                    <h3>Aquarius</h3>
+                    <p class="dates">January 20 - February 18</p>
+                </a>
+                
+                <a href="pisces.html" class="zodiac-card">
+                    <span class="symbol">♓</span>
+                    <h3>Pisces</h3>
+                    <p class="dates">February 19 - March 20</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="nav-footer">
+            <a href="../shop.html">Collections</a>
+            <a href="../oracle.html">Oracle</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../blog.html">Blog</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LYRĪON Celestial Couture. Live with Ritual and Intention.
+        </div>
+    </footer>
+</body>
+</html>
