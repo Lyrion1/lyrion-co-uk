@@ -14,6 +14,19 @@ function escapeHtml(text) {
 }
 
 /**
+ * Build and sanitize product image URL
+ * @param {string} image - Product image filename
+ * @returns {string} - Sanitized image URL
+ */
+function buildProductImageUrl(image) {
+  // Only allow alphanumeric, dash, underscore and dot
+  if (image && /^[a-zA-Z0-9._-]+\.(webp|jpg|jpeg|png|gif)$/i.test(image)) {
+    return `assets/products/${image}`;
+  }
+  return 'assets/img/placeholder.png';
+}
+
+/**
  * Buy a product directly and redirect to embedded checkout
  * @param {string} name - Product name
  * @param {number} price - Product price
@@ -26,7 +39,7 @@ function buyProduct(name, price, image, variantId, productId) {
     name: name,
     price: parseFloat(price),
     quantity: 1,
-    productType: 'pod',
+    product_type: 'pod',
     image: image || '',
     variantId: variantId || '',
     productId: productId || ''
@@ -104,11 +117,8 @@ function renderProductDetail(product) {
     badges.push({ text: product.category, className: '' });
   }
 
-  // Build and sanitize image URL - only allow alphanumeric, dash, underscore and dot
-  let imageUrl = 'assets/img/placeholder.png';
-  if (product.image && /^[a-zA-Z0-9._-]+\.(webp|jpg|jpeg|png|gif)$/i.test(product.image)) {
-    imageUrl = `assets/products/${product.image}`;
-  }
+  // Build image URL using helper function
+  const imageUrl = buildProductImageUrl(product.image);
 
   // Create product detail HTML
   container.innerHTML = `
@@ -202,14 +212,8 @@ function renderProductDetail(product) {
   const addToCartBtn = container.querySelector('#add-to-cart-btn');
   if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
-      // Build image URL
-      let productImageUrl = 'assets/img/placeholder.png';
-      if (product.image && /^[a-zA-Z0-9._-]+\.(webp|jpg|jpeg|png|gif)$/i.test(product.image)) {
-        productImageUrl = `assets/products/${product.image}`;
-      }
-      
       // Use buyProduct for embedded checkout
-      buyProduct(product.title, product.price, productImageUrl, '', product.sku);
+      buyProduct(product.title, product.price, buildProductImageUrl(product.image), '', product.sku);
     });
   }
 }
