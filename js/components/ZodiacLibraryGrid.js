@@ -25,7 +25,7 @@ class ZodiacLibraryGrid {
       showHeader: options.showHeader !== false,
       headerTitle: options.headerTitle || 'The Zodiac Library',
       headerSubtitle: options.headerSubtitle || 'Twelve cosmic archetypes. Discover your celestial essence.',
-      basePath: options.basePath || 'zodiac/'
+      basePath: options.basePath !== undefined ? options.basePath : 'zodiac/'
     };
 
     // Zodiac signs data
@@ -64,9 +64,6 @@ class ZodiacLibraryGrid {
       console.error('Container not found for ZodiacLibraryGrid');
       return;
     }
-
-    // Clear existing content
-    targetContainer.innerHTML = '';
 
     // Add styles if not already added
     this.injectStyles();
