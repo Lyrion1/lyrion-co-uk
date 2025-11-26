@@ -416,56 +416,27 @@ const LyrionStore = (function() {
             return;
         }
 
-        if (!STRIPE_KEY) {
-            console.error('Stripe publishable key not configured');
-            showNotification('Checkout is not yet configured. Please contact support.');
-            return;
-        }
-
         try {
-            // Calculate total for all cart items
-            const cartTotal = getCartTotal();
-            const cartItems = state.cart.map(item => `${item.name} x${item.quantity}`).join(', ');
-            const firstItemId = state.cart[0].id;
+            // Prepare cart items for embedded checkout
+            const checkoutItems = state.cart.map(item => ({
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity,
+                image: item.image,
+                productId: item.id,
+                product_type: item.product_type || 'pod' // Default to POD for shop items
+            }));
 
-            const response = await fetch(API.createCheckout, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    items: state.cart.map(item => ({
-                        name: item.name,
-                        price: item.price,
-                        quantity: item.quantity,
-                        image: item.image,
-                        productId: item.id
-                    }))
-                })
-            });
+            // Save to localStorage for checkout page
+            const checkoutCart = {
+                items: checkoutItems,
+                timestamp: Date.now()
+            };
 
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.error || 'Checkout failed');
-            }
+            localStorage.setItem('lyrion_checkout_cart', JSON.stringify(checkoutCart));
 
-            const data = await response.json();
-
-            // Redirect to Stripe Checkout URL if provided
-            if (data.url) {
-                window.location.href = data.url;
-                return;
-            }
-
-            // Fallback to Stripe.js redirect
-            if (data.sessionId && window.Stripe) {
-                const stripe = window.Stripe(STRIPE_KEY);
-                await stripe.redirectToCheckout({ sessionId: data.sessionId });
-            } else if (!window.Stripe) {
-                throw new Error('Stripe library not loaded');
-            } else {
-                throw new Error('No checkout URL received');
-            }
+            // Redirect to embedded checkout page
+            window.location.href = '/checkout.html';
 
         } catch (error) {
             console.error('Checkout error:', error);

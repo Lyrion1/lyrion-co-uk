@@ -1,3 +1,17 @@
+/**
+ * Stripe Embedded Checkout Session Creator
+ * 
+ * Creates checkout sessions for embedded checkout (ui_mode: 'embedded').
+ * Returns clientSecret instead of URL for use with stripe.initEmbeddedCheckout().
+ * 
+ * Request body:
+ * - items: Array of { name, price, quantity, product_type, image?, variantId?, productId? }
+ *   - product_type: 'digital' (no shipping) or 'pod' (requires shipping)
+ * 
+ * Response:
+ * - clientSecret: The session's client secret for initializing embedded checkout
+ */
+
 // Safely initialize Stripe - only if secret key is available
 let stripe = null;
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
@@ -63,6 +77,9 @@ exports.handler = async (event, context) => {
             }
         }
 
+        // Determine if any item requires shipping (POD products)
+        const requiresShipping = items.some(item => item.product_type === 'pod');
+
         // Create line items for Stripe
         const lineItems = items.map(item => ({
             price_data: {
@@ -72,7 +89,8 @@ exports.handler = async (event, context) => {
                     images: item.image ? [item.image] : [],
                     metadata: {
                         printful_variant_id: item.variantId || '',
-                        printful_product_id: item.productId || ''
+                        printful_product_id: item.productId || '',
+                        product_type: item.product_type || 'digital'
                     }
                 },
                 unit_amount: Math.round(parseFloat(item.price) * 100), // Convert to pence
@@ -80,31 +98,38 @@ exports.handler = async (event, context) => {
             quantity: parseInt(item.quantity, 10)
         }));
 
-        // Create Stripe checkout session
-        const session = await stripe.checkout.sessions.create({
+        // Build session options for embedded checkout
+        const sessionOptions = {
+            ui_mode: 'embedded',
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: `${process.env.URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${process.env.URL}/products/shop.html`,
-            shipping_address_collection: {
-                allowed_countries: ['GB', 'US', 'CA', 'AU', 'DE', 'FR', 'ES', 'IT', 'NL', 'BE', 'IE', 'AT', 'SE', 'DK', 'NO', 'FI']
-            },
+            return_url: `${process.env.URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
             metadata: {
                 items: JSON.stringify(items.map(item => ({
                     printful_variant_id: item.variantId || '',
                     printful_product_id: item.productId || '',
-                    quantity: parseInt(item.quantity, 10)
+                    quantity: parseInt(item.quantity, 10),
+                    product_type: item.product_type || 'digital'
                 })))
             }
-        });
+        };
+
+        // Only require shipping for POD products
+        if (requiresShipping) {
+            sessionOptions.shipping_address_collection = {
+                allowed_countries: ['GB', 'US', 'CA', 'AU', 'DE', 'FR', 'ES', 'IT', 'NL', 'BE', 'IE', 'AT', 'SE', 'DK', 'NO', 'FI']
+            };
+        }
+
+        // Create Stripe checkout session
+        const session = await stripe.checkout.sessions.create(sessionOptions);
 
         return {
             statusCode: 200,
             headers,
             body: JSON.stringify({
-                sessionId: session.id,
-                url: session.url
+                clientSecret: session.client_secret
             })
         };
 

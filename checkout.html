@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - LYRĪON Celestial Couture</title>
+    <meta name="description" content="Complete your celestial purchase at LYRĪON.">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        :root {
+            --color-ink: #151311;
+            --color-gold: #C4A449;
+            --color-cream: #F4EFE8;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1333 0%, #2d1f4a 50%, #1a1333 100%);
+            min-height: 100vh;
+        }
+
+        .checkout-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .checkout-header h1 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--color-gold);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(196, 164, 73, 0.3);
+        }
+
+        .checkout-header p {
+            color: var(--color-cream);
+            font-family: var(--font-serif);
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .checkout-panel {
+            background: linear-gradient(135deg, rgba(244, 239, 232, 0.95) 0%, rgba(252, 250, 250, 0.98) 100%);
+            border: 2px solid var(--color-gold);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 15px 40px rgba(196, 164, 73, 0.2);
+        }
+
+        .order-summary {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(196, 164, 73, 0.3);
+        }
+
+        .order-summary h2 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--color-ink);
+            margin-bottom: 1rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(196, 164, 73, 0.15);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-name {
+            font-family: var(--font-serif);
+            color: var(--color-ink);
+        }
+
+        .order-item-price {
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .order-total-label {
+            font-family: var(--font-serif);
+            color: var(--color-ink);
+        }
+
+        .order-total-amount {
+            color: var(--color-gold);
+        }
+
+        #checkout {
+            min-height: 400px;
+        }
+
+        .loading-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            color: var(--color-gold);
+        }
+
+        .loading-state .spinner {
+            font-size: 3rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .loading-state p {
+            margin-top: 1rem;
+            font-family: var(--font-serif);
+            font-style: italic;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .error-state {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .error-state h2 {
+            color: #d32f2f;
+            font-family: var(--font-serif);
+            margin-bottom: 1rem;
+        }
+
+        .error-state p {
+            color: var(--color-ink);
+            margin-bottom: 2rem;
+        }
+
+        .error-state .button-primary {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--color-gold);
+            color: var(--color-ink);
+            text-decoration: none;
+            border-radius: 8px;
+            font-family: var(--font-serif);
+            transition: all 0.3s ease;
+        }
+
+        .error-state .button-primary:hover {
+            background: #A38435;
+            transform: translateY(-2px);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .empty-cart h2 {
+            color: var(--color-ink);
+            font-family: var(--font-serif);
+            margin-bottom: 1rem;
+        }
+
+        .empty-cart p {
+            color: #5a5856;
+            margin-bottom: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--color-cream);
+            text-decoration: none;
+            font-family: var(--font-serif);
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--color-gold);
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                padding: 1rem;
+                margin: 2rem auto;
+            }
+
+            .checkout-header h1 {
+                font-size: 2rem;
+            }
+
+            .checkout-panel {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/img/lyrion-logo.png" alt="LYRĪON Celestial Couture Logo" style="height: 40px; width: auto; display: block; margin: 0 auto;">
+            </a>
+        </div>
+    </header>
+
+    <main class="checkout-container">
+        <div class="checkout-header">
+            <h1>✦ Complete Your Order ✦</h1>
+            <p>Your celestial journey awaits</p>
+        </div>
+
+        <div class="checkout-panel">
+            <div id="order-summary" class="order-summary">
+                <!-- Order summary will be populated by JavaScript -->
+            </div>
+            <div id="checkout">
+                <div class="loading-state">
+                    <div class="spinner">✦</div>
+                    <p>Preparing celestial checkout...</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="javascript:history.back()" class="back-link">← Return to previous page</a>
+    </main>
+
+    <script>
+        // Stripe publishable key - safe for client-side use
+        // This test key should be replaced with production key via environment variable in production
+        const STRIPE_PUBLISHABLE_KEY = 'pk_test_51Qh7sV00T0vZKJKn9Ye9YqLXMHzDGzCjr5pW4G05Rjt6g3nB3YP0TYsVcPZaFQNvDnU8PJ9u0pR5lqG3vB4F00vZYqLXMH';
+
+        // Load cart from localStorage
+        function getCart() {
+            try {
+                const cart = localStorage.getItem('lyrion_checkout_cart');
+                return cart ? JSON.parse(cart) : null;
+            } catch (e) {
+                console.error('Error reading cart:', e);
+                return null;
+            }
+        }
+
+        // Render order summary
+        function renderOrderSummary(items) {
+            const summaryDiv = document.getElementById('order-summary');
+            if (!items || items.length === 0) {
+                summaryDiv.innerHTML = '';
+                return;
+            }
+
+            let total = 0;
+            let itemsHtml = items.map(item => {
+                const itemTotal = parseFloat(item.price) * parseInt(item.quantity, 10);
+                total += itemTotal;
+                return `
+                    <div class="order-item">
+                        <span class="order-item-name">${escapeHtml(item.name)} × ${item.quantity}</span>
+                        <span class="order-item-price">£${itemTotal.toFixed(2)}</span>
+                    </div>
+                `;
+            }).join('');
+
+            summaryDiv.innerHTML = `
+                <h2>Order Summary</h2>
+                ${itemsHtml}
+                <div class="order-total">
+                    <span class="order-total-label">Total</span>
+                    <span class="order-total-amount">£${total.toFixed(2)}</span>
+                </div>
+            `;
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Show empty cart state
+        function showEmptyCart() {
+            document.getElementById('order-summary').innerHTML = '';
+            document.getElementById('checkout').innerHTML = `
+                <div class="empty-cart">
+                    <h2>Your Cart is Empty</h2>
+                    <p>Add items to your cart to proceed with checkout.</p>
+                    <a href="shop.html" class="button-primary">Continue Shopping</a>
+                </div>
+            `;
+        }
+
+        // Show error state
+        function showError(message) {
+            document.getElementById('checkout').innerHTML = `
+                <div class="error-state">
+                    <h2>Unable to Load Checkout</h2>
+                    <p>${escapeHtml(message)}</p>
+                    <a href="javascript:location.reload()" class="button-primary">Try Again</a>
+                </div>
+            `;
+        }
+
+        // Initialize Stripe embedded checkout
+        async function initializeCheckout() {
+            const cart = getCart();
+
+            if (!cart || cart.items.length === 0) {
+                showEmptyCart();
+                return;
+            }
+
+            // Render order summary
+            renderOrderSummary(cart.items);
+
+            try {
+                // Create checkout session
+                const response = await fetch('/.netlify/functions/create-checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        items: cart.items
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error || 'Failed to create checkout session');
+                }
+
+                const { clientSecret } = await response.json();
+
+                if (!clientSecret) {
+                    throw new Error('No client secret received from server');
+                }
+
+                // Initialize Stripe
+                const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+
+                // Mount embedded checkout
+                const checkout = await stripe.initEmbeddedCheckout({
+                    clientSecret
+                });
+
+                // Clear loading state and mount checkout
+                document.getElementById('checkout').innerHTML = '';
+                checkout.mount('#checkout');
+
+                // Clear cart from localStorage after successful mount
+                // Cart will be cleared on success page instead
+
+            } catch (error) {
+                console.error('Checkout initialization error:', error);
+                showError(error.message || 'An unexpected error occurred. Please try again.');
+            }
+        }
+
+        // Start checkout on page load
+        document.addEventListener('DOMContentLoaded', initializeCheckout);
+    </script>
+</body>
+</html>

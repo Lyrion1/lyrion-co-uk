@@ -183,45 +183,39 @@ function updateQuantity(variantId, change) {
  }
 }
 
-// Checkout with Stripe
+// Checkout with embedded Stripe checkout
 async function checkout() {
  if (cart.length === 0) {
  alert('Your cart is empty');
  return;
  }
 
- const checkoutBtn = document.getElementById('checkout-btn');
- if (checkoutBtn) {
- checkoutBtn.disabled = true;
- checkoutBtn.textContent = 'Processing...';
- }
-
  try {
- const response = await fetch(`${API_BASE}/create-checkout`, {
- method: 'POST',
- headers: {
- 'Content-Type': 'application/json'
- },
- body: JSON.stringify({ items: cart })
- });
+ // Prepare cart items for embedded checkout
+ const checkoutItems = cart.map(item => ({
+  name: item.name,
+  price: item.price,
+  quantity: item.quantity,
+  image: item.image,
+  productId: item.productId,
+  variantId: item.variantId,
+  product_type: item.product_type || 'pod' // Default to POD for cart items
+ }));
 
- const data = await response.json();
+ // Save to localStorage for checkout page
+ const checkoutCart = {
+  items: checkoutItems,
+  timestamp: Date.now()
+ };
 
- if (data.error) {
- throw new Error(data.error);
- }
+ localStorage.setItem('lyrion_checkout_cart', JSON.stringify(checkoutCart));
 
- // Redirect to Stripe Checkout
- window.location.href = data.url;
+ // Redirect to embedded checkout page
+ window.location.href = '/checkout.html';
 
  } catch (error) {
  console.error('Checkout error:', error);
  alert('Checkout failed. Please try again.');
- 
- if (checkoutBtn) {
- checkoutBtn.disabled = false;
- checkoutBtn.textContent = 'Checkout';
- }
  }
 }
 
