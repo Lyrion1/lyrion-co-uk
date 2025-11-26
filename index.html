@@ -403,6 +403,30 @@
         
         // Track products loading state: null = loading, [] = loaded empty, [items] = loaded with data
         let newApparelProducts = null;
+        let newApparelLoaded = false;
+        
+        // Lazy load new celestial apparel using Intersection Observer
+        function initLazyLoadNewApparel() {
+            const container = document.getElementById('new-apparel-scroll');
+            const section = document.querySelector('.new-celestial-apparel-section');
+            
+            if (!container || !section) return;
+            
+            // Create Intersection Observer for lazy loading
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !newApparelLoaded) {
+                        newApparelLoaded = true;
+                        loadNewCelestialApparel();
+                        observer.unobserve(section);
+                    }
+                });
+            }, {
+                rootMargin: '100px' // Start loading 100px before section is visible
+            });
+            
+            observer.observe(section);
+        }
         
         // Load new celestial apparel (hats and socks) for homepage display
         async function loadNewCelestialApparel() {
@@ -492,12 +516,33 @@
             }
         }
         
-        // Load apparel when page loads (after seasonal-homepage.js)
+        // Load apparel when page loads using lazy loading
         document.addEventListener('DOMContentLoaded', () => {
-            loadNewCelestialApparel();
+            initLazyLoadNewApparel();
         });
         
-        // ========== This Week's Sign Feature ==========
+        // ========== This Week's Sign Feature (Lazy Loaded) ==========
+        let weeklySignLoaded = false;
+        
+        function initLazyLoadWeeklySign() {
+            const weeklySignSection = document.getElementById('weekly-sign-section');
+            if (!weeklySignSection) return;
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !weeklySignLoaded) {
+                        weeklySignLoaded = true;
+                        loadWeeklySign();
+                        observer.unobserve(weeklySignSection);
+                    }
+                });
+            }, {
+                rootMargin: '100px'
+            });
+            
+            observer.observe(weeklySignSection);
+        }
+        
         function loadWeeklySign() {
             try {
                 const weeklySignDetails = getWeeklySignDetails();
@@ -631,14 +676,8 @@
         // Initialize everything on page load
         document.addEventListener('DOMContentLoaded', () => {
             showEmailPopup();
+            initLazyLoadWeeklySign();
         });
-        
-        // Load weekly sign immediately (synchronously)
-        // This ensures it displays as soon as the script runs, no async delay
-        // The marketing.js script is loaded above, so functions are available
-        if (document.getElementById('weekly-sign-content') && typeof loadWeeklySign === 'function') {
-            loadWeeklySign();
-        }
     </script>
     
 </body>
