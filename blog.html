@@ -211,7 +211,46 @@
         </div>
     </footer>
     
-    <script src="js/lyrion.js"></script>
+    <script src="lyrion.js"></script>
+    
+    <!-- Load blog feed from static data -->
+    <script type="module">
+        import { BLOG_FEED_DATA } from './data/blog-feed.js';
+        
+        function renderFeedItem(item) {
+            return `
+                <div class="feed-item">
+                    <a href="${item.url}">${item.title}</a>
+                    <p>${item.date} | ${item.source}</p>
+                </div>
+            `;
+        }
+        
+        function loadBlogFeed() {
+            const feedContainer = document.getElementById('dynamic-feed-content');
+            if (!feedContainer) return;
+            
+            try {
+                let html = '';
+                const articles = BLOG_FEED_DATA.feed.slice(0, 5);
+                
+                if (articles.length === 0) {
+                    html = '<p>The stars are quiet. Check back soon.</p>';
+                } else {
+                    articles.forEach(item => {
+                        html += renderFeedItem(item);
+                    });
+                }
+                
+                feedContainer.innerHTML = html;
+            } catch (error) {
+                feedContainer.innerHTML = '<p style="color: #A00;">Failed to load cosmic feed.</p>';
+            }
+        }
+        
+        // Load feed immediately (no async wait needed)
+        loadBlogFeed();
+    </script>
 
 </body>
 </html>

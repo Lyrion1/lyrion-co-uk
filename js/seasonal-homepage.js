@@ -1,15 +1,15 @@
 /**
  * LYRĪON Seasonal Homepage Functionality
  * 
- * Dynamically loads and displays seasonal products on the homepage
+ * Displays seasonal products on the homepage using static data
  * Shows current season badge and populates "The Season's Celestial Flow" section
  */
 
-// Configuration - use absolute path from site root for consistency
-const PRODUCTS_JSON_PATH = '/data/products.json';
+// Import static product data (no network calls)
+import { PRODUCTS_DATA } from '../data/products.js';
 
-// Global products cache to prevent duplicate fetches
-let cachedProducts = null;
+// Use static data directly
+const cachedProducts = PRODUCTS_DATA;
 
 // Import season functions (inline for browser compatibility)
 function getCurrentSeason() {
@@ -46,63 +46,41 @@ function updateSeasonalBadge() {
 }
 
 /**
- * Fetch products with caching to prevent duplicate fetches
+ * Get products from static data (no network calls)
  */
-async function fetchProductsWithCache() {
-  if (cachedProducts !== null) {
-    return cachedProducts;
-  }
-  
-  try {
-    const response = await fetch(PRODUCTS_JSON_PATH);
-    if (!response.ok) {
-      throw new Error('Failed to fetch products');
-    }
-    
-    const products = await response.json();
-    cachedProducts = Array.isArray(products) ? products : [];
-    return cachedProducts;
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    cachedProducts = []; // Set to empty array to prevent retries
-    return cachedProducts;
-  }
+function fetchProductsWithCache() {
+  return Promise.resolve(cachedProducts);
 }
 
 /**
- * Load and display seasonal products
+ * Load and display seasonal products (using static data)
  */
 async function loadSeasonalProducts() {
-  try {
-    const season = getCurrentSeason();
-    const allProducts = await fetchProductsWithCache();
-    
-    // Filter products for current season
-    const seasonalProducts = allProducts.filter(product => {
-      // Include products marked for all seasons
-      if (product.season === "all" || product.season === "All") {
-        return true;
-      }
-      // Include products that match current season
-      if (product.season === season) {
-        return true;
-      }
-      // If no season specified, include it (available all seasons)
-      if (!product.season) {
-        return true;
-      }
-      return false;
-    });
-    
-    // Get first 6 products for display
-    const displayProducts = seasonalProducts.slice(0, 6);
-    
-    // Update the seasonal flow section
-    updateSeasonalFlowSection(season, displayProducts);
-    
-  } catch (error) {
-    console.error('Error loading seasonal products:', error);
-  }
+  const season = getCurrentSeason();
+  const allProducts = await fetchProductsWithCache();
+  
+  // Filter products for current season
+  const seasonalProducts = allProducts.filter(product => {
+    // Include products marked for all seasons
+    if (product.season === "all" || product.season === "All") {
+      return true;
+    }
+    // Include products that match current season
+    if (product.season === season) {
+      return true;
+    }
+    // If no season specified, include it (available all seasons)
+    if (!product.season) {
+      return true;
+    }
+    return false;
+  });
+  
+  // Get first 6 products for display
+  const displayProducts = seasonalProducts.slice(0, 6);
+  
+  // Update the seasonal flow section
+  updateSeasonalFlowSection(season, displayProducts);
 }
 
 /**
