@@ -35,7 +35,8 @@ exports.handler = async (event, context) => {
             if (isNaN(price) || price <= 0) {
                 throw new Error('Invalid item: price must be a positive number');
             }
-            if (!Number.isInteger(item.quantity) || item.quantity <= 0) {
+            const quantity = parseInt(item.quantity, 10);
+            if (isNaN(quantity) || quantity <= 0) {
                 throw new Error('Invalid item: quantity must be a positive integer');
             }
         }
@@ -54,7 +55,7 @@ exports.handler = async (event, context) => {
                 },
                 unit_amount: Math.round(parseFloat(item.price) * 100), // Convert to pence
             },
-            quantity: item.quantity
+            quantity: parseInt(item.quantity, 10)
         }));
 
         // Create Stripe checkout session
@@ -70,7 +71,8 @@ exports.handler = async (event, context) => {
             metadata: {
                 items: JSON.stringify(items.map(item => ({
                     printful_variant_id: item.variantId || '',
-                    quantity: item.quantity
+                    printful_product_id: item.productId || '',
+                    quantity: parseInt(item.quantity, 10)
                 })))
             }
         });
