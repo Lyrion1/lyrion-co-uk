@@ -19,16 +19,17 @@ This document provides a comprehensive overview of the LYRION automation system 
        ├──────────────────────┴───────────────────┐
        │                                           │
        ▼                                           ▼
-┌──────────────┐                          ┌──────────────┐
-│   Static     │                          │  POD         │
-│   Website    │                          │  Providers   │
-│  (Netlify/   │                          │              │
-│   GitHub     │                          │ • Printful   │
-│   Pages)     │                          │ • Printify   │
-│              │                          │ • Gelato     │
-└──────────────┘                          │ • Digital    │
-                                          │ • Manual     │
-                                          └──────────────┘
+┌──────────────┐                          ┌────────────────┐
+│   Static     │                          │  POD           │
+│   Website    │                          │  Providers     │
+│  (Netlify/   │                          │                │
+│   GitHub     │                          │ • Printful     │
+│   Pages)     │                          │ • Printify     │
+│              │                          │ • Gelato       │
+└──────────────┘                          │ • Inkthreadable│
+                                          │ • Digital      │
+                                          │ • Manual       │
+                                          └────────────────┘
 ```
 
 ## Data Flow
@@ -232,6 +233,12 @@ Worker processes fulfillment
 - **Use Case**: T-shirts, art prints, framed art
 - **API**: REST API with X-API-KEY header
 - **Endpoint**: POST https://order.gelatoapis.com/v4/orders
+- **Fulfillment**: Automatic order creation
+
+### Inkthreadable
+- **Use Case**: Hats, socks, embroidered items (UK-based)
+- **API**: REST API with Bearer token
+- **Endpoint**: POST https://api.inkthreadable.co.uk/v1/orders
 - **Fulfillment**: Automatic order creation
 
 ### Digital

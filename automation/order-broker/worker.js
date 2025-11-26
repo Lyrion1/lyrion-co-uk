@@ -2,7 +2,7 @@
  * LYRION Order Broker - Cloudflare Worker
  * 
  * Multi-POD routing system for handling Stripe checkout and fulfillment
- * Supports: Printful, Printify, Gelato, Digital, Manual, Mixed (Bundles)
+ * Supports: Printful, Printify, Gelato, Inkthreadable, Digital, Manual, Mixed (Bundles)
  * 
  * Environment Variables Required (accessed via env parameter):
  * - STRIPE_SECRET_KEY
@@ -10,6 +10,7 @@
  * - PRINTFUL_API_KEY
  * - PRINTIFY_API_KEY
  * - GELATO_API_KEY
+ * - INKTHREADABLE_API_KEY
  * - PRINTIFY_SHOP_ID
  * - ORDER_NOTIFICATION_EMAIL
  * - BASE_URL
@@ -226,6 +227,9 @@ async function processFulfillment(session, event) {
     case 'gelato':
       await fulfillGelato(product, session, shipping, customer, event);
       break;
+    case 'inkthreadable':
+      await fulfillInkthreadable(product, session, shipping, customer, event);
+      break;
     case 'digital':
       await fulfillDigital(product, session, customer, event);
       break;
@@ -400,6 +404,51 @@ async function fulfillGelato(product, session, shipping, customer, event) {
     await sendErrorNotification('Gelato', product.title, session.id, error, event);
   } else {
     console.log(`Gelato order created for ${product.title}`);
+  }
+}
+
+/**
+ * Fulfill order via Inkthreadable (UK-based embroidery and print provider)
+ */
+async function fulfillInkthreadable(product, session, shipping, customer, event) {
+  const apiKey = event.env?.INKTHREADABLE_API_KEY || '';
+
+  const orderData = {
+    external_reference: session.id,
+    items: [
+      {
+        sku: product.provider_sku,
+        quantity: 1,
+      }
+    ],
+    shipping: {
+      name: shipping.name,
+      address_1: shipping.address.line1,
+      address_2: shipping.address.line2 || '',
+      city: shipping.address.city,
+      county: shipping.address.state || '',
+      country: shipping.address.country,
+      postcode: shipping.address.postal_code,
+      email: customer?.email || '',
+      phone: customer?.phone || '',
+    },
+  };
+
+  const response = await fetch('https://api.inkthreadable.co.uk/v1/orders', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderData),
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    console.error('Inkthreadable fulfillment error:', error);
+    await sendErrorNotification('Inkthreadable', product.title, session.id, error, event);
+  } else {
+    console.log(`Inkthreadable order created for ${product.title}`);
   }
 }
 

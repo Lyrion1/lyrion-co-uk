@@ -17,15 +17,15 @@ const ROUTING_JSON_PATH = path.join(__dirname, '../data/routing.json');
 // Valid categories and providers
 const VALID_CATEGORIES = [
   'Men', 'Women', 'Moon Girls', 'Star Boys', 
-  'Home & Altar', 'Bundles', 'Digital'
+  'Home & Altar', 'Bundles', 'Digital', 'Hats', 'Socks'
 ];
 
 const VALID_PROVIDERS = [
-  'printful', 'printify', 'gelato', 'digital', 'manual', 'mixed'
+  'printful', 'printify', 'gelato', 'digital', 'manual', 'mixed', 'inkthreadable'
 ];
 
 const VALID_TYPES = [
-  'apparel', 'kids', 'home', 'digital', 'bundle'
+  'apparel', 'kids', 'home', 'digital', 'bundle', 'hats', 'socks'
 ];
 
 /**

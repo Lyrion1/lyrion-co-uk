@@ -31,6 +31,11 @@
       "required": true,
       "example": "your-gelato-api-key"
     },
+    "INKTHREADABLE_API_KEY": {
+      "description": "Inkthreadable API key for fulfilling hats and socks (UK-based embroidery provider)",
+      "required": true,
+      "example": "your-inkthreadable-api-key"
+    },
     "ORDER_NOTIFICATION_EMAIL": {
       "description": "Email address to receive manual order notifications",
       "required": true,
@@ -64,6 +69,7 @@
     "printful": "Adult hoodies and premium apparel",
     "printify": "Kids items (Moon Girls, Star Boys), altar cloths, specialty home items",
     "gelato": "T-shirts, art prints, framed art, cushions",
+    "inkthreadable": "Hats, socks, and embroidered items (UK-based)",
     "digital": "PDF guides, readings, meditation audio files",
     "manual": "Items fulfilled personally by the brand (candle holders, etc.)",
     "mixed": "Bundles containing multiple items from different providers"
