@@ -19,10 +19,12 @@ LYRĪON is a celestial-themed luxury brand offering zodiac apparel, kids collect
 - **Moon Girls**: Kids apparel for girls (Printify)
 - **Star Boys**: Kids apparel for boys (Printify)
 - **Home & Altar**: Ritual items, art prints, tapestries (Printify/Gelato/Manual)
+- **Hats**: Celestial beanies and caps (Inkthreadable)
+- **Socks**: Cosmic-themed socks (Inkthreadable)
 - **Digital**: Birth chart readings, lunar guides, meditations
 - **Bundles**: Curated sets combining multiple items
 
-Total: **56 products** across **7 categories**
+Total: **70 products** across **9 categories**
 
 ## 🛠️ System Architecture
 
@@ -66,6 +68,7 @@ data/
 | **Printful** | Adult hoodies, premium apparel | [docs.printful.com](https://developers.printful.com) |
 | **Printify** | Kids items, altar cloths, specialty | [developers.printify.com](https://developers.printify.com) |
 | **Gelato** | T-shirts, art prints, framed art | [gelato.com/api](https://api.gelato.com) |
+| **Inkthreadable** | Hats, socks, embroidered items | [inkthreadable.co.uk](https://inkthreadable.co.uk) |
 | **Digital** | PDFs, readings, audio files | Email delivery |
 | **Manual** | Hand-crafted items (candle holders) | Email notification |
 | **Mixed** | Bundles with multiple providers | Recursive routing |
@@ -114,6 +117,7 @@ wrangler secret put STRIPE_WEBHOOK_SECRET
 wrangler secret put PRINTFUL_API_KEY
 wrangler secret put PRINTIFY_API_KEY
 wrangler secret put GELATO_API_KEY
+wrangler secret put INKTHREADABLE_API_KEY
 wrangler secret put ORDER_NOTIFICATION_EMAIL
 wrangler secret put BASE_URL
 wrangler secret put ROUTING_JSON_URL
@@ -129,6 +133,7 @@ wrangler publish
 - `PRINTFUL_API_KEY`: Printful API key
 - `PRINTIFY_API_KEY`: Printify API token
 - `GELATO_API_KEY`: Gelato API key
+- `INKTHREADABLE_API_KEY`: Inkthreadable API key
 - `ORDER_NOTIFICATION_EMAIL`: Email for manual/error notifications
 - `BASE_URL`: Your website URL (e.g., https://lyrion.co.uk)
 - `ROUTING_JSON_URL`: Public URL to routing.json (e.g., https://raw.githubusercontent.com/Lyrion1/lyrion-co-uk/main/data/routing.json)

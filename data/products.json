@@ -18,9 +18,7 @@
       "fire"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-HOOD-TAURUS",
@@ -41,9 +39,7 @@
       "earth"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-HOOD-GEMINI",
@@ -64,9 +60,7 @@
       "air"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-HOOD-CANCER",
@@ -87,9 +81,7 @@
       "water"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-HOOD-LEO",
@@ -110,9 +102,7 @@
       "fire"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-HOOD-VIRGO",
@@ -133,9 +123,7 @@
       "earth"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-HOOD-LIBRA",
@@ -156,9 +144,7 @@
       "air"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-HOOD-SCORPIO",
@@ -179,9 +165,7 @@
       "water"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-HOOD-SAGITTARIUS",
@@ -202,9 +186,7 @@
       "fire"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-HOOD-CAPRICORN",
@@ -225,9 +207,7 @@
       "earth"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-HOOD-AQUARIUS",
@@ -248,9 +228,7 @@
       "air"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-HOOD-PISCES",
@@ -271,9 +249,7 @@
       "water"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "man"
+    "isSale": false
   },
   {
     "sku": "A-TEE-ARIES",
@@ -294,9 +270,7 @@
       "fire"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "A-TEE-TAURUS",
@@ -317,9 +291,7 @@
       "earth"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "A-TEE-GEMINI",
@@ -340,9 +312,7 @@
       "air"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "A-TEE-CANCER",
@@ -363,9 +333,7 @@
       "water"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "A-TEE-LEO",
@@ -386,9 +354,7 @@
       "fire"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "A-TEE-VIRGO",
@@ -409,9 +375,7 @@
       "earth"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "A-TEE-LIBRA",
@@ -432,9 +396,7 @@
       "air"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "A-TEE-SCORPIO",
@@ -455,9 +417,7 @@
       "water"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "A-TEE-SAGITTARIUS",
@@ -478,9 +438,7 @@
       "fire"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "A-TEE-CAPRICORN",
@@ -501,9 +459,7 @@
       "earth"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "A-TEE-AQUARIUS",
@@ -524,9 +480,7 @@
       "air"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "A-TEE-PISCES",
@@ -547,9 +501,7 @@
       "water"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "K-HOOD-MOON-ARIES",
@@ -570,9 +522,7 @@
       "moon girls"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "girls"
+    "isSale": false
   },
   {
     "sku": "K-HOOD-MOON-TAURUS",
@@ -593,9 +543,7 @@
       "moon girls"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "girls"
+    "isSale": false
   },
   {
     "sku": "K-HOOD-MOON-GEMINI",
@@ -616,9 +564,7 @@
       "moon girls"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "girls"
+    "isSale": false
   },
   {
     "sku": "K-HOOD-MOON-CANCER",
@@ -639,9 +585,7 @@
       "moon girls"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "girls"
+    "isSale": false
   },
   {
     "sku": "K-TEE-MOON-LEO",
@@ -662,9 +606,7 @@
       "moon girls"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "girls"
+    "isSale": false
   },
   {
     "sku": "K-TEE-MOON-VIRGO",
@@ -685,9 +627,7 @@
       "moon girls"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "girls"
+    "isSale": false
   },
   {
     "sku": "K-HOOD-STAR-ARIES",
@@ -708,9 +648,7 @@
       "star boys"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "boys"
+    "isSale": false
   },
   {
     "sku": "K-HOOD-STAR-LEO",
@@ -731,9 +669,7 @@
       "star boys"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "boys"
+    "isSale": false
   },
   {
     "sku": "K-HOOD-STAR-SAGITTARIUS",
@@ -754,9 +690,7 @@
       "star boys"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "boys"
+    "isSale": false
   },
   {
     "sku": "K-TEE-STAR-GEMINI",
@@ -777,9 +711,7 @@
       "star boys"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "boys"
+    "isSale": false
   },
   {
     "sku": "K-TEE-STAR-AQUARIUS",
@@ -800,9 +732,7 @@
       "star boys"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "apparel",
-    "house": "boys"
+    "isSale": false
   },
   {
     "sku": "H-ALTAR-CLOTH-ARIES",
@@ -813,7 +743,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Home & Altar",
-    "sign": "all",
+    "sign": "",
     "type": "home",
     "image": "H-ALTAR-CLOTH-ARIES-image.webp",
     "tags": [
@@ -823,9 +753,7 @@
       "aries"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "altar",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "H-ALTAR-CLOTH-TAURUS",
@@ -836,7 +764,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Home & Altar",
-    "sign": "all",
+    "sign": "",
     "type": "home",
     "image": "H-ALTAR-CLOTH-TAURUS-image.webp",
     "tags": [
@@ -846,9 +774,7 @@
       "taurus"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "altar",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "H-ALTAR-CLOTH-LIBRA",
@@ -859,7 +785,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Home & Altar",
-    "sign": "all",
+    "sign": "",
     "type": "home",
     "image": "H-ALTAR-CLOTH-LIBRA-image.webp",
     "tags": [
@@ -869,9 +795,7 @@
       "libra"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "altar",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "H-SELENE-INCENSE-DISH",
@@ -882,7 +806,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Home & Altar",
-    "sign": "all",
+    "sign": "",
     "type": "home",
     "image": "H-SELENE-INCENSE-DISH-image.webp",
     "tags": [
@@ -892,9 +816,7 @@
       "ritual"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "altar",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "H-CELESTIAL-CUSHION",
@@ -905,7 +827,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Home & Altar",
-    "sign": "all",
+    "sign": "",
     "type": "home",
     "image": "H-CELESTIAL-CUSHION-image.webp",
     "tags": [
@@ -914,9 +836,7 @@
       "zodiac"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "altar",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "H-STAR-MAP-PRINT-A3",
@@ -927,7 +847,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Home & Altar",
-    "sign": "all",
+    "sign": "",
     "type": "home",
     "image": "H-STAR-MAP-PRINT-A3-image.webp",
     "tags": [
@@ -937,9 +857,7 @@
       "stars"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "altar",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "H-COSMIC-ALTAR-SET",
@@ -950,7 +868,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Home & Altar",
-    "sign": "all",
+    "sign": "",
     "type": "home",
     "image": "H-COSMIC-ALTAR-SET-image.webp",
     "tags": [
@@ -960,9 +878,7 @@
       "set"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "altar",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "H-ZODIAC-WALL-ART-GOLD",
@@ -973,7 +889,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Home & Altar",
-    "sign": "all",
+    "sign": "",
     "type": "home",
     "image": "H-ZODIAC-WALL-ART-GOLD-image.webp",
     "tags": [
@@ -984,9 +900,7 @@
       "framed"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "altar",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "H-TAPESTRY-MOON-PHASES",
@@ -997,7 +911,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Home & Altar",
-    "sign": "all",
+    "sign": "",
     "type": "home",
     "image": "H-TAPESTRY-MOON-PHASES-image.webp",
     "tags": [
@@ -1007,9 +921,7 @@
       "ritual"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "altar",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "H-CANDLE-HOLDERS-ZODIAC",
@@ -1020,7 +932,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Home & Altar",
-    "sign": "all",
+    "sign": "",
     "type": "home",
     "image": "H-CANDLE-HOLDERS-ZODIAC-image.webp",
     "tags": [
@@ -1030,9 +942,7 @@
       "ritual"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "altar",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "D-MINI-BIRTH-READING",
@@ -1043,7 +953,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Digital",
-    "sign": "all",
+    "sign": "",
     "type": "digital",
     "image": "D-MINI-BIRTH-READING-image.webp",
     "tags": [
@@ -1052,9 +962,7 @@
       "astrology"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "digital",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "D-FULL-NATAL-BLUEPRINT",
@@ -1065,7 +973,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Digital",
-    "sign": "all",
+    "sign": "",
     "type": "digital",
     "image": "D-FULL-NATAL-BLUEPRINT-image.webp",
     "tags": [
@@ -1074,9 +982,7 @@
       "astrology"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "digital",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "D-SOLAR-RETURN-INSIGHTS",
@@ -1087,7 +993,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Digital",
-    "sign": "all",
+    "sign": "",
     "type": "digital",
     "image": "D-SOLAR-RETURN-INSIGHTS-image.webp",
     "tags": [
@@ -1096,9 +1002,7 @@
       "astrology"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "digital",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "D-YEAR-AHEAD-MEDITATION",
@@ -1109,7 +1013,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Digital",
-    "sign": "all",
+    "sign": "",
     "type": "digital",
     "image": "D-YEAR-AHEAD-MEDITATION-image.webp",
     "tags": [
@@ -1118,9 +1022,7 @@
       "audio"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "digital",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "D-LUNAR-RITUAL-GUIDE",
@@ -1131,7 +1033,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Digital",
-    "sign": "all",
+    "sign": "",
     "type": "digital",
     "image": "D-LUNAR-RITUAL-GUIDE-image.webp",
     "tags": [
@@ -1141,9 +1043,7 @@
       "ritual"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "digital",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "D-NEW-MOON-INTENTION-SCRIPT",
@@ -1154,7 +1054,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Digital",
-    "sign": "all",
+    "sign": "",
     "type": "digital",
     "image": "D-NEW-MOON-INTENTION-SCRIPT-image.webp",
     "tags": [
@@ -1164,9 +1064,7 @@
       "ritual"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "digital",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "D-SEASONAL-ALIGNMENT-ALMANAC",
@@ -1177,7 +1075,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Digital",
-    "sign": "all",
+    "sign": "",
     "type": "digital",
     "image": "D-SEASONAL-ALIGNMENT-ALMANAC-image.webp",
     "tags": [
@@ -1187,9 +1085,7 @@
       "almanac"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "digital",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "D-LUNAR-PHASE-GUIDE",
@@ -1200,7 +1096,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Digital",
-    "sign": "all",
+    "sign": "",
     "type": "digital",
     "image": "D-LUNAR-PHASE-GUIDE-image.webp",
     "tags": [
@@ -1210,9 +1106,7 @@
       "ritual"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "digital",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "D-ZODIAC-COMPATIBILITY",
@@ -1223,7 +1117,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Digital",
-    "sign": "all",
+    "sign": "",
     "type": "digital",
     "image": "D-ZODIAC-COMPATIBILITY-image.webp",
     "tags": [
@@ -1232,9 +1126,7 @@
       "compatibility"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "role": "digital",
-    "house": null
+    "isSale": false
   },
   {
     "sku": "B-ARIES-COMPLETE",
@@ -1258,9 +1150,7 @@
       "H-ALTAR-CLOTH-ARIES",
       "D-MINI-BIRTH-READING"
     ],
-    "isSale": true,
-    "role": "apparel",
-    "house": null
+    "isSale": true
   },
   {
     "sku": "B-CELESTIAL-HOME-SET",
@@ -1271,7 +1161,7 @@
     "compareAtPrice": 210,
     "currency": "GBP",
     "category": "Bundles",
-    "sign": "all",
+    "sign": "",
     "type": "bundle",
     "image": "B-CELESTIAL-HOME-SET-image.webp",
     "tags": [
@@ -1284,9 +1174,7 @@
       "H-CELESTIAL-CUSHION",
       "H-CANDLE-HOLDERS-ZODIAC"
     ],
-    "isSale": true,
-    "role": "apparel",
-    "house": null
+    "isSale": true
   },
   {
     "sku": "B-MOON-GIRL-STARTER",
@@ -1297,7 +1185,7 @@
     "compareAtPrice": 145,
     "currency": "GBP",
     "category": "Bundles",
-    "sign": "all",
+    "sign": "",
     "type": "bundle",
     "image": "B-MOON-GIRL-STARTER-image.webp",
     "tags": [
@@ -1310,9 +1198,7 @@
       "K-TEE-MOON-LEO",
       "D-LUNAR-PHASE-GUIDE"
     ],
-    "isSale": true,
-    "role": "apparel",
-    "house": null
+    "isSale": true
   },
   {
     "sku": "B-DIGITAL-WISDOM-PACK",
@@ -1323,7 +1209,7 @@
     "compareAtPrice": 150,
     "currency": "GBP",
     "category": "Bundles",
-    "sign": "all",
+    "sign": "",
     "type": "bundle",
     "image": "B-DIGITAL-WISDOM-PACK-image.webp",
     "tags": [
@@ -1337,9 +1223,7 @@
       "D-SOLAR-RETURN-INSIGHTS",
       "D-YEAR-AHEAD-MEDITATION"
     ],
-    "isSale": true,
-    "role": "apparel",
-    "house": null
+    "isSale": true
   },
   {
     "sku": "B-COSMIC-COUPLE-SET",
@@ -1350,7 +1234,7 @@
     "compareAtPrice": 309,
     "currency": "GBP",
     "category": "Bundles",
-    "sign": "all",
+    "sign": "",
     "type": "bundle",
     "image": "B-COSMIC-COUPLE-SET-image.webp",
     "tags": [
@@ -1363,9 +1247,7 @@
       "A-HOOD-LEO",
       "D-ZODIAC-COMPATIBILITY"
     ],
-    "isSale": true,
-    "role": "apparel",
-    "house": null
+    "isSale": true
   },
   {
     "sku": "HAT-ALIGNED-BEANIE",
@@ -1376,7 +1258,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Hats",
-    "sign": "all",
+    "sign": "",
     "type": "hats",
     "image": "HAT-ALIGNED-BEANIE-image.webp",
     "tags": [
@@ -1386,18 +1268,7 @@
       "unisex"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "season": "all",
-    "aestheticTags": [
-      "minimal",
-      "cosmic",
-      "elegant"
-    ],
-    "embroideryStyle": "celestial",
-    "genderFocus": "unisex",
-    "madeIn": "England",
-    "role": "accessory",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "HAT-STARDUST-DAD",
@@ -1408,7 +1279,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Hats",
-    "sign": "all",
+    "sign": "",
     "type": "hats",
     "image": "HAT-STARDUST-DAD-image.webp",
     "tags": [
@@ -1418,18 +1289,7 @@
       "unisex"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "season": "all",
-    "aestheticTags": [
-      "minimal",
-      "cosmic",
-      "elegant"
-    ],
-    "embroideryStyle": "celestial",
-    "genderFocus": "unisex",
-    "madeIn": "England",
-    "role": "accessory",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "HAT-ASCENDANT-BEANIE",
@@ -1440,7 +1300,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Hats",
-    "sign": "all",
+    "sign": "",
     "type": "hats",
     "image": "HAT-ASCENDANT-BEANIE-image.webp",
     "tags": [
@@ -1450,18 +1310,7 @@
       "unisex"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "season": "all",
-    "aestheticTags": [
-      "minimal",
-      "cosmic",
-      "elegant"
-    ],
-    "embroideryStyle": "celestial",
-    "genderFocus": "unisex",
-    "madeIn": "England",
-    "role": "accessory",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "HAT-COSMIC-FLOW",
@@ -1472,7 +1321,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Hats",
-    "sign": "all",
+    "sign": "",
     "type": "hats",
     "image": "HAT-COSMIC-FLOW-image.webp",
     "tags": [
@@ -1482,18 +1331,7 @@
       "unisex"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "season": "all",
-    "aestheticTags": [
-      "minimal",
-      "cosmic",
-      "elegant"
-    ],
-    "embroideryStyle": "celestial",
-    "genderFocus": "unisex",
-    "madeIn": "England",
-    "role": "accessory",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "HAT-SERENITY-ORBIT",
@@ -1504,7 +1342,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Hats",
-    "sign": "all",
+    "sign": "",
     "type": "hats",
     "image": "HAT-SERENITY-ORBIT-image.webp",
     "tags": [
@@ -1514,18 +1352,7 @@
       "women"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "season": "all",
-    "aestheticTags": [
-      "minimal",
-      "cosmic",
-      "elegant"
-    ],
-    "embroideryStyle": "celestial",
-    "genderFocus": "women",
-    "madeIn": "England",
-    "role": "accessory",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "HAT-MIDNIGHT-EMBER",
@@ -1536,7 +1363,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Hats",
-    "sign": "all",
+    "sign": "",
     "type": "hats",
     "image": "HAT-MIDNIGHT-EMBER-image.webp",
     "tags": [
@@ -1546,18 +1373,7 @@
       "emo"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "season": "all",
-    "aestheticTags": [
-      "minimal",
-      "cosmic",
-      "elegant"
-    ],
-    "embroideryStyle": "celestial",
-    "genderFocus": "emo",
-    "madeIn": "England",
-    "role": "accessory",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "SOCK-STARLIT-PATH",
@@ -1568,7 +1384,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Socks",
-    "sign": "all",
+    "sign": "",
     "type": "socks",
     "image": "SOCK-STARLIT-PATH-image.webp",
     "tags": [
@@ -1578,18 +1394,7 @@
       "emo"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "season": "warm",
-    "aestheticTags": [
-      "minimal",
-      "cosmic",
-      "emo"
-    ],
-    "embroideryStyle": "manifestation",
-    "genderFocus": "women",
-    "madeIn": "England",
-    "role": "accessory",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "SOCK-SERENE-ORBIT",
@@ -1600,7 +1405,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Socks",
-    "sign": "all",
+    "sign": "",
     "type": "socks",
     "image": "SOCK-SERENE-ORBIT-image.webp",
     "tags": [
@@ -1610,18 +1415,7 @@
       "youth"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "season": "warm",
-    "aestheticTags": [
-      "minimal",
-      "cosmic",
-      "elegant"
-    ],
-    "embroideryStyle": "celestial",
-    "genderFocus": "youth",
-    "madeIn": "England",
-    "role": "accessory",
-    "house": "girls"
+    "isSale": false
   },
   {
     "sku": "SOCK-MOON-CYCLE-KNIT",
@@ -1632,7 +1426,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Socks",
-    "sign": "all",
+    "sign": "",
     "type": "socks",
     "image": "SOCK-MOON-CYCLE-KNIT-image.webp",
     "tags": [
@@ -1642,18 +1436,7 @@
       "cosmic"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "season": "cold",
-    "aestheticTags": [
-      "minimal",
-      "cosmic",
-      "elegant"
-    ],
-    "embroideryStyle": "celestial",
-    "genderFocus": "women",
-    "madeIn": "England",
-    "role": "accessory",
-    "house": "woman"
+    "isSale": false
   },
   {
     "sku": "SOCK-MIDNIGHT-EMBER-KNIT",
@@ -1664,7 +1447,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Socks",
-    "sign": "all",
+    "sign": "",
     "type": "socks",
     "image": "SOCK-MIDNIGHT-EMBER-KNIT-image.webp",
     "tags": [
@@ -1673,18 +1456,7 @@
       "emo"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "season": "cold",
-    "aestheticTags": [
-      "minimal",
-      "cosmic",
-      "emo"
-    ],
-    "embroideryStyle": "celestial",
-    "genderFocus": "emo",
-    "madeIn": "England",
-    "role": "accessory",
-    "house": "boys"
+    "isSale": false
   },
   {
     "sku": "SOCK-ASCENDING-KNIT",
@@ -1695,7 +1467,7 @@
     "compareAtPrice": 0,
     "currency": "GBP",
     "category": "Socks",
-    "sign": "all",
+    "sign": "",
     "type": "socks",
     "image": "SOCK-ASCENDING-KNIT-image.webp",
     "tags": [
@@ -1705,17 +1477,6 @@
       "unisex"
     ],
     "bundleItems": [],
-    "isSale": false,
-    "season": "cold",
-    "aestheticTags": [
-      "minimal",
-      "cosmic",
-      "elegant"
-    ],
-    "embroideryStyle": "manifestation",
-    "genderFocus": "unisex",
-    "madeIn": "England",
-    "role": "accessory",
-    "house": "woman"
+    "isSale": false
   }
 ]

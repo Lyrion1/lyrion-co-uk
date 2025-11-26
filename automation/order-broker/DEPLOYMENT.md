@@ -56,6 +56,9 @@ wrangler secret put PRINTIFY_SHOP_ID
 wrangler secret put GELATO_API_KEY
 # Enter your Gelato API key
 
+wrangler secret put INKTHREADABLE_API_KEY
+# Enter your Inkthreadable API key
+
 # Email Configuration
 wrangler secret put ORDER_NOTIFICATION_EMAIL
 # Enter: orders@lyrion.co.uk (or your email)
@@ -289,6 +292,12 @@ To use a custom domain like `api.lyrion.co.uk`:
 1. Get API key from [Gelato Dashboard](https://dashboard.gelato.com)
 2. Note product UIDs for your items
 3. Update provider_sku in products-master.csv
+
+### Inkthreadable Setup
+
+1. Get API key from [Inkthreadable Dashboard](https://inkthreadable.co.uk)
+2. Note product SKUs for your embroidered items
+3. Update provider_sku in products-master.csv with INK-prefixed SKUs
 
 ## Support
 
