@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <script src="../js/store.js"></script>
+    <!-- Store.js loaded at end of body for proper DOM availability -->
     <style>
 .products-grid {
 display: grid;
@@ -506,48 +506,69 @@ color: #d32f2f;
     <script src="../js/store.js"></script>
     <script src="../js/checkout.js"></script>
     <script src="../js/components/ProductGrid.js"></script>
-    <script type="module" src="../js/shop-dynamic.js"></script>
+    <!-- shop-dynamic.js disabled - using store.js for product loading -->
 
     <script>
-        // Initialize category filter buttons
-        document.querySelectorAll('.category-filters button').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Update active state
-                document.querySelectorAll('.category-filters button').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Load products for category
-                const category = this.dataset.category;
-                if (window.LyrionStore) {
-                    LyrionStore.loadProducts(category || null);
-                }
-            });
-        });
-
-        // Show cart summary when items are added
-        function updateCartSummaryVisibility() {
-            const cartSummary = document.querySelector('.cart-summary');
-            if (window.LyrionStore && LyrionStore.getCartCount() > 0) {
-                cartSummary.style.display = 'flex';
-            } else {
-                cartSummary.style.display = 'none';
+        // Wait for DOM and store to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize category filter buttons
+            const filterButtons = document.querySelectorAll('.category-filters button');
+            if (filterButtons && filterButtons.length > 0) {
+                filterButtons.forEach(btn => {
+                    if (btn) {
+                        btn.addEventListener('click', function() {
+                            // Update active state
+                            filterButtons.forEach(b => b.classList.remove('active'));
+                            this.classList.add('active');
+                            
+                            // Load products for category
+                            const category = this.dataset.category;
+                            if (window.LyrionStore) {
+                                LyrionStore.loadProducts(category || null);
+                            }
+                        });
+                    }
+                });
             }
-        }
 
-        // Check URL for category parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const categoryParam = urlParams.get('category');
-        if (categoryParam && window.LyrionStore) {
-            LyrionStore.loadProducts(categoryParam);
-            // Update active filter button
-            document.querySelectorAll('.category-filters button').forEach(btn => {
-                btn.classList.remove('active');
-                const btnCategory = btn.dataset.category;
-                if (btnCategory && btnCategory.toLowerCase() === categoryParam.toLowerCase()) {
-                    btn.classList.add('active');
+            // Show cart summary when items are added
+            function updateCartSummaryVisibility() {
+                const cartSummary = document.querySelector('.cart-summary');
+                if (cartSummary) {
+                    if (window.LyrionStore && LyrionStore.getCartCount() > 0) {
+                        cartSummary.style.display = 'flex';
+                    } else {
+                        cartSummary.style.display = 'none';
+                    }
                 }
-            });
-        }
+            }
+
+            // Check URL for category parameter
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const categoryParam = urlParams.get('category');
+                if (categoryParam && window.LyrionStore) {
+                    LyrionStore.loadProducts(categoryParam);
+                    // Update active filter button - use fresh query to avoid reference issues
+                    if (filterButtons && filterButtons.length > 0) {
+                        filterButtons.forEach(btn => {
+                            if (btn) {
+                                btn.classList.remove('active');
+                                const btnCategory = btn.dataset.category;
+                                if (btnCategory && btnCategory.toLowerCase() === categoryParam.toLowerCase()) {
+                                    btn.classList.add('active');
+                                }
+                            }
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error('Error processing URL parameters:', error);
+            }
+            
+            // Initial cart summary visibility check
+            updateCartSummaryVisibility();
+        });
     </script>
 
 </body>

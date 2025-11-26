@@ -1,11 +1,37 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// Safely initialize Stripe - only if secret key is available
+let stripe = null;
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+if (STRIPE_SECRET_KEY) {
+    try {
+        stripe = require('stripe')(STRIPE_SECRET_KEY);
+    } catch (e) {
+        console.error('Failed to initialize Stripe:', e.message);
+    }
+}
 const fetch = require('node-fetch');
 
 exports.handler = async (event, context) => {
- const sig = event.headers['stripe-signature'];
- const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+    // Check if Stripe is properly configured
+    if (!stripe) {
+        console.error('Stripe not configured - STRIPE_SECRET_KEY missing');
+        return {
+            statusCode: 503,
+            body: JSON.stringify({ error: 'Webhook service not configured' })
+        };
+    }
 
- let stripeEvent;
+    const sig = event.headers['stripe-signature'];
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+    if (!webhookSecret) {
+        console.error('STRIPE_WEBHOOK_SECRET not configured');
+        return {
+            statusCode: 503,
+            body: JSON.stringify({ error: 'Webhook secret not configured' })
+        };
+    }
+
+    let stripeEvent;
 
  try {
  stripeEvent = stripe.webhooks.constructEvent(

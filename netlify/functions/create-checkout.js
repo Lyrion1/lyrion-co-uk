@@ -1,4 +1,13 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// Safely initialize Stripe - only if secret key is available
+let stripe = null;
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+if (STRIPE_SECRET_KEY) {
+    try {
+        stripe = require('stripe')(STRIPE_SECRET_KEY);
+    } catch (e) {
+        console.error('Failed to initialize Stripe:', e.message);
+    }
+}
 
 exports.handler = async (event, context) => {
     const headers = {
@@ -19,8 +28,21 @@ exports.handler = async (event, context) => {
         };
     }
 
+    // Check if Stripe is properly configured
+    if (!stripe) {
+        console.error('Stripe not configured - STRIPE_SECRET_KEY missing');
+        return {
+            statusCode: 503,
+            headers,
+            body: JSON.stringify({ 
+                error: 'Checkout service not configured. Please contact support.',
+                code: 'STRIPE_NOT_CONFIGURED'
+            })
+        };
+    }
+
     try {
-        const { items } = JSON.parse(event.body);
+        const { items } = JSON.parse(event.body || '{}');
 
         if (!items || items.length === 0) {
             throw new Error('No items in cart');
