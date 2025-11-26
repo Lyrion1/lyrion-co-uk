@@ -1,60 +1,100 @@
-// Function to securely initiate a Stripe Checkout Session
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async (event, context) => {
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Content-Type': 'application/json'
+    };
+
+    if (event.httpMethod === 'OPTIONS') {
+        return { statusCode: 200, headers, body: '' };
+    }
+
     if (event.httpMethod !== 'POST') {
-        return { statusCode: 405, body: 'Method Not Allowed' };
+        return {
+            statusCode: 405,
+            headers,
+            body: JSON.stringify({ error: 'Method not allowed' })
+        };
     }
 
     try {
-        const { productData } = JSON.parse(event.body);
+        const { items } = JSON.parse(event.body);
 
-        // Map your simple product data to Stripe's line item format
-        const lineItems = [
-            {
-                price_data: {
-                    currency: 'gbp',
-                    product_data: {
-                        name: productData.name,
-                        // In a real legacy system, you would grab a specific image URL here
-                        images: ['https://lyrion-celestiale.netlify.app/assets/img/logo-circle.jpg'], 
-                    },
-                    unit_amount: Math.round(productData.price * 100), // Convert GBP to pence
+        if (!items || items.length === 0) {
+            throw new Error('No items in cart');
+        }
+
+        // Validate item properties
+        for (const item of items) {
+            if (!item.name || !item.price || !item.quantity) {
+                throw new Error('Invalid item: missing required fields (name, price, quantity)');
+            }
+            const price = parseFloat(item.price);
+            if (isNaN(price) || price <= 0) {
+                throw new Error('Invalid item: price must be a positive number');
+            }
+            const quantity = parseInt(item.quantity, 10);
+            if (isNaN(quantity) || quantity <= 0) {
+                throw new Error('Invalid item: quantity must be a positive integer');
+            }
+        }
+
+        // Create line items for Stripe
+        const lineItems = items.map(item => ({
+            price_data: {
+                currency: 'gbp',
+                product_data: {
+                    name: item.name,
+                    images: item.image ? [item.image] : [],
+                    metadata: {
+                        printful_variant_id: item.variantId || '',
+                        printful_product_id: item.productId || ''
+                    }
                 },
-                quantity: 1,
+                unit_amount: Math.round(parseFloat(item.price) * 100), // Convert to pence
             },
-        ];
+            quantity: parseInt(item.quantity, 10)
+        }));
 
+        // Create Stripe checkout session
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            // Redirect URLs after success or failure
-            success_url: productData.id === 'PREMIUM-ORACLE-READING' 
-                ? `${process.env.URL}/oracle/premium.html?session_id={CHECKOUT_SESSION_ID}`
-                : productData.id === 'DONATION'
-                ? `${process.env.URL}/offerings.html?donation=success`
-                : `${process.env.URL}/shop.html?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: productData.id === 'PREMIUM-ORACLE-READING'
-                ? `${process.env.URL}/oracle/premium.html?status=cancelled`
-                : productData.id === 'DONATION'
-                ? `${process.env.URL}/offerings.html?status=cancelled`
-                : `${process.env.URL}/shop.html?status=cancelled`,
-            metadata: {
-                gelato_sku: productData.id, // Pass SKU to fulfillment function later
+            success_url: `${process.env.URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${process.env.URL}/products/shop.html`,
+            shipping_address_collection: {
+                allowed_countries: ['GB', 'US', 'CA', 'AU', 'DE', 'FR', 'ES', 'IT', 'NL', 'BE', 'IE', 'AT', 'SE', 'DK', 'NO', 'FI']
             },
+            metadata: {
+                items: JSON.stringify(items.map(item => ({
+                    printful_variant_id: item.variantId || '',
+                    printful_product_id: item.productId || '',
+                    quantity: parseInt(item.quantity, 10)
+                })))
+            }
         });
 
         return {
             statusCode: 200,
-            body: JSON.stringify({ sessionId: session.id }),
+            headers,
+            body: JSON.stringify({
+                sessionId: session.id,
+                url: session.url
+            })
         };
 
     } catch (error) {
-        console.error('Stripe Checkout Error:', error.message);
+        console.error('Checkout error:', error);
+
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: error.message }),
+            headers,
+            body: JSON.stringify({
+                error: error.message
+            })
         };
     }
 };
