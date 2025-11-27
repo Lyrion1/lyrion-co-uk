@@ -6,7 +6,19 @@
  * the LYRĪON brand voice: mystical, luxurious, intentional.
  */
 
-import { CODEX_CATEGORIES, CODEX_SOURCES, createSlug } from './codex.js';
+/**
+ * Helper to create slug (inlined to avoid circular dependency)
+ */
+function createSlug(title, date) {
+  const datePrefix = date ? new Date(date).toISOString().split('T')[0] : '';
+  const slugifiedTitle = title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+  return datePrefix ? `${datePrefix}-${slugifiedTitle}` : slugifiedTitle;
+}
 
 /**
  * Fallback CodexPost array
@@ -17,8 +29,8 @@ export const CODEX_FALLBACK_POSTS = [
     slug: createSlug('The Art of Celestial Alignment', '2025-11-25'),
     title: 'The Art of Celestial Alignment',
     date: '2025-11-25T10:00:00Z',
-    category: CODEX_CATEGORIES.COSMIC_WEATHER,
-    source: CODEX_SOURCES.INTERNAL,
+    category: 'Cosmic Weather',
+    source: 'Internal',
     summary: 'As the planets shift and dance through the heavens, we are invited to align our earthly rituals with cosmic rhythm. Discover how to read the celestial weather and dress your intentions accordingly.',
     body: `The cosmos speaks in a language older than words—a dialect of light, shadow, and sacred geometry. To live in alignment with celestial weather is to become fluent in this ancient tongue.
 
@@ -37,8 +49,8 @@ Begin simply: note the current lunar phase. Observe how you feel. Choose one gar
     slug: createSlug('Full Moon Rituals for the Modern Mystic', '2025-11-22'),
     title: 'Full Moon Rituals for the Modern Mystic',
     date: '2025-11-22T14:30:00Z',
-    category: CODEX_CATEGORIES.MOON_MUSINGS,
-    source: CODEX_SOURCES.INTERNAL,
+    category: 'Moon Musings',
+    source: 'Internal',
     summary: 'The full moon illuminates what we have cultivated and what we must release. Learn to craft your own full moon ritual that honours both the light and the shadow within.',
     body: `She rises, luminous and complete, casting silver light upon everything hidden. The full moon has called to seekers across every culture and every age, and she calls to you now.
 
@@ -63,8 +75,8 @@ Close with stillness. Sit in the moonlight if you can, or simply imagine her sil
     slug: createSlug('Winter Solstice and the Return of Light', '2025-11-18'),
     title: 'Winter Solstice and the Return of Light',
     date: '2025-11-18T08:00:00Z',
-    category: CODEX_CATEGORIES.SEASONAL_WISDOM,
-    source: CODEX_SOURCES.INTERNAL,
+    category: 'Seasonal Wisdom',
+    source: 'Internal',
     summary: 'The longest night carries the promise of returning light. Explore the ancient wisdom of the Winter Solstice and how to honour this pivotal threshold in the celestial year.',
     body: `In the deepest darkness, we find the seed of light. The Winter Solstice stands as the year's great threshold—that pivotal moment when the sun reaches its lowest arc and begins, imperceptibly at first, its return to fullness.
 
@@ -89,8 +101,8 @@ The Solstice reminds us that every ending contains a beginning, every death a re
     slug: createSlug('The Mythology of Orion', '2025-11-15'),
     title: 'The Mythology of Orion: Hunter Among the Stars',
     date: '2025-11-15T16:00:00Z',
-    category: CODEX_CATEGORIES.CELESTIAL_STORIES,
-    source: CODEX_SOURCES.INTERNAL,
+    category: 'Celestial Stories',
+    source: 'Internal',
     summary: 'One of winter\'s most magnificent constellations carries stories as old as human memory. Journey into the mythology of Orion and discover what this celestial hunter offers the modern seeker.',
     body: `Look up on any clear winter night, and there he stands: Orion, the Hunter, striding across the celestial dome with his distinctive belt of three bright stars. He has been watching over humanity since we first lifted our eyes to wonder at the night sky.
 
@@ -113,8 +125,8 @@ The cosmos is not distant. It is intimate. And Orion reminds us that even the mo
     slug: createSlug('Mercury Retrograde Survival Guide', '2025-11-10'),
     title: 'Mercury Retrograde: A Survival Guide for the Soul',
     date: '2025-11-10T12:00:00Z',
-    category: CODEX_CATEGORIES.COSMIC_WEATHER,
-    source: CODEX_SOURCES.INTERNAL,
+    category: 'Cosmic Weather',
+    source: 'Internal',
     summary: 'Three times a year, Mercury appears to reverse its cosmic course. Rather than fearing this transit, learn to work with its reflective energy for profound inner work.',
     body: `The dreaded words spread across social media: Mercury is retrograde. Phones will fail. Contracts will crumble. Exes will text at 3 AM. The universe, apparently, is out to get us.
 
@@ -143,8 +155,8 @@ The cosmos is not your enemy. Mercury retrograde is a rhythm, a breath, a necess
     slug: createSlug('New Moon Manifestation Practices', '2025-11-05'),
     title: 'New Moon Manifestation: Planting Seeds in Darkness',
     date: '2025-11-05T09:00:00Z',
-    category: CODEX_CATEGORIES.MOON_MUSINGS,
-    source: CODEX_SOURCES.INTERNAL,
+    category: 'Moon Musings',
+    source: 'Internal',
     summary: 'When the moon hides her face, we are given a blank canvas for intention. Discover powerful practices for setting new moon intentions that truly take root.',
     body: `In the darkness of the new moon, we find not absence but potential. The sky appears moonless, yet she is there—invisible, gestating, waiting. This is the cosmic moment for planting seeds.
 

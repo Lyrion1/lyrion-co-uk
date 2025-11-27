@@ -105,6 +105,16 @@ function createSlug(title, date) {
 }
 
 /**
+ * Truncate text with ellipsis only if needed
+ */
+function truncateWithEllipsis(text, maxLength) {
+  if (!text || text.length <= maxLength) {
+    return text || '';
+  }
+  return text.substring(0, maxLength) + '...';
+}
+
+/**
  * Determine category based on content keywords
  */
 function determineCategory(title, content) {
@@ -161,7 +171,7 @@ async function fetchNASAFeed(url) {
         date: item.date ? new Date(item.date).toISOString() : new Date().toISOString(),
         category: determineCategory(item.title || '', item.explanation || ''),
         source: 'NASA',
-        summary: (item.explanation || '').substring(0, 200) + '...',
+        summary: truncateWithEllipsis(item.explanation || '', 200),
         body: item.explanation || '',
         imageUrl: item.hdurl || item.url || null
       }));
@@ -205,7 +215,7 @@ async function fetchAstroFeed(url) {
         date: (item.date || item.pubDate) ? new Date(item.date || item.pubDate).toISOString() : new Date().toISOString(),
         category: determineCategory(item.title || '', item.description || item.content || ''),
         source: 'AstroFeed',
-        summary: (item.description || item.summary || '').substring(0, 200) + '...',
+        summary: truncateWithEllipsis(item.description || item.summary || '', 200),
         body: item.content || item.description || '',
         imageUrl: item.image || item.imageUrl || null
       }));
