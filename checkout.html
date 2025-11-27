@@ -352,11 +352,6 @@
             renderOrderSummary(cart.items);
 
             try {
-                // Check Stripe availability early to fail fast
-                if (typeof Stripe === 'undefined') {
-                    throw new Error('Payment system not available. Please refresh and try again.');
-                }
-                
                 // Create checkout session with timeout protection
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
@@ -385,7 +380,10 @@
                     throw new Error('No client secret received from server');
                 }
 
-                // Initialize Stripe
+                // Initialize Stripe - check availability after API call succeeds
+                if (typeof Stripe === 'undefined') {
+                    throw new Error('Payment system not available. Please refresh and try again.');
+                }
                 const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 
                 // Mount embedded checkout
