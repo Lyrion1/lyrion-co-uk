@@ -493,8 +493,19 @@
             const formattedDate = formatPostDate(post.date);
             const hasImage = post.imageUrl && post.imageUrl.trim() !== '';
             const imageClass = hasImage ? 'post-image' : 'post-image post-image-placeholder';
+            
+            // Build image src - add ../ prefix if path is relative and doesn't already have it
+            let imageSrc = '';
+            if (hasImage) {
+                const url = post.imageUrl.trim();
+                if (url.startsWith('http') || url.startsWith('/') || url.startsWith('../')) {
+                    imageSrc = url;
+                } else {
+                    imageSrc = '../' + url;
+                }
+            }
             const imageContent = hasImage 
-                ? `<img src="../${post.imageUrl}" alt="${post.title}">` 
+                ? `<img src="${imageSrc}" alt="${post.title}">` 
                 : '';
             
             return `
