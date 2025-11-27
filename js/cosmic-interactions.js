@@ -172,13 +172,15 @@
                 
                 const href = link.getAttribute('href');
                 
-                // Skip external links, hash links, and special links
+                // Skip external links, hash links, and potentially dangerous/special links
                 if (!href || 
                     href.startsWith('http') || 
                     href.startsWith('#') || 
                     href.startsWith('mailto:') ||
                     href.startsWith('tel:') ||
                     href.startsWith('javascript:') ||
+                    href.startsWith('data:') ||
+                    href.startsWith('vbscript:') ||
                     link.hasAttribute('download') ||
                     link.getAttribute('target') === '_blank') {
                     return;
@@ -314,6 +316,13 @@
             for (let i = 0; i < 5; i++) {
                 const star = document.createElement('span');
                 star.textContent = stars[Math.floor(Math.random() * stars.length)];
+                
+                // Calculate angle and distance using JavaScript for browser compatibility
+                const angle = ((i * 72) + Math.random() * 30) * (Math.PI / 180);
+                const distance = 50 + Math.random() * 30;
+                const translateX = Math.cos(angle) * distance;
+                const translateY = Math.sin(angle) * distance;
+                
                 star.style.cssText = `
                     position: fixed;
                     left: ${x}px;
@@ -322,10 +331,23 @@
                     font-size: ${12 + Math.random() * 10}px;
                     pointer-events: none;
                     z-index: 99999;
-                    animation: starBurstFly 0.6s ease-out forwards;
-                    --angle: ${(i * 72) + Math.random() * 30}deg;
-                    --distance: ${50 + Math.random() * 30}px;
+                    animation: starBurstFly${i} 0.6s ease-out forwards;
                 `;
+                
+                // Create unique keyframe for each star with pre-calculated values
+                const keyframeId = `starBurstFly${i}`;
+                if (!document.getElementById(keyframeId)) {
+                    const style = document.createElement('style');
+                    style.id = keyframeId;
+                    style.textContent = `
+                        @keyframes ${keyframeId} {
+                            0% { opacity: 1; transform: translate(0, 0) scale(1); }
+                            100% { opacity: 0; transform: translate(${translateX}px, ${translateY}px) scale(0.5); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+                
                 document.body.appendChild(star);
                 
                 setTimeout(() => star.remove(), 600);
@@ -499,25 +521,6 @@
         PageTransitions.init();
         ScrollReveal.init();
         MicroAnimations.init();
-        
-        // Add CSS for star burst animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes starBurstFly {
-                0% {
-                    opacity: 1;
-                    transform: translate(0, 0) scale(1);
-                }
-                100% {
-                    opacity: 0;
-                    transform: translate(
-                        calc(cos(var(--angle)) * var(--distance)),
-                        calc(sin(var(--angle)) * var(--distance))
-                    ) scale(0.5);
-                }
-            }
-        `;
-        document.head.appendChild(style);
         
         console.log('✦ LYRĪON Cosmic Interactions initialized');
     }

@@ -34,9 +34,15 @@ exports.handler = async (event, context) => {
             };
         }
         
-        // Calculate cart total if not provided
+        // Calculate cart total if not provided, with validation for numeric prices
         const total = cartTotal || cartItems.reduce((sum, item) => {
-            return sum + (Number(item.price) * (item.quantity || 1));
+            const price = Number(item.price);
+            const quantity = Number(item.quantity) || 1;
+            // Only add to sum if price is a valid number
+            if (!isNaN(price) && isFinite(price)) {
+                return sum + (price * quantity);
+            }
+            return sum;
         }, 0);
         
         // Get the correct email from the series
