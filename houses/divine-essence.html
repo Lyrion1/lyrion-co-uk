@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House of the Divine Essence | LYRĪON Celestial Couture</title>
+    <meta name="description" content="Explore the House of the Divine Essence at LYRĪON. Elegant celestial apparel crafted for the modern goddess, embodying grace and radiant feminine power.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <style>
+        .house-hero {
+            max-width: 900px;
+            margin: 4rem auto 2rem auto;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        
+        .house-hero h1 {
+            font-size: 3rem;
+            color: var(--color-ink);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .house-hero .house-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--color-gold);
+        }
+        
+        .house-hero p {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: #5a5856;
+            font-style: italic;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .house-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .house-hero p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="../index.html"><img src="../assets/img/logo-circle.png" alt="LYRĪON Celestial Couture" style="height: 35px; vertical-align: middle;"> LYRĪON</a>
+        </div>
+        <nav class="nav-main">
+            <div class="nav-item">
+                <a>The Houses</a>
+                <div class="dropdown-menu">
+                    <a href="divine-essence.html">House of the Divine Essence</a>
+                    <a href="solar-ascendant.html">House of the Solar Ascendant</a>
+                    <a href="lunar-maidens.html">House of Lunar Maidens (Moon Girls)</a>
+                    <a href="starborn-sons.html">House of Starborn Sons (Star Boys)</a>
+                </div>
+            </div>
+            <a href="../zodiac/index.html">The Zodiac Library</a>
+            <div class="nav-item">
+                <a>Ritual Market</a>
+                <div class="dropdown-menu">
+                    <a href="../shop.html?category=home-altar">Home & Altar</a>
+                    <a href="../shop.html?category=sacred-textiles">Sacred Textiles</a>
+                    <a href="../shop.html?category=digital-rituals">Digital Rituals</a>
+                </div>
+            </div>
+            <a href="../oracle.html">The Oracle</a>
+            <a href="../codex/index.html">Codex</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="house-hero">
+            <span class="house-icon">✧</span>
+            <h1>House of the Divine Essence</h1>
+            <p>Elegant silhouettes crafted for the modern goddess. Each piece embodies grace, intuition, and the radiant power of the divine feminine—celestial garments that honor your inner light.</p>
+        </section>
+
+        <div id="house-products-container">
+            <!-- Products will be rendered here by HouseProductPage.js -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="nav-footer">
+            <a href="../shop.html">Collections</a>
+            <a href="../oracle.html">Oracle</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../codex/index.html">Codex</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LYRĪON Celestial Couture. Live with Ritual and Intention.
+        </div>
+    </footer>
+    
+    <script src="../lyrion.js"></script>
+    <script src="../js/components/HouseProductPage.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            HouseProductPage.create({
+                house: 'woman',
+                containerSelector: '#house-products-container',
+                basePath: '../'
+            });
+        });
+    </script>
+</body>
+</html>
