@@ -56,10 +56,12 @@ async function buy(sku) {
   } catch (error) {
     console.error('Checkout error:', error);
     hideLoadingOverlay(loadingMessage);
-    // Show styled error instead of alert
-    showCheckoutError(error.name === 'AbortError' 
+    // Determine appropriate error message
+    const isTimeout = error.name === 'AbortError';
+    const errorMessage = isTimeout 
       ? 'Request timed out. Please check your connection and try again.'
-      : error.message || 'Unable to start checkout. Please try again.');
+      : (error.message || 'Unable to start checkout. Please try again.');
+    showCheckoutError(errorMessage);
   }
 }
 
@@ -85,21 +87,30 @@ function showCheckoutError(message) {
     max-width: 450px;
   `;
   
-  errorDiv.innerHTML = `
-    <p style="font-size: 1.1rem; color: #CC0000; margin: 0 0 1rem 0; font-weight: 500;">${message}</p>
-    <button onclick="this.parentElement.remove()" style="
-      background: #CC0000;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.5rem;
-      font-size: 0.95rem;
-      font-family: inherit;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: all 0.3s ease;
-    ">Dismiss</button>
-  `;
+  // Create elements safely to prevent XSS
+  const messageParagraph = document.createElement('p');
+  messageParagraph.style.cssText = 'font-size: 1.1rem; color: #CC0000; margin: 0 0 1rem 0; font-weight: 500;';
+  messageParagraph.textContent = message;
   
+  const dismissButton = document.createElement('button');
+  dismissButton.style.cssText = `
+    background: #CC0000;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  `;
+  dismissButton.textContent = 'Dismiss';
+  dismissButton.onclick = function() {
+    errorDiv.remove();
+  };
+  
+  errorDiv.appendChild(messageParagraph);
+  errorDiv.appendChild(dismissButton);
   document.body.appendChild(errorDiv);
   
   // Auto-remove after 8 seconds
