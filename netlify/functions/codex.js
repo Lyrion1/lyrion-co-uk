@@ -4,6 +4,9 @@
  * Serverless function to fetch and serve blog posts from
  * astronomy (NASA) and astrology feeds with in-memory caching.
  * Falls back to internal content when external APIs fail.
+ * 
+ * Optimized for fast response times - uses fallback data when
+ * external APIs are blocked or slow.
  */
 
 const fetch = require('node-fetch');
@@ -16,6 +19,9 @@ let cache = {
 
 // Cache duration: 3 hours in milliseconds
 const CACHE_DURATION = 3 * 60 * 60 * 1000;
+
+// Fetch timeout in milliseconds (3 seconds for fast fail-over)
+const FETCH_TIMEOUT = 3000;
 
 // Valid categories
 const CATEGORIES = {
@@ -142,14 +148,35 @@ function determineCategory(title, content) {
 }
 
 /**
+ * Create a fetch with timeout using AbortController
+ * @param {string} url - URL to fetch
+ * @param {object} options - Fetch options
+ * @param {number} timeout - Timeout in milliseconds
+ * @returns {Promise<Response>}
+ */
+async function fetchWithTimeout(url, options = {}, timeout = FETCH_TIMEOUT) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
+  
+  try {
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal
+    });
+    return response;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+/**
  * Fetch and parse NASA APOD or RSS feed
  */
 async function fetchNASAFeed(url) {
   if (!url) return [];
   
   try {
-    const response = await fetch(url, {
-      timeout: 5000,
+    const response = await fetchWithTimeout(url, {
       headers: { 'Accept': 'application/json, text/xml, */*' }
     });
     
@@ -180,7 +207,12 @@ async function fetchNASAFeed(url) {
     // For RSS/XML feeds - return empty for now as we don't have xml parsing
     return [];
   } catch (error) {
-    console.error('Error fetching NASA feed:', error.message);
+    // Log but don't throw - return empty array to trigger fallback
+    if (error.name === 'AbortError') {
+      console.warn('NASA feed request timed out');
+    } else {
+      console.error('Error fetching NASA feed:', error.message);
+    }
     return [];
   }
 }
@@ -192,8 +224,7 @@ async function fetchAstroFeed(url) {
   if (!url) return [];
   
   try {
-    const response = await fetch(url, {
-      timeout: 5000,
+    const response = await fetchWithTimeout(url, {
       headers: { 'Accept': 'application/json, */*' }
     });
     
@@ -223,7 +254,12 @@ async function fetchAstroFeed(url) {
     
     return [];
   } catch (error) {
-    console.error('Error fetching Astro feed:', error.message);
+    // Log but don't throw - return empty array to trigger fallback
+    if (error.name === 'AbortError') {
+      console.warn('Astro feed request timed out');
+    } else {
+      console.error('Error fetching Astro feed:', error.message);
+    }
     return [];
   }
 }
