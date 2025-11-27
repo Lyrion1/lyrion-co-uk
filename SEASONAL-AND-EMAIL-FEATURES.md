@@ -308,20 +308,202 @@ DATABASE_URL=your_database_connection_string
 
 ```
 lyrion-co-uk/
+├── assets/css/
+│   ├── style.css                      # Main styles
+│   └── cosmic-animations.css          # Smooth interactions & animations
 ├── lib/
 │   ├── season.js                      # Seasonal engine
 │   ├── product-helpers.js             # Product filtering
 │   ├── email.js                       # Email utilities
-│   └── seasonal-email-template.js     # Seasonal email templates
+│   ├── seasonal-email-template.js     # Seasonal email templates
+│   └── email-automation-templates.js  # Complete email automation templates
 ├── js/
 │   ├── seasonal-homepage.js           # Homepage seasonal features
-│   └── oracle-integration.js          # Oracle email integration helpers
+│   ├── oracle-integration.js          # Oracle email integration helpers
+│   └── cosmic-interactions.js         # Page transitions & micro-animations
 ├── netlify/functions/
 │   ├── send-complimentary-oracle.js   # Complimentary oracle email
 │   ├── send-premium-oracle.js         # Premium oracle email
+│   ├── send-welcome-email.js          # Welcome series emails
+│   ├── send-abandoned-cart-email.js   # Abandoned cart reminders
+│   ├── send-post-purchase-email.js    # Order confirmation & delivery emails
+│   ├── send-manifestation-checkin.js  # Sanctuary intention check-ins
+│   ├── send-monthly-forecast.js       # Monthly cosmic forecast
 │   ├── testimony-reminder-cron.js     # 7-day testimony reminder
 │   └── abandoned-oracle-reminder.js   # 24-hour abandoned cart email
 └── netlify.toml                       # Netlify configuration
+```
+
+---
+
+## Smooth Interactions & Animations
+
+### CSS Animations (`assets/css/cosmic-animations.css`)
+
+The cosmic animations CSS provides:
+- **Page Transitions**: Subtle fade-in and celestial wipe effects
+- **Star Twinkle**: Multiple animation speeds for twinkling star effects
+- **Moon Phases**: Animated moon glow and phase transitions
+- **Constellation Connections**: Line drawing and pulse animations
+- **Loading States**: Cosmic-themed loading overlays
+- **Scroll Reveal**: Fade-in animations on scroll
+- **Hover Effects**: Cosmic glow effects on interactive elements
+- **Zodiac Animations**: Float and scale effects for zodiac icons
+
+### JavaScript Interactions (`js/cosmic-interactions.js`)
+
+The cosmic interactions JavaScript provides:
+- **Loading State Manager**: Show/hide cosmic loading overlays
+- **Page Transitions**: Smooth transitions between pages
+- **Scroll Reveal**: Intersection Observer-based animations
+- **Button Loading States**: Loading spinners for buttons
+- **Constellation Drawing**: SVG-based constellation generation
+
+#### Usage Examples
+
+```javascript
+// Show loading overlay
+LyrionCosmic.showLoading('Aligning the stars...');
+
+// Hide loading overlay
+LyrionCosmic.hideLoading();
+
+// Set button to loading state
+LyrionCosmic.setButtonLoading(buttonElement, 'Processing...');
+
+// Clear button loading state
+LyrionCosmic.clearButtonLoading(buttonElement);
+
+// Create star burst effect at coordinates
+LyrionCosmic.createStarBurst(100, 200);
+
+// Draw a constellation
+const points = [
+  { x: 50, y: 50 },
+  { x: 100, y: 30 },
+  { x: 150, y: 60 }
+];
+LyrionCosmic.drawConstellation(container, points);
+```
+
+#### CSS Classes
+
+| Class | Description |
+|-------|-------------|
+| `.cosmic-reveal` | Fade-in on scroll |
+| `.cosmic-reveal-stagger` | Staggered fade-in for child elements |
+| `.star-twinkle` | Twinkling star animation |
+| `.star-twinkle-slow` | Slower twinkle (4s) |
+| `.star-twinkle-fast` | Faster twinkle (1.5s) |
+| `.moon-phase` | Moon phase and glow animation |
+| `.zodiac-float` | Gentle floating animation |
+| `.cosmic-glow-hover` | Glow effect on hover |
+| `.button-loading` | Loading state for buttons |
+
+---
+
+## Email Automation System
+
+### Overview
+
+The email automation system integrates with ConvertKit or Mailchimp and provides templates for:
+
+1. **Welcome Series** - 3-email sequence for new subscribers
+2. **Abandoned Cart** - 3-email reminder sequence
+3. **Post-Purchase** - Order confirmation, shipping, and delivery emails
+4. **Manifestation Check-ins** - 3 check-ins for Sanctuary submissions
+5. **Monthly Cosmic Forecast** - Sign-by-sign monthly newsletter
+
+### Email Automation Templates (`lib/email-automation-templates.js`)
+
+#### Welcome Series
+- **Email 1** (Day 0): Welcome + £5 credit code
+- **Email 2** (Day 3): Zodiac collection introduction
+- **Email 3** (Day 7): Oracle introduction
+
+#### Abandoned Cart
+- **Email 1** (1 hour): Items waiting reminder
+- **Email 2** (24 hours): 10% discount offer
+- **Email 3** (72 hours): Final reminder before cart expiry
+
+#### Post-Purchase
+- **Order Confirmation**: Order details + estimated delivery
+- **Shipping Notification**: Tracking information
+- **Delivery Confirmation**: Arrived + product recommendations
+
+#### Manifestation Check-ins
+- **Week 1**: First check-in on intention
+- **Week 3**: Progress reflection
+- **Month 1**: Full lunar cycle celebration
+
+### Netlify Functions
+
+#### send-welcome-email
+```javascript
+POST /.netlify/functions/send-welcome-email
+Body: {
+  "email": "user@example.com",
+  "name": "John",
+  "emailNumber": 1  // 1, 2, or 3
+}
+```
+
+#### send-abandoned-cart-email
+```javascript
+POST /.netlify/functions/send-abandoned-cart-email
+Body: {
+  "email": "user@example.com",
+  "customerName": "John",
+  "cartItems": [
+    { "name": "Leo Hoodie", "price": 65, "image": "leo-hoodie.webp" }
+  ],
+  "cartTotal": 65,
+  "emailNumber": 1  // 1, 2, or 3
+}
+```
+
+#### send-post-purchase-email
+```javascript
+POST /.netlify/functions/send-post-purchase-email
+Body: {
+  "email": "user@example.com",
+  "emailType": "orderConfirmation",  // or shippingNotification, deliveryConfirmation
+  "orderDetails": {
+    "customerName": "John",
+    "orderNumber": "LYR-123456",
+    "items": [...],
+    "total": 130,
+    "estimatedDelivery": "Dec 5-10, 2024"
+  },
+  "recommendations": [...]  // For deliveryConfirmation only
+}
+```
+
+#### send-manifestation-checkin
+```javascript
+POST /.netlify/functions/send-manifestation-checkin
+Body: {
+  "email": "user@example.com",
+  "name": "John",
+  "intention": "Find clarity in my career path",
+  "emailNumber": 1  // 1, 2, or 3
+}
+```
+
+#### send-monthly-forecast
+```javascript
+POST /.netlify/functions/send-monthly-forecast
+Body: {
+  "email": "user@example.com",
+  "month": "December",
+  "year": 2024,
+  "generalForecast": "The cosmic energies this month...",
+  "signForecasts": {
+    "Aries": "Bold initiatives find support...",
+    "Taurus": "Grounding energy flows...",
+    // ... all 12 signs
+  }
+}
 ```
 
 ---
@@ -342,3 +524,4 @@ For questions or issues with these features, refer to:
 - Season calculations are based on Northern Hemisphere months
 - Moon phase calculation is simplified and should be enhanced for production
 - Scheduled functions require Netlify Pro or higher plan
+- Cosmic animations respect `prefers-reduced-motion` user preference
