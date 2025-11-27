@@ -16,11 +16,15 @@ class HouseProductPage {
    * @param {Object} options - Configuration options
    * @param {string} options.house - House identifier: 'woman', 'man', 'girls', 'boys'
    * @param {string} options.containerSelector - CSS selector for the container
+   * @param {string} options.dataPath - Path to products.js data file (defaults to '/data/products.js')
+   * @param {string} options.assetsPath - Base path for product assets (defaults to '../assets/products/')
    */
   constructor(options = {}) {
     this.options = {
       house: options.house || 'woman',
-      containerSelector: options.containerSelector || '#house-products-container'
+      containerSelector: options.containerSelector || '#house-products-container',
+      dataPath: options.dataPath || '/data/products.js',
+      assetsPath: options.assetsPath || '../assets/products/'
     };
 
     this.products = [];
@@ -43,14 +47,14 @@ class HouseProductPage {
       { symbol: '♓', name: 'Pisces', slug: 'pisces' }
     ];
 
-    // Category mappings
+    // Category mappings - standardized to check both tags and category fields
     this.categoryFilters = [
       { id: 'all', label: 'All' },
       { id: 'hoodie', label: 'Hoodies', match: (p) => p.tags?.includes('hoodie') || p.category?.toLowerCase().includes('hoodie') },
-      { id: 'tee', label: 'Tees', match: (p) => p.tags?.includes('tee') },
-      { id: 'hats', label: 'Hats', match: (p) => p.category === 'Hats' || p.type === 'hats' },
-      { id: 'socks', label: 'Socks', match: (p) => p.category === 'Socks' || p.type === 'socks' },
-      { id: 'home', label: 'Home', match: (p) => p.type === 'home' || p.category === 'Home & Altar' }
+      { id: 'tee', label: 'Tees', match: (p) => p.tags?.includes('tee') || p.category?.toLowerCase().includes('tee') },
+      { id: 'hats', label: 'Hats', match: (p) => p.tags?.includes('hat') || p.category === 'Hats' || p.type === 'hats' },
+      { id: 'socks', label: 'Socks', match: (p) => p.tags?.includes('sock') || p.category === 'Socks' || p.type === 'socks' },
+      { id: 'home', label: 'Home', match: (p) => p.tags?.includes('home') || p.type === 'home' || p.category === 'Home & Altar' }
     ];
   }
 
@@ -59,8 +63,9 @@ class HouseProductPage {
    */
   async init() {
     try {
-      // Import products data
-      const { PRODUCTS_DATA } = await import('../data/products.js');
+      // Use configurable path for the products data
+      // This ensures flexibility when the site is served from different paths
+      const { PRODUCTS_DATA } = await import(this.options.dataPath);
       this.products = PRODUCTS_DATA.filter(p => p.house === this.options.house);
       
       this.injectStyles();
@@ -448,7 +453,9 @@ class HouseProductPage {
       ">SALE</div>
     ` : '';
 
-    const imageUrl = product.image ? `../assets/products/${product.image}` : '../assets/img/placeholder.png';
+    // Use configurable asset path for product images
+    const placeholderPath = this.options.assetsPath.replace('/products/', '/img/placeholder.png');
+    const imageUrl = product.image ? `${this.options.assetsPath}${product.image}` : placeholderPath;
     
     card.innerHTML = `
       ${saleBadge}
