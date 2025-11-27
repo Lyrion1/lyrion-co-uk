@@ -1,0 +1,515 @@
+/**
+ * LYRĪON Cosmic Animations & Smooth Interactions
+ * 
+ * Page transitions, micro-animations, and loading states
+ * with celestial themes for an enchanting user experience.
+ */
+
+/* ============================================
+   SECTION 1: PAGE TRANSITIONS
+   ============================================ */
+
+/* Page fade-in on load */
+body {
+    animation: cosmicFadeIn 0.6s ease-out;
+}
+
+@keyframes cosmicFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Celestial wipe transition overlay */
+.celestial-wipe-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #151311 0%, #0a0e1a 50%, #151311 100%);
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.celestial-wipe-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.celestial-wipe-overlay::before {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: var(--color-gold, #C4A449);
+    opacity: 0;
+    animation: starPulse 1s ease-in-out infinite;
+}
+
+.celestial-wipe-overlay.active::before {
+    opacity: 1;
+}
+
+/* ============================================
+   SECTION 2: STAR TWINKLE ANIMATIONS
+   ============================================ */
+
+@keyframes starTwinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes starPulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+        filter: drop-shadow(0 0 5px rgba(196, 164, 73, 0.5));
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+        filter: drop-shadow(0 0 15px rgba(196, 164, 73, 0.8));
+    }
+}
+
+.star-twinkle {
+    animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.star-twinkle-slow {
+    animation: starTwinkle 4s ease-in-out infinite;
+}
+
+.star-twinkle-fast {
+    animation: starTwinkle 1.5s ease-in-out infinite;
+}
+
+/* Staggered star animations for groups */
+.star-twinkle:nth-child(1) { animation-delay: 0s; }
+.star-twinkle:nth-child(2) { animation-delay: 0.3s; }
+.star-twinkle:nth-child(3) { animation-delay: 0.6s; }
+.star-twinkle:nth-child(4) { animation-delay: 0.9s; }
+.star-twinkle:nth-child(5) { animation-delay: 1.2s; }
+.star-twinkle:nth-child(6) { animation-delay: 1.5s; }
+
+/* ============================================
+   SECTION 3: MOON PHASE ANIMATIONS
+   ============================================ */
+
+@keyframes moonPhase {
+    0% {
+        clip-path: circle(50% at 50% 50%);
+        opacity: 0.7;
+    }
+    25% {
+        clip-path: circle(50% at 60% 50%);
+        opacity: 0.85;
+    }
+    50% {
+        clip-path: circle(50% at 50% 50%);
+        opacity: 1;
+    }
+    75% {
+        clip-path: circle(50% at 40% 50%);
+        opacity: 0.85;
+    }
+    100% {
+        clip-path: circle(50% at 50% 50%);
+        opacity: 0.7;
+    }
+}
+
+@keyframes moonGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(196, 164, 73, 0.3), 0 0 30px rgba(196, 164, 73, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(196, 164, 73, 0.5), 0 0 50px rgba(196, 164, 73, 0.2);
+    }
+}
+
+.moon-phase {
+    animation: moonPhase 8s ease-in-out infinite, moonGlow 4s ease-in-out infinite;
+}
+
+.moon-icon {
+    display: inline-block;
+    animation: moonGlow 3s ease-in-out infinite;
+    border-radius: 50%;
+}
+
+/* ============================================
+   SECTION 4: CONSTELLATION CONNECTIONS
+   ============================================ */
+
+@keyframes constellationDraw {
+    0% {
+        stroke-dashoffset: 1000;
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes constellationPulse {
+    0%, 100% {
+        stroke: rgba(196, 164, 73, 0.4);
+    }
+    50% {
+        stroke: rgba(196, 164, 73, 0.8);
+    }
+}
+
+.constellation-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: constellationDraw 2s ease forwards, constellationPulse 3s ease-in-out infinite 2s;
+}
+
+.constellation-star {
+    animation: starTwinkle 2s ease-in-out infinite;
+}
+
+/* Hover effect for interactive constellations */
+.constellation-interactive:hover .constellation-line {
+    stroke: var(--color-gold, #C4A449);
+    filter: drop-shadow(0 0 5px rgba(196, 164, 73, 0.6));
+}
+
+.constellation-interactive:hover .constellation-star {
+    animation-duration: 0.8s;
+}
+
+/* ============================================
+   SECTION 5: COSMIC LOADING STATES
+   ============================================ */
+
+/* Main loading overlay */
+.cosmic-loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(21, 19, 17, 0.95) 0%, rgba(10, 14, 26, 0.95) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.cosmic-loading-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cosmic-loading-container {
+    text-align: center;
+    color: var(--color-gold, #C4A449);
+}
+
+/* Orbiting stars loader */
+.cosmic-loader {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    margin: 0 auto 2rem;
+}
+
+.cosmic-loader::before,
+.cosmic-loader::after {
+    content: '✦';
+    position: absolute;
+    font-size: 1rem;
+    color: var(--color-gold, #C4A449);
+}
+
+.cosmic-loader::before {
+    animation: orbit 2s linear infinite;
+}
+
+.cosmic-loader::after {
+    animation: orbit 2s linear infinite 1s;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+@keyframes orbit {
+    0% {
+        transform: rotate(0deg) translateX(35px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translateX(35px) rotate(-360deg);
+    }
+}
+
+.cosmic-loader-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, var(--color-gold, #C4A449) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: centerPulse 2s ease-in-out infinite;
+}
+
+@keyframes centerPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 1;
+    }
+}
+
+.cosmic-loading-text {
+    font-family: var(--font-serif, 'Playfair Display', serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    letter-spacing: 1px;
+    animation: textFade 3s ease-in-out infinite;
+}
+
+@keyframes textFade {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Inline loading spinner */
+.cosmic-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+.cosmic-spinner::before {
+    content: '✦';
+    position: absolute;
+    animation: spinStar 1s linear infinite;
+    color: var(--color-gold, #C4A449);
+}
+
+@keyframes spinStar {
+    0% {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+    }
+}
+
+/* Button loading state */
+.button-loading {
+    position: relative;
+    pointer-events: none;
+    color: transparent !important;
+}
+
+.button-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    margin: -9px 0 0 -9px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--color-gold, #C4A449);
+    border-radius: 50%;
+    animation: buttonSpin 0.8s linear infinite;
+}
+
+@keyframes buttonSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   SECTION 6: ELEMENT REVEAL ANIMATIONS
+   ============================================ */
+
+/* Fade in on scroll */
+.cosmic-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.cosmic-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered reveal for grids */
+.cosmic-reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.cosmic-reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0.1s; }
+.cosmic-reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.2s; }
+.cosmic-reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.3s; }
+.cosmic-reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.4s; }
+.cosmic-reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.5s; }
+.cosmic-reveal-stagger.revealed > *:nth-child(6) { transition-delay: 0.6s; }
+.cosmic-reveal-stagger.revealed > *:nth-child(7) { transition-delay: 0.7s; }
+.cosmic-reveal-stagger.revealed > *:nth-child(8) { transition-delay: 0.8s; }
+.cosmic-reveal-stagger.revealed > *:nth-child(9) { transition-delay: 0.9s; }
+.cosmic-reveal-stagger.revealed > *:nth-child(10) { transition-delay: 1.0s; }
+.cosmic-reveal-stagger.revealed > *:nth-child(11) { transition-delay: 1.1s; }
+.cosmic-reveal-stagger.revealed > *:nth-child(12) { transition-delay: 1.2s; }
+
+.cosmic-reveal-stagger.revealed > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   SECTION 7: INTERACTIVE HOVER EFFECTS
+   ============================================ */
+
+/* Cosmic glow on hover */
+.cosmic-glow-hover {
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.cosmic-glow-hover:hover {
+    filter: drop-shadow(0 0 10px rgba(196, 164, 73, 0.5));
+    transform: translateY(-3px);
+}
+
+/* Star burst on click */
+@keyframes starBurst {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.cosmic-click-effect {
+    animation: starBurst 0.3s ease;
+}
+
+/* ============================================
+   SECTION 8: ZODIAC ICON ANIMATIONS
+   ============================================ */
+
+.zodiac-icon-animated {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.zodiac-icon-animated:hover {
+    transform: scale(1.15) rotate(5deg);
+    color: var(--color-gold, #C4A449);
+}
+
+/* Zodiac symbol float animation */
+@keyframes zodiacFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.zodiac-float {
+    animation: zodiacFloat 3s ease-in-out infinite;
+}
+
+/* ============================================
+   SECTION 9: REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    body {
+        animation: none;
+    }
+    
+    .cosmic-reveal {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .cosmic-reveal-stagger > * {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ============================================
+   SECTION 10: UTILITY CLASSES
+   ============================================ */
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+.delay-900 { animation-delay: 0.9s; }
+.delay-1000 { animation-delay: 1s; }
+
+.duration-fast { animation-duration: 0.3s; }
+.duration-normal { animation-duration: 0.6s; }
+.duration-slow { animation-duration: 1s; }
+.duration-slower { animation-duration: 2s; }

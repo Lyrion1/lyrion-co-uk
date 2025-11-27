@@ -16,7 +16,7 @@ for = "/*"
 [headers.values]
 Access-Control-Allow-Origin = "*"
 
-# Scheduled Functions for Oracle Email Automation
+# Scheduled Functions for Email Automation
 # Note: Scheduled functions require Netlify's scheduled functions feature
 # Uncomment and configure when ready to activate
 
@@ -29,3 +29,30 @@ Access-Control-Allow-Origin = "*"
 # [[functions]]
 #   path = "/.netlify/functions/abandoned-oracle-reminder"
 #   schedule = "0 */6 * * *"
+
+# ========================================
+# EMAIL AUTOMATION FUNCTIONS
+# ========================================
+# 
+# Welcome Series Emails
+# Endpoint: /.netlify/functions/send-welcome-email
+# POST body: { email, name, emailNumber }
+# 
+# Abandoned Cart Emails
+# Endpoint: /.netlify/functions/send-abandoned-cart-email
+# POST body: { email, customerName, cartItems, cartTotal, emailNumber }
+# 
+# Post-Purchase Emails
+# Endpoint: /.netlify/functions/send-post-purchase-email
+# POST body: { email, emailType, orderDetails, recommendations }
+# emailType: orderConfirmation | shippingNotification | deliveryConfirmation
+# 
+# Manifestation Check-in Emails (Sanctuary)
+# Endpoint: /.netlify/functions/send-manifestation-checkin
+# POST body: { email, name, intention, emailNumber }
+# 
+# Monthly Cosmic Forecast
+# Endpoint: /.netlify/functions/send-monthly-forecast
+# POST body: { email, month, year, generalForecast, signForecasts }
+#
+# ========================================
