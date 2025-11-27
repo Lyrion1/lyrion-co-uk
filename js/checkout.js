@@ -56,12 +56,58 @@ async function buy(sku) {
   } catch (error) {
     console.error('Checkout error:', error);
     hideLoadingOverlay(loadingMessage);
-    if (error.name === 'AbortError') {
-      alert('Request timed out. Please check your internet connection and try again.');
-    } else {
-      alert(`Unable to start checkout: ${error.message}. Please try again or contact support.`);
-    }
+    // Show styled error instead of alert
+    showCheckoutError(error.name === 'AbortError' 
+      ? 'Request timed out. Please check your connection and try again.'
+      : error.message || 'Unable to start checkout. Please try again.');
   }
+}
+
+/**
+ * Show styled checkout error notification
+ */
+function showCheckoutError(message) {
+  const errorDiv = document.createElement('div');
+  errorDiv.id = 'lyrion-checkout-error';
+  errorDiv.style.cssText = `
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(244, 239, 232, 0.98) 0%, rgba(252, 250, 250, 0.98) 100%);
+    border: 2px solid #CC0000;
+    padding: 1.5rem 2.5rem;
+    border-radius: 12px;
+    z-index: 10001;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+  `;
+  
+  errorDiv.innerHTML = `
+    <p style="font-size: 1.1rem; color: #CC0000; margin: 0 0 1rem 0; font-weight: 500;">${message}</p>
+    <button onclick="this.parentElement.remove()" style="
+      background: #CC0000;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    ">Dismiss</button>
+  `;
+  
+  document.body.appendChild(errorDiv);
+  
+  // Auto-remove after 8 seconds
+  setTimeout(() => {
+    if (errorDiv.parentNode) {
+      errorDiv.remove();
+    }
+  }, 8000);
 }
 
 /**

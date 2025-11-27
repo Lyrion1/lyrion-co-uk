@@ -42,7 +42,21 @@ function createProductCard(product) {
         `;
     } catch (error) {
         console.error('Error creating product card:', error);
-        return '<div class="lyrion-card product-card"><p>Unable to load product</p></div>';
+        // Fallback with matching structure
+        return `
+            <div class="lyrion-card product-card">
+                <figure class="product-image-container">
+                    <div style="width: 100%; height: 200px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; border-radius: 4px;">
+                        <span style="color: #999;">✦</span>
+                    </div>
+                </figure>
+                <div class="product-details">
+                    <h4 class="product-name">Product Unavailable</h4>
+                    <p class="product-type">Please refresh the page</p>
+                    <p class="product-price">&nbsp;</p>
+                </div>
+            </div>
+        `;
     }
 }
 

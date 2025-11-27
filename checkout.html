@@ -382,7 +382,7 @@
 
                 // Initialize Stripe
                 if (typeof Stripe === 'undefined') {
-                    throw new Error('Stripe not loaded. Please check your internet connection.');
+                    throw new Error('Payment system not available. Please refresh and try again.');
                 }
                 const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 
