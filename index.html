@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LYRĪON | Celestial Couture & Astrology-Inspired Luxury Apparel</title>
     <meta name="description" content="LYRĪON is a celestial couture house where astrology wears the body. Discover signature zodiac-inspired luxury apparel, homeware, and art.">
+    <!-- Error Recovery: Clear any stalled page loading -->
+    <script>
+        // Clear any previous loading timeouts
+        window.addEventListener('load', function() {
+            if (window.lyrionLoadTimeout) {
+                clearTimeout(window.lyrionLoadTimeout);
+            }
+            console.log('LYRĪON: Page loaded successfully');
+        });
+        // Global error handler to catch and log JavaScript errors
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('LYRĪON Error:', { message: msg, url: url, line: lineNo, column: columnNo, error: error });
+            return false; // Don't prevent default error handling
+        };
+        // Catch unhandled promise rejections
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('LYRĪON Unhandled Promise:', event.reason);
+        });
+    </script>
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/favicon.png"> 
@@ -246,14 +265,22 @@
     <script>
         // Render the Zodiac Library Grid on the homepage
         document.addEventListener('DOMContentLoaded', function() {
-            const zodiacGrid = new ZodiacLibraryGrid({
-                showHeader: false, // Header already exists in HTML
-                basePath: 'zodiac/' // Relative path for zodiac pages from homepage
-            });
-            
-            const container = document.getElementById('homepage-zodiac-grid');
-            if (container) {
-                zodiacGrid.render(container);
+            try {
+                if (typeof ZodiacLibraryGrid === 'undefined') {
+                    console.warn('ZodiacLibraryGrid not loaded, skipping grid render');
+                    return;
+                }
+                const zodiacGrid = new ZodiacLibraryGrid({
+                    showHeader: false, // Header already exists in HTML
+                    basePath: 'zodiac/' // Relative path for zodiac pages from homepage
+                });
+                
+                const container = document.getElementById('homepage-zodiac-grid');
+                if (container) {
+                    zodiacGrid.render(container);
+                }
+            } catch (error) {
+                console.error('Error rendering zodiac grid:', error);
             }
         });
     </script>
@@ -336,6 +363,7 @@
     </div>
     
     <script>
+    try {
         // Add shimmer animation to document
         const shimmerStyle = document.createElement('style');
         shimmerStyle.textContent = `
@@ -551,8 +579,15 @@
         
         // Initialize everything on page load
         document.addEventListener('DOMContentLoaded', () => {
-            showEmailPopup();
+            try {
+                showEmailPopup();
+            } catch (e) {
+                console.error('Error in email popup initialization:', e);
+            }
         });
+    } catch (mainScriptError) {
+        console.error('LYRĪON: Error in main page script:', mainScriptError);
+    }
     </script>
     
 </body>

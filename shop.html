@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop LYRĪON | Zodiac Apparel, Homeware & Art</title>
     <meta name="description" content="Shop the exclusive LYRĪON collections: Zodiac Hoodies, Celestial Youth, Altar Cloths, and Framed Constellations.">
+    <!-- Error Recovery: Global error handlers -->
+    <script>
+        window.addEventListener('load', function() {
+            if (window.lyrionLoadTimeout) clearTimeout(window.lyrionLoadTimeout);
+            console.log('LYRĪON Shop: Page loaded successfully');
+        });
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('LYRĪON Shop Error:', { message: msg, url: url, line: lineNo, column: columnNo, error: error });
+            return false;
+        };
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('LYRĪON Shop Unhandled Promise:', event.reason);
+        });
+    </script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">

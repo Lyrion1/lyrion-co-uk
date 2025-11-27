@@ -7,12 +7,13 @@
 import { PRODUCTS_DATA } from '../data/products.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Use static product data directly
-  const allProducts = PRODUCTS_DATA;
-  
   try {
+    // Use static product data directly with fallback to empty array
+    const allProducts = Array.isArray(PRODUCTS_DATA) ? PRODUCTS_DATA : [];
+    
     initializeShop(allProducts);
   } catch (error) {
+    console.error('Error initializing shop:', error);
     showError('Unable to load products. Please refresh the page.');
   }
 });

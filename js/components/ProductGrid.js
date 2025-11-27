@@ -31,22 +31,26 @@ class ProductGrid {
    * Renders the complete product grid
    */
   render() {
-    const container = document.querySelector(this.options.containerSelector);
-    if (!container) {
-      console.error('Container not found:', this.options.containerSelector);
-      return;
+    try {
+      const container = document.querySelector(this.options.containerSelector);
+      if (!container) {
+        console.error('Container not found:', this.options.containerSelector);
+        return;
+      }
+
+      // Clear existing content
+      container.innerHTML = '';
+
+      // Add header if enabled
+      if (this.options.showHeader) {
+        container.appendChild(this.createHeader());
+      }
+
+      // Add products grid
+      container.appendChild(this.createGrid());
+    } catch (error) {
+      console.error('Error rendering ProductGrid:', error);
     }
-
-    // Clear existing content
-    container.innerHTML = '';
-
-    // Add header if enabled
-    if (this.options.showHeader) {
-      container.appendChild(this.createHeader());
-    }
-
-    // Add products grid
-    container.appendChild(this.createGrid());
   }
 
   /**

@@ -50,31 +50,35 @@ class ZodiacLibraryGrid {
    * @param {HTMLElement|string} container - Container element or selector
    */
   render(container) {
-    let targetContainer;
-    
-    if (typeof container === 'string') {
-      targetContainer = document.querySelector(container);
-    } else if (container instanceof HTMLElement) {
-      targetContainer = container;
-    } else if (this.options.containerSelector) {
-      targetContainer = document.querySelector(this.options.containerSelector);
+    try {
+      let targetContainer;
+      
+      if (typeof container === 'string') {
+        targetContainer = document.querySelector(container);
+      } else if (container instanceof HTMLElement) {
+        targetContainer = container;
+      } else if (this.options.containerSelector) {
+        targetContainer = document.querySelector(this.options.containerSelector);
+      }
+
+      if (!targetContainer) {
+        console.error('Container not found for ZodiacLibraryGrid');
+        return;
+      }
+
+      // Add styles if not already added
+      this.injectStyles();
+
+      // Add header if enabled
+      if (this.options.showHeader) {
+        targetContainer.appendChild(this.createHeader());
+      }
+
+      // Add zodiac grid
+      targetContainer.appendChild(this.createGrid());
+    } catch (error) {
+      console.error('Error rendering ZodiacLibraryGrid:', error);
     }
-
-    if (!targetContainer) {
-      console.error('Container not found for ZodiacLibraryGrid');
-      return;
-    }
-
-    // Add styles if not already added
-    this.injectStyles();
-
-    // Add header if enabled
-    if (this.options.showHeader) {
-      targetContainer.appendChild(this.createHeader());
-    }
-
-    // Add zodiac grid
-    targetContainer.appendChild(this.createGrid());
   }
 
   /**
