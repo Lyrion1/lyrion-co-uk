@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - LYRĪON Celestial Couture</title>
     <meta name="description" content="Complete your celestial purchase at LYRĪON.">
+    <!-- Error Recovery: Global error handlers -->
+    <script>
+        // Clear any previous loading timeouts
+        window.addEventListener('load', function() {
+            if (window.lyrionLoadTimeout) {
+                clearTimeout(window.lyrionLoadTimeout);
+            }
+            console.log('LYRĪON Checkout: Page loaded successfully');
+        });
+        // Global error handler
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('LYRĪON Checkout Error:', { message: msg, url: url, line: lineNo, column: columnNo, error: error });
+            return false;
+        };
+        // Catch unhandled promise rejections
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('LYRĪON Checkout Unhandled Promise:', event.reason);
+        });
+    </script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
@@ -333,7 +352,10 @@
             renderOrderSummary(cart.items);
 
             try {
-                // Create checkout session
+                // Create checkout session with timeout protection
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+                
                 const response = await fetch('/.netlify/functions/create-checkout', {
                     method: 'POST',
                     headers: {
@@ -341,8 +363,11 @@
                     },
                     body: JSON.stringify({
                         items: cart.items
-                    })
+                    }),
+                    signal: controller.signal
                 });
+                
+                clearTimeout(timeoutId);
 
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => ({}));
@@ -356,6 +381,9 @@
                 }
 
                 // Initialize Stripe
+                if (typeof Stripe === 'undefined') {
+                    throw new Error('Stripe not loaded. Please check your internet connection.');
+                }
                 const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 
                 // Mount embedded checkout
@@ -372,7 +400,11 @@
 
             } catch (error) {
                 console.error('Checkout initialization error:', error);
-                showError(error.message || 'An unexpected error occurred. Please try again.');
+                if (error.name === 'AbortError') {
+                    showError('Request timed out. Please check your internet connection and try again.');
+                } else {
+                    showError(error.message || 'An unexpected error occurred. Please try again.');
+                }
             }
         }
 

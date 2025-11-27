@@ -25,20 +25,25 @@ const ORACLE_READINGS = [
 
 /** Creates an elegant product card following the existing visual language. */
 function createProductCard(product) {
-    // This template must match the existing product card HTML structure in your shop.html
-    return `
-        <div class="lyrion-card product-card">
-            <figure class="product-image-container">
-                <img src="./assets/products/${product.image}" alt="${product.name}" class="product-img">
-            </figure>
-            <div class="product-details">
-                <h4 class="product-name">${product.name}</h4>
-                <p class="product-type">${product.type}</p>
-                <p class="product-price">£${product.price}.00</p>
-                <a href="#" class="button-secondary">Explore</a>
+    try {
+        // This template must match the existing product card HTML structure in your shop.html
+        return `
+            <div class="lyrion-card product-card">
+                <figure class="product-image-container">
+                    <img src="./assets/products/${product.image}" alt="${product.name}" class="product-img">
+                </figure>
+                <div class="product-details">
+                    <h4 class="product-name">${product.name}</h4>
+                    <p class="product-type">${product.type}</p>
+                    <p class="product-price">£${product.price}.00</p>
+                    <a href="#" class="button-secondary">Explore</a>
+                </div>
             </div>
-        </div>
-    `;
+        `;
+    } catch (error) {
+        console.error('Error creating product card:', error);
+        return '<div class="lyrion-card product-card"><p>Unable to load product</p></div>';
+    }
 }
 
 // --- FEATURE 1: PREMIUM ORACLE READINGS (PAID MODAL) ---
@@ -60,25 +65,37 @@ function closeOracleModal() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Modal close listeners
-    const modal = document.getElementById('oracle-modal');
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target.id === 'oracle-modal' || e.target.closest('.modal-close')) {
-                closeOracleModal();
-            }
-        });
-    }
+    try {
+        // Modal close listeners
+        const modal = document.getElementById('oracle-modal');
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                try {
+                    if (e.target.id === 'oracle-modal' || e.target.closest('.modal-close')) {
+                        closeOracleModal();
+                    }
+                } catch (err) {
+                    console.error('Modal click error:', err);
+                }
+            });
+        }
 
-    const form = document.getElementById('oracle-form');
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Hide form and show payment element
-            form.style.display = 'none';
-            simulatePaymentInitialization();
-        });
+        const form = document.getElementById('oracle-form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                try {
+                    e.preventDefault();
+                    
+                    // Hide form and show payment element
+                    form.style.display = 'none';
+                    simulatePaymentInitialization();
+                } catch (err) {
+                    console.error('Form submit error:', err);
+                }
+            });
+        }
+    } catch (error) {
+        console.error('DOMContentLoaded error in lyrion.js:', error);
     }
 });
 

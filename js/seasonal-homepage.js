@@ -9,18 +9,23 @@
 import { PRODUCTS_DATA } from '../data/products.js';
 
 // Use static data directly
-const cachedProducts = PRODUCTS_DATA;
+const cachedProducts = Array.isArray(PRODUCTS_DATA) ? PRODUCTS_DATA : [];
 
 // Import season functions (inline for browser compatibility)
 function getCurrentSeason() {
-  const now = new Date();
-  const month = now.getMonth(); // 0-11 (0 = January)
-  
-  // Month-based mapping to seasons
-  if (month >= 2 && month <= 4) return "Ascendant"; // Spring: March, April, May
-  if (month >= 5 && month <= 7) return "Apex";      // Summer: June, July, August
-  if (month >= 8 && month <= 10) return "Veil";     // Autumn: September, October, November
-  return "Return";                                   // Winter: December, January, February
+  try {
+    const now = new Date();
+    const month = now.getMonth(); // 0-11 (0 = January)
+    
+    // Month-based mapping to seasons
+    if (month >= 2 && month <= 4) return "Ascendant"; // Spring: March, April, May
+    if (month >= 5 && month <= 7) return "Apex";      // Summer: June, July, August
+    if (month >= 8 && month <= 10) return "Veil";     // Autumn: September, October, November
+    return "Return";                                   // Winter: December, January, February
+  } catch (error) {
+    console.error('Error getting current season:', error);
+    return "Return"; // Default fallback
+  }
 }
 
 function getSeasonDescription(season) {
@@ -150,8 +155,12 @@ function createProductCard(product) {
  * Initialize seasonal functionality when DOM is ready
  */
 document.addEventListener('DOMContentLoaded', function() {
-  updateSeasonalBadge();
-  loadSeasonalProducts();
+  try {
+    updateSeasonalBadge();
+    loadSeasonalProducts();
+  } catch (error) {
+    console.error('Error initializing seasonal homepage:', error);
+  }
 });
 
 // Export for use in other scripts (browser global)

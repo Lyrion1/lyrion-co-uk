@@ -24,13 +24,20 @@ async function buy(sku) {
   const loadingMessage = showLoadingOverlay('Preparing your celestial checkout...');
 
   try {
+    // Add timeout protection for fetch
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+    
     const response = await fetch(`${WORKER_URL}/checkout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ sku }),
+      signal: controller.signal
     });
+    
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       const error = await response.json();
@@ -49,7 +56,11 @@ async function buy(sku) {
   } catch (error) {
     console.error('Checkout error:', error);
     hideLoadingOverlay(loadingMessage);
-    alert(`Unable to start checkout: ${error.message}. Please try again or contact support.`);
+    if (error.name === 'AbortError') {
+      alert('Request timed out. Please check your internet connection and try again.');
+    } else {
+      alert(`Unable to start checkout: ${error.message}. Please try again or contact support.`);
+    }
   }
 }
 
