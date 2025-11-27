@@ -71,7 +71,7 @@ export function createCodexPost(data) {
     source: data.source || CODEX_SOURCES.INTERNAL,
     summary: data.summary || '',
     body: data.body || '',
-    imageUrl: data.imageUrl || null
+    imageUrl: data.imageUrl || undefined
   };
 }
 

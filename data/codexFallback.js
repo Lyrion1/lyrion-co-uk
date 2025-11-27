@@ -43,7 +43,7 @@ When the Moon waxes full, don your most luminous silks, your pieces that catch a
 The art of celestial alignment is not about prediction or control. It is about participation—becoming a conscious dancer in the cosmic ballet, moving with the music of the spheres rather than against it.
 
 Begin simply: note the current lunar phase. Observe how you feel. Choose one garment that honours that feeling. This is the first step toward living in sacred rhythm with the universe that holds you.`,
-    imageUrl: 'assets/img/codex-celestial-alignment.jpg'
+    imageUrl: 'assets/img/oracle-hero.png'
   },
   {
     slug: createSlug('Full Moon Rituals for the Modern Mystic', '2025-11-22'),
@@ -68,8 +68,7 @@ Release the paper to fire or earth. Burn it safely or bury it in the garden. Thi
 
 Dress for the occasion. Wear something that makes you feel lunar—white, silver, flowing. Your garments become part of the ritual, a second skin of intention.
 
-Close with stillness. Sit in the moonlight if you can, or simply imagine her silver rays touching your crown. You are part of this cosmic dance. You always have been.`,
-    imageUrl: 'assets/img/codex-full-moon.jpg'
+Close with stillness. Sit in the moonlight if you can, or simply imagine her silver rays touching your crown. You are part of this cosmic dance. You always have been.`
   },
   {
     slug: createSlug('Winter Solstice and the Return of Light', '2025-11-18'),
@@ -95,7 +94,7 @@ Embrace the darkness before you celebrate the light. The longest night invites u
 Choose your Solstice garments with intention. Deep colours—midnight blue, forest green, rich burgundy—honour the darkness. A touch of gold or silver catches the returning light. You are dressing for ceremony, even if the only witness is you.
 
 The Solstice reminds us that every ending contains a beginning, every death a rebirth. We are part of this eternal cycle. Let your celebration reflect that knowing.`,
-    imageUrl: 'assets/img/codex-winter-solstice.jpg'
+    imageUrl: 'assets/img/blog-hero.jpg'
   },
   {
     slug: createSlug('The Mythology of Orion', '2025-11-15'),
@@ -118,8 +117,7 @@ What do you hunt? What constellation of meaning are you creating with the choice
 
 This winter, take time to find Orion. Stand beneath him and feel the cold air on your face. You are connected to every human who has ever gazed upward at the same stars, asked the same questions, felt the same wonder.
 
-The cosmos is not distant. It is intimate. And Orion reminds us that even the most ordinary among us can become eternal.`,
-    imageUrl: 'assets/img/codex-orion.jpg'
+The cosmos is not distant. It is intimate. And Orion reminds us that even the most ordinary among us can become eternal.`
   },
   {
     slug: createSlug('Mercury Retrograde Survival Guide', '2025-11-10'),
@@ -148,8 +146,7 @@ Reconnect with your past. Those exes texting at 3 AM? They are simply responding
 
 Dress intentionally. During retrograde, choose grounding pieces—earthy tones, substantial fabrics, garments that make you feel centered. Your clothing becomes armour for navigating miscommunications with grace.
 
-The cosmos is not your enemy. Mercury retrograde is a rhythm, a breath, a necessary pause in the eternal dance. Learn to dance with it, and you will find that even apparent setbacks contain hidden gifts.`,
-    imageUrl: 'assets/img/codex-mercury-retrograde.jpg'
+The cosmos is not your enemy. Mercury retrograde is a rhythm, a breath, a necessary pause in the eternal dance. Learn to dance with it, and you will find that even apparent setbacks contain hidden gifts.`
   },
   {
     slug: createSlug('New Moon Manifestation Practices', '2025-11-05'),
@@ -178,8 +175,7 @@ Trust the darkness. The seed does not push through soil immediately. It rests, g
 
 As the moon waxes toward fullness over the coming two weeks, take steps—however small—toward your intention. The cosmos responds to effort, not just wishes.
 
-New moon manifestation is not magic in the fairy-tale sense. It is the magic of focused attention, aligned action, and trust in timing greater than your own. In the darkness, plant well.`,
-    imageUrl: 'assets/img/codex-new-moon.jpg'
+New moon manifestation is not magic in the fairy-tale sense. It is the magic of focused attention, aligned action, and trust in timing greater than your own. In the darkness, plant well.`
   }
 ];
 

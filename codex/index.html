@@ -91,7 +91,7 @@
 
         .post-image {
             height: 200px;
-            background: linear-gradient(135deg, rgba(196, 164, 73, 0.1) 0%, rgba(244, 239, 232, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(196, 164, 73, 0.15) 0%, rgba(244, 239, 232, 0.4) 50%, rgba(196, 164, 73, 0.1) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -105,16 +105,13 @@
             object-fit: cover;
         }
 
-        .post-image::before {
+        /* Placeholder glyph shown only when no image is present */
+        .post-image-placeholder::before {
             content: '✧';
             position: absolute;
             font-size: 3rem;
             color: var(--color-gold);
-            opacity: 0.2;
-        }
-
-        .post-image img + .post-image::before {
-            display: none;
+            opacity: 0.5;
         }
 
         .post-content {
@@ -494,13 +491,26 @@
          */
         function renderPostCard(post) {
             const formattedDate = formatPostDate(post.date);
-            const imageHtml = post.imageUrl 
-                ? `<img src="${post.imageUrl}" alt="${post.title}" onerror="this.style.display='none'">` 
+            const hasImage = post.imageUrl && post.imageUrl.trim() !== '';
+            const imageClass = hasImage ? 'post-image' : 'post-image post-image-placeholder';
+            
+            // Build image src - add ../ prefix if path is relative and doesn't already have it
+            let imageSrc = '';
+            if (hasImage) {
+                const url = post.imageUrl.trim();
+                if (url.startsWith('http') || url.startsWith('/') || url.startsWith('../')) {
+                    imageSrc = url;
+                } else {
+                    imageSrc = '../' + url;
+                }
+            }
+            const imageContent = hasImage 
+                ? `<img src="${imageSrc}" alt="${post.title}">` 
                 : '';
             
             return `
                 <article class="post-card" data-category="${post.category}">
-                    <div class="post-image">${imageHtml}</div>
+                    <div class="${imageClass}">${imageContent}</div>
                     <div class="post-content">
                         <span class="post-category">${post.category}</span>
                         <h3 class="post-title">
