@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LYRĪON | Celestial Couture & Astrology-Inspired Luxury Apparel</title>
+    <meta name="description" content="LYRĪON is a celestial couture house where astrology wears the body. Discover signature zodiac-inspired luxury apparel, homeware, and art.">
+    <!-- Error Recovery: Clear any stalled page loading -->
+    <script>
+        // Clear any previous loading timeouts
+        window.addEventListener('load', function() {
+            if (window.lyrionLoadTimeout) {
+                clearTimeout(window.lyrionLoadTimeout);
+            }
+            console.log('LYRĪON: Page loaded successfully');
+        });
+        // Global error handler to catch and log JavaScript errors
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('LYRĪON Error:', { message: msg, url: url, line: lineNo, column: columnNo, error: error });
+            return false; // Don't prevent default error handling
+        };
+        // Catch unhandled promise rejections
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('LYRĪON Unhandled Promise:', event.reason);
+        });
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css"> 
+    <link rel="stylesheet" href="assets/css/cosmic-animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png"> 
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="assets/img/logo-circle.png" alt="LYRĪON Celestial Couture" style="height: 35px; vertical-align: middle;"> LYRĪON</a>
+        </div>
+        <nav class="nav-main">
+            <div class="nav-item">
+                <a href="houses/index.html">The Houses</a>
+                <div class="dropdown-menu">
+                    <a href="houses/divine-essence.html">House of the Divine Essence</a>
+                    <a href="houses/solar-ascendant.html">House of the Solar Ascendant</a>
+                    <a href="houses/lunar-maidens.html">House of Lunar Maidens (Moon Girls)</a>
+                    <a href="houses/starborn-sons.html">House of Starborn Sons (Star Boys)</a>
+                </div>
+            </div>
+            <a href="zodiac/index.html">The Zodiac Library</a>
+            <div class="nav-item">
+                <a>Ritual Market</a>
+                <div class="dropdown-menu">
+                    <a href="shop.html?category=home-altar">Home & Altar</a>
+                    <a href="shop.html?category=sacred-textiles">Sacred Textiles</a>
+                    <a href="shop.html?category=digital-rituals">Digital Rituals</a>
+                </div>
+            </div>
+            <a href="oracle.html">The Oracle</a>
+            <a href="codex/index.html">Codex</a>
+        </nav>
+    </header>
+
+    <!-- Featured Sign Section -->
+    <div id="featured-sign-banner" style="text-align: center; padding: 1.5rem 2rem; background: linear-gradient(135deg, rgba(196, 164, 73, 0.15) 0%, rgba(244, 239, 232, 0.3) 100%); border-bottom: 1px solid var(--color-gold);">
+        <span style="color: #C4A449; font-size: 1rem; font-weight: 500; letter-spacing: 1px;">✧ FEATURED SIGN ✧</span>
+        <h3 style="font-family: var(--font-serif); color: var(--color-ink); margin: 0.5rem 0 0 0; font-size: 1.2rem;">
+            <a href="zodiac/leo.html" style="color: inherit; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#C4A449'" onmouseout="this.style.color='inherit'">
+                ♌ Leo — Radiant, confident, and magnanimous
+            </a>
+        </h3>
+    </div>
+
+    <section class="hero">
+        <h1>Where the Cosmos Becomes Wearable.</h1>
+        <h2>Elegant zodiac apparel and ritual décor — crafted in England, aligned with celestial rhythm.</h2>
+        <a href="shop.html?collection=zodiac-wardrobe" class="button-primary button-gold">Explore the Zodiac Collection ✧</a>
+    </section>
+
+    <section class="zodiac-silhouette-section" style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center;">
+        <h2 class="section-title-celestial" style="margin-top: 0; font-size: 2.5rem;">Find Your Cosmic Silhouette</h2>
+        <p class="section-subtitle" style="margin-bottom: 2rem;">Discover apparel and ritual pieces aligned with your celestial essence.</p>
+        
+        <!-- Zodiac Library Grid will be rendered here -->
+        <div id="homepage-zodiac-grid"></div>
+    </section>
+
+    <!-- This Week's Sign feature removed - using Featured Sign banner at top instead -->
+
+    <section class="featured-bestseller-section" style="padding: 4rem 2rem; max-width: 900px; margin: 0 auto; text-align: center;">
+        <div class="bestseller-card" style="background: linear-gradient(135deg, rgba(244, 239, 232, 0.5) 0%, rgba(252, 250, 250, 0.9) 100%); border: 2px solid var(--color-gold); border-radius: 12px; padding: 3rem 2rem;">
+            <div class="bestseller-badge" style="display: inline-block; background-color: var(--color-gold); color: var(--color-ink); padding: 0.5rem 1.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.5rem; font-weight: 600;">Featured Bestseller</div>
+            
+            <div class="bestseller-image-container" style="max-width: 500px; margin: 0 auto 2rem auto; background-color: #fff; border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);">
+                <img src="assets/products/signature-hoodie.jpg" alt="The Celestial Signature Hoodie" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 4px;">
+            </div>
+            
+            <h3 style="font-family: var(--font-serif); font-size: 2.2rem; color: var(--color-ink); margin-bottom: 1rem; font-weight: 600;">The Celestial Signature Hoodie</h3>
+            <p style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--color-gold); font-style: italic; margin-bottom: 2rem; line-height: 1.6;">Minimal gold embroidery. Made in England. A timeless emblem of your sign.</p>
+            
+            <a href="shop.html?collection=zodiac-wardrobe" class="button-primary button-gold" style="display: inline-block;">Shop Your Sign</a>
+        </div>
+    </section>
+
+    <section class="new-celestial-apparel-section" style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center; background: linear-gradient(135deg, rgba(244, 239, 232, 0.3) 0%, rgba(252, 250, 250, 0.7) 100%); border-radius: 16px;">
+        <h2 class="section-title-celestial" style="margin-top: 0; font-size: 2.5rem; color: var(--color-ink);">New Celestial Apparel</h2>
+        <p class="section-subtitle" style="margin-bottom: 3rem; font-size: 1.2rem; color: var(--color-gold); font-style: italic;">Minimal embroidery. Cosmic intention. Everyday elegance.</p>
+        
+        <div class="horizontal-scroll-container" style="overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 1rem;">
+            <div class="horizontal-scroll" id="new-apparel-scroll" style="display: flex; gap: 2rem; min-width: max-content; padding: 0 1rem; min-height: 400px;">
+                <!-- Loading skeleton will be shown here, then products -->
+            </div>
+        </div>
+        
+        <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap;">
+            <a href="collections/hats.html" class="button-primary button-gold">View All Hats</a>
+            <a href="collections/socks.html" class="button-primary button-gold">View All Socks</a>
+        </div>
+    </section>
+
+    <section class="collections-grid">
+        
+        <div class="collection-item">
+            <img src="assets/img/adult-feature.jpg" alt="Adult Zodiac Apparel and Homeware" loading="lazy">
+            <h3>Adult & Home</h3>
+            <p>Signature zodiac silhouettes and timeless artistry in homeware.</p>
+            <a href="shop.html?category=adult" class="button-primary">View Collection</a>
+        </div>
+        
+        <div class="collection-item">
+            <img src="assets/img/kids-feature.jpg" alt="Celestial Youth Apparel (Moon Girls and Star Boys)" loading="lazy">
+            <h3>Celestial Youth</h3>
+            <p>Moon Girls and Star Boys apparel, designed for growing spirits.</p>
+            <a href="shop.html?category=youth" class="button-primary">View Youth</a>
+        </div>
+        
+        <div class="collection-item">
+            <img src="assets/img/oracle-art.jpg" alt="A celestial, mystical artwork representation" loading="lazy">
+            <h3>The Oracle's Whisper</h3>
+            <p>Seek cosmic guidance. A personalized written insight into your current alignment.</p>
+            <a href="oracle.html" class="button-primary">Consult The Oracle</a>
+        </div>
+        
+    </section>
+
+    <section class="celestial-edition-section" style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+        <h2 class="section-title-celestial" style="margin-top: 0; font-size: 2.5rem;">Seasonal Celestial Editions</h2>
+        <p class="section-subtitle" style="margin-bottom: 3rem;">Aligning your wardrobe with the current cosmic transits. Micro-collections pulled from our full shop.</p>
+        
+        <div class="seasonal-carousel">
+            
+            <div class="lyrion-card product-card">
+                <figure class="product-image-container">
+                    <img src="assets/products/celestial-jacket.jpg" alt="Lunar Ritual Jacket" class="product-img" loading="lazy">
+                </figure>
+                <div class="product-details">
+                    <h4 class="product-name">Lunar Ritual Jacket</h4>
+                    <p class="product-type">Apparel</p>
+                    <p class="product-price">£450.00</p>
+                    <a href="shop.html?product=jacket1" class="button-secondary">Explore</a>
+                </div>
+            </div>
+            
+            <div class="lyrion-card product-card">
+                <figure class="product-image-container">
+                    <img src="assets/products/aether-incense.jpg" alt="Aether Incense Set" class="product-img" loading="lazy">
+                </figure>
+                <div class="product-details">
+                    <h4 class="product-name">Aether Incense Set</h4>
+                    <p class="product-type">Homeware</p>
+                    <p class="product-price">£85.00</p>
+                    <a href="shop.html?product=incense" class="button-secondary">Explore</a>
+                </div>
+            </div>
+            
+            <div class="lyrion-card product-card">
+                <figure class="product-image-container">
+                    <img src="assets/products/venus-dress.jpg" alt="Venus Transit Dress" class="product-img" loading="lazy">
+                </figure>
+                <div class="product-details">
+                    <h4 class="product-name">Venus Transit Dress</h4>
+                    <p class="product-type">Apparel</p>
+                    <p class="product-price">£310.00</p>
+                    <a href="shop.html?product=dress1" class="button-secondary">Explore</a>
+                </div>
+            </div>
+            
+            <div class="lyrion-card product-card">
+                <figure class="product-image-container">
+                    <img src="assets/products/star-tapestry.jpg" alt="Constellation Tapestry" class="product-img" loading="lazy">
+                </figure>
+                <div class="product-details">
+                    <h4 class="product-name">Constellation Tapestry</h4>
+                    <p class="product-type">Homeware</p>
+                    <p class="product-price">£110.00</p>
+                    <a href="shop.html?product=tapestry" class="button-secondary">Explore</a>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="section-action" style="text-align: center; margin-top: 40px;">
+            <a href="shop.html" class="button-primary button-gold">View The Full Collection</a>
+        </div>
+    </section>
+    <footer>
+        <div class="nav-footer">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="returns.html">Returns &amp; Refunds</a>
+            <a href="shipping.html">Shipping Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="intercession.html">Intercession Contact</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LYRĪON Celestial Couture. Live with Ritual and Intention.
+        </div>
+    </footer>
+    
+    <script src="lyrion.js"></script>
+    <script src="js/cosmic-interactions.js"></script>
+    <script type="module" src="js/seasonal-homepage.js"></script>
+    <script src="lib/marketing.js"></script>
+    <script src="js/components/ZodiacLibraryGrid.js"></script>
+    <script>
+        // Render the Zodiac Library Grid on the homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                if (typeof ZodiacLibraryGrid === 'undefined') {
+                    console.warn('ZodiacLibraryGrid not loaded, skipping grid render');
+                    return;
+                }
+                const zodiacGrid = new ZodiacLibraryGrid({
+                    showHeader: false, // Header already exists in HTML
+                    basePath: 'zodiac/' // Relative path for zodiac pages from homepage
+                });
+                
+                const container = document.getElementById('homepage-zodiac-grid');
+                if (container) {
+                    zodiacGrid.render(container);
+                }
+            } catch (error) {
+                console.error('Error rendering zodiac grid:', error);
+            }
+        });
+    </script>
+    
+    <!-- Email Capture Popup Modal -->
+    <div id="email-popup-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 10000; justify-content: center; align-items: center;">
+        <div style="background: linear-gradient(135deg, #f5f3ef 0%, #fcfafa 100%); border: 3px solid #C4A449; border-radius: 12px; padding: 3rem 2.5rem; max-width: 500px; width: 90%; text-align: center; position: relative; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+            <button id="popup-close" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.8rem; color: #C4A449; cursor: pointer; line-height: 1;">&times;</button>
+            
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #151311; margin-bottom: 1rem; font-weight: 600;">Align With Your Sign</h3>
+            <p style="font-size: 1.1rem; color: #5a5856; margin-bottom: 2rem; line-height: 1.6;">Join the cosmic list for early access + a private £5 ritual credit.</p>
+            
+            <input type="email" id="popup-email" placeholder="Your email address" style="width: 100%; padding: 1rem; border: 2px solid #C4A449; border-radius: 6px; font-size: 1rem; margin-bottom: 1.5rem; font-family: 'Playfair Display', serif;">
+            
+            <button id="popup-submit" style="width: 100%; padding: 1rem 2rem; background: #C4A449; color: white; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: background 0.3s ease; font-family: 'Playfair Display', serif;">Enter the Constellation</button>
+            
+            <p style="font-size: 0.85rem; color: #8a8886; margin-top: 1rem;">No spam. Only celestial intention.</p>
+        </div>
+    </div>
+
+    <!-- Sign Selector Modal (40% scroll trigger) -->
+    <div id="sign-selector-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: 10000; justify-content: center; align-items: center;">
+        <div style="background: linear-gradient(135deg, #f5f3ef 0%, #fcfafa 100%); border: 3px solid #C4A449; border-radius: 12px; padding: 3rem 2.5rem; max-width: 600px; width: 90%; max-height: 85vh; overflow-y: auto; text-align: center; position: relative; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+            <button id="sign-selector-close" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.8rem; color: #C4A449; cursor: pointer; line-height: 1;">&times;</button>
+            
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #151311; margin-bottom: 1rem; font-weight: 600;">What's Your Sign?</h3>
+            <p style="font-size: 1rem; color: #5a5856; margin-bottom: 2.5rem;">Discover your cosmic signature</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                <a href="zodiac/aries.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♈</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Aries</div>
+                </a>
+                <a href="zodiac/taurus.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♉</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Taurus</div>
+                </a>
+                <a href="zodiac/gemini.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♊</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Gemini</div>
+                </a>
+                <a href="zodiac/cancer.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♋</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Cancer</div>
+                </a>
+                <a href="zodiac/leo.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♌</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Leo</div>
+                </a>
+                <a href="zodiac/virgo.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♍</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Virgo</div>
+                </a>
+                <a href="zodiac/libra.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♎</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Libra</div>
+                </a>
+                <a href="zodiac/scorpio.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♏</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Scorpio</div>
+                </a>
+                <a href="zodiac/sagittarius.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♐</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Sagittarius</div>
+                </a>
+                <a href="zodiac/capricorn.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♑</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Capricorn</div>
+                </a>
+                <a href="zodiac/aquarius.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♒</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Aquarius</div>
+                </a>
+                <a href="zodiac/pisces.html" style="text-decoration: none; padding: 1.2rem; border: 2px solid #e0ddd9; border-radius: 8px; transition: all 0.3s ease; background: white;" class="sign-selector-option">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♓</div>
+                    <div style="color: #151311; font-weight: 600; font-size: 0.95rem;">Pisces</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    try {
+        // Add shimmer animation to document
+        const shimmerStyle = document.createElement('style');
+        shimmerStyle.textContent = `
+            @keyframes shimmer {
+                0% { background-position: -200% 0; }
+                100% { background-position: 200% 0; }
+            }
+        `;
+        document.head.appendChild(shimmerStyle);
+        
+        // Create loading skeleton
+        function createLoadingSkeleton() {
+            const skeleton = document.createElement('div');
+            skeleton.style.cssText = 'min-width: 280px; min-height: 400px; background: white; border: 1px solid #e0ddd9; border-radius: 8px; padding: 1.5rem; text-align: center; display: flex; flex-direction: column;';
+            skeleton.className = 'loading-skeleton';
+            skeleton.innerHTML = `
+                <div style="width: 100%; height: 250px; min-height: 250px; max-height: 250px; background: linear-gradient(90deg, #e8e6e3 25%, #f0f0f0 50%, #e8e6e3 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; margin-bottom: 1rem;"></div>
+                <div style="height: 20px; background: linear-gradient(90deg, #e8e6e3 25%, #f0f0f0 50%, #e8e6e3 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+                <div style="height: 16px; width: 60%; margin: 0 auto; background: linear-gradient(90deg, #e8e6e3 25%, #f0f0f0 50%, #e8e6e3 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px;"></div>
+            `;
+            return skeleton;
+        }
+        
+        // Track products loading state: null = loading, [] = loaded empty, [items] = loaded with data
+        let newApparelProducts = null;
+        let newApparelLoaded = false;
+        
+        // Lazy load new celestial apparel using Intersection Observer
+        function initLazyLoadNewApparel() {
+            const container = document.getElementById('new-apparel-scroll');
+            const section = document.querySelector('.new-celestial-apparel-section');
+            
+            if (!container || !section) return;
+            
+            // Create Intersection Observer for lazy loading
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !newApparelLoaded) {
+                        newApparelLoaded = true;
+                        loadNewCelestialApparel();
+                        observer.unobserve(section);
+                    }
+                });
+            }, {
+                rootMargin: '100px' // Start loading 100px before section is visible
+            });
+            
+            observer.observe(section);
+        }
+        
+        // Load new celestial apparel (hats and socks) for homepage display
+        async function loadNewCelestialApparel() {
+            const container = document.getElementById('new-apparel-scroll');
+            if (!container) return;
+            
+            // Show loading skeleton only while products === null
+            if (newApparelProducts === null) {
+                container.innerHTML = '';
+                for (let i = 0; i < 3; i++) {
+                    container.appendChild(createLoadingSkeleton());
+                }
+            }
+            
+            try {
+                // Import products data dynamically as a module
+                const { PRODUCTS_DATA } = await import('./data/products.js');
+                const products = Array.isArray(PRODUCTS_DATA) ? PRODUCTS_DATA : [];
+                
+                // Get hats and socks for new apparel display
+                const hats = products.filter(p => p.category === 'Hats').slice(0, 3);
+                const socks = products.filter(p => p.category === 'Socks').slice(0, 3);
+                newApparelProducts = [...hats, ...socks];
+                
+                // Clear loading skeleton
+                container.innerHTML = '';
+                
+                if (newApparelProducts.length === 0) {
+                    container.innerHTML = '<p style="color: #5a5856; font-style: italic; min-height: 350px; display: flex; align-items: center; justify-content: center;">No products available at this time.</p>';
+                    return;
+                }
+                
+                newApparelProducts.forEach(product => {
+                    const card = document.createElement('div');
+                    // Fixed min-height and aspect ratio to prevent layout jumping
+                    card.style.cssText = 'min-width: 280px; min-height: 400px; background: white; border: 1px solid #e0ddd9; border-radius: 8px; padding: 1.5rem; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column;';
+                    
+                    const title = product.title || product.name || 'Celestial Product';
+                    const price = product.price || 0;
+                    const subtitle = product.subtitle || product.description || '';
+                    const sku = product.sku || product.id || '';
+                    const image = product.image || 'placeholder.webp';
+                    
+                    card.innerHTML = `
+                        <div style="width: 100%; height: 250px; min-height: 250px; max-height: 250px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; background: #e8e6e3; border-radius: 4px; overflow: hidden;">
+                            <img src="assets/products/${image}" alt="${title}" 
+                                 style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;"
+                                 onerror="this.src='assets/products/placeholder.webp'">
+                        </div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #151311; line-height: 1.3;">${title}</h3>
+                        <p style="font-size: 1.1rem; color: #C4A449; font-weight: 600; margin: 0.5rem 0;">£${Number(price).toFixed(2)}</p>
+                        <p style="font-size: 0.9rem; color: #5a5856; margin-bottom: 1rem; flex-grow: 1; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.4;">${subtitle}</p>
+                        <a href="product.html?sku=${sku}" style="display: inline-block; padding: 0.6rem 1.2rem; background: #C4A449; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; transition: background 0.3s ease; margin-top: auto;">View Details</a>
+                    `;
+                    
+                    // Add hover effect
+                    card.addEventListener('mouseenter', () => {
+                        card.style.transform = 'translateY(-5px)';
+                        card.style.boxShadow = '0 8px 20px rgba(196, 164, 73, 0.2)';
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = '';
+                        card.style.boxShadow = '';
+                    });
+                    
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                newApparelProducts = []; // Mark as loaded but empty
+                container.innerHTML = '<p style="color: #A00; min-height: 350px; display: flex; align-items: center; justify-content: center;">Failed to load products. Please refresh the page.</p>';
+            }
+        }
+        
+        // Load apparel when page loads using lazy loading
+        document.addEventListener('DOMContentLoaded', () => {
+            initLazyLoadNewApparel();
+        });
+        
+        // ========== This Week's Sign Feature - Removed ==========
+        // Using static Featured Sign banner at the top of the page instead
+        
+        // ========== Email Popup Modal ==========
+        let emailPopupShown = false;
+        const emailPopupModal = document.getElementById('email-popup-modal');
+        const emailPopupClose = document.getElementById('popup-close');
+        const emailPopupSubmit = document.getElementById('popup-submit');
+        
+        // Show email popup after 15 seconds (first visit only)
+        function showEmailPopup() {
+            if (!emailPopupShown && !localStorage.getItem('lyrion-email-popup-seen')) {
+                setTimeout(() => {
+                    emailPopupModal.style.display = 'flex';
+                    emailPopupShown = true;
+                }, 15000); // 15 seconds
+            }
+        }
+        
+        emailPopupClose.addEventListener('click', () => {
+            emailPopupModal.style.display = 'none';
+            localStorage.setItem('lyrion-email-popup-seen', 'true');
+        });
+        
+        emailPopupModal.addEventListener('click', (e) => {
+            if (e.target === emailPopupModal) {
+                emailPopupModal.style.display = 'none';
+                localStorage.setItem('lyrion-email-popup-seen', 'true');
+            }
+        });
+        
+        emailPopupSubmit.addEventListener('click', () => {
+            const email = document.getElementById('popup-email').value;
+            if (email && email.includes('@')) {
+                // In production, send to email service
+                alert('Welcome to the constellation! Check your email for your £5 ritual credit.');
+                emailPopupModal.style.display = 'none';
+                localStorage.setItem('lyrion-email-popup-seen', 'true');
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+        
+        // ========== Sign Selector Modal (40% Scroll) ==========
+        let signSelectorShown = false;
+        const signSelectorModal = document.getElementById('sign-selector-modal');
+        const signSelectorClose = document.getElementById('sign-selector-close');
+        
+        // Track scroll depth
+        window.addEventListener('scroll', () => {
+            const scrollableHeight = Math.max(1, document.body.scrollHeight - window.innerHeight);
+            const scrollPercent = (window.scrollY / scrollableHeight) * 100;
+            
+            if (scrollPercent >= 40 && !signSelectorShown && !localStorage.getItem('lyrion-sign-selector-seen')) {
+                signSelectorModal.style.display = 'flex';
+                signSelectorShown = true;
+                localStorage.setItem('lyrion-sign-selector-seen', 'true');
+            }
+        });
+        
+        signSelectorClose.addEventListener('click', () => {
+            signSelectorModal.style.display = 'none';
+        });
+        
+        signSelectorModal.addEventListener('click', (e) => {
+            if (e.target === signSelectorModal) {
+                signSelectorModal.style.display = 'none';
+            }
+        });
+        
+        // Add hover effects to sign selector options
+        document.querySelectorAll('.sign-selector-option').forEach(option => {
+            option.addEventListener('mouseenter', function() {
+                this.style.borderColor = '#C4A449';
+                this.style.background = 'linear-gradient(135deg, rgba(244, 239, 232, 0.3) 0%, rgba(252, 250, 250, 0.7) 100%)';
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 4px 12px rgba(196, 164, 73, 0.2)';
+            });
+            option.addEventListener('mouseleave', function() {
+                this.style.borderColor = '#e0ddd9';
+                this.style.background = 'white';
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
+        });
+        
+        // Initialize everything on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                showEmailPopup();
+            } catch (e) {
+                console.error('Error in email popup initialization:', e);
+            }
+        });
+    } catch (mainScriptError) {
+        console.error('LYRĪON: Error in main page script:', mainScriptError);
+    }
+    </script>
+    
+</body>
+</html>

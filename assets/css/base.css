@@ -1,0 +1,37 @@
+@import "./tokens.css";
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:var(--fs-md);line-height:1.55;}
+img{max-width:100%;display:block}
+a{color:var(--accent-2);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:var(--max-w);margin-inline:auto;padding-inline:var(--container-pad)}
+.hidden{display:none !important}
+.button{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:var(--radius-1);background:var(--accent);color:#111;font-weight:600;border:1px solid transparent;cursor:pointer}
+.button:hover{filter:brightness(1.05)}
+.button.secondary{background:transparent;color:var(--text);border-color:var(--line)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-2);box-shadow:var(--shadow-1)}
+.grid{display:grid;gap:var(--space-6)}
+.grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.grid.cols-3{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.grid.cols-3{grid-template-columns:1fr}}
+h1,h2,h3{font-family:var(--font-serif);margin:0 0 var(--space-3)}
+h1{font-size:var(--fs-3xl)} h2{font-size:var(--fs-2xl)} h3{font-size:var(--fs-xl)}
+p{margin:0 0 var(--space-3)}
+/* Accessibility */
+:focus-visible{outline:none;box-shadow:var(--focus)}
+.skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{left:8px;top:8px;width:auto;height:auto;z-index:1000;background:var(--accent);color:#111;padding:6px 10px;border-radius:6px}
+/* Header, Banner, Footer */
+.announce{background:var(--surface);border-bottom:1px solid var(--line);font-size:var(--fs-sm);color:var(--muted)}
+.header{position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--line);z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.brand{font-family:var(--font-serif);font-size:20px;letter-spacing:.08em}
+.nav-links{display:flex;gap:16px;align-items:center}
+.nav-toggle{display:none}
+@media (max-width:800px){
+ .nav-links{display:none}
+ .nav-toggle{display:inline-flex}
+ .nav-open .nav-links{display:flex;flex-direction:column;gap:12px;padding:12px 0}
+}
+.footer{margin-top:var(--space-12);padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-size:var(--fs-sm)}
