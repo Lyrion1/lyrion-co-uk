@@ -1,0 +1,14 @@
+{
+ "01": {"sign":"Capricorn","slug":"capricorn","abbr":"CAP","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}},
+ "02": {"sign":"Aquarius","slug":"aquarius","abbr":"AQU","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}},
+ "03": {"sign":"Pisces","slug":"pisces","abbr":"PIS","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}},
+ "04": {"sign":"Aries","slug":"aries","abbr":"ARI","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}},
+ "05": {"sign":"Taurus","slug":"taurus","abbr":"TAU","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}},
+ "06": {"sign":"Gemini","slug":"gemini","abbr":"GEM","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}},
+ "07": {"sign":"Cancer","slug":"cancer","abbr":"CAN","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}},
+ "08": {"sign":"Leo","slug":"leo","abbr":"LEO","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}},
+ "09": {"sign":"Virgo","slug":"virgo","abbr":"VIR","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}},
+ "10": {"sign":"Libra","slug":"libra","abbr":"LIB","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}},
+ "11": {"sign":"Scorpio","slug":"scorpio","abbr":"SCO","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}},
+ "12": {"sign":"Sagittarius","slug":"sagittarius","abbr":"SAG","prices":{"hoodie":110,"tee":45,"print":39,"reading":9}}
+}
