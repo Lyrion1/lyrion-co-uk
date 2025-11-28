@@ -1,653 +1,222 @@
 {
+  "AQU-HOOD-STD": {
+    "provider": "printful",
+    "variants": {
+      "S": "PF_VAR_AQU_HOOD_S",
+      "M": "PF_VAR_AQU_HOOD_M",
+      "L": "PF_VAR_AQU_HOOD_L",
+      "XL": "PF_VAR_AQU_HOOD_XL",
+      "XXL": "PF_VAR_AQU_HOOD_2XL"
+    }
+  },
+  "AQU-TEE-STD": {
+    "provider": "printful",
+    "variants": {
+      "S": "PF_VAR_AQU_TEE_S",
+      "M": "PF_VAR_AQU_TEE_M",
+      "L": "PF_VAR_AQU_TEE_L",
+      "XL": "PF_VAR_AQU_TEE_XL",
+      "XXL": "PF_VAR_AQU_TEE_2XL"
+    }
+  },
+  "AQU-PRINT-A3": {
+    "provider": "gelato",
+    "product_uid": "gelato_a3_print_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/aquarius-a3.pdf"
+  },
   "A-HOOD-ARIES": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-001",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Aries Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_ARIES_HOOD_S",
+      "M": "PF_VAR_ARIES_HOOD_M",
+      "L": "PF_VAR_ARIES_HOOD_L",
+      "XL": "PF_VAR_ARIES_HOOD_XL",
+      "XXL": "PF_VAR_ARIES_HOOD_2XL"
+    }
   },
   "A-HOOD-TAURUS": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-002",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Taurus Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_TAURUS_HOOD_S",
+      "M": "PF_VAR_TAURUS_HOOD_M",
+      "L": "PF_VAR_TAURUS_HOOD_L",
+      "XL": "PF_VAR_TAURUS_HOOD_XL",
+      "XXL": "PF_VAR_TAURUS_HOOD_2XL"
+    }
   },
   "A-HOOD-GEMINI": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-003",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Gemini Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_GEMINI_HOOD_S",
+      "M": "PF_VAR_GEMINI_HOOD_M",
+      "L": "PF_VAR_GEMINI_HOOD_L",
+      "XL": "PF_VAR_GEMINI_HOOD_XL",
+      "XXL": "PF_VAR_GEMINI_HOOD_2XL"
+    }
   },
   "A-HOOD-CANCER": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-004",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Cancer Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_CANCER_HOOD_S",
+      "M": "PF_VAR_CANCER_HOOD_M",
+      "L": "PF_VAR_CANCER_HOOD_L",
+      "XL": "PF_VAR_CANCER_HOOD_XL",
+      "XXL": "PF_VAR_CANCER_HOOD_2XL"
+    }
   },
   "A-HOOD-LEO": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-005",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Leo Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_LEO_HOOD_S",
+      "M": "PF_VAR_LEO_HOOD_M",
+      "L": "PF_VAR_LEO_HOOD_L",
+      "XL": "PF_VAR_LEO_HOOD_XL",
+      "XXL": "PF_VAR_LEO_HOOD_2XL"
+    }
   },
   "A-HOOD-VIRGO": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-006",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Virgo Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_VIRGO_HOOD_S",
+      "M": "PF_VAR_VIRGO_HOOD_M",
+      "L": "PF_VAR_VIRGO_HOOD_L",
+      "XL": "PF_VAR_VIRGO_HOOD_XL",
+      "XXL": "PF_VAR_VIRGO_HOOD_2XL"
+    }
   },
   "A-HOOD-LIBRA": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-007",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Libra Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_LIBRA_HOOD_S",
+      "M": "PF_VAR_LIBRA_HOOD_M",
+      "L": "PF_VAR_LIBRA_HOOD_L",
+      "XL": "PF_VAR_LIBRA_HOOD_XL",
+      "XXL": "PF_VAR_LIBRA_HOOD_2XL"
+    }
   },
   "A-HOOD-SCORPIO": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-008",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Scorpio Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_SCORPIO_HOOD_S",
+      "M": "PF_VAR_SCORPIO_HOOD_M",
+      "L": "PF_VAR_SCORPIO_HOOD_L",
+      "XL": "PF_VAR_SCORPIO_HOOD_XL",
+      "XXL": "PF_VAR_SCORPIO_HOOD_2XL"
+    }
   },
   "A-HOOD-SAGITTARIUS": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-009",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Sagittarius Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_SAGITTARIUS_HOOD_S",
+      "M": "PF_VAR_SAGITTARIUS_HOOD_M",
+      "L": "PF_VAR_SAGITTARIUS_HOOD_L",
+      "XL": "PF_VAR_SAGITTARIUS_HOOD_XL",
+      "XXL": "PF_VAR_SAGITTARIUS_HOOD_2XL"
+    }
   },
   "A-HOOD-CAPRICORN": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-010",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Capricorn Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_CAPRICORN_HOOD_S",
+      "M": "PF_VAR_CAPRICORN_HOOD_M",
+      "L": "PF_VAR_CAPRICORN_HOOD_L",
+      "XL": "PF_VAR_CAPRICORN_HOOD_XL",
+      "XXL": "PF_VAR_CAPRICORN_HOOD_2XL"
+    }
   },
   "A-HOOD-AQUARIUS": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-011",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Aquarius Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_AQUARIUS_HOOD_S",
+      "M": "PF_VAR_AQUARIUS_HOOD_M",
+      "L": "PF_VAR_AQUARIUS_HOOD_L",
+      "XL": "PF_VAR_AQUARIUS_HOOD_XL",
+      "XXL": "PF_VAR_AQUARIUS_HOOD_2XL"
+    }
   },
   "A-HOOD-PISCES": {
     "provider": "printful",
-    "provider_sku": "PRF-HOOD-012",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 110,
-    "currency": "GBP",
-    "title": "Pisces Zodiac Hoodie"
+    "variants": {
+      "S": "PF_VAR_PISCES_HOOD_S",
+      "M": "PF_VAR_PISCES_HOOD_M",
+      "L": "PF_VAR_PISCES_HOOD_L",
+      "XL": "PF_VAR_PISCES_HOOD_XL",
+      "XXL": "PF_VAR_PISCES_HOOD_2XL"
+    }
   },
   "A-TEE-ARIES": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-001",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Aries Zodiac Tee"
+    "product_uid": "gelato_tee_aries_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/aries-tee.pdf"
   },
   "A-TEE-TAURUS": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-002",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Taurus Zodiac Tee"
+    "product_uid": "gelato_tee_taurus_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/taurus-tee.pdf"
   },
   "A-TEE-GEMINI": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-003",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Gemini Zodiac Tee"
+    "product_uid": "gelato_tee_gemini_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/gemini-tee.pdf"
   },
   "A-TEE-CANCER": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-004",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Cancer Zodiac Tee"
+    "product_uid": "gelato_tee_cancer_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/cancer-tee.pdf"
   },
   "A-TEE-LEO": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-005",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Leo Zodiac Tee"
+    "product_uid": "gelato_tee_leo_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/leo-tee.pdf"
   },
   "A-TEE-VIRGO": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-006",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Virgo Zodiac Tee"
+    "product_uid": "gelato_tee_virgo_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/virgo-tee.pdf"
   },
   "A-TEE-LIBRA": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-007",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Libra Zodiac Tee"
+    "product_uid": "gelato_tee_libra_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/libra-tee.pdf"
   },
   "A-TEE-SCORPIO": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-008",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Scorpio Zodiac Tee"
+    "product_uid": "gelato_tee_scorpio_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/scorpio-tee.pdf"
   },
   "A-TEE-SAGITTARIUS": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-009",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Sagittarius Zodiac Tee"
+    "product_uid": "gelato_tee_sagittarius_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/sagittarius-tee.pdf"
   },
   "A-TEE-CAPRICORN": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-010",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Capricorn Zodiac Tee"
+    "product_uid": "gelato_tee_capricorn_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/capricorn-tee.pdf"
   },
   "A-TEE-AQUARIUS": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-011",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Aquarius Zodiac Tee"
+    "product_uid": "gelato_tee_aquarius_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/aquarius-tee.pdf"
   },
   "A-TEE-PISCES": {
     "provider": "gelato",
-    "provider_sku": "GLT-TEE-012",
-    "type": "apparel",
-    "bundleItems": [],
-    "price": 65,
-    "currency": "GBP",
-    "title": "Pisces Zodiac Tee"
-  },
-  "K-HOOD-MOON-ARIES": {
-    "provider": "printify",
-    "provider_sku": "PFY-KIDS-001",
-    "type": "kids",
-    "bundleItems": [],
-    "price": 75,
-    "currency": "GBP",
-    "title": "Moon Girls Aries Hoodie"
-  },
-  "K-HOOD-MOON-TAURUS": {
-    "provider": "printify",
-    "provider_sku": "PFY-KIDS-002",
-    "type": "kids",
-    "bundleItems": [],
-    "price": 75,
-    "currency": "GBP",
-    "title": "Moon Girls Taurus Hoodie"
-  },
-  "K-HOOD-MOON-GEMINI": {
-    "provider": "printify",
-    "provider_sku": "PFY-KIDS-003",
-    "type": "kids",
-    "bundleItems": [],
-    "price": 75,
-    "currency": "GBP",
-    "title": "Moon Girls Gemini Hoodie"
-  },
-  "K-HOOD-MOON-CANCER": {
-    "provider": "printify",
-    "provider_sku": "PFY-KIDS-004",
-    "type": "kids",
-    "bundleItems": [],
-    "price": 75,
-    "currency": "GBP",
-    "title": "Moon Girls Cancer Hoodie"
-  },
-  "K-TEE-MOON-LEO": {
-    "provider": "printify",
-    "provider_sku": "PFY-KIDS-TEE-001",
-    "type": "kids",
-    "bundleItems": [],
-    "price": 45,
-    "currency": "GBP",
-    "title": "Moon Girls Leo Tee"
-  },
-  "K-TEE-MOON-VIRGO": {
-    "provider": "printify",
-    "provider_sku": "PFY-KIDS-TEE-002",
-    "type": "kids",
-    "bundleItems": [],
-    "price": 45,
-    "currency": "GBP",
-    "title": "Moon Girls Virgo Tee"
-  },
-  "K-HOOD-STAR-ARIES": {
-    "provider": "printify",
-    "provider_sku": "PFY-BOYS-001",
-    "type": "kids",
-    "bundleItems": [],
-    "price": 75,
-    "currency": "GBP",
-    "title": "Star Boys Aries Hoodie"
-  },
-  "K-HOOD-STAR-LEO": {
-    "provider": "printify",
-    "provider_sku": "PFY-BOYS-002",
-    "type": "kids",
-    "bundleItems": [],
-    "price": 75,
-    "currency": "GBP",
-    "title": "Star Boys Leo Hoodie"
-  },
-  "K-HOOD-STAR-SAGITTARIUS": {
-    "provider": "printify",
-    "provider_sku": "PFY-BOYS-003",
-    "type": "kids",
-    "bundleItems": [],
-    "price": 75,
-    "currency": "GBP",
-    "title": "Star Boys Sagittarius Hoodie"
-  },
-  "K-TEE-STAR-GEMINI": {
-    "provider": "printify",
-    "provider_sku": "PFY-BOYS-TEE-001",
-    "type": "kids",
-    "bundleItems": [],
-    "price": 45,
-    "currency": "GBP",
-    "title": "Star Boys Gemini Tee"
-  },
-  "K-TEE-STAR-AQUARIUS": {
-    "provider": "printify",
-    "provider_sku": "PFY-BOYS-TEE-002",
-    "type": "kids",
-    "bundleItems": [],
-    "price": 45,
-    "currency": "GBP",
-    "title": "Star Boys Aquarius Tee"
-  },
-  "H-ALTAR-CLOTH-ARIES": {
-    "provider": "printify",
-    "provider_sku": "PFY-HOME-001",
-    "type": "home",
-    "bundleItems": [],
-    "price": 50,
-    "currency": "GBP",
-    "title": "Aries Altar Cloth"
-  },
-  "H-ALTAR-CLOTH-TAURUS": {
-    "provider": "printify",
-    "provider_sku": "PFY-HOME-002",
-    "type": "home",
-    "bundleItems": [],
-    "price": 50,
-    "currency": "GBP",
-    "title": "Taurus Altar Cloth"
-  },
-  "H-ALTAR-CLOTH-LIBRA": {
-    "provider": "printify",
-    "provider_sku": "PFY-HOME-003",
-    "type": "home",
-    "bundleItems": [],
-    "price": 50,
-    "currency": "GBP",
-    "title": "Libra Altar Cloth"
-  },
-  "H-SELENE-INCENSE-DISH": {
-    "provider": "printify",
-    "provider_sku": "PFY-HOME-004",
-    "type": "home",
-    "bundleItems": [],
-    "price": 45,
-    "currency": "GBP",
-    "title": "Selene Incense Dish"
-  },
-  "H-CELESTIAL-CUSHION": {
-    "provider": "gelato",
-    "provider_sku": "GLT-HOME-001",
-    "type": "home",
-    "bundleItems": [],
-    "price": 60,
-    "currency": "GBP",
-    "title": "Celestial Cushion"
+    "product_uid": "gelato_tee_pisces_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/pisces-tee.pdf"
   },
   "H-STAR-MAP-PRINT-A3": {
     "provider": "gelato",
-    "provider_sku": "GLT-ART-001",
-    "type": "home",
-    "bundleItems": [],
-    "price": 40,
-    "currency": "GBP",
-    "title": "A3 Star Map Print"
-  },
-  "H-COSMIC-ALTAR-SET": {
-    "provider": "printify",
-    "provider_sku": "PFY-HOME-005",
-    "type": "home",
-    "bundleItems": [],
-    "price": 75,
-    "currency": "GBP",
-    "title": "Cosmic Altar Set"
+    "product_uid": "gelato_a3_starmap_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/star-map-a3.pdf"
   },
   "H-ZODIAC-WALL-ART-GOLD": {
     "provider": "gelato",
-    "provider_sku": "GLT-ART-002",
-    "type": "home",
-    "bundleItems": [],
-    "price": 80,
-    "currency": "GBP",
-    "title": "Zodiac Gold Wall Art"
+    "product_uid": "gelato_wall_art_gold_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/zodiac-wall-art-gold.pdf"
   },
-  "H-TAPESTRY-MOON-PHASES": {
-    "provider": "printify",
-    "provider_sku": "PFY-HOME-006",
-    "type": "home",
-    "bundleItems": [],
-    "price": 95,
-    "currency": "GBP",
-    "title": "Moon Phases Tapestry"
-  },
-  "H-CANDLE-HOLDERS-ZODIAC": {
-    "provider": "manual",
-    "provider_sku": "MANUAL-001",
-    "type": "home",
-    "bundleItems": [],
-    "price": 55,
-    "currency": "GBP",
-    "title": "Zodiac Candle Holders"
-  },
-  "D-MINI-BIRTH-READING": {
-    "provider": "digital",
-    "provider_sku": "DIG-READ-001",
-    "type": "digital",
-    "bundleItems": [],
-    "price": 19,
-    "currency": "GBP",
-    "title": "Mini Birth Chart Reading"
-  },
-  "D-FULL-NATAL-BLUEPRINT": {
-    "provider": "digital",
-    "provider_sku": "DIG-READ-002",
-    "type": "digital",
-    "bundleItems": [],
-    "price": 49,
-    "currency": "GBP",
-    "title": "Full Natal Blueprint"
-  },
-  "D-SOLAR-RETURN-INSIGHTS": {
-    "provider": "digital",
-    "provider_sku": "DIG-READ-003",
-    "type": "digital",
-    "bundleItems": [],
-    "price": 35,
-    "currency": "GBP",
-    "title": "Solar Return Insights"
-  },
-  "D-YEAR-AHEAD-MEDITATION": {
-    "provider": "digital",
-    "provider_sku": "DIG-AUDIO-001",
-    "type": "digital",
-    "bundleItems": [],
-    "price": 29,
-    "currency": "GBP",
-    "title": "Year Ahead Meditation"
-  },
-  "D-LUNAR-RITUAL-GUIDE": {
-    "provider": "digital",
-    "provider_sku": "DIG-PDF-002",
-    "type": "digital",
-    "bundleItems": [],
-    "price": 8,
-    "currency": "GBP",
-    "title": "Lunar Ritual Guide"
-  },
-  "D-NEW-MOON-INTENTION-SCRIPT": {
-    "provider": "digital",
-    "provider_sku": "DIG-PDF-003",
-    "type": "digital",
-    "bundleItems": [],
-    "price": 6,
-    "currency": "GBP",
-    "title": "New Moon Intention Script"
-  },
-  "D-SEASONAL-ALIGNMENT-ALMANAC": {
-    "provider": "digital",
-    "provider_sku": "DIG-PDF-004",
-    "type": "digital",
-    "bundleItems": [],
-    "price": 12,
-    "currency": "GBP",
-    "title": "Seasonal Alignment Almanac"
-  },
-  "D-LUNAR-PHASE-GUIDE": {
-    "provider": "digital",
-    "provider_sku": "DIG-PDF-001",
-    "type": "digital",
-    "bundleItems": [],
-    "price": 15,
-    "currency": "GBP",
-    "title": "Lunar Phase Guide PDF"
-  },
-  "D-ZODIAC-COMPATIBILITY": {
-    "provider": "digital",
-    "provider_sku": "DIG-READ-004",
-    "type": "digital",
-    "bundleItems": [],
-    "price": 39,
-    "currency": "GBP",
-    "title": "Zodiac Compatibility Report"
-  },
-  "B-ARIES-COMPLETE": {
-    "provider": "mixed",
-    "provider_sku": "",
-    "type": "bundle",
-    "bundleItems": [
-      "A-HOOD-ARIES",
-      "H-ALTAR-CLOTH-ARIES",
-      "D-MINI-BIRTH-READING"
-    ],
-    "price": 169,
-    "currency": "GBP",
-    "title": "Aries Complete Collection"
-  },
-  "B-CELESTIAL-HOME-SET": {
-    "provider": "mixed",
-    "provider_sku": "",
-    "type": "bundle",
-    "bundleItems": [
-      "H-COSMIC-ALTAR-SET",
-      "H-CELESTIAL-CUSHION",
-      "H-CANDLE-HOLDERS-ZODIAC"
-    ],
-    "price": 180,
-    "currency": "GBP",
-    "title": "Celestial Home Ritual Set"
-  },
-  "B-MOON-GIRL-STARTER": {
-    "provider": "mixed",
-    "provider_sku": "",
-    "type": "bundle",
-    "bundleItems": [
-      "K-HOOD-MOON-ARIES",
-      "K-TEE-MOON-LEO",
-      "D-LUNAR-PHASE-GUIDE"
-    ],
-    "price": 129,
-    "currency": "GBP",
-    "title": "Moon Girls Starter Pack"
-  },
-  "B-DIGITAL-WISDOM-PACK": {
-    "provider": "digital",
-    "provider_sku": "",
-    "type": "bundle",
-    "bundleItems": [
-      "D-MINI-BIRTH-READING",
-      "D-FULL-NATAL-BLUEPRINT",
-      "D-SOLAR-RETURN-INSIGHTS",
-      "D-YEAR-AHEAD-MEDITATION"
-    ],
-    "price": 120,
-    "currency": "GBP",
-    "title": "Digital Wisdom Pack"
-  },
-  "B-COSMIC-COUPLE-SET": {
-    "provider": "mixed",
-    "provider_sku": "",
-    "type": "bundle",
-    "bundleItems": [
-      "A-HOOD-ARIES",
-      "A-HOOD-LEO",
-      "D-ZODIAC-COMPATIBILITY"
-    ],
-    "price": 269,
-    "currency": "GBP",
-    "title": "Cosmic Couple Set"
-  },
-  "HAT-ALIGNED-BEANIE": {
-    "provider": "inkthreadable",
-    "provider_sku": "INK-HAT-001",
-    "type": "hats",
-    "bundleItems": [],
-    "price": 32,
-    "currency": "GBP",
-    "title": "Aligned Beanie"
-  },
-  "HAT-STARDUST-DAD": {
-    "provider": "inkthreadable",
-    "provider_sku": "INK-HAT-002",
-    "type": "hats",
-    "bundleItems": [],
-    "price": 28,
-    "currency": "GBP",
-    "title": "Stardust Dad Hat"
-  },
-  "HAT-ASCENDANT-BEANIE": {
-    "provider": "inkthreadable",
-    "provider_sku": "INK-HAT-003",
-    "type": "hats",
-    "bundleItems": [],
-    "price": 32,
-    "currency": "GBP",
-    "title": "Ascendant Beanie"
-  },
-  "HAT-COSMIC-FLOW": {
-    "provider": "inkthreadable",
-    "provider_sku": "INK-HAT-004",
-    "type": "hats",
-    "bundleItems": [],
-    "price": 30,
-    "currency": "GBP",
-    "title": "Cosmic Flow Hat"
-  },
-  "HAT-SERENITY-ORBIT": {
-    "provider": "inkthreadable",
-    "provider_sku": "INK-HAT-005",
-    "type": "hats",
-    "bundleItems": [],
-    "price": 30,
-    "currency": "GBP",
-    "title": "Serenity Orbit Hat"
-  },
-  "HAT-MIDNIGHT-EMBER": {
-    "provider": "inkthreadable",
-    "provider_sku": "INK-HAT-006",
-    "type": "hats",
-    "bundleItems": [],
-    "price": 34,
-    "currency": "GBP",
-    "title": "Midnight Ember Hat"
-  },
-  "SOCK-STARLIT-PATH": {
-    "provider": "inkthreadable",
-    "provider_sku": "INK-SOCK-001",
-    "type": "socks",
-    "bundleItems": [],
-    "price": 18,
-    "currency": "GBP",
-    "title": "Starlit Path Socks"
-  },
-  "SOCK-SERENE-ORBIT": {
-    "provider": "inkthreadable",
-    "provider_sku": "INK-SOCK-002",
-    "type": "socks",
-    "bundleItems": [],
-    "price": 18,
-    "currency": "GBP",
-    "title": "Serene Orbit Socks"
-  },
-  "SOCK-MOON-CYCLE-KNIT": {
-    "provider": "inkthreadable",
-    "provider_sku": "INK-SOCK-003",
-    "type": "socks",
-    "bundleItems": [],
-    "price": 24,
-    "currency": "GBP",
-    "title": "Moon Cycle Knit Socks"
-  },
-  "SOCK-MIDNIGHT-EMBER-KNIT": {
-    "provider": "inkthreadable",
-    "provider_sku": "INK-SOCK-004",
-    "type": "socks",
-    "bundleItems": [],
-    "price": 24,
-    "currency": "GBP",
-    "title": "Midnight Ember Knit Socks"
-  },
-  "SOCK-ASCENDING-KNIT": {
-    "provider": "inkthreadable",
-    "provider_sku": "INK-SOCK-005",
-    "type": "socks",
-    "bundleItems": [],
-    "price": 26,
-    "currency": "GBP",
-    "title": "Ascending Knit Socks"
+  "H-CELESTIAL-CUSHION": {
+    "provider": "gelato",
+    "product_uid": "gelato_cushion_celestial_uid",
+    "file_url": "https://lyrion.co.uk/assets/print-files/celestial-cushion.pdf"
   }
 }
