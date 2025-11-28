@@ -3,6 +3,13 @@
  * Dynamically loads and displays product details by ID from URL parameter
  */
 
+// Asset path constants for maintainability
+const ASSET_PATHS = {
+  PRODUCTS: 'assets/products/',
+  PRODUCT_IMAGES: 'assets/img/products/',
+  PLACEHOLDER: 'assets/img/placeholder.png'
+};
+
 /**
  * Escape HTML to prevent XSS attacks
  */
@@ -19,22 +26,23 @@ function escapeHtml(text) {
  * @returns {string} - Sanitized image URL
  */
 function buildProductImageUrl(image) {
-  if (!image) return 'assets/img/placeholder.png';
+  if (!image) return ASSET_PATHS.PLACEHOLDER;
   
   // Check if it's already an absolute path (starts with /)
   if (image.startsWith('/')) {
-    // Validate the path structure and return without leading slash for relative URL
+    // Validate the path structure for product images and return without leading slash for relative URL
+    // Using a static pattern since we know the expected path structure
     if (/^\/assets\/img\/products\/[a-zA-Z0-9._-]+\.(webp|jpg|jpeg|png|gif)$/i.test(image)) {
       return image.substring(1); // Remove leading slash for relative URL
     }
-    return 'assets/img/placeholder.png';
+    return ASSET_PATHS.PLACEHOLDER;
   }
   
   // Only allow alphanumeric, dash, underscore and dot for simple filenames
   if (/^[a-zA-Z0-9._-]+\.(webp|jpg|jpeg|png|gif)$/i.test(image)) {
-    return `assets/products/${image}`;
+    return `${ASSET_PATHS.PRODUCTS}${image}`;
   }
-  return 'assets/img/placeholder.png';
+  return ASSET_PATHS.PLACEHOLDER;
 }
 
 /**
@@ -325,9 +333,9 @@ function renderProductDetail(product) {
   const addToCartBtn = container.querySelector('#add-to-cart-btn');
   if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
-      // Include selected size in the variant ID if applicable
+      // Pass size information through variantId, keeping original product title
       const variantId = selectedSize ? selectedSize : '';
-      buyProduct(product.title + (selectedSize ? ` (${selectedSize})` : ''), product.price, buildProductImageUrl(product.image), variantId, product.sku);
+      buyProduct(product.title, product.price, buildProductImageUrl(product.image), variantId, product.sku);
     });
   }
 }
