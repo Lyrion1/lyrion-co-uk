@@ -11,8 +11,11 @@ routes = [
 BASE_URL = "https://lyrion.co.uk"
 ALLOWED_ORIGINS = "https://lyrion.co.uk,https://*.netlify.app"
 NETLIFY_FUNCTION_BASE = "https://lyrion.co.uk/.netlify/functions"
+ROUTING_JSON_URL = "https://lyrion.co.uk/data/routing.json"
 
 # Secrets (set via CLI, not stored here):
 # - STRIPE_SECRET_KEY
 # - STRIPE_WEBHOOK_SECRET
 # - INTERNAL_SHARED_SECRET
+# - PRINTFUL_API_KEY
+# - GELATO_API_KEY

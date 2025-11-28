@@ -192,11 +192,134 @@ export default {
             }).catch((err)=>{ console.error("send-donation-thanks fetch error:", err.message); });
           }
 
-          // 3) Physical: log now, route next step
+          // 3) Physical: route to Printful/Gelato or alert ops
           if (physical.length){
-            // Temporary: store minimal log (no PII) via console
-            console.log("PHYSICAL_PENDING", physical.map(p=>({sku:p.sku, qty:p.qty, kind:p.kind, size:p.size, sign:p.sign})));
-            // Step 6 will: map SKUs -> providers (Printful/Gelato) and place orders.
+            // Fetch routing map
+            let map = {};
+            try{
+              const r = await fetch(env.ROUTING_JSON_URL, { cf: { cacheTtl: 60 }});
+              map = await r.json();
+            }catch(e){ console.log("ROUTING_FETCH_ERR", e.message); }
+
+            const printfulItems = [];
+            const gelatoItems = [];
+            const unmapped = [];
+
+            // Group physical items
+            for (const it of physical){
+              const cfg = map[it.sku];
+              if (!cfg){ unmapped.push({ ...it, reason:"no-sku" }); continue; }
+
+              if (cfg.provider === "printful"){
+                const variantId = (cfg.variants||{})[it.size||"M"]; // default M if missing
+                if (!variantId){ unmapped.push({ ...it, reason:"no-size-variant" }); continue; }
+                printfulItems.push({ external_variant_id: variantId, quantity: it.qty });
+              }
+              else if (cfg.provider === "gelato"){
+                if (!cfg.product_uid || !cfg.file_url){ unmapped.push({ ...it, reason:"missing-gelato-config" }); continue; }
+                gelatoItems.push({
+                  product_uid: cfg.product_uid,
+                  copies: it.qty,
+                  attributes: cfg.attributes || { size: "A3", paper: "200gsm" },
+                  files: [{ url: cfg.file_url }]
+                });
+              }
+              else {
+                unmapped.push({ ...it, reason:"unknown-provider" });
+              }
+            }
+
+            // Create Printful order (if any)
+            if (printfulItems.length){
+              try{
+                const pfRes = await fetch("https://api.printful.com/orders", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${env.PRINTFUL_API_KEY}`
+                  },
+                  body: JSON.stringify({
+                    external_id: sessionId, // idempotency
+                    shipping: "STANDARD",
+                    recipient: {
+                      name: address.name || name || "",
+                      address1: address.line1,
+                      address2: address.line2,
+                      city: address.city,
+                      state_code: address.state,
+                      country_code: address.country,
+                      zip: address.postal_code,
+                      email
+                    },
+                    items: printfulItems
+                  })
+                });
+                if (!pfRes.ok){
+                  const txt = await pfRes.text();
+                  console.log("PRINTFUL_ERR", txt);
+                  unmapped.push(...printfulItems.map(i=>({sku:`PF:${i.external_variant_id}`, qty:i.quantity, reason:"printful_api_error"})));
+                }
+              }catch(e){
+                console.log("PRINTFUL_NET_ERR", e.message);
+                unmapped.push(...printfulItems.map(i=>({sku:`PF:${i.external_variant_id}`, qty:i.quantity, reason:"printful_network"})));
+              }
+            }
+
+            // Create Gelato order (if any)
+            if (gelatoItems.length){
+              try{
+                const gRes = await fetch("https://order.gelatoapis.com/v4/orders", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    "X-API-KEY": env.GELATO_API_KEY
+                  },
+                  body: JSON.stringify({
+                    order_reference_id: sessionId, // idempotency
+                    currency: "GBP",
+                    contact_email: email,
+                    shipping_address: {
+                      first_name: ((name||"").split(" ")[0]) || "",
+                      last_name: ((name||"").split(" ").slice(1).join(" ")) || "",
+                      address_line1: address.line1,
+                      address_line2: address.line2,
+                      city: address.city,
+                      state: address.state,
+                      postal_code: address.postal_code,
+                      country: address.country
+                    },
+                    items: gelatoItems,
+                    shipping_method: "Express" // or "Standard" if you prefer
+                  })
+                });
+                if (!gRes.ok){
+                  const txt = await gRes.text();
+                  console.log("GELATO_ERR", txt);
+                  unmapped.push(...gelatoItems.map(i=>({sku:`GEL:${i.product_uid}`, qty:i.copies, reason:"gelato_api_error"})));
+                }
+              }catch(e){
+                console.log("GELATO_NET_ERR", e.message);
+                unmapped.push(...gelatoItems.map(i=>({sku:`GEL:${i.product_uid}`, qty:i.copies, reason:"gelato_network"})));
+              }
+            }
+
+            // Alert ops for anything unmapped or failed
+            if (unmapped.length){
+              try{
+                await fetch(`${env.NETLIFY_FUNCTION_BASE}/ops-fulfillment-alert`, {
+                  method:"POST",
+                  headers:{
+                    "Content-Type":"application/json",
+                    "X-Internal-Auth": env.INTERNAL_SHARED_SECRET
+                  },
+                  body: JSON.stringify({
+                    sessionId, email, name,
+                    shippingAddress: address,
+                    issues: unmapped
+                  })
+                });
+              }catch(e){ console.log("OPS_ALERT_ERR", e.message); }
+            }
           }
         }
 
