@@ -502,7 +502,15 @@
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
             `;
             
-            const imageUrl = product.image ? `/assets/products/${product.image}` : '/assets/img/placeholder.png';
+            // Handle both absolute paths (starting with /) and simple filenames
+            let imageUrl = '/assets/img/placeholder.png';
+            if (product.image) {
+                if (product.image.startsWith('/')) {
+                    imageUrl = product.image;
+                } else {
+                    imageUrl = `/assets/products/${product.image}`;
+                }
+            }
             
             card.innerHTML = `
                 <div style="margin-bottom: 1rem; height: 180px; display: flex; align-items: center; justify-content: center; background: #f8f8f8; border-radius: 8px; overflow: hidden;">
