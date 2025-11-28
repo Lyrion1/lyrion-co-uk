@@ -120,14 +120,23 @@
  if (addonEl && addonEl.checked){
  items.push({ sku: `READ-${rec.abbr}-MINI`, qty: 1, price: addOnPrice, currency:'GBP', sign: product.sign, category:'Digital', kind:'reading', isDigital:true });
  }
+ try {
  const res = await fetch(`${API_BASE}/checkout`, {
  method:'POST',
  headers:{'Content-Type':'application/json'},
  body: JSON.stringify({ items })
  });
- if (!res.ok){ alert('Checkout error. Please try again.'); return; }
+ if (!res.ok){
+ let msg = 'Checkout error. Please try again.';
+ try { const err = await res.json(); if (err.error) msg = err.error; } catch {}
+ alert(msg);
+ return;
+ }
  const data = await res.json();
  if (data && data.url){ location.href = data.url; }
  else { alert('Unable to start checkout.'); }
+ } catch (err) {
+ alert('Network error. Please check your connection and try again.');
+ }
  });
 })();

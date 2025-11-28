@@ -31,6 +31,10 @@ export default {
     if (url.pathname === "/checkout" && request.method === "POST"){
       const headers = cors(origin, allowList);
       try{
+        if (!env.STRIPE_SECRET_KEY) {
+          return new Response(JSON.stringify({error:"Server configuration error"}), {status:500, headers:{...headers,"Content-Type":"application/json"}});
+        }
+
         const body = await request.json();
         const items = Array.isArray(body.items) ? body.items : [];
         if (!items.length) return new Response(JSON.stringify({error:"No items"}), {status:400, headers:{...headers,"Content-Type":"application/json"}});
@@ -63,6 +67,8 @@ export default {
           }
         }));
 
+        // Stripe metadata values are limited to 500 characters
+        const MAX_METADATA_LENGTH = 500;
         const params = {
           mode: "payment",
           line_items,
@@ -70,7 +76,7 @@ export default {
           success_url: `${env.BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
           cancel_url: `${env.BASE_URL}/shop`,
           metadata: {
-            skus: items.map(i=>i.sku).join(",").slice(0,500)
+            skus: items.map(i=>i.sku).join(",").slice(0, MAX_METADATA_LENGTH)
           }
         };
 
