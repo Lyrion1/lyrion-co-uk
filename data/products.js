@@ -1717,5 +1717,83 @@ export const PRODUCTS_DATA = [
     "madeIn": "England",
     "role": "accessory",
     "house": "woman"
+  },
+  {
+    "sku": "taurus-zodiac-hoodie",
+    "title": "Taurus Zodiac Hoodie",
+    "subtitle": "Quiet cosmic armour",
+    "description": "A refined black zodiac hoodie featuring a golden embroidered Taurus ram on the chest and sleeve, with the LYRÍON celestial tree emblem across the back. Designed for grounded souls who carry quiet strength, this piece honours Taurus' earth energy — stability, devotion, and understated luxury.",
+    "price": 110,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Men",
+    "sign": "Taurus",
+    "type": "apparel",
+    "image": "/assets/img/products/taurus-hoodie-front.png",
+    "images": [
+      "/assets/img/products/taurus-hoodie-front.png",
+      "/assets/img/products/taurus-hoodie-back.png",
+      "/assets/img/products/taurus-hoodie-sleeve.png"
+    ],
+    "tags": [
+      "zodiac",
+      "apparel",
+      "hoodie",
+      "earth",
+      "taurus"
+    ],
+    "bundleItems": [],
+    "isSale": false,
+    "role": "apparel",
+    "house": "man",
+    "variants": ["S", "M", "L", "XL"]
+  },
+  {
+    "sku": "lyrion-celestial-emblem-pillow",
+    "title": "LYRÍON Celestial Emblem Pillow",
+    "subtitle": "Sacred cosmic cushion",
+    "description": "A midnight-black cushion adorned with the LYRÍON cosmic tree and golden sigils. Designed to elevate your home or altar space, surrounding you with subtle sacred presence.",
+    "price": 60,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "all",
+    "type": "home",
+    "image": "/assets/img/products/lyrion-pillow-logo.png",
+    "tags": [
+      "home",
+      "cushion",
+      "altar",
+      "ritual"
+    ],
+    "bundleItems": [],
+    "isSale": false,
+    "role": "altar",
+    "house": null
+  },
+  {
+    "sku": "gemini-zodiac-ritual-candle",
+    "title": "Gemini Zodiac Ritual Candle",
+    "subtitle": "Air-element intention candle",
+    "description": "A sleek cosmic candle wrapped in a golden Gemini glyph. Light it during journalling, study, or meaningful conversations to invite Gemini's airy inspiration and mental agility.",
+    "price": 45,
+    "compareAtPrice": 0,
+    "currency": "GBP",
+    "category": "Home & Altar",
+    "sign": "Gemini",
+    "type": "home",
+    "image": "/assets/img/products/gemini-candle.png",
+    "tags": [
+      "home",
+      "candle",
+      "zodiac",
+      "ritual",
+      "gemini",
+      "air"
+    ],
+    "bundleItems": [],
+    "isSale": false,
+    "role": "altar",
+    "house": null
   }
 ];
