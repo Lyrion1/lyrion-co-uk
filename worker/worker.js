@@ -107,23 +107,99 @@ export default {
     }
 
     if (url.pathname === "/webhook" && request.method === "POST"){
-      // Verify signature (stub handler for now)
       const headers = cors(origin, allowList);
       const stripe = new Stripe(env.STRIPE_SECRET_KEY, { httpClient: Stripe.createFetchHttpClient() });
       const body = await request.text();
       const sig = request.headers.get("Stripe-Signature") || "";
       try{
         const event = await stripe.webhooks.constructEventAsync(
-          body,
-          sig,
-          env.STRIPE_WEBHOOK_SECRET,
-          undefined,
-          Stripe.createSubtleCryptoProvider()
+          body, sig, env.STRIPE_WEBHOOK_SECRET, undefined, Stripe.createSubtleCryptoProvider()
         );
-        // Minimal: accept checkout.session.completed only (fulfillment in Step 5)
+
         if (event.type === "checkout.session.completed"){
-          // TODO Step 5: fetch line items, route to POD/email
+          const sessionId = event.data.object.id;
+          // Expand line items + product metadata for routing
+          const session = await stripe.checkout.sessions.retrieve(sessionId, {
+            expand: ["line_items.data.price.product"]
+          });
+
+          // Basic customer/shipping details
+          const email = session.customer_details?.email || "";
+          const name = session.customer_details?.name || "";
+          const shipping = session.shipping_details?.address || session.customer_details?.address || {};
+          const address = {
+            name,
+            email,
+            line1: shipping.line1||"",
+            line2: shipping.line2||"",
+            city: shipping.city||"",
+            state: shipping.state||"",
+            postal_code: shipping.postal_code||"",
+            country: shipping.country||"GB"
+          };
+
+          // Normalize items from expanded metadata
+          const items = (session.line_items?.data||[]).map(li=>{
+            const product = li.price?.product || {};
+            const md = product.metadata || {};
+            return {
+              title: product.name || li.description || "Item",
+              sku: md.sku || "",
+              kind: md.kind || "",
+              category: md.category || "",
+              sign: md.sign || "",
+              size: md.size || "",
+              isDigital: (md.isDigital==="true" || md.category==="Digital"),
+              qty: li.quantity || 1,
+              unit_amount: li.price?.unit_amount || 0,
+              currency: li.price?.currency || "gbp"
+            };
+          });
+
+          // Split
+          const digital = items.filter(i=>i.isDigital || i.category==="Digital");
+          const donations = items.filter(i=>i.kind==="donation" || i.category==="Donation");
+          const physical = items.filter(i=>!i.isDigital && i.category!=="Digital" && i.kind!=="donation");
+
+          // 1) Digital fulfillment via Netlify Function
+          if (digital.length){
+            await fetch(`${env.NETLIFY_FUNCTION_BASE}/send-digital`, {
+              method:"POST",
+              headers:{
+                "Content-Type":"application/json",
+                "X-Internal-Auth": env.INTERNAL_SHARED_SECRET
+              },
+              body: JSON.stringify({
+                sessionId, email, name,
+                items: digital.map(d=>({sku:d.sku, qty:d.qty, sign:d.sign, kind:d.kind}))
+              })
+            }).catch((err)=>{ console.error("send-digital fetch error:", err.message); });
+          }
+
+          // 2) Donation thanks via Netlify Function
+          if (donations.length){
+            await fetch(`${env.NETLIFY_FUNCTION_BASE}/send-donation-thanks`, {
+              method:"POST",
+              headers:{
+                "Content-Type":"application/json",
+                "X-Internal-Auth": env.INTERNAL_SHARED_SECRET
+              },
+              body: JSON.stringify({
+                sessionId, email, name,
+                amountPence: donations.reduce((s,i)=> s + (i.unit_amount||0)*(i.qty||1),0),
+                currency: "gbp"
+              })
+            }).catch((err)=>{ console.error("send-donation-thanks fetch error:", err.message); });
+          }
+
+          // 3) Physical: log now, route next step
+          if (physical.length){
+            // Temporary: store minimal log (no PII) via console
+            console.log("PHYSICAL_PENDING", physical.map(p=>({sku:p.sku, qty:p.qty, kind:p.kind, size:p.size, sign:p.sign})));
+            // Step 6 will: map SKUs -> providers (Printful/Gelato) and place orders.
+          }
         }
+
         return new Response(JSON.stringify({received:true}), { headers:{...headers,"Content-Type":"application/json"} });
       }catch(err){
         return new Response(JSON.stringify({error:"signature_verification_failed"}), { status:400, headers:{...headers,"Content-Type":"application/json"} });
