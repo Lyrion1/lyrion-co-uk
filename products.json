@@ -486,13 +486,13 @@
     "collection": "digital-rituals"
   },
   {
-    "id": "taurus-zodiac-hoodie",
-    "name": "Taurus Zodiac Hoodie",
+    "id": "taurus-celestial-emblem-hoodie",
+    "name": "Taurus Celestial Emblem Hoodie",
     "category": "Apparel",
     "subCategory": "Hoodie",
     "price": 110.00,
     "podService": "printify",
-    "description": "A refined black zodiac hoodie featuring a golden embroidered Taurus ram on the chest and sleeve, with the LYRÍON celestial tree emblem across the back. Designed for grounded souls who carry quiet strength, this piece honours Taurus' earth energy — stability, devotion, and understated luxury.",
+    "description": "A refined black hoodie with luminous gold Taurus embroidery. Designed for those who move through the world with grounded strength and quiet power.",
     "image": "/assets/img/products/taurus-hoodie-front.png",
     "images": [
       "/assets/img/products/taurus-hoodie-front.png",
@@ -503,22 +503,22 @@
   },
   {
     "id": "lyrion-celestial-emblem-pillow",
-    "name": "LYRÍON Celestial Emblem Pillow",
+    "name": "LYRION Celestial Emblem Pillow",
     "category": "Homeware",
     "subCategory": "Cushion",
-    "price": 60.00,
+    "price": 45.00,
     "podService": "gelato",
-    "description": "A midnight-black cushion adorned with the LYRÍON cosmic tree and golden sigils. Designed to elevate your home or altar space, surrounding you with subtle sacred presence.",
+    "description": "Velvet-soft black cushion with the LYRION celestial seal in gold embroidery – a grounding focal point for your altar, sofa, or reading chair.",
     "image": "/assets/img/products/lyrion-pillow-logo.png"
   },
   {
-    "id": "gemini-zodiac-ritual-candle",
-    "name": "Gemini Zodiac Ritual Candle",
+    "id": "gemini-zodiac-intention-candle",
+    "name": "Gemini Zodiac Intention Candle",
     "category": "Homeware",
     "subCategory": "Candle",
-    "price": 45.00,
+    "price": 32.00,
     "podService": "inkthreadable",
-    "description": "A sleek cosmic candle wrapped in a golden Gemini glyph. Light it during journalling, study, or meaningful conversations to invite Gemini's airy inspiration and mental agility.",
+    "description": "A focused intention candle for Gemini energy – clear flame, golden glyph, and space for airy ideas to land.",
     "image": "/assets/img/products/gemini-candle.png"
   }
 ]

@@ -453,9 +453,18 @@ class HouseProductPage {
       ">SALE</div>
     ` : '';
 
-    // Use configurable asset path for product images
-    const placeholderPath = this.options.assetsPath.replace('/products/', '/img/placeholder.png');
-    const imageUrl = product.image ? `${this.options.assetsPath}${product.image}` : placeholderPath;
+    // Handle both absolute paths (starting with /) and simple filenames
+    const placeholderPath = '../assets/img/placeholder.png';
+    let imageUrl = placeholderPath;
+    if (product.image) {
+      if (product.image.startsWith('/')) {
+        // Absolute path - use it directly but make relative for subdirectory
+        imageUrl = '..' + product.image;
+      } else {
+        // Simple filename - use configured asset path
+        imageUrl = `${this.options.assetsPath}${product.image}`;
+      }
+    }
     
     card.innerHTML = `
       ${saleBadge}

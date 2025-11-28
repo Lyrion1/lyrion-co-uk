@@ -3,6 +3,13 @@
  * Dynamically loads and displays product details by ID from URL parameter
  */
 
+// Asset path constants for maintainability
+const ASSET_PATHS = {
+  PRODUCTS: 'assets/products/',
+  PRODUCT_IMAGES: 'assets/img/products/',
+  PLACEHOLDER: 'assets/img/placeholder.png'
+};
+
 /**
  * Escape HTML to prevent XSS attacks
  */
@@ -15,15 +22,27 @@ function escapeHtml(text) {
 
 /**
  * Build and sanitize product image URL
- * @param {string} image - Product image filename
+ * @param {string} image - Product image filename or path
  * @returns {string} - Sanitized image URL
  */
 function buildProductImageUrl(image) {
-  // Only allow alphanumeric, dash, underscore and dot
-  if (image && /^[a-zA-Z0-9._-]+\.(webp|jpg|jpeg|png|gif)$/i.test(image)) {
-    return `assets/products/${image}`;
+  if (!image) return ASSET_PATHS.PLACEHOLDER;
+  
+  // Check if it's already an absolute path (starts with /)
+  if (image.startsWith('/')) {
+    // Validate the path structure for product images and return without leading slash for relative URL
+    // Using a static pattern since we know the expected path structure
+    if (/^\/assets\/img\/products\/[a-zA-Z0-9._-]+\.(webp|jpg|jpeg|png|gif)$/i.test(image)) {
+      return image.substring(1); // Remove leading slash for relative URL
+    }
+    return ASSET_PATHS.PLACEHOLDER;
   }
-  return 'assets/img/placeholder.png';
+  
+  // Only allow alphanumeric, dash, underscore and dot for simple filenames
+  if (/^[a-zA-Z0-9._-]+\.(webp|jpg|jpeg|png|gif)$/i.test(image)) {
+    return `${ASSET_PATHS.PRODUCTS}${image}`;
+  }
+  return ASSET_PATHS.PLACEHOLDER;
 }
 
 /**
@@ -119,6 +138,64 @@ function renderProductDetail(product) {
 
   // Build image URL using helper function
   const imageUrl = buildProductImageUrl(product.image);
+  
+  // Build image gallery HTML if multiple images exist
+  const hasMultipleImages = product.images && product.images.length > 1;
+  const imagesGalleryHtml = hasMultipleImages ? `
+    <div class="product-thumbnails" style="display: flex; gap: 0.75rem; margin-top: 1rem; justify-content: center;">
+      ${product.images.map((img, index) => `
+        <button 
+          class="thumbnail-btn ${index === 0 ? 'active' : ''}" 
+          data-image="${escapeHtml(buildProductImageUrl(img))}"
+          style="
+            width: 70px;
+            height: 70px;
+            border: 2px solid ${index === 0 ? 'var(--color-gold)' : '#ddd'};
+            border-radius: 8px;
+            background: #f8f8f8;
+            cursor: pointer;
+            padding: 4px;
+            transition: border-color 0.3s ease;
+          "
+        >
+          <img 
+            src="${escapeHtml(buildProductImageUrl(img))}" 
+            alt="${escapeHtml(product.title)} view ${index + 1}"
+            style="width: 100%; height: 100%; object-fit: contain;"
+            onerror="this.src='assets/img/placeholder.png'; this.style.opacity='0.3';"
+          >
+        </button>
+      `).join('')}
+    </div>
+  ` : '';
+  
+  // Build size selector HTML if variants exist
+  const hasVariants = product.variants && product.variants.length > 0;
+  const sizesSelectorHtml = hasVariants ? `
+    <div class="product-sizes" style="margin: 1.5rem 0;">
+      <span class="product-meta-label" style="display: block; margin-bottom: 0.75rem;">Size</span>
+      <div class="size-buttons" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        ${product.variants.map((size, index) => `
+          <button 
+            class="size-btn ${index === 0 ? 'active' : ''}" 
+            data-size="${escapeHtml(size)}"
+            style="
+              min-width: 50px;
+              padding: 0.6rem 1rem;
+              border: 2px solid ${index === 0 ? 'var(--color-gold)' : '#ddd'};
+              background: ${index === 0 ? 'var(--color-gold)' : 'transparent'};
+              color: var(--color-ink);
+              font-size: 0.95rem;
+              font-weight: 500;
+              cursor: pointer;
+              border-radius: 6px;
+              transition: all 0.3s ease;
+            "
+          >${escapeHtml(size)}</button>
+        `).join('')}
+      </div>
+    </div>
+  ` : '';
 
   // Create product detail HTML
   container.innerHTML = `
@@ -131,6 +208,7 @@ function renderProductDetail(product) {
             alt="${escapeHtml(product.title)}"
           >
         </div>
+        ${imagesGalleryHtml}
       </div>
 
       <div class="product-info">
@@ -159,6 +237,8 @@ function renderProductDetail(product) {
             ${escapeHtml(getProductDescription(product))}
           </div>
         ` : ''}
+
+        ${sizesSelectorHtml}
 
         <div class="product-meta">
           ${product.category ? `
@@ -208,12 +288,54 @@ function renderProductDetail(product) {
     });
   }
   
+  // Add event listeners for image thumbnails
+  if (hasMultipleImages) {
+    const thumbnails = container.querySelectorAll('.thumbnail-btn');
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', function() {
+        const newImageUrl = this.dataset.image;
+        if (productImage) {
+          productImage.src = newImageUrl;
+          productImage.style.opacity = '1';
+        }
+        // Update active state
+        thumbnails.forEach(t => {
+          t.classList.remove('active');
+          t.style.borderColor = '#ddd';
+        });
+        this.classList.add('active');
+        this.style.borderColor = 'var(--color-gold)';
+      });
+    });
+  }
+  
+  // Add event listeners for size selection
+  let selectedSize = hasVariants ? product.variants[0] : null;
+  if (hasVariants) {
+    const sizeButtons = container.querySelectorAll('.size-btn');
+    sizeButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        selectedSize = this.dataset.size;
+        // Update active state
+        sizeButtons.forEach(b => {
+          b.classList.remove('active');
+          b.style.borderColor = '#ddd';
+          b.style.background = 'transparent';
+        });
+        this.classList.add('active');
+        this.style.borderColor = 'var(--color-gold)';
+        this.style.background = 'var(--color-gold)';
+      });
+    });
+  }
+  
   // Add event listener to the Add to Cart button
   const addToCartBtn = container.querySelector('#add-to-cart-btn');
   if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
-      // Use buyProduct for embedded checkout
-      buyProduct(product.title, product.price, buildProductImageUrl(product.image), '', product.sku);
+      // Pass size information through variantId, keeping original product title
+      const variantId = selectedSize ? selectedSize : '';
+      buyProduct(product.title, product.price, buildProductImageUrl(product.image), variantId, product.sku);
     });
   }
 }
