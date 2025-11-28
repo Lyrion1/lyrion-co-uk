@@ -22,7 +22,8 @@
   "AQU-PRINT-A3": {
     "provider": "gelato",
     "product_uid": "gelato_a3_print_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/aquarius-a3.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/aquarius-a3.pdf",
+    "attributes": { "size": "A3", "paper": "200gsm" }
   },
   "A-HOOD-ARIES": {
     "provider": "printful",
@@ -147,76 +148,91 @@
   "A-TEE-ARIES": {
     "provider": "gelato",
     "product_uid": "gelato_tee_aries_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/aries-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/aries-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "A-TEE-TAURUS": {
     "provider": "gelato",
     "product_uid": "gelato_tee_taurus_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/taurus-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/taurus-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "A-TEE-GEMINI": {
     "provider": "gelato",
     "product_uid": "gelato_tee_gemini_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/gemini-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/gemini-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "A-TEE-CANCER": {
     "provider": "gelato",
     "product_uid": "gelato_tee_cancer_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/cancer-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/cancer-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "A-TEE-LEO": {
     "provider": "gelato",
     "product_uid": "gelato_tee_leo_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/leo-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/leo-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "A-TEE-VIRGO": {
     "provider": "gelato",
     "product_uid": "gelato_tee_virgo_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/virgo-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/virgo-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "A-TEE-LIBRA": {
     "provider": "gelato",
     "product_uid": "gelato_tee_libra_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/libra-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/libra-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "A-TEE-SCORPIO": {
     "provider": "gelato",
     "product_uid": "gelato_tee_scorpio_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/scorpio-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/scorpio-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "A-TEE-SAGITTARIUS": {
     "provider": "gelato",
     "product_uid": "gelato_tee_sagittarius_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/sagittarius-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/sagittarius-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "A-TEE-CAPRICORN": {
     "provider": "gelato",
     "product_uid": "gelato_tee_capricorn_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/capricorn-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/capricorn-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "A-TEE-AQUARIUS": {
     "provider": "gelato",
     "product_uid": "gelato_tee_aquarius_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/aquarius-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/aquarius-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "A-TEE-PISCES": {
     "provider": "gelato",
     "product_uid": "gelato_tee_pisces_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/pisces-tee.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/pisces-tee.pdf",
+    "attributes": { "size": "M", "material": "cotton" }
   },
   "H-STAR-MAP-PRINT-A3": {
     "provider": "gelato",
     "product_uid": "gelato_a3_starmap_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/star-map-a3.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/star-map-a3.pdf",
+    "attributes": { "size": "A3", "paper": "200gsm" }
   },
   "H-ZODIAC-WALL-ART-GOLD": {
     "provider": "gelato",
     "product_uid": "gelato_wall_art_gold_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/zodiac-wall-art-gold.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/zodiac-wall-art-gold.pdf",
+    "attributes": { "size": "A2", "paper": "premium_matte" }
   },
   "H-CELESTIAL-CUSHION": {
     "provider": "gelato",
     "product_uid": "gelato_cushion_celestial_uid",
-    "file_url": "https://lyrion.co.uk/assets/print-files/celestial-cushion.pdf"
+    "file_url": "https://lyrion.co.uk/assets/print-files/celestial-cushion.pdf",
+    "attributes": { "size": "45x45cm", "material": "polyester" }
   }
 }

@@ -220,7 +220,7 @@ export default {
                 gelatoItems.push({
                   product_uid: cfg.product_uid,
                   copies: it.qty,
-                  attributes: { size: "A3", paper: "200gsm" },
+                  attributes: cfg.attributes || { size: "A3", paper: "200gsm" },
                   files: [{ url: cfg.file_url }]
                 });
               }
@@ -279,8 +279,8 @@ export default {
                     currency: "GBP",
                     contact_email: email,
                     shipping_address: {
-                      first_name: (name||"").split(" ").slice(0,-1).join(" ") || name || "",
-                      last_name: (name||"").split(" ").slice(-1).join(" ") || "",
+                      first_name: ((name||"").split(" ")[0]) || "",
+                      last_name: ((name||"").split(" ").slice(1).join(" ")) || "",
                       address_line1: address.line1,
                       address_line2: address.line2,
                       city: address.city,
