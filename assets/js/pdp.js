@@ -1,5 +1,6 @@
 (async function(){
  const fmtGBP = v => `£${v.toFixed(2)}`;
+ const API_BASE = (window.LYRION_API_BASE)||'';
  const qs = new URLSearchParams(location.search);
  const sku = qs.get('sku');
  const mount = document.querySelector('[data-pdp]');
@@ -106,8 +107,8 @@
  if (addonEl) addonEl.addEventListener('change', updateUI);
  updateUI();
 
- // STUB checkout: save payload and redirect to /success for now
- form.addEventListener('submit', (e)=>{
+ // Real Stripe checkout via Cloudflare Worker
+ form.addEventListener('submit', async (e)=>{
  e.preventDefault();
  const q = Math.max(1, parseInt(qtyEl.value||'1',10));
  const items = [{
@@ -117,15 +118,25 @@
  ...(isApparel ? { size: form.size.value } : {})
  }];
  if (addonEl && addonEl.checked){
- items.push({ sku: addOnSku, qty: 1, price: addOnPrice, currency:'GBP', sign: product.sign, category:'Digital', kind:'reading', isDigital:true });
+ items.push({ sku: `READ-${rec.abbr}-MINI`, qty: 1, price: addOnPrice, currency:'GBP', sign: product.sign, category:'Digital', kind:'reading', isDigital:true });
  }
- const payload = {
- items, currency:'GBP', createdAt: new Date().toISOString(),
- note: 'stub-only; Step 4 will call Stripe/Worker'
- };
  try {
- localStorage.setItem('lyrion_checkout', JSON.stringify(payload));
- } catch {}
- location.href = '/success/?stub=1';
+ const res = await fetch(`${API_BASE}/checkout`, {
+ method:'POST',
+ headers:{'Content-Type':'application/json'},
+ body: JSON.stringify({ items })
+ });
+ if (!res.ok){
+ let msg = 'Checkout error. Please try again.';
+ try { const err = await res.json(); if (err.error) msg = err.error; } catch {}
+ alert(msg);
+ return;
+ }
+ const data = await res.json();
+ if (data && data.url){ location.href = data.url; }
+ else { alert('Unable to start checkout.'); }
+ } catch (err) {
+ alert('Network error. Please check your connection and try again.');
+ }
  });
 })();
