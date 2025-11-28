@@ -35,6 +35,33 @@
  }
 
  const rec = signs.find(s=>s.sign===product.sign);
+
+ // Determine a single cross-sell
+ let cross = null;
+ if (product.kind === "hoodie" || product.kind === "tee"){
+   cross = {
+     sku: `${rec.abbr}-PRINT-A3`,
+     title: `${product.sign} Art Print (A3)`,
+     category: "Prints",
+     kind: "print",
+     sign: product.sign,
+     price: rec.prices.print,
+     image: `/assets/img/${rec.slug}-print.webp`,
+     isDigital: false
+   };
+ } else if (product.kind === "print"){
+   cross = {
+     sku: `${rec.abbr}-TEE-STD`,
+     title: `${product.sign} Zodiac Tee`,
+     category: "Apparel",
+     kind: "tee",
+     sign: product.sign,
+     price: rec.prices.tee,
+     image: `/assets/img/${rec.slug}-tee.webp`,
+     isDigital: false
+   };
+ }
+
  const isApparel = product.category==='Apparel';
  const addOnSku = `READ-${rec.abbr}-MINI`;
  const addOnPrice = rec.prices.reading;
@@ -72,6 +99,21 @@
  <span>Add ${product.sign} Mini Reading (+${fmtGBP(addOnPrice)})</span>
  </label>` : ``}
 
+ ${cross ? `
+ <div class="card" style="padding:12px;display:flex;gap:12px;align-items:center">
+ <div style="width:72px;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:#0e0f15;flex:0 0 auto;display:flex;align-items:center;justify-content:center">
+ <img src="${cross.image}" alt="${cross.title}" onerror="this.parentElement.textContent='—'">
+ </div>
+ <div style="flex:1 1 auto">
+ <div style="font-weight:600" data-cross-head></div>
+ <div style="font-size:14px;color:#b9bcc7" data-cross-sub></div>
+ </div>
+ <label style="white-space:nowrap">
+ <input type="checkbox" name="cross">
+ <span>+ ${fmtGBP(cross.price)}</span>
+ </label>
+ </div>` : ``}
+
  <div aria-live="polite" data-freeship style="font-size:14px;color:#b9bcc7"></div>
 
  <button class="button" type="submit" data-cta>Buy Now — ${fmtGBP(product.price)}</button>
@@ -89,10 +131,24 @@
  const cta = form.querySelector('[data-cta]');
  const freeship = form.querySelector('[data-freeship]');
 
+ const crossEl = form.querySelector('[name="cross"]');
+ const crossHead = form.querySelector('[data-cross-head]');
+ const crossSub = form.querySelector('[data-cross-sub]');
+
+ // Tiny copy A/B (random per session)
+ const abKey = 'lyrion_upsell_copy';
+ let ab = sessionStorage.getItem(abKey);
+ if (!ab){ ab = Math.random() < 0.5 ? 'A' : 'B'; sessionStorage.setItem(abKey, ab); }
+ if (crossHead){
+   crossHead.textContent = ab === 'A' ? 'Complete the set' : `Pair with the matching ${cross.kind}`;
+   crossSub.textContent = ab === 'A' ? cross.title : `${cross.title}`;
+ }
+
  function subtotal(){
  const q = Math.max(1, parseInt(qtyEl.value||'1',10));
  let sum = product.price * q;
  if (addonEl && addonEl.checked) sum += addOnPrice;
+ if (crossEl && crossEl.checked && cross) sum += cross.price;
  return sum;
  }
 
@@ -105,6 +161,7 @@
 
  qtyEl.addEventListener('input', updateUI);
  if (addonEl) addonEl.addEventListener('change', updateUI);
+ if (crossEl) crossEl.addEventListener('change', updateUI);
  updateUI();
 
  // Real Stripe checkout via Cloudflare Worker
@@ -119,6 +176,12 @@
  }];
  if (addonEl && addonEl.checked){
  items.push({ sku: `READ-${rec.abbr}-MINI`, qty: 1, price: addOnPrice, currency:'GBP', sign: product.sign, category:'Digital', kind:'reading', isDigital:true });
+ }
+ if (crossEl && crossEl.checked && cross){
+ items.push({
+ sku: cross.sku, qty: 1, price: cross.price, currency:'GBP',
+ sign: cross.sign, category: cross.category, kind: cross.kind, isDigital:false
+ });
  }
  try {
  const res = await fetch(`${API_BASE}/checkout`, {
