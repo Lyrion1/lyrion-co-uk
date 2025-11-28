@@ -1,0 +1,16 @@
+name = "lyrion-order-broker"
+main = "worker.js"
+compatibility_date = "2025-11-01"
+
+routes = [
+  # Point this to your Cloudflare zone + subdomain
+  { pattern = "api.lyrion.co.uk/*", zone_name = "lyrion.co.uk" }
+]
+
+[vars]
+BASE_URL = "https://lyrion.co.uk"
+ALLOWED_ORIGINS = "https://lyrion.co.uk,https://*.netlify.app"
+
+# Secrets (set via CLI, not stored here):
+# - STRIPE_SECRET_KEY
+# - STRIPE_WEBHOOK_SECRET
