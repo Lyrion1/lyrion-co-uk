@@ -18,6 +18,7 @@ a:hover{text-decoration:underline}
 h1,h2,h3{font-family:var(--font-serif);margin:0 0 var(--space-3)}
 h1{font-size:var(--fs-3xl)} h2{font-size:var(--fs-2xl)} h3{font-size:var(--fs-xl)}
 p{margin:0 0 var(--space-3)}
+.muted{color:var(--muted)}
 /* Accessibility */
 :focus-visible{outline:none;box-shadow:var(--focus)}
 .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
@@ -27,7 +28,7 @@ p{margin:0 0 var(--space-3)}
 .header{position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--line);z-index:50}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
 .brand{font-family:var(--font-serif);font-size:20px;letter-spacing:.08em}
-.nav-links{display:flex;gap:16px;align-items:center}
+.nav-links{display:flex;gap:16px;align-items:center;list-style:none;margin:0;padding:0}
 .nav-toggle{display:none}
 @media (max-width:800px){
  .nav-links{display:none}
