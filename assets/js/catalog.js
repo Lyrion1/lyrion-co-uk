@@ -100,8 +100,8 @@
  }
 
  // build dropdowns
- signSel.innerHTML = ['All',...new Set(signs.map(s=>s.sign))].map(v=>`<option>${v}</option>`).join('');
- catSel.innerHTML = ['All','Apparel','Prints','Digital'].map(v=>`<option>${v}</option>`).join('');
+ signSel.innerHTML = ['All',...new Set(signs.map(s=>s.sign))].map(v=>`<option value="${v}">${v}</option>`).join('');
+ catSel.innerHTML = ['All','Apparel','Prints','Digital'].map(v=>`<option value="${v}">${v}</option>`).join('');
 
  // default to current sign (tidier first view)
  if (signSel.querySelector(`option[value="${current.sign}"]`)) signSel.value = current.sign;
