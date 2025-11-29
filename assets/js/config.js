@@ -1,3 +1,4 @@
+window.LYRION_SITE_BASE = window.LYRION_SITE_BASE || "https://lyrion.co.uk";
 window.LYRION_API_BASE = window.LYRION_API_BASE || "https://api.lyrion.co.uk";
 
 /* Shipping defaults for UK-only launch */

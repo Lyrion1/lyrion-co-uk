@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "netlify dev",
     "cleanup:preview": "node scripts/cleanup.js preview",
-    "cleanup:apply": "node scripts/cleanup.js apply"
+    "cleanup:apply": "node scripts/cleanup.js apply",
+    "sitemap": "node scripts/gen-sitemap.js",
+    "postinstall": "npm run sitemap"
   },
   "dependencies": {
     "stripe": "^14.10.0",

@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://lyrion1.github.io/lyrion-co-uk/sitemap.xml
+
+Sitemap: https://lyrion.co.uk/sitemap.xml
