@@ -36,6 +36,67 @@
 
  const rec = signs.find(s=>s.sign===product.sign);
 
+ // --- SEO helpers ---
+ function setMetaDescription(text){
+   let tag = document.querySelector('meta[name="description"]');
+   if (!tag){
+     tag = document.createElement('meta');
+     tag.setAttribute('name','description');
+     document.head.appendChild(tag);
+   }
+   tag.setAttribute('content', text);
+ }
+ function injectLD(data){
+   const el = document.createElement('script');
+   el.type = 'application/ld+json';
+   el.textContent = JSON.stringify(data);
+   document.head.appendChild(el);
+ }
+ function abs(url){ try{ return new URL(url, location.origin).href; }catch(_e){ return url; } }
+
+ // --- Build dynamic title/description based on the product ---
+ const pageTitle = `${product.title} · LYRĪON`;
+ const pageDesc = `${product.sign} ${product.kind} by LYRĪON. UK shipping £3.95 (3–5 business days). Free over £75.`;
+
+ document.title = pageTitle;
+ setMetaDescription(pageDesc);
+
+ // --- JSON-LD: Product ---
+ const productLD = {
+   "@context": "https://schema.org",
+   "@type": "Product",
+   "name": product.title,
+   "sku": product.sku,
+   "brand": { "@type": "Brand", "name": "LYRĪON" },
+   "category": product.category,
+   "description": pageDesc,
+   "image": abs(product.image),
+   "url": location.href,
+   "additionalProperty": [
+     { "@type": "PropertyValue", "name": "Sign", "value": product.sign }
+   ],
+   "offers": {
+     "@type": "Offer",
+     "priceCurrency": "GBP",
+     "price": (product.price||0).toFixed(2),
+     "availability": "https://schema.org/InStock",
+     "url": location.href
+   }
+ };
+ injectLD(productLD);
+
+ // --- JSON-LD: Breadcrumbs (Shop > Category > Product) ---
+ const breadcrumbsLD = {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     { "@type":"ListItem", "position":1, "name":"Shop", "item": abs("/shop") },
+     { "@type":"ListItem", "position":2, "name": product.category, "item": abs(`/shop?cat=${encodeURIComponent(product.category)}`) },
+     { "@type":"ListItem", "position":3, "name": product.title, "item": location.href }
+   ]
+ };
+ injectLD(breadcrumbsLD);
+
  // Determine a single cross-sell
  let cross = null;
  if (product.kind === "hoodie" || product.kind === "tee"){
