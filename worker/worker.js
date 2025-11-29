@@ -1,5 +1,23 @@
 import Stripe from "stripe";
 
+async function getSold(env) {
+  try {
+    const json = await env.GATH_COUNTS.get('sold', 'json');
+    return json || {};
+  } catch { return {}; }
+}
+
+// Note: KV read-modify-write is not atomic; concurrent webhook calls for the
+// same SKU could cause lost increments. In practice, webhook calls are rare
+// enough that this is acceptable. For high-volume scenarios, consider using
+// Durable Objects or an external database with atomic operations.
+async function incSold(env, sku, qty) {
+  if (!sku || !qty) return;
+  const current = await getSold(env);
+  current[sku] = (current[sku] || 0) + qty;
+  await env.GATH_COUNTS.put('sold', JSON.stringify(current));
+}
+
 function isAllowed(origin, allowList){
   if (!origin) return false;
   return allowList.some((pat)=> {
@@ -36,6 +54,11 @@ export default {
 
     if (request.method === "OPTIONS"){
       return new Response(null, { headers: cors(origin, allowList) });
+    }
+
+    if (url.pathname === '/gath/sold' && request.method === 'GET') {
+      const sold = await getSold(env);
+      return new Response(JSON.stringify({ sold }), { status: 200, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
     }
 
     if (url.pathname === "/checkout" && request.method === "POST"){
@@ -227,6 +250,13 @@ export default {
               headers:{ "Content-Type":"application/json", "X-Internal-Auth": env.INTERNAL_SHARED_SECRET },
               body: JSON.stringify({ sessionId, email, name, advice })
             }).catch((err)=>{ console.error("partner-payout-advice fetch error:", err.message); });
+
+            // Increment sold counts for capacity tracking
+            for (const t of eventTickets) {
+              const sku = t.sku;
+              const qty = Number(t.qty || 1);
+              await incSold(env, sku, qty);
+            }
           }
 
           // 2) Donation thanks via Netlify Function

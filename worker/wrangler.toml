@@ -13,6 +13,11 @@ ALLOWED_ORIGINS = "https://lyrion.co.uk,https://*.netlify.app"
 NETLIFY_FUNCTION_BASE = "https://lyrion.co.uk/.netlify/functions"
 ROUTING_JSON_URL = "https://lyrion.co.uk/data/routing.json"
 
+[[kv_namespaces]]
+binding = "GATH_COUNTS"
+id = "GATH_COUNTS_PROD"       # replace with the value wrangler prints
+preview_id = "GATH_COUNTS_DEV" # replace with the value wrangler prints
+
 # Secrets (set via CLI, not stored here):
 # - STRIPE_SECRET_KEY
 # - STRIPE_WEBHOOK_SECRET
