@@ -93,7 +93,7 @@
  return `
  <a class="card" href="/product/?sku=${encodeURIComponent(p.sku)}" style="padding:16px;display:block">
  <div style="aspect-ratio:1/1;background:#0e0f15;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:12px">
- <img src="${p.image}" alt="${safeTitle}" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentElement.textContent='Image coming soon'">
+ <img src="${p.image}" alt="Photo of ${safeTitle}" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentElement.textContent='Image coming soon'">
  </div>
  <h3 style="margin-bottom:6px">${safeTitle}</h3>
  <div style="display:flex;justify-content:space-between;align-items:center">

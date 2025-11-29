@@ -144,7 +144,7 @@
  <div style="display:grid;gap:16px;grid-template-columns:1fr 1fr;align-items:start">
  <div>
  <div style="aspect-ratio:1/1;background:#0e0f15;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden">
- <img data-lcp-img src="${product.image}" alt="${product.title}" decoding="async" onerror="this.parentElement.textContent='Image coming soon'">
+ <img data-lcp-img src="${product.image}" alt="Photo of ${product.title}" decoding="async" onerror="this.parentElement.textContent='Image coming soon'">
  </div>
  </div>
  <div>
