@@ -4,12 +4,15 @@
 function makeAltFromFilename(src){
 try{
 const base = (src||'').split('/').pop().split('?')[0];
-const name = base.replace(/\.[a-z0-9]+$/i,'').replace(/[-_]+/g,' ').trim();
+// Remove file extension (case-insensitive, handles .jpg, .jpeg, .png, .webp, etc.)
+const name = base.replace(/\.[a-zA-Z0-9]+$/,'').replace(/[-_]+/g,' ').trim();
 return name ? name.charAt(0).toUpperCase()+name.slice(1) : 'Image';
 }catch(_e){ return 'Image'; }
 }
 function nearestHeadingText(el){
 let p = el;
+// Traverse up to 4 levels to find a heading - covers most card/product layouts
+// (image -> container -> card -> section with heading)
 for (let i=0; i<4 && p; i++, p=p.parentElement){
 const h = p.querySelector('h1,h2,h3');
 if (h && h.textContent) return h.textContent.trim();
