@@ -17,16 +17,36 @@
   document.querySelectorAll('[data-vat-note]').forEach(applyVatNote);
 
   // Build legal footer line (only print the fields that exist)
-  const bits = [];
   const year = new Date().getFullYear();
-  if (L.businessName) bits.push("© " + year + " " + L.businessName);
-  if (L.companyNumber) bits.push("Company No: " + L.companyNumber);
-  if (L.vatNumber) bits.push("VAT: " + L.vatNumber);
-  if (L.contactEmail) bits.push('<a href="mailto:' + L.contactEmail + '">' + L.contactEmail + '</a>');
 
-  const line = bits.join(" · ");
   document.querySelectorAll('[data-legal-footer]').forEach(function(el) {
-    if (line) { el.innerHTML = line; }
+    // Clear existing content
+    el.textContent = '';
+
+    var parts = [];
+
+    if (L.businessName) {
+      parts.push(document.createTextNode("© " + year + " " + L.businessName));
+    }
+    if (L.companyNumber) {
+      if (parts.length > 0) parts.push(document.createTextNode(" · "));
+      parts.push(document.createTextNode("Company No: " + L.companyNumber));
+    }
+    if (L.vatNumber) {
+      if (parts.length > 0) parts.push(document.createTextNode(" · "));
+      parts.push(document.createTextNode("VAT: " + L.vatNumber));
+    }
+    if (L.contactEmail) {
+      if (parts.length > 0) parts.push(document.createTextNode(" · "));
+      var link = document.createElement('a');
+      link.href = "mailto:" + L.contactEmail;
+      link.textContent = L.contactEmail;
+      parts.push(link);
+    }
+
+    parts.forEach(function(part) {
+      el.appendChild(part);
+    });
   });
 
   // Watch for dynamically added elements (for PDP rendered after DOM load)
