@@ -1,0 +1,98 @@
+{
+  "currency": "GBP",
+  "tiers": [
+    { "id": "free", "name": "Free listing", "desc": "Title · date · external link", "price": 0 },
+    { "id": "featured", "name": "Featured", "desc": "Highlighted card (14 days)", "price": 9 },
+    { "id": "spotlight", "name": "Spotlight", "desc": "Top banner (14 days)", "price": 39 }
+  ],
+  "events": [
+    {
+      "id": "london-moon-circle-2026-01-20",
+      "title": "Moon Circle — The Hearth",
+      "subtitle": "Lunar ritual & reflection",
+      "date": "2026-01-20",
+      "time": "18:30",
+      "mode": "In-person",
+      "location": "The Hearth, London",
+      "price": 0,
+      "host": "The Hearth",
+      "listingType": "free",
+      "bookUrl": "https://www.eventbrite.co.uk/",
+      "source": "Eventbrite",
+      "image": "/assets/products/moon-circle.webp",
+      "tags": ["London", "Moon Circle", "Ritual"]
+    },
+    {
+      "id": "london-womens-tarot-2025-12-13",
+      "title": "London Women's Tarot Meetup",
+      "subtitle": "Learn · practice · readings",
+      "date": "2025-12-13",
+      "time": "",
+      "mode": "In-person",
+      "location": "Waterstones, London",
+      "price": 0,
+      "host": "True Nature Tarot",
+      "listingType": "free",
+      "bookUrl": "https://www.eventbrite.com/",
+      "source": "Eventbrite",
+      "image": "/assets/products/tarot-salon.webp",
+      "tags": ["London", "Tarot"]
+    },
+    {
+      "id": "astrology-club-manchester-2025-12-14",
+      "title": "Astrology Club — The Planet Body",
+      "subtitle": "Intro & community meetup",
+      "date": "2025-12-14",
+      "time": "",
+      "mode": "In-person",
+      "location": "Ancoats, Manchester",
+      "price": 0,
+      "host": "The Planet Body",
+      "listingType": "free",
+      "bookUrl": "https://www.eventbrite.com/",
+      "source": "Eventbrite",
+      "image": "/assets/products/astrology-club.webp",
+      "tags": ["Manchester", "Astrology"]
+    },
+    {
+      "id": "partner-zoom-tarot-2026-01-18",
+      "title": "Tarot Salon (Zoom) — Guided Readings",
+      "subtitle": "Small group, gentle guidance",
+      "date": "2026-01-18",
+      "time": "17:00",
+      "mode": "Online",
+      "location": "",
+      "listingType": "partnerTicketed",
+      "ticket": {
+        "price": 12,
+        "ourCommissionPct": 20,
+        "partnerEmail": "host@example.com"
+      },
+      "sku": "TICKET-TAROT-ZOOM-20260118",
+      "capacity": 12,
+      "available": 12,
+      "image": "/assets/products/tarot-salon.webp",
+      "tags": ["Online", "Tarot"]
+    },
+    {
+      "id": "partner-starwalk-greenwich-2026-02-09",
+      "title": "Starwalk — Night Sky with Myth",
+      "subtitle": "An evening under the constellations",
+      "date": "2026-02-09",
+      "time": "19:30",
+      "mode": "In-person",
+      "location": "Greenwich Park, London",
+      "listingType": "partnerTicketed",
+      "ticket": {
+        "price": 15,
+        "ourCommissionPct": 15,
+        "partnerEmail": "greenwich-host@example.com"
+      },
+      "sku": "TICKET-STARWALK-20260209",
+      "capacity": 20,
+      "available": 0,
+      "image": "/assets/products/starwalk.webp",
+      "tags": ["London", "Stargazing"]
+    }
+  ]
+}
