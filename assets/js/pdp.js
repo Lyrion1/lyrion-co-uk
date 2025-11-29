@@ -151,6 +151,7 @@
  <h1>${product.title}</h1>
  <p style="color:#b9bcc7;margin-bottom:8px">${product.category}${product.isDigital?' · Digital':''} · ${product.sign}</p>
  <div style="font-size:22px;margin-bottom:12px" data-price>${fmtGBP(product.price)}</div>
+ <div data-vat-note></div>
 
  <form id="buy" style="display:grid;gap:12px">
  ${isApparel ? `
