@@ -51,7 +51,7 @@
 
  const homeCard = p => `
  <article class="card" style="padding:12px;display:grid;gap:10px">
- <div class="img-square"><img src="${p.image}" alt="Photo of ${p.title}" loading="lazy" decoding="async"></div>
+ <div class="img-square"><img src="${p.image}" alt="Photo of ${p.title}" loading="lazy" decoding="async" onerror="this.parentElement.textContent='Image coming soon'"></div>
  <h3 style="margin:0">${p.title}</h3>
  <div style="display:flex;justify-content:space-between;align-items:center">
  <div>£${Number(p.price||0).toFixed(2)}</div>

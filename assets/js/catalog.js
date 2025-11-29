@@ -116,16 +116,16 @@
  }
 
  // build dropdowns
- signSel.innerHTML = ['All',...new Set(signs.map(s=>s.sign))].map(v=>`<option value="${v}">${v}</option>`).join('');
- catSel.innerHTML = ['All','Apparel','Prints','Digital'].map(v=>`<option value="${v}">${v}</option>`).join('');
+ if (signSel) signSel.innerHTML = ['All',...new Set(signs.map(s=>s.sign))].map(v=>`<option value="${v}">${v}</option>`).join('');
+ if (catSel) catSel.innerHTML = ['All','Apparel','Prints','Digital'].map(v=>`<option value="${v}">${v}</option>`).join('');
 
  // Apply query params to selectors if present
  if (signSel && qpSign && signSel.querySelector(`option[value="${qpSign}"]`)) signSel.value = qpSign;
- else if (signSel.querySelector(`option[value="${current.sign}"]`)) signSel.value = current.sign;
+ else if (signSel && signSel.querySelector(`option[value="${current.sign}"]`)) signSel.value = current.sign;
  if (catSel && qpCat) catSel.value = qpCat;
 
- signSel.addEventListener('change', ()=>{ limit = 12; applyFilters(); });
- catSel.addEventListener('change', ()=>{ limit = 12; applyFilters(); });
+ if (signSel) signSel.addEventListener('change', ()=>{ limit = 12; applyFilters(); });
+ if (catSel) catSel.addEventListener('change', ()=>{ limit = 12; applyFilters(); });
 
  // initial render
  applyFilters();
