@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8"><title>whoami</title>
+<link rel="stylesheet" href="/assets/css/base.css">
+<main class="container" style="padding:24px">
+<h1>Site fingerprint</h1>
+<pre id="out" class="card" style="padding:12px"></pre>
+</main>
+<script>
+(async()=>{
+const v = await fetch('/version.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>({}));
+document.getElementById('out').textContent = JSON.stringify({
+host: location.host, href: location.href, version: v
+}, null, 2);
+})();
+</script>
