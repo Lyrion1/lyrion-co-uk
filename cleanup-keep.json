@@ -1,0 +1,31 @@
+{
+  "keepDirs": [
+    "assets",
+    "data",
+    "partials",
+    "product",
+    "shop",
+    "readings",
+    "support",
+    "contact",
+    "privacy",
+    "returns",
+    "legal",
+    "success",
+    "zodiac-now",
+    "netlify",
+    "worker",
+    ".github"
+  ],
+  "keepFiles": [
+    "index.html",
+    "404.html",
+    "_redirects",
+    "netlify.toml",
+    "package.json",
+    "package-lock.json",
+    ".gitignore",
+    ".nvmrc"
+  ],
+  "ignoredDirs": [".git", "node_modules", ".netlify"]
+}
