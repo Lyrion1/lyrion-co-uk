@@ -179,7 +179,7 @@
 
  <button class="button" type="submit" data-cta>Buy Now — ${fmtGBP(product.price)}</button>
 
- <div style="font-size:12px;color:#b9bcc7">UK shipping £3.95 (3–5 business days). Free over £75. Prints ship separately when mixed-cart.</div>
+ <div data-shipping-note></div>
  </form>
  </div>
  </div>
