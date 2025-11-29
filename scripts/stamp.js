@@ -8,5 +8,10 @@ const stamp = {
   site: process.env.URL || '',
 };
 
-fs.writeFileSync(path.join(process.cwd(), 'version.json'), JSON.stringify(stamp, null, 2));
-console.log('Wrote version.json:', stamp);
+try {
+  fs.writeFileSync(path.join(process.cwd(), 'version.json'), JSON.stringify(stamp, null, 2));
+  console.log('Wrote version.json:', stamp);
+} catch (err) {
+  console.error('Failed to write version.json:', err.message);
+  process.exit(1);
+}
