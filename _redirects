@@ -1,22 +1,24 @@
-# Netlify Redirects — Route around legacy pages
-# Format: from  to  status
+# Old cart/checkout -> new flow
+/cart /shop 301
+/checkout /shop 301
+/shop.html /shop 301
+/product.html /shop 301
 
-# Legacy product pages → new shop
-/product.html        /shop    301
-/offerings.html      /shop    301
-/collections.html    /shop    301
+# Old collection/zodiac/oracle routes
+/collections/* /shop 301
+/zodiac/* /zodiac-now 301
+/oracle/* /readings 301
 
-# Legacy zodiac pages → new zodiac flow
-/zodiac.html         /zodiac  301
-/houses.html         /houses  301
+# Preserve About & Gatherings (NO redirects here)
+# /about and /gatherings must resolve to their own pages
 
-# Legacy checkout → new checkout
-/checkout-old.html   /checkout  301
-
-# Legacy page redirects
+# Legacy single files
+/account /contact 301
+/index.html / 301
+/success.html /success 301
 /contact.html /contact 301
 /about.html /about 301
 /offerings* /readings 301
 
-# Catch-all for missing pages → friendly 404
-/*                   /404.html  404
+# Catch-all 404
+/* /404.html 404
