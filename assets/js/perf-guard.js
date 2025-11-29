@@ -1,6 +1,6 @@
 (function(){
   // Make all non-priority images lazy + async
-  const imgs = document.getElementsByTagName('img');
+  const imgs = Array.from(document.getElementsByTagName('img'));
   for (const im of imgs){
     if (im.hasAttribute('data-priority')) continue; // allow opt-out
     if (!im.hasAttribute('loading')) im.setAttribute('loading','lazy');
