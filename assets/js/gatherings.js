@@ -48,8 +48,9 @@
   function card(ev){
     var featured = ev.listingType === 'featured' || ev.listingType === 'spotlight';
     var capacity = Number(ev.capacity||0);
-    var available = Number.isFinite(Number(ev.available)) ? Number(ev.available) : capacity || Infinity;
-    var sold = available <= 0 && capacity > 0;
+    var sold = Number(soldMap[ev.sku||''] || 0);
+    var available = Number.isFinite(capacity) && capacity > 0 ? Math.max(0, capacity - sold) : Infinity;
+    var soldBadge = available <= 0;
     var badge = ev.listingType && ev.listingType !== 'free'
       ? '<span class="badge" style="font-size:12px;padding:2px 8px;border-radius:12px;background:var(--accent);color:#111">' + escapeHtml(ev.listingType) + '</span>'
       : '';
@@ -65,7 +66,7 @@
       '\n        <h3 style="margin:0">' + escapeHtml(ev.title) + '</h3>' +
       '\n        <div style="display:flex;gap:8px;align-items:center">' +
       badge +
-      (sold?'<span class="badge" style="font-size:12px;padding:2px 8px;border-radius:12px;background:#ccc;color:#111">Sold out</span>':'') +
+      (soldBadge?'<span class="badge" style="font-size:12px;padding:2px 8px;border-radius:12px;background:#ccc;color:#111">Sold out</span>':'') +
       '\n        </div>' +
       '\n      </div>' +
       (ev.subtitle?'\n      <p class="muted" style="margin:0">' + escapeHtml(ev.subtitle) + '</p>':'') +
@@ -74,12 +75,12 @@
       '\n      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">' +
       '\n        <div><strong>' + price + '</strong>' + (Number.isFinite(capacity)&&capacity>0?' · '+Math.max(0,available)+'/'+capacity+' seats':'') + '</div>' +
       (isPartner
-        ? '\n        <button class="button" data-internal-book ' + (sold?'disabled':'') +
+        ? '\n        <button class="button" data-internal-book ' + (soldBadge?'disabled':'') +
           ' data-sku="' + escapeHtml(ev.sku||'') + '" data-title="' + escapeHtml(ev.title) + '"' +
           ' data-commission="' + (ev.ticket.ourCommissionPct||0) + '"' +
           ' data-price="' + (ev.ticket.price||0) + '">Book</button>'
         : (ev.bookUrl
-          ? '\n        <a class="button' + (sold?' secondary':'') + '" href="' + escapeHtml(ev.bookUrl) + '" target="_blank" rel="noopener"' + (sold?' aria-disabled="true"':'') + '>Book</a>'
+          ? '\n        <a class="button' + (soldBadge?' secondary':'') + '" href="' + escapeHtml(ev.bookUrl) + '" target="_blank" rel="noopener"' + (soldBadge?' aria-disabled="true"':'') + '>Book</a>'
           : '\n        <span class="muted">Details soon</span>'
         )
       ) +
@@ -98,6 +99,13 @@
 
   var data = { currency:'GBP', events:[] };
   try{ var r = await fetch('/data/gatherings.json'); data = await r.json(); }catch(e){ console.error('Failed to load gatherings:', e); }
+
+  var soldMap = {};
+  try {
+    var sr = await fetch(API_BASE + '/gath/sold', { method:'GET' });
+    var sj = await sr.json();
+    soldMap = sj && sj.sold ? sj.sold : {};
+  } catch(e){ console.error('Failed to load sold counts:', e); }
 
   function apply(){
     var list = data.events || [];
