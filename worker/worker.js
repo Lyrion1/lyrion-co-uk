@@ -25,7 +25,7 @@ async function alertOps(env, topic, message, context){
       headers:{ "Content-Type":"application/json", "X-Internal-Auth": env.INTERNAL_SHARED_SECRET },
       body: JSON.stringify({ topic, message, context })
     });
-  }catch(_e){}
+  }catch(e){ console.error("Alert delivery failed:", e.message); }
 }
 
 export default {
