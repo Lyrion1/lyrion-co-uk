@@ -1,5 +1,5 @@
 [build]
-command = "npm install && node scripts/stamp.js"
+command = "node scripts/stamp.js"
 functions = "netlify/functions"
 publish = "."
 
