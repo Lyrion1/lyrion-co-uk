@@ -13,5 +13,10 @@
 # Legacy checkout → new checkout
 /checkout-old.html   /checkout  301
 
+# Legacy page redirects
+/contact.html /contact 301
+/about.html /about 301
+/offerings* /readings 301
+
 # Catch-all for missing pages → friendly 404
 /*                   /404.html  404
