@@ -9,6 +9,7 @@ package-lock.json
 # Build artifacts
 dist/
 build/
+version.json
 
 # IDE
 .vscode/
