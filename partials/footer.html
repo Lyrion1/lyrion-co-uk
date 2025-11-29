@@ -1,7 +1,7 @@
 <footer class="footer">
  <div class="container">
  <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
- <div>© <span id="y"></span> LYRĪON · Celestial Couture</div>
+ <div data-legal-footer>© <span id="y"></span> LYRĪON</div>
  <div style="display:flex;gap:12px">
  <a href="/legal">Legal</a>
  <a href="/returns">Returns</a>
@@ -10,5 +10,7 @@
  </div>
  </div>
  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+ <script src="/assets/js/config.js" defer></script>
+ <script src="/assets/js/legal-note.js" defer></script>
  <script src="/assets/js/perf-guard.js" defer></script>
 </footer>
