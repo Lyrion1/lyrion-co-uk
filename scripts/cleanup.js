@@ -4,34 +4,54 @@ const path = require('path');
 
 const mode = (process.argv[2] || 'preview').toLowerCase(); // 'preview' or 'apply'
 const root = process.cwd();
-const cfg = require(path.join(root, 'cleanup-keep.json'));
+
+// Load configuration with error handling
+const configPath = path.join(root, 'cleanup-keep.json');
+let cfg;
+try {
+  cfg = require(configPath);
+} catch (e) {
+  console.error(`Error loading config file '${configPath}': ${e.message}`);
+  process.exit(1);
+}
 
 const keepDirs = new Set(cfg.keepDirs || []);
 const keepFiles = new Set(cfg.keepFiles || []);
 const ignored = new Set(cfg.ignoredDirs || []);
 const toDelete = [];
 
-function isDir(p){ try{ return fs.statSync(p).isDirectory(); }catch{ return false; } }
-function isFile(p){ try{ return fs.statSync(p).isFile(); }catch{ return false; } }
-
-// 1) Root-level directories: delete any not in keepDirs/ignored
-for (const entry of fs.readdirSync(root)){
-  const full = path.join(root, entry);
-  if (isDir(full)){
-    if (ignored.has(entry)) continue;
-    if (!keepDirs.has(entry)){
-      toDelete.push({ type:'dir', path: full });
-    }
-  }
+function isDir(p) {
+  return fs.existsSync(p) && fs.statSync(p).isDirectory();
 }
 
-// 2) Root-level files: delete legacy .html that are not in keepFiles
-for (const entry of fs.readdirSync(root)){
+function isFile(p) {
+  return fs.existsSync(p) && fs.statSync(p).isFile();
+}
+
+// Read root directory once with error handling
+let entries;
+try {
+  entries = fs.readdirSync(root);
+} catch (e) {
+  console.error(`Error reading directory '${root}': ${e.message}`);
+  process.exit(1);
+}
+
+// Process entries: directories and files
+for (const entry of entries) {
   const full = path.join(root, entry);
-  if (isFile(full)){
+  
+  if (isDir(full)) {
+    // Skip ignored directories, delete those not in keepDirs
+    if (ignored.has(entry)) continue;
+    if (!keepDirs.has(entry)) {
+      toDelete.push({ type: 'dir', path: full });
+    }
+  } else if (isFile(full)) {
+    // Delete legacy .html files not in keepFiles
     const ext = path.extname(entry).toLowerCase();
-    if (ext === '.html' && !keepFiles.has(entry)){
-      toDelete.push({ type:'file', path: full });
+    if (ext === '.html' && !keepFiles.has(entry)) {
+      toDelete.push({ type: 'file', path: full });
     }
   }
 }
