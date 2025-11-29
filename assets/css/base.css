@@ -84,6 +84,7 @@ label>select, label>input, label>textarea{ margin-top:6px; display:block; }
 
 /* Image containers that should not cause layout shift */
 .img-square{aspect-ratio:1/1;background:#F1ECE3;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.badge{font-size:12px;padding:2px 8px;border-radius:12px;background:var(--accent);color:#111}
 @media (max-width:600px){
 .section{ margin-top: var(--space-8); }
 .cluster{ gap:var(--space-2); }
