@@ -36,6 +36,17 @@
 
  const rec = signs.find(s=>s.sign===product.sign);
 
+ // Preload likely LCP image (PDP)
+ (function(){
+   try{
+     const link = document.createElement('link');
+     link.rel = 'preload';
+     link.as = 'image';
+     link.href = product.image;
+     document.head.appendChild(link);
+   }catch(_e){}
+ })();
+
  // --- SEO helpers ---
  function setMetaDescription(text){
    let tag = document.querySelector('meta[name="description"]');
@@ -133,7 +144,7 @@
  <div style="display:grid;gap:16px;grid-template-columns:1fr 1fr;align-items:start">
  <div>
  <div style="aspect-ratio:1/1;background:#0e0f15;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden">
- <img src="${product.image}" alt="${product.title}" onerror="this.parentElement.textContent='Image coming soon'">
+ <img data-lcp-img src="${product.image}" alt="${product.title}" decoding="async" onerror="this.parentElement.textContent='Image coming soon'">
  </div>
  </div>
  <div>
