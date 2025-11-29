@@ -66,24 +66,50 @@
  <div class="grid cols-3">${picks.map(cardHTML).join('')}</div>`;
  }
 
- // --- Shop page (/shop) with simple filters ---
+ // --- Shop page (/shop) with filters + sane defaults + "Load more" ---
  const shopArea = document.querySelector('[data-shop-grid]');
  if (shopArea){
  const signSel = document.querySelector('[data-filter-sign]');
  const catSel = document.querySelector('[data-filter-cat]');
+ const countEl = document.querySelector('[data-shop-count]');
+ const moreWrap = document.querySelector('[data-shop-more]');
+ let limit = 12;
+
+ function render(list){
+ const slice = list.slice(0, limit);
+ shopArea.innerHTML = slice.map(cardHTML).join('');
+ countEl.textContent = `${list.length} items`;
+ if (moreWrap){
+ moreWrap.classList.toggle('hidden', list.length <= limit);
+ }
+ // make the "Load more" work
+ const btn = document.querySelector('[data-load-more]');
+ if (btn){
+ btn.onclick = ()=>{ limit += 12; applyFilters(); };
+ }
+ }
+
  function applyFilters(){
- const sVal = signSel.value; const cVal = catSel.value;
+ const sVal = signSel.value;
+ const cVal = catSel.value;
  const list = products.filter(p =>
  (sVal==='All' || p.sign===sVal) &&
  (cVal==='All' || p.category===cVal)
  );
- shopArea.innerHTML = list.map(cardHTML).join('');
- document.querySelector('[data-shop-count]').textContent = `${list.length} items`;
+ render(list);
  }
+
+ // build dropdowns
  signSel.innerHTML = ['All',...new Set(signs.map(s=>s.sign))].map(v=>`<option>${v}</option>`).join('');
  catSel.innerHTML = ['All','Apparel','Prints','Digital'].map(v=>`<option>${v}</option>`).join('');
- signSel.addEventListener('change', applyFilters);
- catSel.addEventListener('change', applyFilters);
+
+ // default to current sign (tidier first view)
+ if (signSel.querySelector(`option[value="${current.sign}"]`)) signSel.value = current.sign;
+
+ signSel.addEventListener('change', ()=>{ limit = 12; applyFilters(); });
+ catSel.addEventListener('change', ()=>{ limit = 12; applyFilters(); });
+
+ // initial render
  applyFilters();
  }
 

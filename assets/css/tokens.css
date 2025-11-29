@@ -1,20 +1,32 @@
 :root{
-/* Light theme default (like original) */
---bg:#ffffff; --surface:#ffffff; --card:#ffffff;
---text:#101114; --muted:#585b68; --line:#e6e7ef;
---accent:#d4b483; /* gold */
---accent-2:#7aa7ff;
+/* Cream + Gold (light, professional) */
+--bg:#FAF7F1; /* cream background */
+--surface:#FFFFFF; /* cards/sections */
+--card:#FFFFFF;
+--text:#1E1E21; /* near-black text */
+--muted:#5C5F6A; /* subtle body copy */
+--line:#E8E2D6; /* soft divider */
+--accent:#C9A86A; /* gold */
+--accent-2:#2E3A59; /* deep accent for links if needed */
 
 --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
 --font-serif: "Playfair Display", Georgia, serif;
 
 --fs-xxs:11px; --fs-xs:12px; --fs-sm:14px; --fs-md:16px; --fs-lg:18px; --fs-xl:22px; --fs-2xl:28px; --fs-3xl:36px;
+
 --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-6:24px; --space-8:32px; --space-12:48px;
---radius-1:6px; --radius-2:10px; --shadow-1:0 2px 12px rgba(0,0,0,.08);
+
+--radius-1:8px; --radius-2:12px;
+--shadow-1:0 6px 20px rgba(0,0,0,.06);
+
 --max-w:1120px; --container-pad:16px;
---focus: 0 0 0 3px rgba(212,180,131,.35);
+--focus: 0 0 0 3px rgba(201,168,106,.35);
 }
 
+/* Optional dark if user prefers */
 @media (prefers-color-scheme: dark){
-:root{ --bg:#0b0b10; --surface:#12121a; --card:#151521; --text:#f5f6fa; --muted:#b9bcc7; --line:#242435; }
+:root{
+--bg:#111217; --surface:#151823; --card:#151823;
+--text:#F4F6FA; --muted:#B7BBC7; --line:#24273A; --accent:#C9A86A;
+}
 }

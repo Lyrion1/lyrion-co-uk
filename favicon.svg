@@ -1,5 +1,5 @@
-<!-- simple celestial icon matching your colors -->
+<!-- simple star on cream -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
- <rect width="64" height="64" rx="12" fill="#0b0b10"/>
- <path d="M32 10l4 12h12l-10 7 4 12-10-7-10 7 4-12-10-7h12z" fill="#d4b483"/>
+<rect width="64" height="64" rx="12" fill="#FAF7F1"/>
+<path d="M32 10l4 12h12l-10 7 4 12-10-7-10 7 4-12-10-7h12z" fill="#C9A86A"/>
 </svg>

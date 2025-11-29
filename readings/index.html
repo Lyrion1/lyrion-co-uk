@@ -1,6 +1,7 @@
 <!doctype html><html lang="en-GB">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>Readings · LYRĪON</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -15,7 +16,7 @@
  <header class="header">
   <div class="container nav">
   <a href="/" class="brand" aria-label="LYRĪON Home">
-   <img src="/assets/img/logo.svg" alt="LYRĪON" onerror="this.style.display='none'">
+   <img src="/assets/img/logo.svg" alt="LYRĪON" onerror="this.remove();document.querySelector('.brand-text').style.display='inline'">
    <span class="brand-text">LYRĪON</span>
   </a>
   <nav aria-label="Main">
@@ -26,12 +27,11 @@
   <li>
   <details>
   <summary>The Oracle</summary>
-  <ul role="list" style="margin:8px 0 0 0; padding:0 0 0 12px; list-style:none; display:flex; flex-direction:column; gap:8px">
+  <ul role="list" style="margin:8px 0 0 0;padding:0 0 0 12px; list-style:none; display:flex; flex-direction:column; gap:8px">
    <li><a href="/readings#complimentary">Complimentary Oracle</a></li>
    <li><a href="/readings#premium">Premium Oracle</a></li>
    <li><a href="/oracle/prayers">Prayers</a></li>
    <li><a href="/oracle/intercessions">Intercessions</a></li>
-   <li><a href="/support">Donate (Goodwill)</a></li>
   </ul>
   </details>
   </li>
