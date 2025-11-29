@@ -2,16 +2,57 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gatherings · LYRĪON</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
 <link rel="stylesheet" href="/assets/css/base.css">
+<meta name="description" content="Curated astrology circles, tarot salons, and stargazing nights. Submit your event or upgrade to Featured/Spotlight.">
 </head>
 <body>
-<!--#include file="/partials/header.html" -->
-<main class="container" style="padding:24px">
-<section class="card p-16 stack-lg">
-<h1>Gatherings</h1>
-<p>Circles and celestial events. Upcoming dates will appear here.</p>
-</section>
-</main>
-<!--#include file="/partials/footer.html" -->
+  <!--#include file="/partials/header.html" -->
+  <main id="main" class="container section">
+  <section class="card p-16 stack-lg">
+    <div class="cluster" style="justify-content:space-between;align-items:center">
+    <div>
+      <h1 style="margin:0">Gatherings</h1>
+      <p class="muted" style="margin:4px 0 0">Subtle, celestial, community-first — handpicked listings across the UK.</p>
+    </div>
+    <div class="cluster">
+      <a class="button secondary" href="/gatherings/submit">List your event</a>
+      <a class="button" data-upgrade-feature href="#">Feature your event</a>
+    </div>
+    </div>
+
+    <aside class="card p-12" style="display:flex;gap:16px;align-items:center">
+    <div style="font-weight:600">Sponsor this month</div>
+    <div class="muted" style="flex:1">A single elegant banner for a venue or brand · 14 days rotation.</div>
+    <a class="button secondary" data-upgrade-spotlight href="#">Enquire</a>
+    </aside>
+
+    <div class="cluster" style="justify-content:space-between">
+    <div class="cluster">
+      <label>Type
+      <select data-gath-filter-type>
+        <option value="all">All</option>
+        <option value="online">Online</option>
+        <option value="inperson">In-person</option>
+      </select>
+      </label>
+      <label>Region
+      <select data-gath-filter-region>
+        <option value="all">All</option>
+        <option>London</option>
+        <option>Manchester</option>
+        <option>UK-wide</option>
+      </select>
+      </label>
+    </div>
+    <div class="muted" data-gath-count></div>
+    </div>
+
+    <section class="grid cols-3" data-gath-grid></section>
+  </section>
+  </main>
+  <!--#include file="/partials/footer.html" -->
+  <script src="/assets/js/site.js" defer></script>
+  <script src="/assets/js/config.js" defer></script>
+  <script src="/assets/js/gatherings.js" defer></script>
 </body></html>

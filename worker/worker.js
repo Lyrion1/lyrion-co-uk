@@ -71,7 +71,9 @@ export default {
                 kind: i.kind || "",
                 category: i.category || "",
                 size: i.size || "",
-                isDigital: String(!!i.isDigital)
+                isDigital: String(!!i.isDigital),
+                commissionPct: i.meta?.commissionPct || "",
+                title: i.meta?.title || ""
               }
             }
           }
@@ -166,7 +168,9 @@ export default {
               isDigital: (md.isDigital==="true" || md.category==="Digital"),
               qty: li.quantity || 1,
               unit_amount: li.price?.unit_amount || 0,
-              currency: li.price?.currency || "gbp"
+              currency: li.price?.currency || "gbp",
+              commissionPct: md.commissionPct || "",
+              metaTitle: md.title || ""
             };
           });
 
@@ -175,8 +179,12 @@ export default {
           const donations = items.filter(i=>i.kind==="donation" || i.category==="Donation");
           const physical = items.filter(i=>!i.isDigital && i.category!=="Digital" && i.kind!=="donation");
 
-          // 1) Digital fulfillment via Netlify Function
-          if (digital.length){
+          // Split event tickets from other digital items
+          const eventTickets = digital.filter(d => d.category==="Event" && d.kind==="partner_ticket");
+          const otherDigital = digital.filter(d => !(d.category==="Event" && d.kind==="partner_ticket"));
+
+          // 1) Digital fulfillment via Netlify Function (non-event tickets)
+          if (otherDigital.length){
             await fetch(`${env.NETLIFY_FUNCTION_BASE}/send-digital`, {
               method:"POST",
               headers:{
@@ -185,9 +193,39 @@ export default {
               },
               body: JSON.stringify({
                 sessionId, email, name,
-                items: digital.map(d=>({sku:d.sku, qty:d.qty, sign:d.sign, kind:d.kind}))
+                items: otherDigital.map(d=>({sku:d.sku, qty:d.qty, sign:d.sign, kind:d.kind}))
               })
             }).catch((err)=>{ console.error("send-digital fetch error:", err.message); });
+          }
+
+          // 1b) Event ticket fulfillment + partner payout advice
+          if (eventTickets.length){
+            await fetch(`${env.NETLIFY_FUNCTION_BASE}/send-ticket`, {
+              method:"POST",
+              headers:{ "Content-Type":"application/json", "X-Internal-Auth": env.INTERNAL_SHARED_SECRET },
+              body: JSON.stringify({
+                sessionId, email, name, items: eventTickets.map(t=>({
+                  sku:t.sku, qty:t.qty, title:t.metaTitle || t.title || "Event ticket"
+                }))
+              })
+            }).catch((err)=>{ console.error("send-ticket fetch error:", err.message); });
+
+            // Commission/payout advice
+            const advice = eventTickets.map(t=>{
+              const pct = Number(t.commissionPct || 0);
+              const grossPence = (t.unit_amount||0) * (t.qty||1);
+              const our = Math.round(grossPence * (pct/100));
+              const partnerDue = grossPence - our;
+              return {
+                sku: t.sku, qty: t.qty, grossPence, ourCommissionPence: our,
+                partnerDuePence: partnerDue, commissionPct: pct
+              };
+            });
+            await fetch(`${env.NETLIFY_FUNCTION_BASE}/partner-payout-advice`, {
+              method:"POST",
+              headers:{ "Content-Type":"application/json", "X-Internal-Auth": env.INTERNAL_SHARED_SECRET },
+              body: JSON.stringify({ sessionId, email, name, advice })
+            }).catch((err)=>{ console.error("partner-payout-advice fetch error:", err.message); });
           }
 
           // 2) Donation thanks via Netlify Function

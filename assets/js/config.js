@@ -19,3 +19,9 @@ window.LYRION_LEGAL = Object.assign({
   showVatInclusiveNote: true,     // show "Prices include VAT"
   contactEmail: "hello@lyrion.co.uk"
 }, window.LYRION_LEGAL || {});
+
+/* Gatherings listing upgrade links (Stripe Payment Links) */
+window.LYRION_LISTING = Object.assign({
+  featureLink: "",   // Stripe Payment Link for "Featured" (14 days), optional
+  spotlightLink: ""  // Stripe Payment Link for "Spotlight" (top banner, 14 days), optional
+}, window.LYRION_LISTING || {});
