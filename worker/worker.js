@@ -18,6 +18,16 @@ function cors(origin, allowList){
   return h;
 }
 
+async function alertOps(env, topic, message, context){
+  try{
+    await fetch(`${env.NETLIFY_FUNCTION_BASE}/ops-failure-alert`, {
+      method:"POST",
+      headers:{ "Content-Type":"application/json", "X-Internal-Auth": env.INTERNAL_SHARED_SECRET },
+      body: JSON.stringify({ topic, message, context })
+    });
+  }catch(e){ console.error("Alert delivery failed:", e.message); }
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -102,6 +112,10 @@ export default {
           headers: { ...headers, "Content-Type":"application/json" }
         });
       }catch(err){
+        await alertOps(env, "checkout_failed", err.message || "checkout_failed", {
+          origin,
+          note: "No PII; summary only"
+        });
         return new Response(JSON.stringify({error: err.message || "checkout_failed"}), { status: 500, headers:{...headers,"Content-Type":"application/json"}});
       }
     }
@@ -194,6 +208,7 @@ export default {
 
           // 3) Physical: route to Printful/Gelato or alert ops
           if (physical.length){
+            try {
             // Fetch routing map
             let map = {};
             try{
@@ -320,11 +335,22 @@ export default {
                 });
               }catch(e){ console.log("OPS_ALERT_ERR", e.message); }
             }
+            } catch (fulfillErr) {
+              await alertOps(env, "fulfillment_exception", fulfillErr.message || "fulfillment_exception", {
+                sessionId: event?.data?.object?.id || "",
+                note: "Check worker logs for details."
+              });
+              throw fulfillErr;
+            }
           }
         }
 
         return new Response(JSON.stringify({received:true}), { headers:{...headers,"Content-Type":"application/json"} });
       }catch(err){
+        await alertOps(env, "webhook_signature_failed", err.message || "sig_failed", {
+          ip: request.headers.get("CF-Connecting-IP") || "",
+          bodyLength: body ? body.length : 0
+        });
         return new Response(JSON.stringify({error:"signature_verification_failed"}), { status:400, headers:{...headers,"Content-Type":"application/json"} });
       }
     }
