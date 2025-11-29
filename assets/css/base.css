@@ -29,13 +29,21 @@ p{margin:0 0 var(--space-3)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
 .brand{display:inline-flex;align-items:center;gap:8px}
 .brand img{height:24px;width:auto;display:block}
-.brand-text{font-family:var(--font-serif);font-size:20px;letter-spacing:.08em}
+.brand-text{font-family:var(--font-serif);font-size:20px;letter-spacing:.08em;color:var(--text)}
 .nav-links{display:flex;gap:16px;align-items:center;list-style:none;margin:0;padding:0}
+.nav-links details{position:relative}
+.nav-links summary{list-style:none;cursor:pointer}
+.nav-links summary::-webkit-details-marker{display:none}
+.nav-links details[open] > ul{
+position:absolute; background:var(--surface); border:1px solid var(--line); border-radius:8px;
+padding:10px; box-shadow:var(--shadow-1); top:28px; min-width:200px;
+}
 .nav-toggle{display:none}
 @media (max-width:800px){
  .nav-links{display:none}
  .nav-toggle{display:inline-flex}
  .nav-open .nav-links{display:flex;flex-direction:column;gap:12px;padding:12px 0}
+ .nav-open .nav-links details[open] > ul{position:static; box-shadow:none; border:none; padding:0; min-width:auto}
 }
 .footer{margin-top:var(--space-12);padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-size:var(--fs-sm)}
 
