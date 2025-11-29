@@ -75,6 +75,20 @@
  const moreWrap = document.querySelector('[data-shop-more]');
  let limit = 12;
 
+ // Preselect from query params (sign, cat, gender)
+ const params = new URLSearchParams(location.search);
+ const qpSign = params.get('sign');
+ const qpCat = params.get('cat');
+ const qpGender = params.get('gender'); // maps to product.category "Men"/"Women"
+
+ // Derive categoryGroup for each product if not set
+ products.forEach(p=>{
+ if (!p.categoryGroup){
+ const t = (p.type||p.kind||'').toLowerCase();
+ p.categoryGroup = t.includes('print') ? 'Prints' : (t.includes('digital')||t.includes('reading')?'Digital':'Apparel');
+ }
+ });
+
  function render(list){
  const slice = list.slice(0, limit);
  shopArea.innerHTML = slice.map(cardHTML).join('');
@@ -90,11 +104,13 @@
  }
 
  function applyFilters(){
- const sVal = signSel.value;
- const cVal = catSel.value;
+ const sVal = signSel ? signSel.value : 'All';
+ const cVal = catSel ? catSel.value : 'All';
+ const gVal = qpGender || 'All';
  const list = products.filter(p =>
  (sVal==='All' || p.sign===sVal) &&
- (cVal==='All' || p.category===cVal)
+ (cVal==='All' || p.categoryGroup===cVal || p.category===cVal) &&
+ (gVal==='All' || p.category===gVal)
  );
  render(list);
  }
@@ -103,8 +119,10 @@
  signSel.innerHTML = ['All',...new Set(signs.map(s=>s.sign))].map(v=>`<option value="${v}">${v}</option>`).join('');
  catSel.innerHTML = ['All','Apparel','Prints','Digital'].map(v=>`<option value="${v}">${v}</option>`).join('');
 
- // default to current sign (tidier first view)
- if (signSel.querySelector(`option[value="${current.sign}"]`)) signSel.value = current.sign;
+ // Apply query params to selectors if present
+ if (signSel && qpSign && signSel.querySelector(`option[value="${qpSign}"]`)) signSel.value = qpSign;
+ else if (signSel.querySelector(`option[value="${current.sign}"]`)) signSel.value = current.sign;
+ if (catSel && qpCat) catSel.value = qpCat;
 
  signSel.addEventListener('change', ()=>{ limit = 12; applyFilters(); });
  catSel.addEventListener('change', ()=>{ limit = 12; applyFilters(); });
