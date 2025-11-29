@@ -5,6 +5,16 @@
  * containing partner event tickets. Sends an internal email with payout details.
  */
 
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
 exports.handler = async (event) => {
     if (event.httpMethod !== "POST") {
         return { statusCode: 405, body: "Method Not Allowed" };
@@ -26,13 +36,13 @@ exports.handler = async (event) => {
 
     const gbp = x => "£" + (x / 100).toFixed(2);
     const rows = advice.map(a =>
-        `SKU ${a.sku} · qty ${a.qty} · gross ${gbp(a.grossPence)} · our ${gbp(a.ourCommissionPence)} (${a.commissionPct}%) · partner due ${gbp(a.partnerDuePence)}`
+        `SKU ${escapeHtml(a.sku)} · qty ${a.qty} · gross ${gbp(a.grossPence)} · our ${gbp(a.ourCommissionPence)} (${a.commissionPct}%) · partner due ${gbp(a.partnerDuePence)}`
     ).join("\n");
 
     const html = `
 <p><strong>Partner payout advice</strong></p>
-<p>Stripe session: ${sessionId}</p>
-<p>Customer: ${name || "—"} (${email || "—"})</p>
+<p>Stripe session: ${escapeHtml(sessionId)}</p>
+<p>Customer: ${escapeHtml(name) || "—"} (${escapeHtml(email) || "—"})</p>
 <pre>${rows}</pre>
 <p>Note: amounts exclude Stripe fees. Pay partners per your agreement.</p>
 `;

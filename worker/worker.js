@@ -180,8 +180,9 @@ export default {
           const physical = items.filter(i=>!i.isDigital && i.category!=="Digital" && i.kind!=="donation");
 
           // Split event tickets from other digital items
-          const eventTickets = digital.filter(d => d.category==="Event" && d.kind==="partner_ticket");
-          const otherDigital = digital.filter(d => !(d.category==="Event" && d.kind==="partner_ticket"));
+          const isEventTicket = d => d.category==="Event" && d.kind==="partner_ticket";
+          const eventTickets = digital.filter(isEventTicket);
+          const otherDigital = digital.filter(d => !isEventTicket(d));
 
           // 1) Digital fulfillment via Netlify Function (non-event tickets)
           if (otherDigital.length){

@@ -20,12 +20,15 @@
     if (!ev.date) return '#';
     var dt = ev.date + 'T' + (ev.time||'19:00');
     var start = dt.replace(/[-:]/g,'') + '00';
-    var end = start;
+    // Add 2 hours for end time
+    var startDate = new Date(ev.date + 'T' + (ev.time||'19:00'));
+    startDate.setHours(startDate.getHours() + 2);
+    var endStr = startDate.toISOString().replace(/[-:]/g,'').split('.')[0] + '00';
     var body = [
       'BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT',
       'SUMMARY:' + ev.title,
       ev.location ? 'LOCATION:' + ev.location : '',
-      'DTSTART:' + start, 'DTEND:' + end,
+      'DTSTART:' + start, 'DTEND:' + endStr,
       'DESCRIPTION:' + (ev.subtitle||'') + (ev.bookUrl? ' — ' + ev.bookUrl : ''),
       'END:VEVENT','END:VCALENDAR'
     ].filter(Boolean).join('\r\n');

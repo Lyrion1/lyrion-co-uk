@@ -5,6 +5,16 @@
  * containing partner event tickets.
  */
 
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
 exports.handler = async (event) => {
     if (event.httpMethod !== "POST") {
         return { statusCode: 405, body: "Method Not Allowed" };
@@ -25,8 +35,8 @@ exports.handler = async (event) => {
     const { email, name, items = [] } = payload;
 
     const subject = "Your LYRĪON ticket";
-    const lines = items.map(i => `• ${i.title || "Event"} (SKU ${i.sku}) x${i.qty}`).join("\n");
-    const html = `<p>Hi ${name || "there"},</p><p>Your ticket is confirmed:</p><pre>${lines}</pre><p>We'll email joining details 24h before the event.</p>`;
+    const lines = items.map(i => `• ${escapeHtml(i.title) || "Event"} (SKU ${escapeHtml(i.sku)}) x${i.qty}`).join("\n");
+    const html = `<p>Hi ${escapeHtml(name) || "there"},</p><p>Your ticket is confirmed:</p><pre>${lines}</pre><p>We'll email joining details 24h before the event.</p>`;
 
     if (process.env.RESEND_API_KEY) {
         try {
