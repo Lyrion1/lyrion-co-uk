@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1500" height="1500" viewBox="0 0 1500 1500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="20"/>
+      <feOffset dx="0" dy="10" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Cream background -->
+  <rect width="1500" height="1500" fill="#FAF7F1"/>
+  
+  <!-- Decorative border -->
+  <rect x="50" y="50" width="1400" height="1400" fill="none" stroke="#C9A86A" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Product icon with shadow -->
+  <g filter="url(#shadow)">
+    
+        <circle cx="750" cy="750" r="60" fill="#C9A86A" opacity="0.4"/>
+        <circle cx="750" cy="750" r="60" fill="none" stroke="#C9A86A" stroke-width="3"/>
+        <line x1="830" y1="750" x2="860" y2="750" stroke="#C9A86A" stroke-width="3"/>
+<line x1="806.5685424949238" y1="806.5685424949238" x2="827.7817459305202" y2="827.7817459305202" stroke="#C9A86A" stroke-width="3"/>
+<line x1="750" y1="830" x2="750" y2="860" stroke="#C9A86A" stroke-width="3"/>
+<line x1="693.4314575050762" y1="806.5685424949238" x2="672.2182540694798" y2="827.7817459305202" stroke="#C9A86A" stroke-width="3"/>
+<line x1="670" y1="750" x2="640" y2="750" stroke="#C9A86A" stroke-width="3"/>
+<line x1="693.4314575050762" y1="693.4314575050762" x2="672.2182540694797" y2="672.2182540694798" stroke="#C9A86A" stroke-width="3"/>
+<line x1="750" y1="670" x2="750" y2="640" stroke="#C9A86A" stroke-width="3"/>
+<line x1="806.5685424949238" y1="693.4314575050762" x2="827.7817459305202" y2="672.2182540694797" stroke="#C9A86A" stroke-width="3"/>
+      
+  </g>
+  
+  <!-- Product name -->
+  <text x="750" y="1000" font-family="Georgia, serif" font-size="48" fill="#1E1E21" text-anchor="middle" font-weight="300">
+    Ritual Kit: Solstice
+  </text>
+  
+  <!-- Type indicator -->
+  <text x="750" y="1060" font-family="Georgia, serif" font-size="28" fill="#5C5F6A" text-anchor="middle" font-style="italic">
+    Digital Product
+  </text>
+  
+  <!-- LYRĪON mark -->
+  <text x="750" y="1350" font-family="Georgia, serif" font-size="32" fill="#C9A86A" text-anchor="middle" letter-spacing="4">
+    LYRĪON
+  </text>
+</svg>

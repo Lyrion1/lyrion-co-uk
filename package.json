@@ -4,13 +4,15 @@
   "description": "Automated astrology e-commerce with POD fulfillment",
   "main": "index.js",
   "scripts": {
-    "dev": "netlify dev"
+    "dev": "netlify dev",
+    "gen:mockups": "node scripts/generate-mockups.js"
   },
   "dependencies": {
-    "stripe": "^14.10.0",
-    "node-fetch": "^2.7.0"
+    "node-fetch": "^2.7.0",
+    "stripe": "^14.10.0"
   },
   "devDependencies": {
-    "netlify-cli": "^17.10.0"
+    "netlify-cli": "^17.10.0",
+    "sharp": "^0.33.5"
   }
 }
