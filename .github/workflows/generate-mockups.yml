@@ -14,6 +14,7 @@ jobs:
           node-version: '18'
       
       - name: Install dependencies
+        # Fallback to 'npm i' since package-lock.json is gitignored
         run: npm ci || npm i
       
       - name: Generate mockups

@@ -18,6 +18,13 @@ const THEME = {
   MUTED: '#5C5F6A'
 };
 
+// Icon rendering constants
+const ICON_CONFIG = {
+  SUN_INNER_RADIUS: 80,
+  SUN_OUTER_RADIUS: 110,
+  SUN_ANGLES: [0, 45, 90, 135, 180, 225, 270, 315]
+};
+
 // Product definitions
 const PRODUCTS = {
   // Accessories (handmade/in-house)
@@ -148,12 +155,12 @@ function generateSVG(slug, product) {
       iconSVG = `
         <circle cx="750" cy="750" r="60" fill="${THEME.GOLD}" opacity="0.4"/>
         <circle cx="750" cy="750" r="60" fill="none" stroke="${THEME.GOLD}" stroke-width="3"/>
-        ${[0,45,90,135,180,225,270,315].map(angle => {
+        ${ICON_CONFIG.SUN_ANGLES.map(angle => {
           const rad = (angle * Math.PI) / 180;
-          const x1 = 750 + Math.cos(rad) * 80;
-          const y1 = 750 + Math.sin(rad) * 80;
-          const x2 = 750 + Math.cos(rad) * 110;
-          const y2 = 750 + Math.sin(rad) * 110;
+          const x1 = 750 + Math.cos(rad) * ICON_CONFIG.SUN_INNER_RADIUS;
+          const y1 = 750 + Math.sin(rad) * ICON_CONFIG.SUN_INNER_RADIUS;
+          const x2 = 750 + Math.cos(rad) * ICON_CONFIG.SUN_OUTER_RADIUS;
+          const y2 = 750 + Math.sin(rad) * ICON_CONFIG.SUN_OUTER_RADIUS;
           return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${THEME.GOLD}" stroke-width="3"/>`;
         }).join('\n')}
       `;
@@ -231,6 +238,8 @@ function generateSVG(slug, product) {
       `;
       break;
     default:
+      // Fallback: generic circle for any unknown icon types
+      console.warn(`Unknown icon type: ${icon}, using default circle`);
       iconSVG = `<circle cx="750" cy="750" r="60" fill="none" stroke="${THEME.GOLD}" stroke-width="3"/>`;
   }
   
