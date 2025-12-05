@@ -1,48 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="1500" height="1500" viewBox="0 0 1500 1500" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="20"/>
-      <feOffset dx="0" dy="10" result="offsetblur"/>
-      <feComponentTransfer>
-        <feFuncA type="linear" slope="0.2"/>
-      </feComponentTransfer>
-      <feMerge>
-        <feMergeNode/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
-  
-  <!-- Cream background -->
-  <rect width="1500" height="1500" fill="#FAF7F1"/>
-  
-  <!-- Decorative border -->
-  <rect x="50" y="50" width="1400" height="1400" fill="none" stroke="#C9A86A" stroke-width="2" opacity="0.3"/>
-  
-  <!-- Product icon with shadow -->
-  <g filter="url(#shadow)">
-    
-        <rect x="680" y="680" width="100" height="140" fill="#C9A86A" opacity="0.2" rx="6"/>
-        <rect x="690" y="690" width="100" height="140" fill="#C9A86A" opacity="0.3" rx="6"/>
-        <rect x="700" y="700" width="100" height="140" fill="none" stroke="#C9A86A" stroke-width="3" rx="6"/>
-        <circle cx="750" cy="770" r="25" fill="none" stroke="#C9A86A" stroke-width="2"/>
-        <path d="M 750 745 L 750 795 M 725 770 L 775 770" stroke="#C9A86A" stroke-width="2"/>
-      
-  </g>
-  
-  <!-- Product name -->
-  <text x="750" y="1000" font-family="Georgia, serif" font-size="48" fill="#1E1E21" text-anchor="middle" font-weight="300">
-    Oracle Mini Deck
-  </text>
-  
-  <!-- Type indicator -->
-  <text x="750" y="1060" font-family="Georgia, serif" font-size="28" fill="#5C5F6A" text-anchor="middle" font-style="italic">
-    Digital Product
-  </text>
-  
-  <!-- LYRĪON mark -->
-  <text x="750" y="1350" font-family="Georgia, serif" font-size="32" fill="#C9A86A" text-anchor="middle" letter-spacing="4">
-    LYRĪON
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1500" viewBox="0 0 1500 1500" style="background:#FAF7F1">
+ <defs>
+ <style>
+ .title{font-family: Georgia, serif; fill:#1E1E21; font-size:56px}
+ .sub{font-family: -apple-system, Segoe UI, Roboto, sans-serif; fill:#5C5F6A; font-size:30px}
+ </style>
+ </defs>
+ 
+ <rect x="360" y="460" width="400" height="620" rx="30" fill="#FAF7F1" stroke="#1E1E21" stroke-width="3"/>
+ <rect x="380" y="480" width="360" height="580" rx="24" fill="none" stroke="#C9A86A" stroke-width="6"/>
+ <text x="420" y="820" class="sub">THE TWINS</text>
+ <rect x="820" y="460" width="400" height="620" rx="30" fill="#1E1E21" stroke="#1E1E21" stroke-width="3"/>
+ <circle cx="1020" cy="770" r="70" fill="#FAF7F1" stroke="#C9A86A" stroke-width="6"/>
+ <text x="360" y="360" class="title">Printable Oracle Cards (Mini)</text>
+ <text x="360" y="410" class="sub">12 archetypes · PDF</text>
+ 
 </svg>

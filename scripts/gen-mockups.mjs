@@ -43,9 +43,10 @@ function panel(x1,y1,x2,y2,r=36,fill="#FCFAF6", stroke="#E0DFDC") {
 }
 
 /* ---------- drawing helpers (simple shapes) ---------- */
+const escapeXml = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 const circle = (cx,cy,r,fill,stroke,sw=2)=>`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" stroke="${stroke??'none'}" stroke-width="${sw}"/>`;
 const rrect = (x1,y1,x2,y2,r,fill,stroke="#D0D0D0",sw=3)=>`<rect x="${x1}" y="${y1}" width="${x2-x1}" height="${y2-y1}" rx="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
-const text = (x,y,cls,txt)=>`<text x="${x}" y="${y}" class="${cls}">${txt}</text>`;
+const text = (x,y,cls,txt)=>`<text x="${x}" y="${y}" class="${cls}">${escapeXml(txt)}</text>`;
 const arc = (x1,y1,x2,y2,start,end,color,w)=>`<path d="M0,0" stroke="${color}" />` + `<path d="M ${x1+(x2-x1)/2} ${y1+(y2-y1)/2}" stroke="none" />` + 
  `<svg/>`;
 
