@@ -1,0 +1,31 @@
+name: Generate Mockups
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required for git push
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        # Fallback to 'npm i' since package-lock.json is gitignored
+        run: npm ci || npm i
+      
+      - name: Generate mockups
+        run: npm run gen:mockups
+      
+      - name: Commit images
+        run: |
+          git config user.name "lyrion-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add assets/products/mockups -A
+          git commit -m "chore(images): generate storefront mockups" || echo "no changes"
+          git push
