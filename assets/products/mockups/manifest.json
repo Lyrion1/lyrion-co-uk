@@ -1,54 +1,67 @@
 {
   "accessory-solstice-chain": {
     "png": "/assets/products/mockups/png/accessory-solstice-chain.png",
-    "webp": "/assets/products/mockups/webp/accessory-solstice-chain.webp"
+    "webp": "/assets/products/mockups/webp/accessory-solstice-chain.webp",
+    "svg": "/assets/products/mockups/svg/accessory-solstice-chain.svg"
   },
   "accessory-celestial-bookmark": {
     "png": "/assets/products/mockups/png/accessory-celestial-bookmark.png",
-    "webp": "/assets/products/mockups/webp/accessory-celestial-bookmark.webp"
+    "webp": "/assets/products/mockups/webp/accessory-celestial-bookmark.webp",
+    "svg": "/assets/products/mockups/svg/accessory-celestial-bookmark.svg"
   },
   "accessory-blessing-ribbon": {
     "png": "/assets/products/mockups/png/accessory-blessing-ribbon.png",
-    "webp": "/assets/products/mockups/webp/accessory-blessing-ribbon.webp"
+    "webp": "/assets/products/mockups/webp/accessory-blessing-ribbon.webp",
+    "svg": "/assets/products/mockups/svg/accessory-blessing-ribbon.svg"
   },
   "accessory-velvet-pouch": {
     "png": "/assets/products/mockups/png/accessory-velvet-pouch.png",
-    "webp": "/assets/products/mockups/webp/accessory-velvet-pouch.webp"
+    "webp": "/assets/products/mockups/webp/accessory-velvet-pouch.webp",
+    "svg": "/assets/products/mockups/svg/accessory-velvet-pouch.svg"
   },
   "accessory-wax-seal-kit": {
     "png": "/assets/products/mockups/png/accessory-wax-seal-kit.png",
-    "webp": "/assets/products/mockups/webp/accessory-wax-seal-kit.webp"
+    "webp": "/assets/products/mockups/webp/accessory-wax-seal-kit.webp",
+    "svg": "/assets/products/mockups/svg/accessory-wax-seal-kit.svg"
   },
   "digital-ritual-kit-solstice": {
     "png": "/assets/products/mockups/png/digital-ritual-kit-solstice.png",
-    "webp": "/assets/products/mockups/webp/digital-ritual-kit-solstice.webp"
+    "webp": "/assets/products/mockups/webp/digital-ritual-kit-solstice.webp",
+    "svg": "/assets/products/mockups/svg/digital-ritual-kit-solstice.svg"
   },
   "digital-ritual-kit-equinox": {
     "png": "/assets/products/mockups/png/digital-ritual-kit-equinox.png",
-    "webp": "/assets/products/mockups/webp/digital-ritual-kit-equinox.webp"
+    "webp": "/assets/products/mockups/webp/digital-ritual-kit-equinox.webp",
+    "svg": "/assets/products/mockups/svg/digital-ritual-kit-equinox.svg"
   },
   "digital-zodiac-wallpapers-pack": {
     "png": "/assets/products/mockups/png/digital-zodiac-wallpapers-pack.png",
-    "webp": "/assets/products/mockups/webp/digital-zodiac-wallpapers-pack.webp"
+    "webp": "/assets/products/mockups/webp/digital-zodiac-wallpapers-pack.webp",
+    "svg": "/assets/products/mockups/svg/digital-zodiac-wallpapers-pack.svg"
   },
   "digital-meditation-new-moon": {
     "png": "/assets/products/mockups/png/digital-meditation-new-moon.png",
-    "webp": "/assets/products/mockups/webp/digital-meditation-new-moon.webp"
+    "webp": "/assets/products/mockups/webp/digital-meditation-new-moon.webp",
+    "svg": "/assets/products/mockups/svg/digital-meditation-new-moon.svg"
   },
   "digital-meditation-full-moon": {
     "png": "/assets/products/mockups/png/digital-meditation-full-moon.png",
-    "webp": "/assets/products/mockups/webp/digital-meditation-full-moon.webp"
+    "webp": "/assets/products/mockups/webp/digital-meditation-full-moon.webp",
+    "svg": "/assets/products/mockups/svg/digital-meditation-full-moon.svg"
   },
   "digital-meditation-trio": {
     "png": "/assets/products/mockups/png/digital-meditation-trio.png",
-    "webp": "/assets/products/mockups/webp/digital-meditation-trio.webp"
+    "webp": "/assets/products/mockups/webp/digital-meditation-trio.webp",
+    "svg": "/assets/products/mockups/svg/digital-meditation-trio.svg"
   },
   "digital-oracle-mini-deck": {
     "png": "/assets/products/mockups/png/digital-oracle-mini-deck.png",
-    "webp": "/assets/products/mockups/webp/digital-oracle-mini-deck.webp"
+    "webp": "/assets/products/mockups/webp/digital-oracle-mini-deck.webp",
+    "svg": "/assets/products/mockups/svg/digital-oracle-mini-deck.svg"
   },
   "digital-affirmations-monthly": {
     "png": "/assets/products/mockups/png/digital-affirmations-monthly.png",
-    "webp": "/assets/products/mockups/webp/digital-affirmations-monthly.webp"
+    "webp": "/assets/products/mockups/webp/digital-affirmations-monthly.webp",
+    "svg": "/assets/products/mockups/svg/digital-affirmations-monthly.svg"
   }
 }

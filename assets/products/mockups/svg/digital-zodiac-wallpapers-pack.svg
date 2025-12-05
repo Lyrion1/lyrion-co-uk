@@ -1,50 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="1500" height="1500" viewBox="0 0 1500 1500" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="20"/>
-      <feOffset dx="0" dy="10" result="offsetblur"/>
-      <feComponentTransfer>
-        <feFuncA type="linear" slope="0.2"/>
-      </feComponentTransfer>
-      <feMerge>
-        <feMergeNode/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
-  
-  <!-- Cream background -->
-  <rect width="1500" height="1500" fill="#FAF7F1"/>
-  
-  <!-- Decorative border -->
-  <rect x="50" y="50" width="1400" height="1400" fill="none" stroke="#C9A86A" stroke-width="2" opacity="0.3"/>
-  
-  <!-- Product icon with shadow -->
-  <g filter="url(#shadow)">
-    
-        <polygon points="700,694 703.5267115137549,704.8541019662497 694.2936609022291,698.1458980337503 705.7063390977709,698.1458980337503 696.4732884862451,704.8541019662497" fill="#C9A86A" opacity="0.8"/>
-<polygon points="800,672 804.7022820183398,686.4721359549995 792.3915478696388,677.5278640450005 807.6084521303612,677.5278640450005 795.2977179816602,686.4721359549995" fill="#C9A86A" opacity="0.8"/>
-<polygon points="730,755 732.9389262614624,764.0450849718748 725.2447174185243,758.4549150281252 734.7552825814757,758.4549150281252 727.0610737385376,764.0450849718748" fill="#C9A86A" opacity="0.8"/>
-<polygon points="780,733 784.1144967660473,745.6631189606246 773.3426043859339,737.8368810393754 786.6573956140661,737.8368810393754 775.8855032339527,745.6631189606246" fill="#C9A86A" opacity="0.8"/>
-<polygon points="750,814 753.5267115137549,824.8541019662497 744.2936609022291,818.1458980337503 755.7063390977709,818.1458980337503 746.4732884862451,824.8541019662497" fill="#C9A86A" opacity="0.8"/>
-<polygon points="820,775 822.9389262614624,784.0450849718748 815.2447174185243,778.4549150281252 824.7552825814757,778.4549150281252 817.0610737385376,784.0450849718748" fill="#C9A86A" opacity="0.8"/>
-<polygon points="680,776 682.3511410091699,783.2360679774998 676.1957739348194,778.7639320225002 683.8042260651806,778.7639320225002 677.6488589908301,783.2360679774998" fill="#C9A86A" opacity="0.8"/>
-      
-  </g>
-  
-  <!-- Product name -->
-  <text x="750" y="1000" font-family="Georgia, serif" font-size="48" fill="#1E1E21" text-anchor="middle" font-weight="300">
-    Zodiac Wallpapers Pack
-  </text>
-  
-  <!-- Type indicator -->
-  <text x="750" y="1060" font-family="Georgia, serif" font-size="28" fill="#5C5F6A" text-anchor="middle" font-style="italic">
-    Digital Product
-  </text>
-  
-  <!-- LYRĪON mark -->
-  <text x="750" y="1350" font-family="Georgia, serif" font-size="32" fill="#C9A86A" text-anchor="middle" letter-spacing="4">
-    LYRĪON
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1500" viewBox="0 0 1500 1500" style="background:#FAF7F1">
+ <defs>
+ <style>
+ .title{font-family: Georgia, serif; fill:#1E1E21; font-size:56px}
+ .sub{font-family: -apple-system, Segoe UI, Roboto, sans-serif; fill:#5C5F6A; font-size:30px}
+ </style>
+ </defs>
+ 
+ <rect x="380" y="380" width="740" height="760" rx="40" fill="#FAF7F1" stroke="#DDDCDA" stroke-width="3"/>
+ <rect x="420" y="420" width="280" height="680" rx="40" fill="#FAF7F1" stroke="#5C5F6A" stroke-width="3"/>
+ <rect x="610" y="450" width="280" height="680" rx="40" fill="#151823" stroke="#5C5F6A" stroke-width="3"/>
+ <rect x="800" y="420" width="280" height="680" rx="40" fill="#FAF7F1" stroke="#5C5F6A" stroke-width="3"/>
+ <circle cx="560" cy="760" r="50" fill="#FAF7F1" stroke="#C9A86A" stroke-width="6"/>
+ <circle cx="750" cy="800" r="50" fill="#FAF7F1" stroke="#C9A86A" stroke-width="6"/>
+ <circle cx="940" cy="740" r="50" fill="#FAF7F1" stroke="#C9A86A" stroke-width="6"/>
+ <text x="380" y="320" class="title">Zodiac Phone Wallpapers Pack</text>
+ <text x="380" y="370" class="sub">Day &amp; Night pairs · 12 signs</text>
+ 
 </svg>
